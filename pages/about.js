@@ -1,6 +1,6 @@
-import siteMetadata from '@/data/siteMetadata'
-import SocialIcon from '@/components/social-icons'
-import { PageSeo } from '@/components/SEO'
+import siteMetadata from '@data/siteMetadata'
+import SocialIcon from '@components/social-icons'
+import { PageSeo } from '@components/SEO'
 
 export default function About() {
   return (

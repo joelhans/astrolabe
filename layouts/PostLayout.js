@@ -1,9 +1,9 @@
-import Link from '@/components/Link'
-import PageTitle from '@/components/PageTitle'
-import SectionContainer from '@/components/SectionContainer'
-import { BlogSeo } from '@/components/SEO'
-import Tag from '@/components/Tag'
-import siteMetdata from '@/data/siteMetadata'
+import Link from '@components/Link'
+import PageTitle from '@components/PageTitle'
+import SectionContainer from '@components/SectionContainer'
+import { BlogSeo } from '@components/SEO'
+import Tag from '@components/Tag'
+import siteMetdata from '@data/siteMetadata'
 
 const editUrl = (fileName) => `${siteMetdata.siteRepo}/blob/master/data/blog/${fileName}`
 const discussUrl = (slug) =>
@@ -95,7 +95,7 @@ export default function PostLayout({ children, frontMatter, next, prev }) {
                           Previous Article
                         </h2>
                         <div className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400">
-                          <Link href={`/blog/${prev.slug}`}>{prev.title}</Link>
+                          <Link href={`/blog/${prev.slug}`}>{prev.data.title}</Link>
                         </div>
                       </div>
                     )}
@@ -105,7 +105,7 @@ export default function PostLayout({ children, frontMatter, next, prev }) {
                           Next Article
                         </h2>
                         <div className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400">
-                          <Link href={`/blog/${next.slug}`}>{next.title}</Link>
+                          <Link href={`/blog/${next.slug}`}>{next.data.title}</Link>
                         </div>
                       </div>
                     )}

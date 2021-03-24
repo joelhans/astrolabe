@@ -21,10 +21,15 @@ module.exports = {
         14: '3.5rem',
       },
       fontFamily: {
-        sans: ['Inter', ...defaultTheme.fontFamily.sans],
+        sans: ['IBM Plex Sans', ...defaultTheme.fontFamily.sans],
+        mono: ['IBM Plex Mono', ...defaultTheme.fontFamily.mono],
       },
       colors: {
         blue: colors.lightBlue,
+        erin: '#48E499',
+        lilac: '#B596F8',
+        indigo: '#5790FF',
+        salmon: '#FCAF3B',
         code: {
           green: '#b5f4a5',
           yellow: '#ffe484',

@@ -1,6 +1,6 @@
-import siteMetadata from '@/data/siteMetadata'
-import headerNavLinks from '@/data/headerNavLinks'
-import Logo from '@/data/logo.svg'
+import siteMetadata from '@data/siteMetadata'
+import headerNavLinks from '@data/headerNavLinks'
+import Logo from '@data/netdata.svg'
 import Link from './Link'
 import SectionContainer from './SectionContainer'
 import Footer from './Footer'
@@ -10,25 +10,18 @@ import ThemeSwitch from './ThemeSwitch'
 const LayoutWrapper = ({ children }) => {
   return (
     <SectionContainer>
-      <div className="flex flex-col justify-between h-screen">
-        <header className="flex items-center justify-between py-10">
+      <header className="sticky top-0 z-40 lg:z-50 max-w-screen-lg xl:max-w-screen-xl mx-auto bg-white border-b border-gray-100 dark:bg-gray-900 dark:border-gray-700">
+        <div class="flex items-center justify-center lg:justify-between flex-wrap py-4 lg:px-0 container mx-auto">
           <div>
             <Link href="/" aria-label="Tailwind CSS Blog">
               <div className="flex items-center justify-between">
                 <div className="mr-3">
-                  <Logo />
+                  <Logo width="auto" height="auto" className="w-36" />
                 </div>
-                {typeof siteMetadata.headerTitle === 'string' ? (
-                  <div className="hidden h-6 text-2xl font-semibold sm:block">
-                    {siteMetadata.headerTitle}
-                  </div>
-                ) : (
-                  siteMetadata.headerTitle
-                )}
               </div>
             </Link>
           </div>
-          <div className="flex items-center text-base leading-5">
+          <div className="flex-grow lg:flex lg:items-center lg:w-auto justify-end ml-12">
             <div className="hidden sm:block">
               {headerNavLinks.map((link) => (
                 <Link
@@ -43,10 +36,10 @@ const LayoutWrapper = ({ children }) => {
             <ThemeSwitch />
             <MobileNav />
           </div>
-        </header>
-        <main className="mb-auto">{children}</main>
-        <Footer />
-      </div>
+        </div>
+      </header>
+      <main className="mb-auto">{children}</main>
+      <Footer />
     </SectionContainer>
   )
 }
