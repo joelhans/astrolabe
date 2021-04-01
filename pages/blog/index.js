@@ -1,5 +1,5 @@
 import { getFrontMatter } from '@/lib/mdx'
-import { BLOG_CONTENT_PATH } from '@config/constants';
+import { BLOG_CONTENT_PATH } from '@config/constants'
 import siteMetadata from '@data/siteMetadata'
 import ListLayout from '@/layouts/ListLayout'
 import { PageSeo } from '@components/SEO'

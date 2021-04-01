@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "next-remote-watch ./data ./content",
+    "start": "next-remote-watch ./src/data ./content",
     "dev": "next dev",
     "build": "next build && node ./scripts/generate-sitemap",
     "serve": "next start",
@@ -27,6 +27,8 @@
     "preact": "^10.5.7",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-icons": "^4.2.0",
+    "react-select": "^4.3.0",
     "reading-time": "1.2.1",
     "rehype-katex": "^4.0.0",
     "remark-autolink-headings": "6.0.1",
