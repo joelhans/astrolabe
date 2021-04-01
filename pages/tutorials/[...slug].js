@@ -1,11 +1,11 @@
 import hydrate from 'next-mdx-remote/hydrate'
-import { getContent } from '@/lib/mdx'
-import { DOCS_CONTENT_PATH } from '@config/constants'
+import { getContent, getSingleContent } from '@/lib/mdx'
+import { TUTORIALS_CONTENT_PATH } from '@config/constants'
 import DocLayout from '@/layouts/DocLayout'
 import MDXComponents from '@components/MDXComponents'
 
 export async function getStaticPaths() {
-  const posts = await getContent(DOCS_CONTENT_PATH)
+  const posts = await getContent(TUTORIALS_CONTENT_PATH)
   const paths = posts.map(({ slug }) => ({
     params: {
       slug: slug.split('/'),
@@ -19,25 +19,26 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { slug } }) {
-  const posts = await getContent(DOCS_CONTENT_PATH)
   const postSlug = slug.join('/')
-  const [post] = posts.filter((post) => post.slug === postSlug)
+  const content = await getSingleContent(TUTORIALS_CONTENT_PATH, postSlug)
 
-  if (!post) {
+  if (!content) {
     console.warn(`No content found for slug ${postSlug}`)
   }
 
   return {
     props: {
-      mdxSource: post.md,
-      frontMatter: post.data,
-      toc: post.toc,
+      mdxSource: content.mdxSource,
+      frontMatter: content.frontMatter,
+      toc: content.toc,
     },
   }
 }
 
 export default function Doc({ mdxSource, frontMatter, toc }) {
-  const content = hydrate(mdxSource, { MDXComponents })
+  const content = hydrate(mdxSource, {
+    components: MDXComponents,
+  })
 
   return (
     <>

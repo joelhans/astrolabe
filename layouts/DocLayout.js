@@ -13,10 +13,7 @@ export default function DocLayout({ children, frontMatter, toc }) {
   const { slug, fileName, title } = frontMatter
 
   // Check if the doc is a Cloud doc. If so, be sure to show Cloud items in the sidebar.
-  let SidebarDocsCloud = false
-  if (slug.startsWith('cloud/')) {
-    SidebarDocsCloud = true
-  }
+  let SidebarDocsCloud = slug.startsWith('cloud/') ? true : false
 
   return (
     <>

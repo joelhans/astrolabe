@@ -1,5 +1,6 @@
 ---
 title: How to optimize the Netdata Agent's performance
+date: '2021-03-26'
 description: 'While the Netdata Agent is designed to monitor a system with only 1% CPU, you can optimize its performance for low-resource systems.'
 image: /img/seo/guides/configure/performance.png
 custom_edit_url: https://github.com/netdata/netdata/edit/master/docs/guides/configure/performance.md
@@ -62,7 +63,7 @@ If you change this to `2`, Netdata enforces a minimum `update every` setting of 
 other second, which will effectively halve CPU utilization. Set this to `5` or `10` to collect metrics every 5 or 10
 seconds, respectively.
 
-```conf
+```
 [global]
     update every = 5
 ```
@@ -78,7 +79,7 @@ plugin/collector](/docs/collect/how-collectors-work#collector-architecture-and-t
 find the appropriate section. For example, to reduce the frequency of the `apps` plugin, which collects and visualizes
 metrics on application resource utilization:
 
-```conf
+```
 [plugin:apps]
     update every = 5
 ```
@@ -87,7 +88,7 @@ To [configure an individual collector](/docs/collect/enable-configure), open its
 `edit-config` and look for the `update_every` setting. For example, to reduce the frequency of the `nginx` collector,
 run `sudo ./edit-config go.d/nginx.conf`:
 
-```conf
+```
 # [ GLOBAL ]
 update_every: 10
 ```
@@ -103,7 +104,7 @@ Open `netdata.conf` and scroll down to the `[plugins]` section. To disable any p
 `no`. For example, to explicitly keep the `proc` and `go.d` plugins enabled while disabling `python.d`, `charts.d`, and
 `node.d`.
 
-```conf
+```
 [plugins]
     proc = yes
 		python.d = no
@@ -124,7 +125,7 @@ sudo ./edit-config charts.d.conf
 
 For example, to disable a few Python collectors:
 
-```conf
+```
 modules:
   apache: no
 	dockerd: no
@@ -145,7 +146,7 @@ calculator](/docs/store/change-metrics-storage#calculate-the-system-resources-ra
 
 All the settings are found in the `[global]` section of `netdata.conf`:
 
-```conf
+```
 [global]
     memory mode = dbengine
     page cache size = 32
@@ -163,7 +164,7 @@ doc](/docs/agent/running-behind-nginx).
 After you complete Nginx setup according to the doc linked above, we recommend setting `keepalive` to `1024`, and using
 gzip compression with the following options in the `location /` block:
 
-```conf
+```
   location / {
 		...
 		gzip on;
@@ -174,7 +175,7 @@ gzip compression with the following options in the `location /` block:
 
 Finally, edit `netdata.conf` with the following settings:
 
-```conf
+```
 [global]
     bind socket to IP = 127.0.0.1
     access log = none
@@ -190,14 +191,14 @@ looking at the local Agent dashboard.
 
 To disable gzip compression, open `netdata.conf` and find the `[web]` section:
 
-```conf
+```
 [web]
     enable gzip compression = no
 ```
 
 Or to lower the default compression level:
 
-```conf
+```
 [web]
     enable gzip compression = yes
     gzip compression level = 1
@@ -208,7 +209,7 @@ Or to lower the default compression level:
 If you installation is working correctly, and you're not actively auditing Netdata's logs, disable them in
 `netdata.conf`.
 
-```conf
+```
 [global]
     debug log = none
     error log = none

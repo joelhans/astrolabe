@@ -104,9 +104,9 @@ export const BlogSeo = ({ title, summary, date, lastmod, url, tags, images = [] 
   )
 }
 
-export const DocSeo = ({ title, description, date_published, lastmod, url, tags, images = [] }) => {
-  const publishedAt = new Date(date_published).toISOString()
-  const modifiedAt = new Date(lastmod || date_published).toISOString()
+export const DocSeo = ({ title, description, date, lastmod, url, tags, images = [] }) => {
+  const publishedAt = new Date(date).toISOString()
+  const modifiedAt = new Date(lastmod || date).toISOString()
   let imagesArr =
     images.length === 0
       ? [siteMetadata.socialBanner]
@@ -130,7 +130,7 @@ export const DocSeo = ({ title, description, date_published, lastmod, url, tags,
         openGraph={{
           type: 'article',
           article: {
-            publishedTime: publishedAt,
+            // publishedTime: publishedAt,
             modifiedTime: modifiedAt,
             authors: [`${siteMetadata.siteUrl}/about`],
             tags,
