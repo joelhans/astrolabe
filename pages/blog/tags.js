@@ -1,12 +1,13 @@
 import siteMetadata from '@data/siteMetadata'
 import { kebabCase } from '@/lib/utils'
 import { getAllTags } from '@/lib/tags'
+import { BLOG_CONTENT_PATH } from '@config/constants'
 import Tag from '@components/Tag'
 import Link from '@components/Link'
 import { PageSeo } from '@components/SEO'
 
 export async function getStaticProps() {
-  const tags = await getAllTags('blog')
+  const tags = await getAllTags(BLOG_CONTENT_PATH)
 
   return { props: { tags } }
 }
@@ -18,7 +19,7 @@ export default function Tags({ tags }) {
       <PageSeo
         title={`Tags - ${siteMetadata.author}`}
         description="Things I blog about"
-        url={`${siteMetadata.siteUrl}/tags`}
+        url={`${siteMetadata.siteUrl}/blog/tags`}
       />
       <div className="flex flex-col items-start justify-start divide-y divide-gray-200 dark:divide-gray-700 md:justify-center md:items-center md:divide-y-0 md:flex-row md:space-x-6 md:mt-24">
         <div className="pt-6 pb-8 space-x-2 md:space-y-5">
@@ -33,7 +34,7 @@ export default function Tags({ tags }) {
               <div key={t} className="mt-2 mb-2 mr-5">
                 <Tag text={t} />
                 <Link
-                  href={`/tags/${kebabCase(t)}`}
+                  href={`/blog/tags/${kebabCase(t)}`}
                   className="-ml-2 text-sm font-semibold text-gray-600 uppercase dark:text-gray-300"
                 >
                   {` (${tags[t]})`}
