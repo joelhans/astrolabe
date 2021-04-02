@@ -5,8 +5,6 @@ import siteMetadata from '@data/siteMetadata'
 import IntegrationsData from '@data/Integrations'
 
 export default function Integrations() {
-  console.log(IntegrationsData)
-
   return (
     <>
       <PageSeo
