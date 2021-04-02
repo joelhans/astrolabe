@@ -1,5 +1,6 @@
 import { NextSeo, ArticleJsonLd } from 'next-seo'
 import siteMetadata from '@data/siteMetadata'
+import { useRouter } from 'next/router'
 
 export const SEO = {
   title: siteMetadata.title,
@@ -33,9 +34,14 @@ export const SEO = {
 }
 
 export const PageSeo = ({ title, description, url }) => {
+  const router = useRouter()
+  const path = router.query
+
+  console.log(path)
+
   return (
     <NextSeo
-      title={`${title} – ${siteMetadata.title}`}
+      title={`${router.asPath === '/' ? '' : `${title} •`} ${siteMetadata.title}`}
       description={description}
       canonical={url}
       openGraph={{
