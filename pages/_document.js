@@ -41,7 +41,7 @@ class MyDocument extends Document {
             />
           </noscript>
         </Head>
-        <body className="antialiased text-black bg-white dark:bg-gray-900 dark:text-white">
+        <body className="antialiased text-gray-900 bg-white dark:bg-gray-900 dark:text-white">
           <Main />
           <NextScript />
         </body>

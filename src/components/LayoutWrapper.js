@@ -14,7 +14,7 @@ const LayoutWrapper = ({ children }) => {
     <SectionContainer>
       <header className="sticky top-0 z-40 lg:z-50 max-w-screen-lg xl:max-w-screen-xl mx-auto bg-white border-b border-gray-100 dark:bg-gray-900 dark:border-gray-700">
         <div className="flex items-center justify-center lg:justify-between flex-wrap py-4 lg:px-0 container mx-auto">
-          <div className="w-1/4">
+          <div className="">
             <Link href="/" aria-label="Tailwind CSS Blog">
               <div className="flex items-center justify-between">
                 <div className="mr-3">
@@ -23,7 +23,7 @@ const LayoutWrapper = ({ children }) => {
               </div>
             </Link>
           </div>
-          <div className="flex-grow lg:flex lg:items-center lg:w-auto justify-center">
+          <div className="flex-grow lg:flex lg:items-center lg:w-auto ml-8">
             <div className="hidden sm:block">
               {headerNavLinks.map((link) => (
                 <Link
