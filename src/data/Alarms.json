@@ -1,0 +1,20 @@
+[
+  {
+    "name": "disk_space_usage",
+    "on": "disk.space",
+    "config": "disks.conf",
+    "info": "disk space utilization is $this %",
+    "calc": "$used * 100 / ($avail + $used)",
+    "delay": "up 1m down 15m multiplier 1.5 max 1h"
+  },
+  {
+    "name": "10min_cpu_usage",
+    "on": "disk.space",
+    "config": "disks.conf",
+    "info": "disk space utilization is $this %",
+    "lookup": "average -10m unaligned of user,system,softirq,irq,guest",
+    "calc": "",
+    "delay": "down 15m multiplier 1.5 max 1h",
+    "every": "1m"
+  }
+]

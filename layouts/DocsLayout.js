@@ -7,7 +7,7 @@ export default function DocsLayout({ title }) {
       <div className="flex mt-12">
         <Sidebar SidebarType="docs" />
         <div className="min-w-0 w-full flex flex-auto lg:static lg:max-h-full lg:overflow-visible">
-          <article className="w-full ml-8">
+          <article className="w-full mx-6 lg:ml-8 lg:mr-0">
             <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14 mb-12 md:mb-20">
               {title}
             </h1>

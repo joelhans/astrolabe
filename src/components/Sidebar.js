@@ -145,7 +145,7 @@ const Sidebar = ({ SidebarType, SidebarDocsCloud }) => {
     <>
       <button
         onClick={onToggleSidebar}
-        className="z-50 fixed bottom-4 right-4 w-14 h-14 p-3 bg-salmon rounded-full"
+        className="lg:hidden z-50 fixed bottom-4 right-4 w-14 h-14 p-3 bg-salmon rounded-full"
       >
         <BsBookHalf className="w-full h-full" />
       </button>

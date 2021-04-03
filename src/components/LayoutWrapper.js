@@ -12,9 +12,9 @@ import { FaGithub } from 'react-icons/fa'
 const LayoutWrapper = ({ children }) => {
   return (
     <SectionContainer>
-      <header className="sticky top-0 z-40 lg:z-50 max-w-screen-lg xl:max-w-screen-xl mx-auto bg-white border-b border-gray-100 dark:bg-gray-900 dark:border-gray-700">
-        <div className="flex items-center justify-center lg:justify-between flex-wrap py-4 px-6 md:px-0 container mx-auto">
-          <div className="w-1/4">
+      <header className="sticky top-0 z-40 lg:z-50 max-w-screen-lg xl:max-w-screen-xl px-6 lg:mx-auto bg-white border-b border-gray-100 dark:bg-gray-900 dark:border-gray-700">
+        <div className="flex items-center justify-center lg:justify-between flex-wrap py-4 mx-auto">
+          <div className="">
             <Link href="/" aria-label="Tailwind CSS Blog">
               <div className="flex items-center justify-between">
                 <div className="mr-3">

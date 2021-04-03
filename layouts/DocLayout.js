@@ -24,7 +24,7 @@ export default function DocLayout({ children, frontMatter, toc }) {
           id="content-wrapper"
           className="min-w-0 w-full flex flex-auto lg:static lg:max-h-full lg:overflow-visible"
         >
-          <div className="mx-8">
+          <div className="w-full mx-6 lg:ml-8 lg:mr-0">
             <header className="">
               <PageTitle>{title}</PageTitle>
             </header>
