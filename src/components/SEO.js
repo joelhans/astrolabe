@@ -37,8 +37,6 @@ export const PageSeo = ({ title, description, url }) => {
   const router = useRouter()
   const path = router.query
 
-  console.log(path)
-
   return (
     <NextSeo
       title={`${router.asPath === '/' ? '' : `${title} •`} ${siteMetadata.title}`}

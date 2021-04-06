@@ -68,9 +68,10 @@ const SidebarDocsData = [
       },
       {
         title: 'Data collection',
+        slug: '/collectors',
         children: [
           { href: '/docs/get-started', title: 'How collectors work' },
-          { href: '/integrations', title: 'Supported data collectors' },
+          { href: '/collectors', title: 'Supported data collectors' },
           { href: '/docs/dashboards/agent', title: 'Enable or configure a collector' },
           { separator: true },
           { title: 'Reference', subcategory: 'true' },
