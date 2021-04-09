@@ -11,6 +11,25 @@ module.exports = {
     react: {
       version: 'detect',
     },
+    // 'import/order': [
+    //   'error',
+    //   {
+    //     groups: ['builtin', 'external', 'internal'],
+    //     pathGroups: [
+    //       {
+    //         pattern: 'react',
+    //         group: 'external',
+    //         position: 'before',
+    //       },
+    //     ],
+    //     pathGroupsExcludedImportTypes: ['react'],
+    //     'newlines-between': 'always',
+    //     alphabetize: {
+    //       order: 'asc',
+    //       caseInsensitive: true,
+    //     },
+    //   },
+    // ],
   },
   env: {
     browser: true,
@@ -23,6 +42,8 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:jsx-a11y/recommended',
     'plugin:prettier/recommended',
+    // 'plugin:import/errors',
+    // 'plugin:import/warnings',
   ],
   rules: {
     'prettier/prettier': 'error',

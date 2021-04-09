@@ -1,5 +1,5 @@
 import siteMetadata from '@data/siteMetadata'
-import AlarmsLayout from '@/layouts/AlarmsLayout'
+import AlarmsHome from '@/layouts/AlarmsHome'
 import { PageSeo } from '@components/SEO'
 
 export default function Alarms() {
@@ -10,7 +10,7 @@ export default function Alarms() {
         description={`Find information about every preconfigured alarm that comes with an installation of the open-source Netdata monitoring agent.`}
         url={`${siteMetadata.siteUrl}/learn/alarms`}
       />
-      <AlarmsLayout title="Alarms" />
+      <AlarmsHome title="Alarms" />
     </>
   )
 }

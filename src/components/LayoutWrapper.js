@@ -2,7 +2,6 @@ import siteMetadata from '@data/siteMetadata'
 import headerNavLinks from '@data/headerNavLinks'
 import Logo from '@data/netdata.svg'
 import Link from './Link'
-import SectionContainer from './SectionContainer'
 import Footer from './Footer'
 import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
@@ -11,8 +10,8 @@ import { FaGithub } from 'react-icons/fa'
 
 const LayoutWrapper = ({ children }) => {
   return (
-    <SectionContainer>
-      <header className="sticky top-0 z-40 lg:z-50 max-w-screen-lg xl:max-w-screen-xl px-6 lg:mx-auto bg-white border-b border-gray-100 dark:bg-gray-900 dark:border-gray-700">
+    <div className="max-w-screen-lg xl:max-w-screen-2xl mx-auto">
+      <header className="sticky top-0 z-40 lg:z-50 px-6 lg:mx-auto bg-white border-b border-gray-100 dark:bg-gray-900 dark:border-gray-700">
         <div className="flex items-center justify-center lg:justify-between flex-wrap py-4 mx-auto">
           <div className="">
             <Link href="/" aria-label="Tailwind CSS Blog">
@@ -49,7 +48,7 @@ const LayoutWrapper = ({ children }) => {
       </header>
       <main className="mb-auto">{children}</main>
       <Footer />
-    </SectionContainer>
+    </div>
   )
 }
 

@@ -274,7 +274,7 @@ const Sidebar = ({ SidebarType, SidebarDocsCloud, CollectorsSearch, FilterCollec
       </button>
       <div
         id="sidebar"
-        className={`fixed z-40 inset-0 flex-none h-full w-full lg:static lg:h-auto lg:overflow-y-visible lg:pt-0 lg:w-60 xl:w-72 lg:block ${
+        className={`fixed z-40 inset-0 flex-none h-full w-full lg:static lg:h-auto lg:overflow-y-visible lg:pt-0 lg:w-72 xl:w-80 lg:block ${
           sidebarShow ? 'block bg-gray-900 bg-opacity-30' : 'hidden'
         }`}
       >

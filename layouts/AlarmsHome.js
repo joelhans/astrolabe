@@ -1,4 +1,9 @@
 import { useState } from 'react'
+import PageWrapper from '@components/PageWrapper'
+import ContentWrapper from '@components/ContentWrapper'
+import ContentHeader from '@components/ContentHeader'
+import ContentBody from '@components/ContentBody'
+import ContentFooter from '@components/ContentFooter'
 import Link from '@components/Link'
 import Sidebar from '@components/Sidebar'
 import Alarms from '@data/Alarms.json'
@@ -15,14 +20,11 @@ export default function AlarmsLayout({ title }) {
 
   return (
     <>
-      <div className="flex mt-12 px-6">
+      <PageWrapper>
         <Sidebar SidebarType="learn" />
-        <div className="min-w-0 w-full flex flex-auto lg:static lg:max-h-full lg:overflow-visible">
-          <article className="w-full mx-6 lg:ml-8 lg:mr-0">
-            <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14 mb-12 md:mb-20">
-              {title}
-            </h1>
-
+        <ContentWrapper>
+          <ContentHeader title={title} />
+          <ContentBody prose={false}>
             <ul>
               {Alarms.map((alarm) => (
                 <li key={alarm.name}>
@@ -32,9 +34,9 @@ export default function AlarmsLayout({ title }) {
                 </li>
               ))}
             </ul>
-          </article>
-        </div>
-      </div>
+          </ContentBody>
+        </ContentWrapper>
+      </PageWrapper>
     </>
   )
 
