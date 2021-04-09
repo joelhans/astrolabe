@@ -1,4 +1,4 @@
-import DocLayout from '@/layouts/DocLayout'
+import AlarmLayout from '@/layouts/AlarmLayout'
 
 import alarms from '@data/Alarms.json'
 
@@ -21,10 +21,9 @@ export async function getStaticProps({ params: { slug } }) {
 }
 
 export default function Doc({ page }) {
-  console.log(page)
   return (
     <>
-      <p>{page.name}</p>
+      <AlarmLayout data={page} />
     </>
   )
 }
