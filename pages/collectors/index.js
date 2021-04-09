@@ -1,5 +1,9 @@
 import React, { useState } from 'react'
 import CustomLink from '@components/Link'
+import PageWrapper from '@components/PageWrapper'
+import ContentWrapper from '@components/ContentWrapper'
+import ContentHeader from '@components/ContentHeader'
+import ContentBody from '@components/ContentBody'
 import Sidebar from '@components/Sidebar'
 import { PageSeo } from '@components/SEO'
 import siteMetadata from '@data/siteMetadata'
@@ -60,13 +64,11 @@ export default function Collectors() {
     const isActiveFilter =
       Object.keys(filterObj).length > 0 ? filterObj.join(' ').includes(data.layer) : true
 
-    console.log(filterObj.join(' '))
     const filterType = data.type ? data.type : ''
     const filterCategory = data.category ? data.category.join(' ') : ''
     const filterOrchestrator = data.orchestrator ? data.orchestrator : ''
     const filterContent =
       data.layer + ' ' + filterType + ' ' + filterCategory + ' ' + filterOrchestrator
-    console.log(filterContent)
 
     return isActiveSearch && isActiveFilter
   })
@@ -74,21 +76,19 @@ export default function Collectors() {
   return (
     <>
       <PageSeo
-        title={`Data collectors`}
+        title={`Integrations`}
         description={siteMetadata.description}
-        url={`${siteMetadata.siteUrl}/collector`}
+        url={`${siteMetadata.siteUrl}/integrations`}
       />
-      <div className="flex mt-12 px-6">
+      <PageWrapper>
         <Sidebar
           SidebarType="collectors"
           CollectorsSearch={SearchCallback}
           FilterCollectors={FilterCallback}
         />
-        <div className="min-w-0 w-full flex flex-auto lg:static lg:max-h-full lg:overflow-visible">
-          <article className="w-full ml-8">
-            <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14 mb-12 md:mb-20">
-              Integrations
-            </h1>
+        <ContentWrapper>
+          <ContentHeader title="Integrations" />
+          <ContentBody prose={false}>
             <div className="grid gap-8 grid-cols-3">
               {filteredCollectors.map((collector, idx) => (
                 <>
@@ -137,9 +137,9 @@ export default function Collectors() {
                 </>
               ))}
             </div>
-          </article>
-        </div>
-      </div>
+          </ContentBody>
+        </ContentWrapper>
+      </PageWrapper>
     </>
   )
 }
