@@ -11,6 +11,25 @@ module.exports = {
     react: {
       version: 'detect',
     },
+    'import/order': [
+      'error',
+      {
+        groups: ['builtin', 'external', 'internal'],
+        pathGroups: [
+          {
+            pattern: 'react',
+            group: 'external',
+            position: 'before',
+          },
+        ],
+        pathGroupsExcludedImportTypes: ['react'],
+        'newlines-between': 'always',
+        alphabetize: {
+          order: 'asc',
+          caseInsensitive: true,
+        },
+      },
+    ],
   },
   env: {
     browser: true,
@@ -18,6 +37,7 @@ module.exports = {
     node: true,
     es6: true,
   },
+
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',

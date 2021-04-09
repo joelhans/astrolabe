@@ -1,4 +1,5 @@
 import Link from '@components/Link'
+import ContentWrapper from '@components/ContentWrapper'
 import PageTitle from '@components/PageTitle'
 import { DocSeo } from '@components/SEO'
 import Sidebar from '@components/Sidebar'
@@ -18,7 +19,7 @@ export default function DocLayout({ children, frontMatter, toc }) {
   return (
     <>
       <DocSeo url={`${siteMetdata.siteUrl}/docs/${frontMatter.slug}`} {...frontMatter} />
-      <div className="flex mt-12 px-6">
+      <ContentWrapper>
         <Sidebar SidebarType="docs" SidebarDocsCloud={SidebarDocsCloud} />
         <article
           id="content-wrapper"
@@ -45,7 +46,7 @@ export default function DocLayout({ children, frontMatter, toc }) {
           </div>
         </article>
         <TableOfContents toc={toc} />
-      </div>
+      </ContentWrapper>
     </>
   )
 }
