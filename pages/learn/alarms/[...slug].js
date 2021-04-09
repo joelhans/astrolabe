@@ -1,9 +1,8 @@
-import DocLayout from '@/layouts/DocLayout'
-
-import alarms from '@data/Alarms.json'
+import AlarmLayout from '@/layouts/AlarmLayout'
+import AlarmsData from '@data/Alarms.json'
 
 export async function getStaticPaths() {
-  const paths = alarms.map((alarm) => ({
+  const paths = AlarmsData.map((alarm) => ({
     params: { slug: [alarm.name] },
   }))
 
@@ -15,16 +14,16 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params: { slug } }) {
   slug = slug.toString()
-  const page = alarms.find((page) => page.name === slug) || { notfound: true }
+  const page = AlarmsData.find((page) => page.name === slug) || { notfound: true }
 
   return { props: { page } }
 }
 
-export default function Doc({ page }) {
-  console.log(page)
+export default function Doc({ page, toc }) {
+  console.log(toc)
   return (
     <>
-      <p>{page.name}</p>
+      <AlarmLayout data={page} />
     </>
   )
 }
