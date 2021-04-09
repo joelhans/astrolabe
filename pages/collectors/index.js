@@ -39,33 +39,37 @@ export default function Collectors() {
   const [searchValue, setSearchValue] = useState('')
   const [filterValue, setFilterValue] = useState({})
 
-  // console.log(SearchCallback)
-
   // Getting updated state from Sidebar.
   const SearchCallback = (filter) => setSearchValue(filter)
   const FilterCallback = (filter) => setFilterValue(filter)
 
-  // console.log(searchValue)
-
-  // Parsing out the state from Sidebar into something we can filter CollectorsData with.
-  let filterString = searchValue || ''
-  // console.log(filterString)
-  // const keys = Object.keys(searchValue)
-  // let activeKeys = keys.filter(function(id) {
-  //   return searchValue[id]
-  // })
-
-  // const filteredCollectors = CollectorsData
-  const filteredCollectors = CollectorsData.filter((data) => {
-    const searchContent = data.name + data.slug + data.type + data.category.join(' ')
-    return searchContent.toLowerCase().includes(filterString.toLowerCase())
+  // Parsing out the state from Sidebar into something we can search/filter
+  // CollectorsData with.
+  let searchString = searchValue || ''
+  let filterObj = Object.keys(filterValue).filter((id) => {
+    return filterValue[id]
   })
 
-  // const filteredCollectors = CollectorsData(search, searchValue)
+  // Filter integrations based on both the search and filtering.
+  const filteredCollectors = CollectorsData.filter((data) => {
+    const searchContent = data.name + data.slug + data.type
+    const isActiveSearch =
+      searchString.length > 0
+        ? searchContent.toLowerCase().includes(searchString.toLowerCase())
+        : true
+    const isActiveFilter =
+      Object.keys(filterObj).length > 0 ? filterObj.join(' ').includes(data.layer) : true
 
-  // function search(user) {
-  //   return Object.keys(this).every((key) => user[key] === this[key]);
-  // }
+    console.log(filterObj.join(' '))
+    const filterType = data.type ? data.type : ''
+    const filterCategory = data.category ? data.category.join(' ') : ''
+    const filterOrchestrator = data.orchestrator ? data.orchestrator : ''
+    const filterContent =
+      data.layer + ' ' + filterType + ' ' + filterCategory + ' ' + filterOrchestrator
+    console.log(filterContent)
+
+    return isActiveSearch && isActiveFilter
+  })
 
   return (
     <>
@@ -83,13 +87,16 @@ export default function Collectors() {
         <div className="min-w-0 w-full flex flex-auto lg:static lg:max-h-full lg:overflow-visible">
           <article className="w-full ml-8">
             <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14 mb-12 md:mb-20">
-              Data collectors
+              Integrations
             </h1>
             <div className="grid gap-8 grid-cols-3">
               {filteredCollectors.map((collector, idx) => (
                 <>
                   <div key={collector.slug} className="border border-gray-200 rounded shadow-md">
-                    <CustomLink href={''} className="flex flex-wrap w-full h-full p-4 group-hover">
+                    <CustomLink
+                      href={''}
+                      className="flex flex-col justify-start w-full h-full p-4 group"
+                    >
                       <div className="w-full flex items-center mb-4">
                         <Icon
                           name={collector.slug}
@@ -97,24 +104,33 @@ export default function Collectors() {
                           className="w-12 h-12 group-hover:w-16"
                           alt={collector.name}
                         />
-                        <h2 className="block text-lg font-medium ml-4">{collector.name}</h2>
+                        <h2 className="block text-lg font-medium ml-4 group-hover:text-erin group-hover:folt-bold">
+                          {collector.name}
+                        </h2>
                       </div>
                       <div className="text-left">
-                        <p className="inline-block text-left text-erin uppercase tracking-wide text-xs font-semibold px-1 py-0.5 bg-erin bg-opacity-5 rounded">
-                          {collector.type}
+                        <p className="inline-block text-left text-salmon uppercase tracking-wide text-xs font-semibold px-1 py-0.5 bg-salmon bg-opacity-5 rounded">
+                          {collector.layer}
                         </p>
-                        <p>
-                          {collector.category.map((cat, idx, arr) => (
-                            <span
-                              key={cat}
-                              className={`uppercase text-lilac tracking-wide text-xs font-semibold px-1 py-0.5 bg-lilac bg-opacity-5 rounded ${
-                                idx == arr.length - 1 && arr.length > 1 ? 'ml-1' : ''
-                              }`}
-                            >
-                              {cat}
-                            </span>
-                          ))}
-                        </p>
+                        {collector.type && (
+                          <p className="inline-block text-left text-erin uppercase tracking-wide text-xs font-semibold px-1 py-0.5 bg-erin bg-opacity-5 rounded">
+                            {collector.type}
+                          </p>
+                        )}
+                        {collector.category && (
+                          <p>
+                            {collector.category.map((cat, idx, arr) => (
+                              <span
+                                key={cat}
+                                className={`uppercase text-lilac tracking-wide text-xs font-semibold px-1 py-0.5 bg-lilac bg-opacity-5 rounded ${
+                                  idx == arr.length - 1 && arr.length > 1 ? 'ml-1' : ''
+                                }`}
+                              >
+                                {cat}
+                              </span>
+                            ))}
+                          </p>
+                        )}
                       </div>
                     </CustomLink>
                   </div>
