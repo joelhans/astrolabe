@@ -18,7 +18,7 @@ export default function DocLayout({ children, frontMatter, toc }) {
   return (
     <>
       <DocSeo url={`${siteMetdata.siteUrl}/docs/${frontMatter.slug}`} {...frontMatter} />
-      <div className="flex mt-12">
+      <div className="flex mt-12 px-6">
         <Sidebar SidebarType="docs" SidebarDocsCloud={SidebarDocsCloud} />
         <article
           id="content-wrapper"

@@ -90,6 +90,119 @@ const SidebarItems = ({ sidebar }) => {
   )
 }
 
+const SidebarCollectors = ({ CollectorsSearchCallback, FilterCollectorsCallback }) => {
+  const [CollectorsFilter, CollectorsFilterChange] = useState({})
+  const [CollectorsSearch, SearchCollectorsChange] = useState('')
+
+  const onCollectorFilter = (value, type) => {
+    CollectorsFilterChange((filter) => {
+      let isActive = !!filter[value]
+      filter = {
+        ...filter,
+        [value]: !isActive,
+      }
+      // Reset the filter if the main categories (types) are false.
+      if (
+        filter['collectors'] == false &&
+        filter['notifications'] == false &&
+        filter['exporters'] == false
+      ) {
+        filter = {}
+      }
+      FilterCollectorsCallback(filter)
+      return filter
+    })
+  }
+
+  const onCollectorSearch = (query) => {
+    SearchCollectorsChange(() => {
+      CollectorsSearchCallback(query)
+      return query
+    })
+  }
+
+  const Checkbox = ({ value, name, label, filter = CollectorsFilter }) => {
+    return (
+      <label className="block">
+        <input
+          className="mr-2"
+          type="checkbox"
+          id={value}
+          value={value}
+          name={name}
+          checked={filter[value] || false}
+          onChange={(e) => onCollectorFilter(e.target.value, e.target.name)}
+        />
+        {label}
+      </label>
+    )
+  }
+
+  return (
+    <>
+      <div className="mb-4">
+        <input
+          aria-label="Find an integration"
+          type="text"
+          onChange={(e) => onCollectorSearch(e.target.value)}
+          placeholder="Find an integration"
+          className="block w-full mb-2 px-4 py-2 text-gray-900 bg-white border border-gray-300 rounded- dark:border-gray-900 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:text-gray-100"
+        />
+        <div className="border border-gray-100 mb-2 p-2 rounded">
+          <span className="block text-xs uppercase tracking-wide font-medium mb-1">Type</span>
+          <Checkbox value="collectors" name="integration-type" label="Data collectors" />
+          <Checkbox value="notifications" name="integration-type" label="Alarm notifications" />
+          <Checkbox value="exporters" name="integration-type" label="Export endpoints" />
+        </div>
+        {CollectorsFilter['collectors'] && (
+          <>
+            <div className="border border-gray-100 mb-2 p-2 rounded">
+              <span className="block text-xs uppercase tracking-wide font-medium mb-1">Layer</span>
+              <Checkbox value="os" name="collector-type" label="OS" />
+              <Checkbox value="hardware" name="collector-type" label="Hardware" />
+              <Checkbox value="containers" name="collector-type" label="Containers" />
+              <Checkbox value="service" name="collector-type" label="Service" />
+              <Checkbox value="application" name="collector-type" label="Application" />
+            </div>
+            <div className="border border-gray-100 mb-2 p-2 rounded">
+              <span className="block text-xs uppercase tracking-wide font-medium mb-1">
+                Category
+              </span>
+              <Checkbox value="memory" name="collector-category" label="Memory" />
+            </div>
+            <div className="border border-gray-100 mb-2 p-2 rounded">
+              <span className="block text-xs uppercase tracking-wide font-medium mb-1">
+                Orchestrator
+              </span>
+              <Checkbox
+                value="go.d.plugin"
+                name="collector-orchestrator"
+                label="go.d.plugin (Go)"
+              />
+              <Checkbox value="internal" name="collector-orchestrator" label="Internal (C)" />
+              <Checkbox
+                value="python.d.plugin"
+                name="collector-orchestrator"
+                label="python.d.plugin (Python)"
+              />
+              <Checkbox
+                value="node.d.plugin"
+                name="collector-orchestrator"
+                label="node.d.plugin (Node.JS)"
+              />
+              <Checkbox
+                value="bash.d.plugin"
+                name="collector-orchestrator"
+                label="bash.d.plugin (Bash)"
+              />
+            </div>
+          </>
+        )}
+      </div>
+    </>
+  )
+}
+
 const SidebarDocs = ({ SidebarDocsCloud }) => {
   const [SidebarDocsCloudOn, SidebarDocsSwitch] = useState(SidebarDocsCloud)
 
@@ -125,11 +238,11 @@ const SidebarDocs = ({ SidebarDocsCloud }) => {
   )
 }
 
-const Sidebar = ({ SidebarType, SidebarDocsCloud }) => {
+const Sidebar = ({ SidebarType, SidebarDocsCloud, CollectorsSearch, FilterCollectors }) => {
   const router = useRouter()
 
+  // Mobile toggle for the sidebar.
   const [sidebarShow, setSidebarShow] = useState(false)
-
   const onToggleSidebar = () => {
     setSidebarShow((status) => {
       if (status) {
@@ -139,6 +252,16 @@ const Sidebar = ({ SidebarType, SidebarDocsCloud }) => {
       }
       return !status
     })
+  }
+
+  // Pass collector filtering back to the parent page.
+  const FilterCollectorsResult = (filterString) => {
+    FilterCollectors(filterString)
+  }
+
+  const CollectorsSearchResult = (string) => {
+    // console.log(string)
+    CollectorsSearch(string)
   }
 
   return (
@@ -232,9 +355,9 @@ const Sidebar = ({ SidebarType, SidebarDocsCloud }) => {
               </li>
               <li className="py-1.5">
                 <CustomLink
-                  href="/integrations"
+                  href="/collectors"
                   className={`flex items-center text-gray-700 hover:text-indigo dark:text-gray-100 font-medium ${
-                    router.asPath.includes('/integrations')
+                    router.asPath.includes('/collectors')
                       ? 'bg-indigo bg-opacity-10 font-semibold'
                       : ''
                   }`}
@@ -252,7 +375,7 @@ const Sidebar = ({ SidebarType, SidebarDocsCloud }) => {
                       />
                     </svg>
                   </div>
-                  Data collectors
+                  Integrations
                 </CustomLink>
               </li>
             </ul>
@@ -266,7 +389,12 @@ const Sidebar = ({ SidebarType, SidebarDocsCloud }) => {
                 case 'learn':
                   return <div>This is the academy.</div>
                 case 'collectors':
-                  return <SidebarDocs CloudOn={false} />
+                  return (
+                    <SidebarCollectors
+                      CollectorsSearchCallback={CollectorsSearchResult}
+                      FilterCollectorsCallback={FilterCollectorsResult}
+                    />
+                  )
               }
             })()}
           </nav>
