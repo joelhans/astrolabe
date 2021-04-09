@@ -4,7 +4,7 @@ import Sidebar from '@components/Sidebar'
 export default function DocsLayout({ title }) {
   return (
     <>
-      <div className="flex mt-12">
+      <div className="flex mt-12 px-6">
         <Sidebar SidebarType="docs" />
         <div className="min-w-0 w-full flex flex-auto lg:static lg:max-h-full lg:overflow-visible">
           <article className="w-full mx-6 lg:ml-8 lg:mr-0">
