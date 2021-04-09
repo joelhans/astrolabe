@@ -10,8 +10,8 @@ import { FaGithub } from 'react-icons/fa'
 
 const LayoutWrapper = ({ children }) => {
   return (
-    <div className="max-w-screen-lg xl:max-w-screen-xl mx-auto">
-      <header className="sticky top-0 z-40 lg:z-50 max-w-screen-lg xl:max-w-screen-xl px-6 lg:mx-auto bg-white border-b border-gray-100 dark:bg-gray-900 dark:border-gray-700">
+    <div className="max-w-screen-lg xl:max-w-screen-2xl mx-auto">
+      <header className="sticky top-0 z-40 lg:z-50 px-6 lg:mx-auto bg-white border-b border-gray-100 dark:bg-gray-900 dark:border-gray-700">
         <div className="flex items-center justify-center lg:justify-between flex-wrap py-4 mx-auto">
           <div className="">
             <Link href="/" aria-label="Tailwind CSS Blog">
