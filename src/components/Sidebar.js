@@ -277,10 +277,14 @@ const Sidebar = ({ SidebarType, SidebarDocsCloud, CollectorsSearch, FilterCollec
         className={`fixed z-40 inset-0 flex-none h-full w-full lg:static lg:h-auto lg:overflow-y-visible lg:pt-0 lg:w-72 xl:w-80 lg:block ${
           sidebarShow ? 'block bg-gray-900 bg-opacity-30' : 'hidden'
         }`}
+        onClick={onToggleSidebar}
+        role="presentation"
       >
         <div
           id="nav-wrapper"
-          className="h-full overflow-y-auto scrolling-touch lg:h-auto lg:block lg:sticky bg-white lg:bg-transparent overflow-hidden top-32 bg-white mr-24 lg:mr-0"
+          className="h-full overflow-y-auto scrolling-touch lg:h-auto lg:block lg:sticky bg-white lg:bg-transparent overflow-hidden top-32 bg-white mr-24 md:mr-96 lg:mr-0"
+          onClick={(event) => event.stopPropagation()}
+          role="presentation"
         >
           <nav id="nav" className="overflow-y-auto pt-16 lg:pt-0 px-6 lg:pl-0 lg:pr-4 sm:pb-10">
             <ul className="mb-8">

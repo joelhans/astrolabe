@@ -89,7 +89,7 @@ export default function Collectors() {
         <ContentWrapper>
           <ContentHeader title="Integrations" />
           <ContentBody prose={false}>
-            <div className="grid gap-8 grid-cols-3">
+            <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
               {filteredCollectors.map((collector, idx) => (
                 <>
                   <div key={collector.slug} className="border border-gray-200 rounded shadow-md">
