@@ -21,7 +21,7 @@ const MobileNav = () => {
     <div className="sm:hidden">
       <button
         type="button"
-        className="w-8 h-8 ml-1 mr-1 rounded"
+        className="w-8 h-8 p-1 ml-1 mr-1 rounded sm:ml-4"
         aria-label="Toggle Menu"
         onClick={onToggleNav}
       >
