@@ -6,6 +6,10 @@
   max-width: 100%;
 }
 
+.prose p > img[src*='icon/assets/'] {
+  @apply inline-block m-0;
+}
+
 #nav {
   height: 100%;
 }
@@ -21,7 +25,7 @@
 }
 
 .remark-code-title {
-  @apply px-5 py-3 font-mono text-sm font-bold text-gray-200 bg-gray-700 rounded-t;
+  @apply px-5 py-3 font-mono text-sm font-bold text-erin bg-gray-700 rounded-t;
 }
 
 .remark-code-title + pre {

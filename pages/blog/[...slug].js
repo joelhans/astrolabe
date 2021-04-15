@@ -1,6 +1,6 @@
 import fs from 'fs'
 import hydrate from 'next-mdx-remote/hydrate'
-import { getContent, dateSortDesc, getSingleContent, getFrontMatter } from '@/lib/mdx'
+import { getFrontMatter, dateSortDesc, getSingleContent } from '@/lib/mdx'
 import { BLOG_CONTENT_PATH } from '@config/constants'
 import PostLayout from '@/layouts/PostLayout'
 import MDXComponents from '@components/MDXComponents'
@@ -8,7 +8,7 @@ import PageTitle from '@components/PageTitle'
 import generateRss from '@/lib/generate-rss'
 
 export async function getStaticPaths() {
-  const posts = await getContent(BLOG_CONTENT_PATH)
+  const posts = await getFrontMatter(BLOG_CONTENT_PATH)
   const paths = posts.map(({ slug }) => ({
     params: {
       slug: slug.split('/'),

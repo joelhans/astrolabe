@@ -61,9 +61,24 @@ const SidebarDocsData = [
         title: 'Dashboards',
         slug: '/docs/dashboards/',
         children: [
-          { href: '/docs/dashboards/local', title: 'Agent dashboard' },
-          { href: 'zoom-pan-edit-charts', title: 'Zoom, pan, and edit charts' },
-          { href: 'custom', title: 'Build custom dashboards' },
+          { href: '/docs/dashboards/dashboards-charts', title: 'Dashboard and charts' },
+          { href: '/docs/dashboards/interact-charts', title: 'Interact with charts' },
+          {
+            href: '/docs/dashboards/chart-dimensions-contexts-families',
+            title: 'Chart dimensions, contexts, and families',
+          },
+          { href: '/docs/dashboards/pick-timeframes', title: 'Pick timeframes to visualize' },
+          {
+            href: '/docs/dashboards/import-export-print-snapshots',
+            title: 'Import, export, and print snapshots',
+          },
+          { separator: true },
+          { title: 'Customization', subcategory: 'true' },
+          { href: '/docs/dashboards/customize', title: 'Customize the standard dashboard' },
+          { href: '/docs/dashboards/custom-dashboards', title: 'Build custom dashboards' },
+          { separator: true },
+          { title: 'Reference', subcategory: 'true' },
+          { href: '/docs/dashboards/reference-web-server', title: 'Web server' },
         ],
       },
       {

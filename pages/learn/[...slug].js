@@ -1,11 +1,11 @@
 import hydrate from 'next-mdx-remote/hydrate'
-import { getContent, getSingleContent } from '@/lib/mdx'
+import { getFrontMatter, getSingleContent } from '@/lib/mdx'
 import { LEARN_CONTENT_PATH } from '@config/constants'
 import DocLayout from '@/layouts/DocLayout'
 import MDXComponents from '@components/MDXComponents'
 
 export async function getStaticPaths() {
-  const posts = await getContent(LEARN_CONTENT_PATH)
+  const posts = await getFrontMatter(LEARN_CONTENT_PATH)
   const paths = posts.map(({ slug }) => ({
     params: {
       slug: slug.split('/'),

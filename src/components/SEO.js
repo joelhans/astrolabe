@@ -109,7 +109,7 @@ export const BlogSeo = ({ title, summary, date, lastmod, url, tags, images = [] 
 }
 
 export const DocSeo = ({ title, description, date, lastmod, url, tags, images = [] }) => {
-  const publishedAt = new Date(date).toISOString()
+  const publishedAt = new Date(lastmod || date).toISOString()
   const modifiedAt = new Date(lastmod || date).toISOString()
   let imagesArr =
     images.length === 0
