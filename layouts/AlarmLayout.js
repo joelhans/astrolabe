@@ -10,7 +10,7 @@ import Sidebar from '@components/Sidebar'
 import TableOfContents from '@components/TableOfContents'
 import siteMetdata from '@data/siteMetadata'
 
-import Highlight from '@components/Highlight'
+import CodeBlock from '@components/mdx/CodeBlock'
 
 export default function DocLayout({ data }) {
   const { name, config, help } = data
@@ -36,10 +36,10 @@ export default function DocLayout({ data }) {
               <code>edit-config</code> to open the&nbsp;
               <code>conf.d/{config}</code> file.
             </p>
-            <Highlight
-              code={`sudo ./edit-config conf.d/${config}`.trim()}
-              lang={`bash`}
-              lines={false}
+            <CodeBlock
+              code={`sudo ./edit-config conf.d/${config}`}
+              language={`bash`}
+              title={`title.conf`}
             />
             <p>
               Read more about the basis of configuring alarms, or look at the reference for every
