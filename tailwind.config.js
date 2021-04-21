@@ -21,7 +21,7 @@ module.exports = {
         14: '3.5rem',
       },
       fontFamily: {
-        sans: ['IBM Plex Sans', ...defaultTheme.fontFamily.sans],
+        sans: ['Mukta', ...defaultTheme.fontFamily.sans],
         mono: ['IBM Plex Mono', ...defaultTheme.fontFamily.mono],
       },
       colors: {

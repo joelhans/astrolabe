@@ -1,16 +1,16 @@
 import siteMetadata from '@data/siteMetadata'
-import TutorialsHome from '@/layouts/TutorialsHome'
+import DocsLayout from '@/layouts/DocsLayout'
 import { PageSeo } from '@components/SEO'
 
-export default function Tutorials() {
+export default function Docs() {
   return (
     <>
       <PageSeo
         title={`Documentation`}
         description={siteMetadata.description}
-        url={`${siteMetadata.siteUrl}/tutorials`}
+        url={`${siteMetadata.siteUrl}/docs`}
       />
-      <TutorialsHome title="Tutorials" />
+      <DocsLayout title="Get started with Netdata" />
     </>
   )
 }

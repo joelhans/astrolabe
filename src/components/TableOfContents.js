@@ -2,8 +2,8 @@ import Link from './Link'
 
 const TableOfContents = ({ toc }) => {
   return (
-    <aside className="hidden xl:text-sm xl:block flex-none w-72">
-      <div className="flex flex-col justify-between overflow-y-auto sticky max-h-(screen-18) pb-6 top-32">
+    <aside className="hidden xl:text-sm md:block flex-none w-96 bg-gray-900">
+      <div className="flex flex-col justify-between overflow-y-auto sticky max-h-(screen-18) pb-6 top-0">
         <span className="block mb-4 uppercase tracking-wide font-semibold text-sm lg:text-xs text-gray-900">
           On this page
         </span>

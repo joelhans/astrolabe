@@ -26,22 +26,22 @@ class MyDocument extends Document {
           <link
             rel="preload"
             as="style"
-            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;500;700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;700&display=swap"
           />
           <link
             rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;500;700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;700&display=swap"
             media="print"
             onLoad="this.media='all'"
           />
           <noscript>
             <link
               rel="stylesheet"
-              href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;500;700&display=swap"
+              href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;700&display=swap"
             />
           </noscript>
         </Head>
-        <body className="antialiased text-gray-900 bg-white dark:bg-gray-900 dark:text-white">
+        <body className="antialiased text-gray-900 bg-gray-50 dark:bg-gray-900 dark:text-white">
           <Main />
           <NextScript />
         </body>

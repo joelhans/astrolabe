@@ -1,10 +1,11 @@
 import siteMetadata from '@data/siteMetadata'
 import headerNavLinks from '@data/headerNavLinks'
-import Logo from '@data/netdata.svg'
+// import Logo from '@data/netdata.svg'
 import Link from './Link'
 import Footer from './Footer'
 import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
+import RSS from './RSS'
 
 import { FaGithub } from 'react-icons/fa'
 
@@ -17,7 +18,8 @@ const LayoutWrapper = ({ children }) => {
             <Link href="/" aria-label="Tailwind CSS Blog">
               <div className="flex items-center justify-between">
                 <div className="mr-3">
-                  <Logo width="auto" height="auto" className="w-36" />
+                  {/* <Logo width="auto" height="auto" className="w-36" /> */}
+                  Joel Hans
                 </div>
               </div>
             </Link>
@@ -37,16 +39,12 @@ const LayoutWrapper = ({ children }) => {
           </div>
           <div className="flex items-center w-auto lg:w-1/4 justify-end">
             <ThemeSwitch />
-            <div className="hidden sm:block ml-2">
-              <Link href="https://github.com/netdata/netdata">
-                <FaGithub className="w-6 h-6" />
-              </Link>
-            </div>
+            <RSS />
             <MobileNav />
           </div>
         </div>
       </header>
-      <main className="mb-auto">{children}</main>
+      <main className="mb-auto px-6">{children}</main>
       <Footer />
     </div>
   )
