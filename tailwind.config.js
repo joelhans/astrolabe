@@ -14,39 +14,34 @@ module.exports = {
       spacing: {
         '9/16': '56.25%',
       },
-      lineHeight: {
-        11: '2.75rem',
-        12: '3rem',
-        13: '3.25rem',
-        14: '3.5rem',
-      },
+      // lineHeight: {
+      //   11: '2.75rem',
+      //   12: '3rem',
+      //   13: '3.25rem',
+      //   14: '3.5rem',
+      // },
       fontFamily: {
         sans: ['Mukta', ...defaultTheme.fontFamily.sans],
-        mono: ['IBM Plex Mono', ...defaultTheme.fontFamily.mono],
+        display: ['Antonio', ...defaultTheme.fontFamily.sans],
+        mono: ['Inconsolata', ...defaultTheme.fontFamily.mono],
       },
       colors: {
+        steel: '#4682B4',
+        sea: '#20B2AA',
         blue: colors.lightBlue,
         erin: '#48E499',
         lilac: '#B596F8',
         indigo: '#5790FF',
         salmon: '#FCAF3B',
-        code: {
-          green: '#b5f4a5',
-          yellow: '#ffe484',
-          purple: '#d9a9ff',
-          red: '#ff8383',
-          blue: '#93ddfd',
-          white: '#fff',
-        },
       },
       typography: (theme) => ({
         DEFAULT: {
           css: {
             color: theme('colors.gray.700'),
             a: {
-              color: theme('colors.blue.500'),
+              color: theme('colors.steel'),
               '&:hover': {
-                color: theme('colors.blue.600'),
+                color: theme('colors.sea'),
               },
               code: { color: theme('colors.blue.400') },
             },
