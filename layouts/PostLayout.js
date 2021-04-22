@@ -69,8 +69,6 @@ export default function PostLayout({ children, frontMatter, next, prev }) {
                 <Link href={discussUrl(slug)} rel="nofollow">
                   {'Discuss on Twitter'}
                 </Link>
-                {` • `}
-                <Link href={editUrl(fileName)}>{'View on GitHub'}</Link>
               </div>
             </div>
             <footer>
@@ -92,7 +90,7 @@ export default function PostLayout({ children, frontMatter, next, prev }) {
                     {prev && (
                       <div>
                         <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
-                          Previous Article
+                          Previous post
                         </h2>
                         <div className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400">
                           <Link href={`/blog/${prev.slug}`}>{prev.title}</Link>
@@ -102,7 +100,7 @@ export default function PostLayout({ children, frontMatter, next, prev }) {
                     {next && (
                       <div>
                         <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
-                          Next Article
+                          Next post
                         </h2>
                         <div className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400">
                           <Link href={`/blog/${next.slug}`}>{next.title}</Link>
@@ -114,10 +112,10 @@ export default function PostLayout({ children, frontMatter, next, prev }) {
               </div>
               <div className="pt-4 xl:pt-8">
                 <Link
-                  href="/blog"
+                  href="/posts"
                   className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
                 >
-                  &larr; Back to the blog
+                  &larr; See my other posts
                 </Link>
               </div>
             </footer>

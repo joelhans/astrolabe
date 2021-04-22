@@ -1,12 +1,12 @@
 
   <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-      <title>Netdata</title>
+      <title>Joel Hans</title>
       <link>https://tailwind-nextjs-starter-blog.vercel.app/blog</link>
       <description>A blog created with Next.js and Tailwind.css</description>
       <language>en-us</language>
-      <managingEditor>info@netdata.cloud (Netdata, Inc)</managingEditor>
-      <webMaster>info@netdata.cloud (Netdata, Inc)</webMaster>
+      <managingEditor>info@netdata.cloud (Joel Hans)</managingEditor>
+      <webMaster>info@netdata.cloud (Joel Hans)</webMaster>
       <lastBuildDate>Tue, 23 Mar 2021 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://tailwind-nextjs-starter-blog.vercel.app/index.xml" rel="self" type="application/rss+xml"/>
       
@@ -16,7 +16,7 @@
     <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/nesting/nesting-testing</link>
     <description>The Time Traveller (for so it will be convenient to speak of him) was expounding a recondite matter to us. His pale grey eyes shone and twinkled, and his usually pale face was flushed and animated...</description>
     <pubDate>Tue, 23 Mar 2021 00:00:00 GMT</pubDate>
-    <author>info@netdata.cloud (Netdata, Inc)</author>
+    <author>info@netdata.cloud (Joel Hans)</author>
     <category>writings</category><category>book</category><category>reflection</category>
   </item>
 
@@ -26,7 +26,7 @@
     <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/my-fancy-title</link>
     <description>null</description>
     <pubDate>Sun, 31 Jan 2021 00:00:00 GMT</pubDate>
-    <author>info@netdata.cloud (Netdata, Inc)</author>
+    <author>info@netdata.cloud (Joel Hans)</author>
     <category>hello</category>
   </item>
 
@@ -36,7 +36,7 @@
     <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/introducing-tailwind-nextjs-starter-blog</link>
     <description>Looking for a performant, out of the box template, with all the best in web technology to support your blogging needs? Checkout the Tailwind Nextjs Starter Blog template.</description>
     <pubDate>Tue, 12 Jan 2021 00:00:00 GMT</pubDate>
-    <author>info@netdata.cloud (Netdata, Inc)</author>
+    <author>info@netdata.cloud (Joel Hans)</author>
     <category>next-js</category><category>tailwind</category><category>guide</category>
   </item>
 
@@ -46,7 +46,7 @@
     <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/guide-to-using-images-in-nextjs</link>
     <description>In this article we introduce adding images in the tailwind starter blog and the benefits and limitations of the next/image component.</description>
     <pubDate>Wed, 11 Nov 2020 00:00:00 GMT</pubDate>
-    <author>info@netdata.cloud (Netdata, Inc)</author>
+    <author>info@netdata.cloud (Joel Hans)</author>
     <category>next js</category><category>guide</category>
   </item>
 
@@ -56,7 +56,7 @@
     <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/deriving-ols-estimator</link>
     <description>How to derive the OLS Estimator with matrix notation and a tour of math typesetting using markdown with the help of KaTeX.</description>
     <pubDate>Sat, 16 Nov 2019 00:00:00 GMT</pubDate>
-    <author>info@netdata.cloud (Netdata, Inc)</author>
+    <author>info@netdata.cloud (Joel Hans)</author>
     <category>next js</category><category>math</category><category>ols</category>
   </item>
 
@@ -66,7 +66,7 @@
     <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/github-markdown-guide</link>
     <description>Markdown cheatsheet for all your blogging needs - headers, lists, images, tables and more! An illustrated guide based on Github Flavored Markdown.</description>
     <pubDate>Fri, 11 Oct 2019 00:00:00 GMT</pubDate>
-    <author>info@netdata.cloud (Netdata, Inc)</author>
+    <author>info@netdata.cloud (Joel Hans)</author>
     <category>github</category><category>guide</category>
   </item>
 
@@ -76,7 +76,7 @@
     <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/the-time-machine</link>
     <description>The Time Traveller (for so it will be convenient to speak of him) was expounding a recondite matter to us. His pale grey eyes shone and twinkled, and his usually pale face was flushed and animated...</description>
     <pubDate>Wed, 15 Aug 2018 00:00:00 GMT</pubDate>
-    <author>info@netdata.cloud (Netdata, Inc)</author>
+    <author>info@netdata.cloud (Joel Hans)</author>
     <category>writings</category><category>book</category><category>reflection</category>
   </item>
 
@@ -86,7 +86,7 @@
     <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/pictures-of-canada</link>
     <description>The scenic lands of Canada featuring maple leaves, snow-capped mountains, turquoise lakes and Toronto. Take in the sights in this photo gallery exhibition and see how easy it is to replicate with some MDX magic and tailwind classes.</description>
     <pubDate>Sat, 15 Jul 2017 00:00:00 GMT</pubDate>
-    <author>info@netdata.cloud (Netdata, Inc)</author>
+    <author>info@netdata.cloud (Joel Hans)</author>
     <category>holiday</category><category>canada</category><category>images</category>
   </item>
 
@@ -96,7 +96,7 @@
     <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/code-sample</link>
     <description>Example of a markdown file with code blocks and syntax highlighting</description>
     <pubDate>Tue, 08 Mar 2016 00:00:00 GMT</pubDate>
-    <author>info@netdata.cloud (Netdata, Inc)</author>
+    <author>info@netdata.cloud (Joel Hans)</author>
     <category>markdown</category><category>code</category><category>features</category>
   </item>
 

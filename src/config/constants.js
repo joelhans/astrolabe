@@ -1,1 +1,1 @@
-export const MODULES_CONTENT_PATH = './content/modules'
+export const POSTS_CONTENT_PATH = './content/posts'

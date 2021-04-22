@@ -3,6 +3,10 @@ import Highlight, { defaultProps } from 'prism-react-renderer'
 import theme from 'prism-react-renderer/themes/dracula'
 
 const CodeBlock = ({ children, code, language, title }) => {
+  // Get the `className` that will be the bases for `codeLang` and `codeTitle`
+  // below.
+  const className = children ? children.props.className : null
+
   // Get the code itself. If CodeBlock is called via MDX, it has `children`,
   // which contains the code. If CodeBlock is called directly, then the code is
   // inside the `code` prop.
@@ -11,14 +15,14 @@ const CodeBlock = ({ children, code, language, title }) => {
   // Get the language. If CodeBlock is called via MDX, the language is found via
   // the child's className, then stripped of unnecessary strings. If CodeBlock
   // is called directly, then the language is found via the `language` prop.
-  const codeLang = children
-    ? children.props.className.split(':')[0].replace('language-', '').replace('conf', '')
+  const codeLang = className
+    ? className.split(':')[0].replace('language-', '').replace('conf', '')
     : language
 
   // Get the title. If CodeBlock is called via MDX, the title is found via the
   // child's className, then stripped. If CodeBlock is called directly, then the
   // language is found via the `title` prop.
-  const codeTitle = children ? children.props.className.split('title=')[1] : title
+  const codeTitle = className ? className.split('title=')[1] : title
 
   return (
     <>
