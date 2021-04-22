@@ -14,7 +14,7 @@ export default function Posts({ posts }) {
     <>
       <PageSeo
         title={`Posts`}
-        description={siteMetadata.description}
+        description={`My posts on where technical writing and documentation meet the world of development.`}
         url={`${siteMetadata.siteUrl}/posts`}
       />
       <ListLayout posts={posts} title="Posts" />
