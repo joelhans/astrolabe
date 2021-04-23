@@ -22,8 +22,8 @@ module.exports = {
       //   14: '3.5rem',
       // },
       fontFamily: {
-        sans: ['Mukta', ...defaultTheme.fontFamily.sans],
-        display: ['Antonio', ...defaultTheme.fontFamily.sans],
+        sans: ['Inter', ...defaultTheme.fontFamily.sans],
+        display: [...defaultTheme.fontFamily.sans],
         mono: ['Inconsolata', ...defaultTheme.fontFamily.mono],
       },
       colors: {
@@ -41,6 +41,7 @@ module.exports = {
             color: theme('colors.gray.700'),
             a: {
               color: theme('colors.steel'),
+              textDecoration: 'none',
               '&:hover': {
                 color: theme('colors.sea'),
               },
@@ -91,6 +92,13 @@ module.exports = {
             blockquote: {
               color: theme('colors.gray.900'),
               borderLeftColor: theme('colors.gray.200'),
+            },
+          },
+        },
+        xl: {
+          css: {
+            h2: {
+              marginTop: '1.2em',
             },
           },
         },

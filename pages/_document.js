@@ -26,17 +26,17 @@ class MyDocument extends Document {
           <link
             rel="preload"
             as="style"
-            href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;700&family=Antonio:wght@700&family=Inconsolata&display=swap"
+            href="https://fonts.googleapis.com/css2family=Inter:wght@400;700;900&family=Inconsolata&display=swap"
           />
           <link
             rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;700&family=Antonio:wght@700&family=Inconsolata&display=swap"
+            href="https://fonts.googleapis.com/css2family=Inter:wght@400;700;900&family=Inconsolata&display=swap"
             media="print"
             onLoad="this.media='all'"
           />
           <link
             rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;700&family=Antonio:wght@700&family=Inconsolata&display=swap"
+            href="https://fonts.googleapis.com/css2family=Inter:wght@400;700;900&family=Inconsolata&display=swap"
           />
         </Head>
         <body className="antialiased text-gray-900 dark:bg-gray-900 dark:text-white">

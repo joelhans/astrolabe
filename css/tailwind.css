@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-.prose {
+/* .prose {
   max-width: 100%;
-}
+} */
 
 .prose p > img[src*='icon/assets/'] {
   @apply inline-block m-0;

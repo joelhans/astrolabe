@@ -58,9 +58,7 @@ export default function PostLayout({ children, frontMatter, next, prev }) {
               </dd>
             </dl> */}
             <div className="">
-              <div className="pt-10 pb-8 prose prose-sm md:prose md:max-w-full lg:prose-lg lg:max-w-full xl:prose-xl xl:max-w-full max-w-fulldark:prose-dark ">
-                {children}
-              </div>
+              <div className="pt-10 pb-8 prose prose-xl dark:prose-dark mx-auto">{children}</div>
               {/* <div className="pt-6 pb-6 text-sm text-gray-700 dark:text-gray-300">
                 <Link href={discussUrl(slug)} rel="nofollow">
                   {'Discuss on Twitter'}

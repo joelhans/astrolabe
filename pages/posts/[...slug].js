@@ -37,10 +37,6 @@ export async function getStaticProps({ params: { slug } }) {
     console.warn(`No content found for slug ${postSlug}`)
   }
 
-  if (!content) {
-    console.warn(`No content found for slug ${postSlug}`)
-  }
-
   return {
     props: {
       mdxSource: content.mdxSource,

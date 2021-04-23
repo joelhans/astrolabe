@@ -6,7 +6,7 @@ import siteMetadata from '@data/siteMetadata'
 import MDXComponents from '@components/MDXComponents'
 
 export async function getStaticProps() {
-  const content = await getSingleContent(BASE_CONTENT_PATH, 'fiction')
+  const content = await getSingleContent(BASE_CONTENT_PATH, 'about')
 
   return {
     props: {
@@ -16,7 +16,7 @@ export async function getStaticProps() {
   }
 }
 
-export default function Fiction({ mdxSource, frontMatter }) {
+export default function About({ mdxSource, frontMatter }) {
   const content = hydrate(mdxSource, {
     components: MDXComponents,
   })

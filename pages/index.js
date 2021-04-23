@@ -20,27 +20,29 @@ export default function Home({ posts }) {
       <div className="bg-green-100 w-full"></div>
 
       <div id="hero" className="py-16">
+        <div className="prose prose-xl">
+          <p className="text-2xl md:text-3xl text-steel">
+            {' '}
+            I'm Joel. I'm a writer, teacher, and developer of things related to writing and
+            teaching.
+          </p>
+        </div>
         <p>
-          I'm Joel. I'm a writer, teacher, and developer of things related to writing and teaching.
-        </p>
-        <p>
-          <CustomLink href="/about"></CustomLink>
+          <CustomLink href="/about">Start here</CustomLink>
         </p>
       </div>
       <div className="grid">
         <div className="w-2/3">
-          <h2 className="text-lg text-purple-500 font-display font-bold uppercase mb-8">
-            Recent posts
-          </h2>
+          <h2 className="text-lg text-sea font-display font-bold uppercase mb-8">Recent posts</h2>
           {posts.slice(0, 3).map((frontMatter) => {
             const { slug, date, title, summary, tags } = frontMatter
             return (
               <CustomLink key={slug} href={`/posts/${slug}`} className="group block mb-12">
-                <h3 className="text-xl lg:text-2xl font-display font-bold mb-4 group-hover:text-purple-500">
+                <h3 className="text-xl lg:text-2xl font-display font-bold mb-4 group-hover:text-steel">
                   {title}
                 </h3>
                 <p className="text-base lg:text-lg mb-2">{summary}</p>
-                <span className="text-sm font-bold group-hover:text-erin">Read more</span>
+                <span className="text-sm font-bold group-hover:text-steel">Read more</span>
               </CustomLink>
             )
           })}
