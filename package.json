@@ -15,7 +15,7 @@
     "@mdx-js/react": "^1.6.22",
     "@next/mdx": "10.0.8",
     "@tailwindcss/forms": "^0.2.1",
-    "@tailwindcss/typography": "^0.3.1",
+    "@tailwindcss/typography": "^0.4.0",
     "autoprefixer": "^10.1.0",
     "gray-matter": "^4.0.2",
     "image-size": "0.9.3",
@@ -39,7 +39,7 @@
     "remark-math": "3.0.1",
     "remark-toc": "^7.2.0",
     "sqlite3": "^5.0.2",
-    "tailwindcss": "^2.0.2"
+    "tailwindcss": "^2.1.0"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^10.0.0",
