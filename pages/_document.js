@@ -39,7 +39,7 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;700&family=Antonio:wght@700&family=Inconsolata&display=swap"
           />
         </Head>
-        <body className="antialiased text-gray-900 bg-gray-50 dark:bg-gray-900 dark:text-white">
+        <body className="antialiased text-gray-900 dark:bg-gray-900 dark:text-white">
           <Main />
           <NextScript />
         </body>

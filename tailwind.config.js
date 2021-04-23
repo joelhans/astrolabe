@@ -12,9 +12,9 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
-      spacing: {
-        '9/16': '56.25%',
-      },
+      // spacing: {
+      //   '9/16': '56.25%',
+      // },
       // lineHeight: {
       //   11: '2.75rem',
       //   12: '3rem',
@@ -47,6 +47,7 @@ module.exports = {
               code: { color: theme('colors.blue.400') },
             },
             h1: {
+              fontSize: theme('text.2xl'),
               fontWeight: '700',
               letterSpacing: theme('letterSpacing.tight'),
               color: theme('colors.gray.900'),

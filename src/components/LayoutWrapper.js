@@ -7,13 +7,13 @@ import RSS from './RSS'
 
 const LayoutWrapper = ({ children }) => {
   return (
-    <div className="max-w-screen-lg xl:max-w-screen-xl mx-auto">
-      <header className="sticky top-0 z-40 lg:z-50 px-6 lg:mx-auto bg-gray-50 border-b border-gray-100 dark:bg-gray-900 dark:border-gray-700">
-        <div className="flex items-center justify-center lg:justify-between flex-wrap py-4 mx-auto">
+    <div className="max-w-screen-lg mx-auto">
+      <header className="z-40 lg:z-50 px-6 lg:mx-auto">
+        <div className="flex items-center justify-center lg:justify-between flex-wrap py-8 mx-auto">
           <div className="">
             <Link href="/" aria-label="Tailwind CSS Blog">
               <div className="flex items-center justify-between">
-                <div className="text-xl text-erin font-bold mr-3">Joel Hans</div>
+                <div className="text-2xl font-display text-erin font-bold mr-3">Joel Hans</div>
               </div>
             </Link>
           </div>
@@ -23,7 +23,7 @@ const LayoutWrapper = ({ children }) => {
                 <Link
                   key={link.title}
                   href={link.href}
-                  className="p-1 text-gray-900 text-base font-medium sm:p-4 dark:text-gray-100"
+                  className="px-1 text-gray-900 text-lg font-medium sm:p-4 dark:text-gray-100"
                 >
                   {link.title}
                 </Link>

@@ -16,31 +16,25 @@ export default function PostLayout({ children, frontMatter, next, prev }) {
 
   return (
     <SectionContainer>
-      <BlogSeo url={`${siteMetdata.siteUrl}/blog/${frontMatter.slug}`} {...frontMatter} />
+      <BlogSeo url={`${siteMetdata.siteUrl}/posts/${frontMatter.slug}`} {...frontMatter} />
       <article>
-        <div className="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
-          <header className="pt-6 xl:pb-6">
-            <div className="space-y-1 text-center">
-              <dl className="space-y-10">
-                <div>
-                  <dt className="sr-only">Published on</dt>
-                  <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                    <time dateTime={date}>
-                      {new Date(date).toLocaleDateString(siteMetdata.locale, postDateTemplate)}
-                    </time>
-                  </dd>
-                </div>
-              </dl>
+        <div className="">
+          <header className="py-16 text-center">
+            {/* <dl className="space-y-10">
               <div>
-                <PageTitle>{title}</PageTitle>
+                <dt className="sr-only">Published on</dt>
+                <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                  <time dateTime={date}>
+                    {new Date(date).toLocaleDateString(siteMetdata.locale, postDateTemplate)}
+                  </time>
+                </dd>
               </div>
-            </div>
+            </dl> */}
+            <PageTitle>{title}</PageTitle>
           </header>
-          <div
-            className="pb-8 divide-y divide-gray-200 xl:divide-y-0 dark:divide-gray-700 xl:grid xl:grid-cols-4 xl:gap-x-6"
-            style={{ gridTemplateRows: 'auto 1fr' }}
-          >
-            <dl className="pt-6 pb-10 xl:pt-11 xl:border-b xl:border-gray-200 xl:dark:border-gray-700">
+
+          <div className="" style={{ gridTemplateRows: 'auto 1fr' }}>
+            {/* <dl className="pt-6 pb-10 xl:pt-11 xl:border-b xl:border-gray-200 xl:dark:border-gray-700">
               <dt className="sr-only">Authors</dt>
               <dd>
                 <ul className="flex justify-center space-x-8 xl:block sm:space-x-12 xl:space-x-0 xl:space-y-8">
@@ -62,17 +56,19 @@ export default function PostLayout({ children, frontMatter, next, prev }) {
                   </li>
                 </ul>
               </dd>
-            </dl>
-            <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:pb-0 xl:col-span-3 xl:row-span-2">
-              <div className="pt-10 pb-8 prose dark:prose-dark max-w-none">{children}</div>
-              <div className="pt-6 pb-6 text-sm text-gray-700 dark:text-gray-300">
+            </dl> */}
+            <div className="">
+              <div className="pt-10 pb-8 prose prose-sm md:prose md:max-w-full lg:prose-lg lg:max-w-full xl:prose-xl xl:max-w-full max-w-fulldark:prose-dark ">
+                {children}
+              </div>
+              {/* <div className="pt-6 pb-6 text-sm text-gray-700 dark:text-gray-300">
                 <Link href={discussUrl(slug)} rel="nofollow">
                   {'Discuss on Twitter'}
                 </Link>
-              </div>
+              </div> */}
             </div>
             <footer>
-              <div className="text-sm font-medium leading-5 divide-gray-200 xl:divide-y dark:divide-gray-700 xl:col-start-1 xl:row-start-2">
+              {/* <div className="text-sm font-medium leading-5 divide-gray-200 xl:divide-y dark:divide-gray-700 xl:col-start-1 xl:row-start-2">
                 {tags && (
                   <div className="py-4 xl:py-8">
                     <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
@@ -109,7 +105,7 @@ export default function PostLayout({ children, frontMatter, next, prev }) {
                     )}
                   </div>
                 )}
-              </div>
+              </div> */}
               <div className="pt-4 xl:pt-8">
                 <Link
                   href="/posts"
