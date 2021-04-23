@@ -4,27 +4,39 @@ import SocialIcon from '@components/social-icons'
 
 export default function Footer() {
   return (
-    <footer>
-      <div className="flex flex-col items-center mt-16">
-        <div className="flex mb-3 space-x-4">
-          <SocialIcon kind="mail" href={`mailto:${siteMetadata.email}`} size="6" />
-          <SocialIcon kind="github" href={siteMetadata.github} size="6" />
-          <SocialIcon kind="facebook" href={siteMetadata.facebook} size="6" />
-          <SocialIcon kind="youtube" href={siteMetadata.youtube} size="6" />
-          <SocialIcon kind="linkedin" href={siteMetadata.linkedin} size="6" />
-          <SocialIcon kind="twitter" href={siteMetadata.twitter} size="6" />
+    <footer className="font-sans bg-sea bg-opacity-10 dark:bg-gray-800 dark:bg-opacity-100 py-16">
+      <div className="flex flex-row max-w-screen-lg mx-auto">
+        <div className="w-1/2">
+          <div className="block text-2xl font-display text-sea font-bold mb-2">Joel Hans</div>
+          <div className="block text-xs font-medium">
+            Thanks for stopping by!{' '}
+            <span role="img" aria-label="emoji wave">
+              👋
+            </span>
+          </div>
         </div>
-        <div className="flex mb-2 space-x-2 text-sm text-gray-500 dark:text-gray-400">
-          <div>{siteMetadata.author}</div>
-          <div>{` • `}</div>
-          <div>{`© ${new Date().getFullYear()}`}</div>
-          <div>{` • `}</div>
-          <Link href="/">{siteMetadata.title}</Link>
+        <div className="w-1/4 mb-8 text-sm text-gray-500 dark:text-gray-200">
+          {/* <h3>Posts</h3> */}
         </div>
-        <div className="mb-8 text-sm text-gray-500 dark:text-gray-400">
-          <Link href="https://github.com/timlrx/tailwind-nextjs-starter-blog">
-            Tailwind Nextjs Theme
+        <div className="w-1/4 mb-8 text-sm text-gray-500 dark:text-gray-200">
+          <h3 className="font-bold mb-2">Links</h3>
+          <Link
+            className="block font-medium mb-1 hover:text-steel"
+            href="https://twitter.com/joelhans"
+          >
+            Twitter
           </Link>
+          <Link className="block font-medium mb-1 hover:text-steel" href="/index.xml">
+            RSS
+          </Link>
+          <Link className="block font-medium mb-1 hover:text-steel" href="mailto:j@joelhans.com">
+            Email
+          </Link>
+        </div>
+      </div>
+      <div className="text-sm text-gray-900 dark:text-gray-200 font-medium max-w-screen-lg mx-auto">
+        <div>
+          {`© ${new Date().getFullYear()}`} <Link href="/">{siteMetadata.title}</Link>
         </div>
       </div>
     </footer>

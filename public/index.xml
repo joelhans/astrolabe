@@ -7,19 +7,9 @@
       <language>en-us</language>
       <managingEditor>info@netdata.cloud (Joel Hans)</managingEditor>
       <webMaster>info@netdata.cloud (Joel Hans)</webMaster>
-      <lastBuildDate>Tue, 23 Mar 2021 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Sun, 31 Jan 2021 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://tailwind-nextjs-starter-blog.vercel.app/index.xml" rel="self" type="application/rss+xml"/>
       
-  <item>
-    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/nesting/nesting-testing</guid>
-    <title>Nesting testing</title>
-    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/nesting/nesting-testing</link>
-    <description>The Time Traveller (for so it will be convenient to speak of him) was expounding a recondite matter to us. His pale grey eyes shone and twinkled, and his usually pale face was flushed and animated...</description>
-    <pubDate>Tue, 23 Mar 2021 00:00:00 GMT</pubDate>
-    <author>info@netdata.cloud (Joel Hans)</author>
-    <category>writings</category><category>book</category><category>reflection</category>
-  </item>
-
   <item>
     <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/my-fancy-title</guid>
     <title>My fancy title</title>
@@ -68,16 +58,6 @@
     <pubDate>Fri, 11 Oct 2019 00:00:00 GMT</pubDate>
     <author>info@netdata.cloud (Joel Hans)</author>
     <category>github</category><category>guide</category>
-  </item>
-
-  <item>
-    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/the-time-machine</guid>
-    <title>The Time Machine</title>
-    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/the-time-machine</link>
-    <description>The Time Traveller (for so it will be convenient to speak of him) was expounding a recondite matter to us. His pale grey eyes shone and twinkled, and his usually pale face was flushed and animated...</description>
-    <pubDate>Wed, 15 Aug 2018 00:00:00 GMT</pubDate>
-    <author>info@netdata.cloud (Joel Hans)</author>
-    <category>writings</category><category>book</category><category>reflection</category>
   </item>
 
   <item>

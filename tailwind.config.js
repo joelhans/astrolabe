@@ -104,11 +104,12 @@ module.exports = {
         },
         dark: {
           css: {
-            color: theme('colors.gray.300'),
+            color: theme('colors.gray.100'),
             a: {
-              color: theme('colors.blue.500'),
+              color: theme('colors.steel'),
+              textDecoration: 'none',
               '&:hover': {
-                color: theme('colors.blue.400'),
+                color: theme('colors.sea'),
               },
               code: { color: theme('colors.blue.400') },
             },
