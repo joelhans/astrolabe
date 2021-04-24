@@ -1,4 +1,4 @@
-import Link from '@components/Link'
+import CustomLink from '@components/Link'
 import Tag from '@components/Tag'
 import siteMetdata from '@data/siteMetadata'
 import { useState } from 'react'
@@ -14,11 +14,14 @@ export default function ListLayout({ posts, title }) {
 
   return (
     <>
-      <div className="divide-y">
-        <div className="pt-6 pb-8 space-y-2 md:space-y-5">
-          <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-            {title}
-          </h1>
+      <div className="mt-16">
+        <h1 className="text-6xl font-display font-bold mb-6 dark:text-gray-100">{title}</h1>
+        <div className="prose prose-xl dark:prose-dark">
+          <p className="text-xl md:text-2xl text-steel">
+            Most of my articles are about writing itself, particularly writing on the web. They're
+            at the intersection between fiction, technical writing, managing documentation, and the
+            tools that can help you be exceptional at all those things at the same time.
+          </p>
           <div className="relative max-w-lg">
             <input
               aria-label="Search posts"
@@ -43,43 +46,27 @@ export default function ListLayout({ posts, title }) {
             </svg>
           </div>
         </div>
-        <ul>
-          {!filteredBlogPosts.length && 'No posts found.'}
-          {filteredBlogPosts.map((frontMatter) => {
-            const { slug, date, title, summary, tags } = frontMatter
-            return (
-              <li key={slug} className="py-4">
-                <article className="space-y-2 xl:grid xl:grid-cols-4 xl:space-y-0 xl:items-baseline">
-                  <dl>
-                    <dt className="sr-only">Published on</dt>
-                    <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                      <time dateTime={date}>
-                        {new Date(date).toLocaleDateString(siteMetdata.locale, postDateTemplate)}
-                      </time>
-                    </dd>
-                  </dl>
-                  <div className="space-y-3 xl:col-span-3">
-                    <div>
-                      <h3 className="text-2xl font-bold leading-8 tracking-tight">
-                        <Link href={`/posts/${slug}`} className="text-gray-900 dark:text-gray-100">
-                          {title}
-                        </Link>
-                      </h3>
-                      <div className="flex flex-wrap">
-                        {tags.map((tag) => (
-                          <Tag key={tag} text={tag} />
-                        ))}
-                      </div>
-                    </div>
-                    <div className="prose text-gray-500 max-w-none dark:text-gray-400">
+        <div className="mt-16 mb-24">
+          <ul>
+            {!filteredBlogPosts.length && 'No posts found.'}
+            {filteredBlogPosts.map((frontMatter) => {
+              const { slug, date, title, summary, tags } = frontMatter
+              return (
+                <li key={slug}>
+                  <CustomLink key={slug} href={`/posts/${slug}`} className="group block mb-16">
+                    <h3 className="text-xl lg:text-2xl font-display font-bold mb-4 group-hover:text-steel">
+                      {title}
+                    </h3>
+                    <p className="prose prose-xl text-gray-500 dark:text-gray-400 mb-2">
                       {summary}
-                    </div>
-                  </div>
-                </article>
-              </li>
-            )
-          })}
-        </ul>
+                    </p>
+                    <span className="text-sm font-bold group-hover:text-steel">Read more</span>
+                  </CustomLink>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
       </div>
     </>
   )

@@ -32,13 +32,13 @@ export default function Fiction({ mdxSource, frontMatter }) {
         <h1 className="text-6xl font-display font-bold mb-6 dark:text-gray-100">
           {frontMatter.title}
         </h1>
-        <div className="prose prose-xl dark:prose-dark ">
+        <div className="prose prose-xl dark:prose-dark">
           <p className="text-xl md:text-2xl text-steel">
             {frontMatter.summary} {frontMatter.summary_cont}
           </p>
         </div>
       </header>
-      <div className="prose prose-xl dark:prose-dark mt-16">{content}</div>
+      <div className="prose prose-xl dark:prose-dark mt-16 mb-24">{content}</div>
     </>
   )
 }

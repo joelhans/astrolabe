@@ -31,22 +31,24 @@ export default function Home({ posts }) {
           </p>
         </div>
       </div>
-      <div className="grid">
-        <div className="w-2/3">
-          <h2 className="text-lg text-sea font-display font-bold uppercase mb-8">Recent posts</h2>
+      <div className="mb-24">
+        <h2 className="text-lg text-sea font-display font-bold uppercase mb-8">Recent posts</h2>
+        <ul>
           {posts.slice(0, 3).map((frontMatter) => {
             const { slug, date, title, summary, tags } = frontMatter
             return (
-              <CustomLink key={slug} href={`/posts/${slug}`} className="group block mb-12">
-                <h3 className="text-xl lg:text-2xl font-display font-bold mb-4 group-hover:text-steel">
-                  {title}
-                </h3>
-                <p className="text-base lg:text-lg mb-2">{summary}</p>
-                <span className="text-sm font-bold group-hover:text-steel">Read more</span>
-              </CustomLink>
+              <li key={slug}>
+                <CustomLink key={slug} href={`/posts/${slug}`} className="group block mb-16">
+                  <h3 className="text-xl lg:text-2xl font-display font-bold mb-4 group-hover:text-steel">
+                    {title}
+                  </h3>
+                  <p className="prose prose-xl text-gray-500 dark:text-gray-400 mb-2">{summary}</p>
+                  <span className="text-sm font-bold group-hover:text-steel">Read more</span>
+                </CustomLink>
+              </li>
             )
           })}
-        </div>
+        </ul>
       </div>
     </>
   )

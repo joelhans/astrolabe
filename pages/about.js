@@ -30,7 +30,7 @@ export default function About({ mdxSource, frontMatter }) {
       />
       <header className="flex flex-row items-center mt-16">
         <div className="prose prose-xl dark:prose-dark ">
-          <h1 className="text-6xl font-display font-bold">Hi, I'm Joel Hans.</h1>
+          <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold">Hi, I'm Joel Hans.</h1>
           <p className="text-2xl md:text-3xl text-steel">
             I'm a writer, teacher, and developer of things related to writing and teaching on the
             web.
@@ -42,7 +42,7 @@ export default function About({ mdxSource, frontMatter }) {
           alt="Joel Hans"
         />
       </header>
-      <div className="prose prose-xl dark:prose-dark mt-16">{content}</div>
+      <div className="prose prose-xl dark:prose-dark mt-16 mb-24">{content}</div>
     </>
   )
 }
