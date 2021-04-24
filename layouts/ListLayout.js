@@ -18,16 +18,16 @@ export default function ListLayout({ posts, title }) {
         <h1 className="text-6xl font-display font-bold mb-6 dark:text-gray-100">{title}</h1>
         <div className="prose prose-xl dark:prose-dark">
           <p className="text-xl md:text-2xl text-steel">
-            Most of my articles are about writing itself, particularly writing on the web. They're
-            at the intersection between fiction, technical writing, managing documentation, and the
-            tools that can help you be exceptional at all those things at the same time.
+            My articles about writing on the web, at the intersection between fiction, technical
+            writing, documentation, and the development tools you'll need to to be successful in
+            whichever path you choose.
           </p>
           <div className="relative max-w-lg">
             <input
-              aria-label="Search posts"
+              aria-label="Search articles"
               type="text"
               onChange={(e) => setSearchValue(e.target.value)}
-              placeholder="Search posts"
+              placeholder="Search articles"
               className="block w-full px-4 py-2 text-gray-900 bg-white border border-gray-300 rounded-md dark:border-gray-900 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:text-gray-100"
             />
             <svg
@@ -48,12 +48,13 @@ export default function ListLayout({ posts, title }) {
         </div>
         <div className="mt-16 mb-24">
           <ul>
-            {!filteredBlogPosts.length && 'No posts found.'}
+            {!filteredBlogPosts.length && 'No articles found.'}
             {filteredBlogPosts.map((frontMatter) => {
-              const { slug, date, title, summary, tags } = frontMatter
+              const { slug, draft, date, title, summary, tags } = frontMatter
+
               return (
                 <li key={slug}>
-                  <CustomLink key={slug} href={`/posts/${slug}`} className="group block mb-16">
+                  <CustomLink key={slug} href={`/articles/${slug}`} className="group block mb-16">
                     <h3 className="text-xl lg:text-2xl font-display font-bold mb-4 group-hover:text-steel">
                       {title}
                     </h3>

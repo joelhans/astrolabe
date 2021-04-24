@@ -1,13 +1,9 @@
-import Link from '@components/Link'
+import CustomLink from '@components/Link'
 import PageTitle from '@components/PageTitle'
 import SectionContainer from '@components/SectionContainer'
 import { BlogSeo } from '@components/SEO'
 import Tag from '@components/Tag'
 import siteMetdata from '@data/siteMetadata'
-
-const editUrl = (fileName) => `${siteMetdata.siteRepo}/blob/master/data/blog/${fileName}`
-const discussUrl = (slug) =>
-  `https://mobile.twitter.com/search?q=${encodeURIComponent(`${siteMetdata.siteUrl}/blog/${slug}`)}`
 
 const postDateTemplate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
 
@@ -16,7 +12,7 @@ export default function PostLayout({ children, frontMatter, next, prev }) {
 
   return (
     <SectionContainer>
-      <BlogSeo url={`${siteMetdata.siteUrl}/posts/${frontMatter.slug}`} {...frontMatter} />
+      <BlogSeo url={`${siteMetdata.siteUrl}/articles/${frontMatter.slug}`} {...frontMatter} />
       <article>
         <div className="">
           <header className="py-16 text-center">
@@ -33,7 +29,7 @@ export default function PostLayout({ children, frontMatter, next, prev }) {
             <PageTitle>{title}</PageTitle>
           </header>
 
-          <div className="" style={{ gridTemplateRows: 'auto 1fr' }}>
+          <div className="mb-24" style={{ gridTemplateRows: 'auto 1fr' }}>
             {/* <dl className="pt-6 pb-10 xl:pt-11 xl:border-b xl:border-gray-200 xl:dark:border-gray-700">
               <dt className="sr-only">Authors</dt>
               <dd>
@@ -57,62 +53,62 @@ export default function PostLayout({ children, frontMatter, next, prev }) {
                 </ul>
               </dd>
             </dl> */}
-            <div className="">
-              <div className="pt-10 pb-8 prose prose-xl dark:prose-dark mx-auto">{children}</div>
+            <div className="prose prose-xl dark:prose-dark mx-auto">
+              <div className="pt-10 pb-8">{children}</div>
               {/* <div className="pt-6 pb-6 text-sm text-gray-700 dark:text-gray-300">
                 <Link href={discussUrl(slug)} rel="nofollow">
                   {'Discuss on Twitter'}
                 </Link>
               </div> */}
-            </div>
-            <footer>
-              {/* <div className="text-sm font-medium leading-5 divide-gray-200 xl:divide-y dark:divide-gray-700 xl:col-start-1 xl:row-start-2">
-                {tags && (
-                  <div className="py-4 xl:py-8">
-                    <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
-                      Tags
-                    </h2>
-                    <div className="flex flex-wrap">
-                      {tags.map((tag) => (
-                        <Tag key={tag} text={tag} />
-                      ))}
+              <footer>
+                {/* <div className="text-sm font-medium leading-5 divide-gray-200 xl:divide-y dark:divide-gray-700 xl:col-start-1 xl:row-start-2">
+                  {tags && (
+                    <div className="py-4 xl:py-8">
+                      <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
+                        Tags
+                      </h2>
+                      <div className="flex flex-wrap">
+                        {tags.map((tag) => (
+                          <Tag key={tag} text={tag} />
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                )}
-                {(next || prev) && (
-                  <div className="flex justify-between py-4 xl:block xl:space-y-8 xl:py-8">
-                    {prev && (
-                      <div>
-                        <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
-                          Previous post
-                        </h2>
-                        <div className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400">
-                          <Link href={`/blog/${prev.slug}`}>{prev.title}</Link>
+                  )}
+                  {(next || prev) && (
+                    <div className="flex justify-between py-4 xl:block xl:space-y-8 xl:py-8">
+                      {prev && (
+                        <div>
+                          <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
+                            Previous post
+                          </h2>
+                          <div className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400">
+                            <Link href={`/blog/${prev.slug}`}>{prev.title}</Link>
+                          </div>
                         </div>
-                      </div>
-                    )}
-                    {next && (
-                      <div>
-                        <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
-                          Next post
-                        </h2>
-                        <div className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400">
-                          <Link href={`/blog/${next.slug}`}>{next.title}</Link>
+                      )}
+                      {next && (
+                        <div>
+                          <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
+                            Next post
+                          </h2>
+                          <div className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400">
+                            <Link href={`/blog/${next.slug}`}>{next.title}</Link>
+                          </div>
                         </div>
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div> */}
-              <div className="pt-4 xl:pt-8">
-                <Link
-                  href="/posts"
-                  className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
-                >
-                  &larr; See my other posts
-                </Link>
-              </div>
-            </footer>
+                      )}
+                    </div>
+                  )}
+                </div> */}
+                <div className="">
+                  <CustomLink
+                    href="/articles"
+                    className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
+                  >
+                    &larr; See my other articles
+                  </CustomLink>
+                </div>
+              </footer>
+            </div>
           </div>
         </div>
       </article>

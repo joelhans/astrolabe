@@ -7,9 +7,29 @@
       <language>en-us</language>
       <managingEditor>info@netdata.cloud (Joel Hans)</managingEditor>
       <webMaster>info@netdata.cloud (Joel Hans)</webMaster>
-      <lastBuildDate>Sun, 31 Jan 2021 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Sat, 24 Apr 2021 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://tailwind-nextjs-starter-blog.vercel.app/index.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/athens-in-public</guid>
+    <title>A guide to using Athens Research</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/athens-in-public</link>
+    <description>Example of a markdown file with code blocks and syntax highlighting</description>
+    <pubDate>Sat, 24 Apr 2021 00:00:00 GMT</pubDate>
+    <author>info@netdata.cloud (Joel Hans)</author>
+    <category>note-taking</category><category>markdown</category><category>research</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/nerd-neck</guid>
+    <title>How to actually get rid of slumped shoulders and 'nerd neck'</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/nerd-neck</link>
+    <description>Example of a markdown file with code blocks and syntax highlighting</description>
+    <pubDate>Sat, 24 Apr 2021 00:00:00 GMT</pubDate>
+    <author>info@netdata.cloud (Joel Hans)</author>
+    <category>note-taking</category><category>markdown</category><category>research</category>
+  </item>
+
   <item>
     <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/my-fancy-title</guid>
     <title>My fancy title</title>
@@ -18,66 +38,6 @@
     <pubDate>Sun, 31 Jan 2021 00:00:00 GMT</pubDate>
     <author>info@netdata.cloud (Joel Hans)</author>
     <category>hello</category>
-  </item>
-
-  <item>
-    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/introducing-tailwind-nextjs-starter-blog</guid>
-    <title>Introducing Tailwind Nexjs Starter Blog</title>
-    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/introducing-tailwind-nextjs-starter-blog</link>
-    <description>Looking for a performant, out of the box template, with all the best in web technology to support your blogging needs? Checkout the Tailwind Nextjs Starter Blog template.</description>
-    <pubDate>Tue, 12 Jan 2021 00:00:00 GMT</pubDate>
-    <author>info@netdata.cloud (Joel Hans)</author>
-    <category>next-js</category><category>tailwind</category><category>guide</category>
-  </item>
-
-  <item>
-    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/guide-to-using-images-in-nextjs</guid>
-    <title>Images in Next.js</title>
-    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/guide-to-using-images-in-nextjs</link>
-    <description>In this article we introduce adding images in the tailwind starter blog and the benefits and limitations of the next/image component.</description>
-    <pubDate>Wed, 11 Nov 2020 00:00:00 GMT</pubDate>
-    <author>info@netdata.cloud (Joel Hans)</author>
-    <category>next js</category><category>guide</category>
-  </item>
-
-  <item>
-    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/deriving-ols-estimator</guid>
-    <title>Deriving the OLS Estimator</title>
-    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/deriving-ols-estimator</link>
-    <description>How to derive the OLS Estimator with matrix notation and a tour of math typesetting using markdown with the help of KaTeX.</description>
-    <pubDate>Sat, 16 Nov 2019 00:00:00 GMT</pubDate>
-    <author>info@netdata.cloud (Joel Hans)</author>
-    <category>next js</category><category>math</category><category>ols</category>
-  </item>
-
-  <item>
-    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/github-markdown-guide</guid>
-    <title>Markdown Guide</title>
-    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/github-markdown-guide</link>
-    <description>Markdown cheatsheet for all your blogging needs - headers, lists, images, tables and more! An illustrated guide based on Github Flavored Markdown.</description>
-    <pubDate>Fri, 11 Oct 2019 00:00:00 GMT</pubDate>
-    <author>info@netdata.cloud (Joel Hans)</author>
-    <category>github</category><category>guide</category>
-  </item>
-
-  <item>
-    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/pictures-of-canada</guid>
-    <title>O Canada</title>
-    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/pictures-of-canada</link>
-    <description>The scenic lands of Canada featuring maple leaves, snow-capped mountains, turquoise lakes and Toronto. Take in the sights in this photo gallery exhibition and see how easy it is to replicate with some MDX magic and tailwind classes.</description>
-    <pubDate>Sat, 15 Jul 2017 00:00:00 GMT</pubDate>
-    <author>info@netdata.cloud (Joel Hans)</author>
-    <category>holiday</category><category>canada</category><category>images</category>
-  </item>
-
-  <item>
-    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/code-sample</guid>
-    <title>Sample .md file</title>
-    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/code-sample</link>
-    <description>Example of a markdown file with code blocks and syntax highlighting</description>
-    <pubDate>Tue, 08 Mar 2016 00:00:00 GMT</pubDate>
-    <author>info@netdata.cloud (Joel Hans)</author>
-    <category>markdown</category><category>code</category><category>features</category>
   </item>
 
     </channel>

@@ -7,7 +7,7 @@ import PostLayout from '@/layouts/PostLayout'
 import MDXComponents from '@components/MDXComponents'
 
 export async function getStaticPaths() {
-  const posts = await getFrontMatter(POSTS_CONTENT_PATH)
+  const posts = await getFrontMatter(POSTS_CONTENT_PATH, false)
   const paths = posts.map(({ slug }) => ({
     params: {
       slug: slug.split('/'),
@@ -24,7 +24,7 @@ export async function getStaticProps({ params: { slug } }) {
   const postSlug = slug.join('/')
   const content = await getSingleContent(POSTS_CONTENT_PATH, postSlug)
 
-  const posts = await getFrontMatter(POSTS_CONTENT_PATH)
+  const posts = await getFrontMatter(POSTS_CONTENT_PATH, false)
   const postsSorted = posts.sort((a, b) => dateSortDesc(a.date, b.date))
   const postIndex = postsSorted.findIndex((post) => post.slug === postSlug)
   const prev = postsSorted[postIndex + 1] || null
@@ -48,16 +48,31 @@ export async function getStaticProps({ params: { slug } }) {
   }
 }
 
-export default function Doc({ mdxSource, frontMatter, toc }) {
+export default function Article({ mdxSource, frontMatter, toc }) {
   const content = hydrate(mdxSource, {
     components: MDXComponents,
   })
 
+  // Detect the development environment.
+  const env = process.env.NODE_ENV
+
   return (
     <>
-      <PostLayout frontMatter={frontMatter} toc={toc}>
+      {frontMatter.draft !== true || (frontMatter.draft === true && env === 'development') ? (
+        <PostLayout frontMatter={frontMatter}>{content}</PostLayout>
+      ) : (
+        <div className="my-48 text-center">
+          <h1 className="text-xl font-bold">
+            Under construction.{' '}
+            <span role="img" aria-label="roadwork sign">
+              🚧
+            </span>
+          </h1>
+        </div>
+      )}
+      {/* <PostLayout frontMatter={frontMatter} toc={toc}>
         {content}
-      </PostLayout>
+      </PostLayout> */}
     </>
   )
 }

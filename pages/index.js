@@ -26,19 +26,19 @@ export default function Home({ posts }) {
             on the web.
           </p>
           <p>
-            <CustomLink href="/about">Start here</CustomLink>, or check out one of my recent posts
-            below.
+            <CustomLink href="/about">Start here</CustomLink>, or check out one of my recent
+            articles below.
           </p>
         </div>
       </div>
       <div className="mb-24">
-        <h2 className="text-lg text-sea font-display font-bold uppercase mb-8">Recent posts</h2>
+        <h2 className="text-lg text-sea font-display font-bold uppercase mb-8">Recent articles</h2>
         <ul>
           {posts.slice(0, 3).map((frontMatter) => {
             const { slug, date, title, summary, tags } = frontMatter
             return (
               <li key={slug}>
-                <CustomLink key={slug} href={`/posts/${slug}`} className="group block mb-16">
+                <CustomLink key={slug} href={`/articles/${slug}`} className="group block mb-16">
                   <h3 className="text-xl lg:text-2xl font-display font-bold mb-4 group-hover:text-steel">
                     {title}
                   </h3>
