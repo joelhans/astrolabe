@@ -17,7 +17,7 @@ export default function ListLayout({ posts, title }) {
     <>
       <div className="mt-16">
         <PageTitle>{title}</PageTitle>
-        <div className="prose prose-xl dark:prose-dark">
+        <div className="prose prose-md lg:prose-lg xl:prose-xl dark:prose-dark">
           <p className="text-xl md:text-2xl text-steel">
             My articles about writing on the web, at the intersection between fiction, technical
             writing, documentation, and the development tools you'll need to to be successful in
@@ -58,7 +58,7 @@ export default function ListLayout({ posts, title }) {
                     <h3 className="text-xl lg:text-2xl font-display font-bold mb-4 group-hover:text-steel">
                       {title}
                     </h3>
-                    <p className="prose prose-md md:prose-xl lg:prose-xl text-gray-500 dark:text-gray-400 mb-2">
+                    <p className="prose prose-md lg:prose-lg xl:prose-xl dark:prose-dark text-gray-500 dark:text-gray-400 mb-2">
                       {summary}
                     </p>
                     <span className="text-sm font-bold group-hover:text-steel">Read more</span>
