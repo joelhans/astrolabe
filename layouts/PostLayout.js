@@ -15,17 +15,7 @@ export default function PostLayout({ children, frontMatter, next, prev }) {
       <BlogSeo url={`${siteMetdata.siteUrl}/articles/${frontMatter.slug}`} {...frontMatter} />
       <article>
         <div className="">
-          <header className="py-16 text-center">
-            {/* <dl className="space-y-10">
-              <div>
-                <dt className="sr-only">Published on</dt>
-                <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                  <time dateTime={date}>
-                    {new Date(date).toLocaleDateString(siteMetdata.locale, postDateTemplate)}
-                  </time>
-                </dd>
-              </div>
-            </dl> */}
+          <header className="py-8 md:py-16 text-center">
             <PageTitle>{title}</PageTitle>
           </header>
 
@@ -53,8 +43,8 @@ export default function PostLayout({ children, frontMatter, next, prev }) {
                 </ul>
               </dd>
             </dl> */}
-            <div className="prose prose-xl dark:prose-dark mx-auto">
-              <div className="pt-10 pb-8">{children}</div>
+            <div className="prose prose-md lg:prose-lg xl:prose-xl dark:prose-dark mx-auto">
+              <div className="pb-8">{children}</div>
               {/* <div className="pt-6 pb-6 text-sm text-gray-700 dark:text-gray-300">
                 <Link href={discussUrl(slug)} rel="nofollow">
                   {'Discuss on Twitter'}

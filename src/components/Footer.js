@@ -4,7 +4,7 @@ import SocialIcon from '@components/social-icons'
 
 export default function Footer() {
   return (
-    <footer className="font-sans bg-sea bg-opacity-10 dark:bg-gray-800 dark:bg-opacity-100 py-16">
+    <footer className="font-sans bg-sea bg-opacity-10 dark:bg-gray-800 dark:bg-opacity-100 px-6 py-16">
       <div className="flex flex-row max-w-screen-lg mx-auto">
         <div className="w-1/2">
           <div className="block text-2xl font-display text-sea font-bold mb-2">Joel Hans</div>

@@ -2,6 +2,7 @@ import hydrate from 'next-mdx-remote/hydrate'
 import { getSingleContent } from '@/lib/mdx'
 import { PageSeo } from '@components/SEO'
 import { BASE_CONTENT_PATH } from '@config/constants'
+import PageTitle from '@components/PageTitle'
 import siteMetadata from '@data/siteMetadata'
 import MDXComponents from '@components/MDXComponents'
 
@@ -29,16 +30,16 @@ export default function Fiction({ mdxSource, frontMatter }) {
         url={`${siteMetadata.siteUrl}/${frontMatter.slug}`}
       />
       <header className="mt-16">
-        <h1 className="text-6xl font-display font-bold mb-6 dark:text-gray-100">
-          {frontMatter.title}
-        </h1>
-        <div className="prose prose-xl dark:prose-dark">
-          <p className="text-xl md:text-2xl text-steel">
+        <PageTitle>{frontMatter.title}</PageTitle>
+        <div className="prose prose-md lg:prose-lg lg:max-w-full xl:prose-xl dark:prose-dark">
+          <p className="text-xl md:text-2xl lg:text-3xl text-steel">
             {frontMatter.summary} {frontMatter.summary_cont}
           </p>
         </div>
       </header>
-      <div className="prose prose-xl dark:prose-dark mt-16 mb-24">{content}</div>
+      <div className="prose prose-md lg:prose-lg lg:max-w-full xl:prose-xl dark:prose-dark mt-8 md:mt-16 mb-24">
+        {content}
+      </div>
     </>
   )
 }

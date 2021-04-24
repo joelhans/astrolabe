@@ -1,7 +1,8 @@
+import { useState } from 'react'
 import CustomLink from '@components/Link'
 import Tag from '@components/Tag'
 import siteMetdata from '@data/siteMetadata'
-import { useState } from 'react'
+import PageTitle from '@components/PageTitle'
 
 const postDateTemplate = { year: 'numeric', month: 'long', day: 'numeric' }
 
@@ -15,7 +16,7 @@ export default function ListLayout({ posts, title }) {
   return (
     <>
       <div className="mt-16">
-        <h1 className="text-6xl font-display font-bold mb-6 dark:text-gray-100">{title}</h1>
+        <PageTitle>{title}</PageTitle>
         <div className="prose prose-xl dark:prose-dark">
           <p className="text-xl md:text-2xl text-steel">
             My articles about writing on the web, at the intersection between fiction, technical
@@ -51,14 +52,13 @@ export default function ListLayout({ posts, title }) {
             {!filteredBlogPosts.length && 'No articles found.'}
             {filteredBlogPosts.map((frontMatter) => {
               const { slug, draft, date, title, summary, tags } = frontMatter
-
               return (
                 <li key={slug}>
                   <CustomLink key={slug} href={`/articles/${slug}`} className="group block mb-16">
                     <h3 className="text-xl lg:text-2xl font-display font-bold mb-4 group-hover:text-steel">
                       {title}
                     </h3>
-                    <p className="prose prose-xl text-gray-500 dark:text-gray-400 mb-2">
+                    <p className="prose prose-md md:prose-xl lg:prose-xl text-gray-500 dark:text-gray-400 mb-2">
                       {summary}
                     </p>
                     <span className="text-sm font-bold group-hover:text-steel">Read more</span>

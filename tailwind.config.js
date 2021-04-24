@@ -95,13 +95,13 @@ module.exports = {
             },
           },
         },
-        xl: {
-          css: {
-            h2: {
-              marginTop: '1.2em',
-            },
-          },
-        },
+        // xl: {
+        //   css: {
+        //     h2: {
+        //       marginTop: '1.2em',
+        //     },
+        //   },
+        // },
         dark: {
           css: {
             color: theme('colors.gray.100'),
@@ -161,6 +161,7 @@ module.exports = {
   },
   variants: {
     typography: ['dark'],
+    modifiers: ['md', 'lg', 'xl'],
   },
   plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
 }
