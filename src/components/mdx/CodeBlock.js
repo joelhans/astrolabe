@@ -27,10 +27,16 @@ const CodeBlock = ({ children, code, language, title }) => {
   return (
     <>
       <div className="CodeBlock group">
-        {codeTitle && <div className="remark-code-title text-erin">{codeTitle}</div>}
+        {codeTitle && (
+          <div className="remark-code-title text-sea rounded-tr rounded-tl">{codeTitle}</div>
+        )}
         <Highlight {...defaultProps} theme={theme} code={codeText} language={codeLang}>
           {({ className, tokens, getLineProps, getTokenProps }) => (
-            <pre className={`${className} relative overflow-x-scroll text-left mt-0 mb-0`}>
+            <pre
+              className={`${className} relative overflow-x-scroll text-left !mt-0 !mb-0 ${
+                codeTitle && '!rounded-tr-none !rounded-tl-none'
+              }`}
+            >
               <button
                 className="opacity-0 group-hover:opacity-100 absolute pin top-4 right-6 text-sm font-sans text-salmon hover:text-erin font-medium py-1 px-2 rounded focus:outline-none focus:ring focus:ring-erin focus:ring-opacity-50"
                 onClick={() => {

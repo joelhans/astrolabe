@@ -66,7 +66,7 @@ module.exports = {
               color: theme('colors.gray.900'),
             },
             code: {
-              color: theme('colors.pink.500'),
+              color: theme('colors.sea'),
               backgroundColor: theme('colors.gray.100'),
               paddingLeft: '4px',
               paddingRight: '4px',
@@ -106,10 +106,10 @@ module.exports = {
           css: {
             color: theme('colors.gray.100'),
             a: {
-              color: theme('colors.steel'),
+              color: theme('colors.sea'),
               textDecoration: 'none',
               '&:hover': {
-                color: theme('colors.sea'),
+                color: theme('colors.steel'),
               },
               code: { color: theme('colors.blue.400') },
             },
