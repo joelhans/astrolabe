@@ -8,7 +8,9 @@ import siteMetdata from '@data/siteMetadata'
 const postDateTemplate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
 
 export default function PostLayout({ children, frontMatter, next, prev }) {
-  const { slug, fileName, date, title, tags } = frontMatter
+  const { slug, fileName, date, title, lastmod, tags } = frontMatter
+
+  console.log(frontMatter)
 
   return (
     <SectionContainer>
@@ -90,6 +92,12 @@ export default function PostLayout({ children, frontMatter, next, prev }) {
                   )}
                 </div> */}
                 <div className="">
+                  <p className="text-base font-bold text-gray-500 dark:text-gray-400 mb-8">Last updated:
+                    {' '}
+                    <time dateTime={lastmod}>
+                      {new Date(lastmod).toLocaleDateString(siteMetdata.locale, postDateTemplate)}
+                    </time>
+                  </p>
                   <CustomLink
                     href="/articles"
                     className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
