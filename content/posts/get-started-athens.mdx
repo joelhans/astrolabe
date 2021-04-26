@@ -1,14 +1,15 @@
 ---
 title: Get started with Athens
-date: '2021-04-25'
-tags: ['note-taking', 'markdown', 'research']
+date: '2021-04-26'
+tags: ['note-taking', 'knowledge-graph', 'markdown', 'research']
 draft: false
 summary: Learn how get the most out of your first 15 minutes with Athens, a free and open-source tool for building and maintaining a personal knowledge graph.
 ---
 
 My friend and Netdata colleague Odysseas Lamtzidis ([@odysseas_lam](https://twitter.com/odysseas_lam)) recently told me
-about [Athens Research](https://github.com/athensresearch/athens), which is a "knowledge graph for research and
-notetaking." It's also free and open-source.
+about [Athens Research](https://github.com/athensresearch/athens), the company behind **Athens**, which is a knowledge
+graph for research and note-taking. It's also free and open-source under the [Eclipse Public
+License](https://github.com/athensresearch/athens/blob/master/LICENSE).
 
 I've been using [Obsidian](https://obsidian.md/) for close to a year, and was an avid [Notion](https://notion.so) user
 before that. I'm familiar with _some_ of the recent developments in this space. I'm by no means an expert in organizing
@@ -28,26 +29,27 @@ When you first get into Athens, you're greeted with a single note titled with to
 How you use this daily note is up to you. No matter where you go in your knowledge graph, today's daily note is always a
 click away with the calendar icon in the top panel.
 
-I tend to use daily notes for keeping some unstructured thoughts about my day, checking in every now and then throughout
-the day to add in some updates. I take notes about anything interesting I find, or as I organize my thoughts on a
-specific subject, in separate pages. More on that later.
+I tend to use daily notes for keeping some unstructured thoughts about my day, checking in throughout the day to add
+some updates. I take notes about anything interesting I find or organize my thoughts on a specific subject on _separate_
+pages. More on that later.
 
 ## Write in blocks
 
-You might notice right away that as you type into your daily note, the line you're currently working on is highlighted
-with a slightly darker gray color. This highlighted area is a **block**. Blocks can contain plain text, styled text
-using subset of Markdown syntax, TODO checkboxes, and more.
+You might notice right away that as you type into your daily note, Athens highlights the line you're working on with a
+slightly darker gray color. This highlighted area is a **block**. Blocks can contain plain text, styled text using a
+subset of Markdown syntax, TODO checkboxes, and more.
 
 On one level, blocks operate like paragraphs in Markdown or a Google Doc. When you feel a natural break in your writing,
-hit `Enter` to start a new block. Continue as you would with any other writing or note-taking you're familiar with. You
-don't _have_ to think about blocks any further than that.
+hit `Enter` to start a new block. Or, type `Shift`+`Enter` to start a new line within the same block. Continue as you
+would with any other writing or note-taking app you're familiar with. You don't _have_ to think about blocks any further
+than that.
 
 But blocks are more than a container for text. You can move entire blocks around as you see fit, and you can reference
 one block from within another, creating a connection between them. More on [references](#create-links-and-references) in
 the next section.
 
-To move a block, click and hold on the gray dot to its left, then drag to any other location in the page. As you drag,
-you'll see a blue line that shows you where the block will drop if you release the click.
+To move a block, click and hold on the gray dot to its left, then drag to any other location on the page. As you drag, a
+blue line shows you where the block will drop if you release.
 
 Blocks can also be nested inside of other blocks by dragging further to the right. Once you've nested some blocks,
 collapse the parent by clicking on the chevron `⌄`.
@@ -59,11 +61,11 @@ collapse the parent by clicking on the chevron `⌄`.
 Next, create a new page by clicking on the **Find or Create a Page** button in the top panel, or typing `Ctrl`/`⌘`+`K`.
 Type in the name of the page, then hit `Enter`, or click on the area that says **Create Page:**.
 
-Now that you have two pages, start building out your knowledge graph by linking between them.
+Now that you have two pages, start building out your knowledge graph by creating your first link.
 
-Type `[[` followed by the first few characters of your daily note. For me, that's **April 24, 2021**. What that page
-shows up on the dropdown, click in to finish the link. Hit `Enter`, and you'll see that the link is now blue, which
-means it's active. Click it to navigate to your daily note.
+Type `[[` followed by the first few characters of your daily note. For me, that's **April 24, 2021**. When that page
+shows up on the dropdown, click it to finish the link. Hit `Enter` to create a new block, and you'll see that the link
+is now blue, which means it's active. Click it to navigate to your daily note.
 
 In Athens, links are **bidirectional**, which means they now reference each other. Beneath every page you'll find an
 area titled **Linked References**, which is where you can see all the pages that _link to your current page_.
@@ -112,11 +114,9 @@ As of the last update, there is no way to [export your pages](https://github.com
 to another format, even plain text. If you copy-paste an entire page into another editor, like VS Code, you'll notice
 that every line begins with a `-` character.
 
-Let's say you want to draft a blog post in Athens, then convert it to Markdown once you're ready to publish it on your
-blog, which is some kind of static site generator (SSG). Select the entire page with `Ctrl`/`⌘`+`A`, then paste into
-your text editor. 
+Let's say you want to draft a blog post in Athens, then convert it to Markdown once you're ready to publish.
 
-I use [VSCode](https://code.visualstudio.com/), and while the instructions vary between tools, the idea works anywhere.
+Select the entire page with `Ctrl`/`⌘`+`A`, then paste into your text editor. I use [VSCode](https://code.visualstudio.com/), and while the instructions vary between tools, the idea works anywhere.
 
 Next, open up the find panel, and type `- ` into the find field. Type `\n`, which represents a new line, into the
 replace field. Make sure you click the **Use Regular Expression** option (`.*`). Use **replace all** to remove every one
@@ -127,9 +127,19 @@ there's no concept of nested paragraphs in Markdown.
 
 ## What's next?
 
+Now that you understand the basics of Athens, there's an almost overwhelming number of ways to actually use it.
+
+Start small. Take some notes about your thoughts today. If there's anything in those notes that feels like it could be
+expanded upon, create a new page and link the two together. Click on the **Open Graph** button, which looks like three
+bubbles, to see the budding connections.
+
+Be sure to give the project a star on [GitHub](https://github.com/athensresearch/athens), and poke around the
+[discussions](https://github.com/athensresearch/athens/discussions) to learn some new tips or see what's up next in
+their development process.
+
 There's plenty more to learn about using Athens that I need to figure out myself, so I'll keep this guide updated with
 anything else I think is essential to having a successful first 15 minutes. Beyond that, I'll create separate posts
-covering the most interesting and useful bits.
+covering the most interesting new finds.
 
 If you have questions or corrections, [send me an email](mailto:j@joelhans.com).
 

@@ -1,6 +1,6 @@
-const Video = ({ src }) => {
+const Video = ({ src, controls }) => {
   return (
-    <video controls="controls">
+    <video preload muted autoplay="autoplay" loop="loop">
       <source src={src} type="video/mp4" />
     </video>
   )
