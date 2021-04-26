@@ -2,10 +2,10 @@ import { PageSeo } from '@components/SEO'
 import CustomLink from '@components/Link'
 import siteMetadata from '@data/siteMetadata'
 import { getFrontMatter } from '@/lib/mdx'
-import { POSTS_CONTENT_PATH } from '@config/constants'
+import { ARTICLES_CONTENT_PATH } from '@config/constants'
 
 export async function getStaticProps() {
-  const posts = await getFrontMatter(POSTS_CONTENT_PATH)
+  const posts = await getFrontMatter(ARTICLES_CONTENT_PATH)
   return { props: { posts } }
 }
 

@@ -2,10 +2,10 @@ import siteMetadata from '@data/siteMetadata'
 import ListLayout from '@/layouts/ListLayout'
 import { PageSeo } from '@components/SEO'
 import { getFrontMatter } from '@/lib/mdx'
-import { POSTS_CONTENT_PATH } from '@config/constants'
+import { ARTICLES_CONTENT_PATH } from '@config/constants'
 
 export async function getStaticProps() {
-  const posts = await getFrontMatter(POSTS_CONTENT_PATH, true)
+  const posts = await getFrontMatter(ARTICLES_CONTENT_PATH, true)
   return { props: { posts } }
 }
 

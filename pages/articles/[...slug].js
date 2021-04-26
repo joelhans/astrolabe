@@ -2,12 +2,12 @@ import fs from 'fs'
 import hydrate from 'next-mdx-remote/hydrate'
 import { getFrontMatter, getSingleContent, dateSortDesc } from '@/lib/mdx'
 import generateRss from '@/lib/generate-rss'
-import { POSTS_CONTENT_PATH } from '@config/constants'
+import { ARTICLES_CONTENT_PATH } from '@config/constants'
 import PostLayout from '@/layouts/PostLayout'
 import MDXComponents from '@components/MDXComponents'
 
 export async function getStaticPaths() {
-  const posts = await getFrontMatter(POSTS_CONTENT_PATH, false)
+  const posts = await getFrontMatter(ARTICLES_CONTENT_PATH, false)
   const paths = posts.map(({ slug }) => ({
     params: {
       slug: slug.split('/'),
@@ -22,9 +22,9 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params: { slug } }) {
   const postSlug = slug.join('/')
-  const content = await getSingleContent(POSTS_CONTENT_PATH, postSlug)
+  const content = await getSingleContent(ARTICLES_CONTENT_PATH, postSlug)
 
-  const posts = await getFrontMatter(POSTS_CONTENT_PATH, false)
+  const posts = await getFrontMatter(ARTICLES_CONTENT_PATH, false)
   const postsSorted = posts.sort((a, b) => dateSortDesc(a.date, b.date))
   const postIndex = postsSorted.findIndex((post) => post.slug === postSlug)
   const prev = postsSorted[postIndex + 1] || null
