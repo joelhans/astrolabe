@@ -48,6 +48,7 @@ module.exports = {
   rules: {
     'prettier/prettier': 'error',
     'react/react-in-jsx-scope': 'off',
+    'jsx-a11y/media-has-caption': 'off',
     'jsx-a11y/anchor-is-valid': [
       'error',
       {
