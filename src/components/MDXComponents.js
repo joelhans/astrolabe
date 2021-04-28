@@ -1,13 +1,13 @@
 import Image from 'next/image'
 import CustomLink from './Link'
 import CodeBlock from '@components/mdx/CodeBlock'
+import Sidenote from '@components/mdx/Sidenote'
 import Video from '@components/mdx/Video'
-// import Icon from '@components/mdx/Icon'
 
 const MDXComponents = {
   Image,
+  Sidenote,
   Video,
-  // Icon,
   a: CustomLink,
   pre: CodeBlock,
 }

@@ -1,6 +1,6 @@
 {
-  "name": "tailwind-nextjs-starter-blog",
-  "version": "0.1.0",
+  "name": "joelhans-com",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "next-remote-watch ./src/data ./content",
