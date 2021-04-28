@@ -38,7 +38,7 @@ module.exports = {
       typography: (theme) => ({
         DEFAULT: {
           css: {
-            color: theme('colors.gray.700'),
+            color: theme('colors.gray.900'),
             a: {
               color: theme('colors.steel'),
               textDecoration: 'none',
@@ -88,7 +88,6 @@ module.exports = {
             'ul li:before': {
               backgroundColor: theme('colors.gray.500'),
             },
-            strong: { color: theme('colors.gray.600') },
             blockquote: {
               color: theme('colors.gray.900'),
               borderLeftColor: theme('colors.gray.200'),

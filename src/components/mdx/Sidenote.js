@@ -3,12 +3,10 @@ import { CgChevronDoubleRightR } from 'react-icons/cg'
 
 const SidenoteHeader = ({ children, noteShow, onToggleNote }) => {
   return (
-    <div className="prose prose-sm lg:prose-lg">
+    <div className="prose prose-sm lg:prose-lg dark:prose-dark text-gray-700 dark:text-gray-400">
       {children}
       <button
-        className={`relative flex align-center font-bold cursor-pointer focus:outline-none focus:ring-2 focus:ring-sea ${
-          noteShow ? 'hidden' : ''
-        }`}
+        className={`relative flex align-center text-gray-700 dark:text-gray-400 font-bold cursor-pointer focus:outline-none focus:ring-2 focus:ring-sea`}
         onClick={onToggleNote}
       >
         Read more
@@ -24,7 +22,13 @@ const SidenoteHeader = ({ children, noteShow, onToggleNote }) => {
 
 const SidenoteBody = ({ children, noteShow }) => {
   return (
-    <div className={`prose prose-sm lg:prose-lg ${noteShow ? 'block' : 'hidden'}`}>{children}</div>
+    <div
+      className={`prose prose-sm lg:prose-lg dark:prose-dark text-gray-700 dark:text-gray-400 ${
+        noteShow ? 'block' : 'hidden'
+      }`}
+    >
+      {children}
+    </div>
   )
 }
 
