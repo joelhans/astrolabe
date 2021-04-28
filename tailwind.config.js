@@ -5,9 +5,9 @@ module.exports = {
   mode: 'jit',
   purge: {
     content: ['./pages/**/*.js', './src/components/**/*.js', './layouts/**/*.js', './lib/**/*.js'],
-    options: {
-      safelist: ['type'], // [type='checkbox']
-    },
+    // options: {
+    //   safelist: ['type'], // [type='checkbox']
+    // },
   },
   darkMode: 'class',
   theme: {
