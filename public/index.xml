@@ -7,9 +7,19 @@
       <language>en-us</language>
       <managingEditor>j@joelhans.com (Joel Hans)</managingEditor>
       <webMaster>j@joelhans.com (Joel Hans)</webMaster>
-      <lastBuildDate>Mon, 26 Apr 2021 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Mon, 03 May 2021 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://joelhans.com/index.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://joelhans.com/articles/reverse-stupid-fan</guid>
+    <title>How to reverse a stupid Hampton Bay fan</title>
+    <link>https://joelhans.com/articles/reverse-stupid-fan</link>
+    <description>Here's the documentation on how to reverse the direction of a stupid Hampton Bay fan and remote combination that have no reverse buttons or switches.</description>
+    <pubDate>Mon, 03 May 2021 00:00:00 GMT</pubDate>
+    <author>j@joelhans.com (Joel Hans)</author>
+    <category>documenting stupidity</category>
+  </item>
+
   <item>
     <guid>https://joelhans.com/articles/get-started-athens</guid>
     <title>Get started with Athens Research</title>
