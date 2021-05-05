@@ -44,28 +44,25 @@ const Sidenote = ({ children }) => {
   // content that shows by default versus the content that's hidden in the
   // collapsible portion. Those are then passed to the appropriate components.
   //
-  // TODO: Does this work when there's no `hr`?
-  const idx = children.map((el) => el.props.mdxType).indexOf('hr')
-  const Header = children.slice(0, idx)
-  const Body = children.slice(idx + 1)
-
-  // let Header, Body
-
-  // if ( children.length > 1 ) {
-  //   const idx = children.map((el) => el.props.mdxType).indexOf('hr')
-  //   Header = children.slice(0, idx)
-  //   Body = children.slice(idx + 1)
-  // } else {
-  //   Header = []
-  //   Body = children
-  // }
+  // The fix below is temporary. If there's multiple children, but no `hr`, it
+  // still breaks the first child from the others.
+  let Header, Body
+  if (children.length > 1) {
+    const idx = children.map((el) => el.props.mdxType).indexOf('hr')
+    Header = children.slice(0, idx)
+    Body = children.slice(idx + 1)
+  } else {
+    Body = children
+  }
 
   return (
     <aside className="!w-full bg-sea bg-opacity-10 p-6 rounded">
-      <SidenoteHeader noteShow={noteShow} onToggleNote={onToggleNote}>
-        {Header}
-      </SidenoteHeader>
-      <SidenoteBody noteShow={noteShow}>{Body}</SidenoteBody>
+      {Header && (
+        <SidenoteHeader noteShow={noteShow} onToggleNote={onToggleNote}>
+          {Header}
+        </SidenoteHeader>
+      )}
+      <SidenoteBody noteShow={Header ? noteShow : true}>{Body}</SidenoteBody>
     </aside>
   )
 }
