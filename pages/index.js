@@ -22,8 +22,8 @@ export default function Home({ posts }) {
       <div id="hero" className="py-16">
         <div className="prose prose-md lg:prose-lg xl:prose-xl dark:prose-dark">
           <p className="text-xl md:text-2xl lg:text-3xl text-steel">
-            I'm Joel. I'm a writer, teacher, and developer of things related to writing and teaching
-            on the web.
+            I'm Joel. I'm a writer at the intersection between creative writing, copywriting, and
+            technical writing.
           </p>
           <p>
             <CustomLink href="/about" className="hover:text-sea">
