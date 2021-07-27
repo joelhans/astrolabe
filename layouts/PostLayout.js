@@ -5,6 +5,16 @@ import { BlogSeo } from '@components/SEO'
 import Tag from '@components/Tag'
 import siteMetdata from '@data/siteMetadata'
 
+import ConvertKitForm from 'convertkit-react'
+
+const config = {
+  formId: 2474731,
+  template: 'clare',
+  submitText: 'Sign up',
+  stack: false,
+  buttonBackground: '#20b2aa',
+}
+
 const postDateTemplate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
 
 export default function PostLayout({ children, frontMatter, next, prev }) {
@@ -90,8 +100,8 @@ export default function PostLayout({ children, frontMatter, next, prev }) {
                   )}
                 </div> */}
                 <div className="">
-                  <p className="text-base font-bold text-gray-500 dark:text-gray-400 mb-8">Last updated:
-                    {' '}
+                  <p className="text-base font-bold text-gray-500 dark:text-gray-400 mb-8">
+                    Last updated:{' '}
                     <time dateTime={lastmod}>
                       {new Date(lastmod).toLocaleDateString(siteMetdata.locale, postDateTemplate)}
                     </time>
@@ -102,6 +112,16 @@ export default function PostLayout({ children, frontMatter, next, prev }) {
                   >
                     &larr; See my other articles
                   </CustomLink>
+                </div>
+                <div className="flex w-full flex-wrap bg-steel bg-opacity-10 mt-12 p-6 rounded">
+                  <div className="prose prose-md lg:prose-lg xl:prose-xl dark:prose-dark mx-auto">
+                    <p>
+                      Sign up for my newsletter, which I send once or twice a month, for helpful
+                      content for writers of all stripes. No spam, no pitches, and you can
+                      unsubscribe at any time.
+                    </p>
+                  </div>
+                  <ConvertKitForm className="w-full mt-8" {...config} />
                 </div>
               </footer>
             </div>

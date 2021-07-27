@@ -1,43 +1,41 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
+// const withBundleAnalyzer = require('@next/bundle-analyzer')({
+//   enabled: process.env.ANALYZE === 'true',
+// })
 
-module.exports = withBundleAnalyzer({
-  pageExtensions: ['js', 'jsx', 'md', 'mdx'],
-  experimental: {
-    modern: true,
-  },
-  future: {
-    webpack5: true,
-  },
-  webpack: (config, { dev, isServer }) => {
-    config.module.rules.push({
-      test: /\.(png|jpe?g|gif|mp4)$/i,
-      use: [
-        {
-          loader: 'file-loader',
-          options: {
-            publicPath: '/_next',
-            name: 'static/media/[name].[hash].[ext]',
-          },
-        },
-      ],
-    })
+const transpileModules = require('next-transpile-modules')
+const withTM = transpileModules(['convertkit-react'])
+module.exports = withTM()
 
-    config.module.rules.push({
-      test: /\.svg$/,
-      use: ['@svgr/webpack'],
-    })
+// module.exports = withBundleAnalyzer({
+//   pageExtensions: ['js', 'jsx', 'md', 'mdx'],
+//   webpack: (config, { dev, isServer }) => {
+//     config.module.rules.push({
+//       test: /\.(png|jpe?g|gif|mp4)$/i,
+//       use: [
+//         {
+//           loader: 'file-loader',
+//           options: {
+//             publicPath: '/_next',
+//             name: 'static/media/[name].[hash].[ext]',
+//           },
+//         },
+//       ],
+//     })
 
-    if (!dev && !isServer) {
-      // Replace React with Preact only in client production build
-      Object.assign(config.resolve.alias, {
-        react: 'preact/compat',
-        'react-dom/test-utils': 'preact/test-utils',
-        'react-dom': 'preact/compat',
-      })
-    }
+//     config.module.rules.push({
+//       test: /\.svg$/,
+//       use: ['@svgr/webpack'],
+//     })
 
-    return config
-  },
-})
+//     if (!dev && !isServer) {
+//       // Replace React with Preact only in client production build
+//       Object.assign(config.resolve.alias, {
+//         react: 'preact/compat',
+//         'react-dom/test-utils': 'preact/test-utils',
+//         'react-dom': 'preact/compat',
+//       })
+//     }
+
+//     return config
+//   },
+// })

@@ -7,7 +7,7 @@
       <language>en-us</language>
       <managingEditor>j@joelhans.com (Joel Hans)</managingEditor>
       <webMaster>j@joelhans.com (Joel Hans)</webMaster>
-      <lastBuildDate>Tue, 04 May 2021 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Wed, 05 May 2021 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://joelhans.com/index.xml" rel="self" type="application/rss+xml"/>
       
   <item>
@@ -15,7 +15,7 @@
     <title>How to reverse a stupid Hampton Bay fan</title>
     <link>https://joelhans.com/articles/reverse-stupid-fan</link>
     <description>Here's the documentation on how to reverse the direction of a stupid Hampton Bay fan and remote combination that have no reverse buttons or switches.</description>
-    <pubDate>Tue, 04 May 2021 00:00:00 GMT</pubDate>
+    <pubDate>Wed, 05 May 2021 00:00:00 GMT</pubDate>
     <author>j@joelhans.com (Joel Hans)</author>
     <category>documenting stupidity</category>
   </item>
@@ -28,6 +28,86 @@
     <pubDate>Mon, 26 Apr 2021 00:00:00 GMT</pubDate>
     <author>j@joelhans.com (Joel Hans)</author>
     <category>note-taking</category><category>knowledge-graph</category><category>markdown</category><category>research</category>
+  </item>
+
+  <item>
+    <guid>https://joelhans.com/articles/understand-your-value</guid>
+    <title>Understand your real value by asking customers 1 simple question</title>
+    <link>https://joelhans.com/articles/understand-your-value</link>
+    <description>If you know your real value, you can sell yourself or your business 100X better. And discovering it is much easier than you'd think.</description>
+    <pubDate>Fri, 17 May 2019 00:00:00 GMT</pubDate>
+    <author>j@joelhans.com (Joel Hans)</author>
+    <category>copywriting</category><category>value</category>
+  </item>
+
+  <item>
+    <guid>https://joelhans.com/articles/copywriting-checklist</guid>
+    <title>A no-nonsense copywriting checklist to more impactful copywriting</title>
+    <link>https://joelhans.com/articles/copywriting-checklist</link>
+    <description>Write more inspiring and impactful copywriting—just like a professional copywriter—with this no-nonsense copywriting checklist.</description>
+    <pubDate>Thu, 28 Mar 2019 00:00:00 GMT</pubDate>
+    <author>j@joelhans.com (Joel Hans)</author>
+    <category>copywriting</category><category>tips</category><category>checklist</category>
+  </item>
+
+  <item>
+    <guid>https://joelhans.com/articles/hand-clarity</guid>
+    <title>Remembering clarity by breaking my hand</title>
+    <link>https://joelhans.com/articles/hand-clarity</link>
+    <description>I broke my hand while mountain biking. Typing is really hard. That helped remind me of how important clarity and simplicity are in writing.</description>
+    <pubDate>Tue, 22 Jan 2019 00:00:00 GMT</pubDate>
+    <author>j@joelhans.com (Joel Hans)</author>
+    <category>copywriting</category><category>tips</category>
+  </item>
+
+  <item>
+    <guid>https://joelhans.com/articles/copywriting-cliches-tech</guid>
+    <title>27 copywriting clichés tech businesses need to delete</title>
+    <link>https://joelhans.com/articles/copywriting-cliches-tech</link>
+    <description>Tech businesses love to borrow certain tired phrases when they talk about themselves. Here's some of my worst offenders in 2019 so you know what not to say.</description>
+    <pubDate>Tue, 08 Jan 2019 00:00:00 GMT</pubDate>
+    <author>j@joelhans.com (Joel Hans)</author>
+    <category>copywriting</category><category>tips</category>
+  </item>
+
+  <item>
+    <guid>https://joelhans.com/articles/stupidly-simple-tip-copy</guid>
+    <title>1 stupidly simple tip to help you write copy of your dreams</title>
+    <link>https://joelhans.com/articles/stupidly-simple-tip-copy</link>
+    <description>An exercise for copywriters, content creators, marketers, and makers who wish they could write copy like their favorite brands.</description>
+    <pubDate>Tue, 18 Dec 2018 00:00:00 GMT</pubDate>
+    <author>j@joelhans.com (Joel Hans)</author>
+    <category>copywriting</category><category>tips</category>
+  </item>
+
+  <item>
+    <guid>https://joelhans.com/articles/taglines-slogans</guid>
+    <title>Taglines vs. slogans: What's the difference?</title>
+    <link>https://joelhans.com/articles/taglines-slogans</link>
+    <description>Knowing the difference will save you time and money, and will set you apart from the copy-less competition.</description>
+    <pubDate>Tue, 11 Dec 2018 00:00:00 GMT</pubDate>
+    <author>j@joelhans.com (Joel Hans)</author>
+    <category>taglines</category><category>slogans</category><category>copywriting</category>
+  </item>
+
+  <item>
+    <guid>https://joelhans.com/articles/grammarly</guid>
+    <title>Your writing toolkit should include Grammarly—here's why</title>
+    <link>https://joelhans.com/articles/grammarly</link>
+    <description>Grammarly will help you finish what you've started, and teach you about your own writing along the way.</description>
+    <pubDate>Tue, 04 Dec 2018 00:00:00 GMT</pubDate>
+    <author>j@joelhans.com (Joel Hans)</author>
+    <category>grammarly</category><category>writing tools</category>
+  </item>
+
+  <item>
+    <guid>https://joelhans.com/articles/how-to-start-writing</guid>
+    <title>An exercise to help you start writing</title>
+    <link>https://joelhans.com/articles/how-to-start-writing</link>
+    <description>Writers tend to struggle against three main sources of stress: 1) a disinterest in learning how or continuing to write on a regular basis, 2) a lack of time or energy, and 3) *worry*.</description>
+    <pubDate>Mon, 26 Nov 2018 00:00:00 GMT</pubDate>
+    <author>j@joelhans.com (Joel Hans)</author>
+    <category>writing</category><category>exercises</category>
   </item>
 
     </channel>
