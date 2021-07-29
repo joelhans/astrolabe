@@ -43,3 +43,9 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* ConvertKit */
+
+.formkit-form.clare {
+  max-width: 100% !important;
+}
