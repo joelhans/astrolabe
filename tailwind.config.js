@@ -35,7 +35,7 @@ module.exports = {
       colors: {
         steel: '#4682B4',
         sea: '#20B2AA',
-        blue: colors.lightBlue,
+        blue: colors.sky,
         erin: '#48E499',
         lilac: '#B596F8',
         indigo: '#5790FF',
@@ -48,6 +48,8 @@ module.exports = {
             a: {
               color: theme('colors.steel'),
               textDecoration: 'none',
+              transition: theme('transition.all'),
+              fontWeight: theme('font.semibold'),
               '&:hover': {
                 color: theme('colors.sea'),
               },

@@ -3,6 +3,7 @@ import CustomLink from '@components/Link'
 import siteMetadata from '@data/siteMetadata'
 import { getFrontMatter } from '@/lib/mdx'
 import { ARTICLES_CONTENT_PATH } from '@config/constants'
+import ConvertKit from '@components/ConvertKit'
 
 export async function getStaticProps() {
   const posts = await getFrontMatter(ARTICLES_CONTENT_PATH)
@@ -19,7 +20,7 @@ export default function Home({ posts }) {
       />
       <div className="bg-green-100 w-full"></div>
 
-      <div id="hero" className="py-16">
+      <div id="hero" className="pt-24 pb-16">
         <div className="prose prose-md lg:prose-lg xl:prose-xl dark:prose-dark">
           <p className="text-xl md:text-2xl lg:text-3xl text-steel">
             I'm Joel. I'm a writer at the intersection between creative writing, copywriting, and
@@ -41,18 +42,21 @@ export default function Home({ posts }) {
             return (
               <li key={slug}>
                 <CustomLink key={slug} href={`/articles/${slug}`} className="group block mb-16">
-                  <h3 className="text-xl lg:text-2xl font-display font-bold mb-4 group-hover:text-steel">
+                  <h3 className="text-xl lg:text-2xl font-display font-bold mb-4 group-hover:text-steel transition-all">
                     {title}
                   </h3>
                   <p className="prose prose-md lg:prose-lg xl:prose-xl dark:prose-dark text-gray-500 dark:text-gray-400 mb-2">
                     {summary}
                   </p>
-                  <span className="text-sm font-bold group-hover:text-steel">Read more</span>
+                  <span className="text-sm font-bold group-hover:text-steel transition-all">
+                    Read more &rarr;
+                  </span>
                 </CustomLink>
               </li>
             )
           })}
         </ul>
+        <ConvertKit />
       </div>
     </>
   )

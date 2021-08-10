@@ -47,7 +47,7 @@ const MobileNav = () => {
         </svg>
       </button>
       <div
-        className={`fixed w-full h-full top-24 right-0 bg-gray-100 dark:bg-gray-800 opacity-95 z-10 transform ease-in-out duration-300 ${
+        className={`fixed w-full h-full top-20 right-0 bg-gray-100 dark:bg-gray-800 opacity-95 z-10 transform ease-in-out duration-300 ${
           navShow ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
@@ -69,6 +69,11 @@ const MobileNav = () => {
               </Link>
             </div>
           ))}
+          <div className="px-12 py-2">
+            <button className="text-white text-base md:text-lg font-semibold py-3 px-6 bg-sea rounded-sm hover:bg-steel transition-all">
+              <Link href="https://nurse.media">Copy &amp; content consulting &rarr;</Link>
+            </button>
+          </div>
         </nav>
       </div>
     </div>

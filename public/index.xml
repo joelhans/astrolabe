@@ -1,7 +1,7 @@
 
   <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-      <title>Joel Hans</title>
+      <title>Joel Hans • Creative writing, copywriting, technical writing • Tucson, Arizona</title>
       <link>https://joelhans.com/articles</link>
       <description>I'm Joel. I'm a writer, teacher, and developer of things related to writing and teaching on the web.</description>
       <language>en-us</language>
@@ -42,9 +42,9 @@
 
   <item>
     <guid>https://joelhans.com/articles/copywriting-checklist</guid>
-    <title>The no-nonsense copywriting checklist to impact and inspire</title>
+    <title>The no-nonsense copywriting checklist for clarity and impact</title>
     <link>https://joelhans.com/articles/copywriting-checklist</link>
-    <description>Write more inspiring and impactful copywriting—just like a professional copywriter—with this no-nonsense copywriting checklist.</description>
+    <description>Write clearer and more impactful copywriting—just like a professional copywriter—with this no-nonsense copywriting checklist.</description>
     <pubDate>Thu, 28 Mar 2019 00:00:00 GMT</pubDate>
     <author>j@joelhans.com (Joel Hans)</author>
     <category>copywriting</category><category>tips</category><category>checklist</category>
