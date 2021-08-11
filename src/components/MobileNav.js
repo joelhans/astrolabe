@@ -62,7 +62,7 @@ const MobileNav = () => {
             <div key={link.title} className="px-12 py-2">
               <Link
                 href={link.href}
-                className="text-xl font-semibold tracking-wide text-gray-900 dark:text-gray-100"
+                className="text-xl font-medium tracking-wide text-gray-900 dark:text-gray-100"
                 onClick={onToggleNav}
               >
                 {link.title}
@@ -70,7 +70,7 @@ const MobileNav = () => {
             </div>
           ))}
           <div className="px-12 py-2">
-            <button className="text-white text-base md:text-lg font-semibold py-3 px-6 bg-sea rounded-sm hover:bg-steel transition-all">
+            <button className="text-white text-base md:text-lg font-medium py-3 px-6 bg-sea rounded-sm hover:bg-steel transition-all">
               <Link href="https://nurse.media">Copy &amp; content consulting &rarr;</Link>
             </button>
           </div>

@@ -2,7 +2,7 @@ import Document, { Html, Head, Main, NextScript } from 'next/document'
 class MyDocument extends Document {
   render() {
     return (
-      <Html lang="en">
+      <Html lang="en" className="font-sans">
         <Head>
           {/* <link rel="apple-touch-icon" sizes="76x76" href="/static/favicons/apple-touch-icon.png" />
           <link
@@ -24,22 +24,9 @@ class MyDocument extends Document {
           <link rel="alternate" type="application/rss+xml" href="/index.xml" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
           <link
-            rel="preload"
-            as="style"
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Inconsolata&display=swap"
-          />
-          <link
             rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Inconsolata&display=swap"
-            media="print"
-            onLoad="this.media='all'"
           />
-          <noscript>
-            <link
-              rel="stylesheet"
-              href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Inconsolata&display=swap"
-            />
-          </noscript>
         </Head>
         <body className="antialiased font-sans text-gray-900 dark:bg-gray-900 dark:text-white">
           <Main />

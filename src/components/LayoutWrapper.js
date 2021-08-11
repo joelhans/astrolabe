@@ -35,7 +35,7 @@ const LayoutWrapper = ({ children }) => {
                     <Link
                       key={link.title}
                       href={link.href}
-                      className="text-gray-500 dark:text-gray-400 text-xl font-semibold sm:p-4 hover:text-sea dark:hover:text-sea transition-all"
+                      className="text-gray-500 dark:text-gray-400 text-xl font-medium sm:p-4 hover:text-sea dark:hover:text-sea transition-all"
                     >
                       {link.title}
                     </Link>
@@ -46,7 +46,7 @@ const LayoutWrapper = ({ children }) => {
                 <ThemeSwitch />
                 <RSS />
                 <MobileNav />
-                <button className="hidden md:block text-white text-base md:text-lg font-semibold ml-8 py-3 px-6 bg-sea rounded-sm hover:bg-steel transition-all">
+                <button className="hidden md:block text-white text-base md:text-lg font-medium ml-8 py-3 px-6 bg-sea rounded-sm hover:bg-steel transition-all">
                   <Link href="https://nurse.media">
                     <span className="hidden lg:inline-block">Copy &amp; content consulting</span>
                     <span className="inline-block lg:hidden">Consulting</span>

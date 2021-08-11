@@ -18,18 +18,9 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
-      // spacing: {
-      //   '9/16': '56.25%',
-      // },
-      // lineHeight: {
-      //   11: '2.75rem',
-      //   12: '3rem',
-      //   13: '3.25rem',
-      //   14: '3.5rem',
-      // },
       fontFamily: {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
-        display: [...defaultTheme.fontFamily.sans],
+        display: ['Inter', ...defaultTheme.fontFamily.sans],
         mono: ['Inconsolata', ...defaultTheme.fontFamily.mono],
       },
       colors: {
@@ -44,6 +35,7 @@ module.exports = {
       typography: (theme) => ({
         DEFAULT: {
           css: {
+            fontFamily: `${theme('fontFamily.sans')}`,
             color: theme('colors.gray.900'),
             a: {
               color: theme('colors.steel'),
