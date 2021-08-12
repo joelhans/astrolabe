@@ -9,10 +9,13 @@ export default function Footer() {
         <div className="w-1/2">
           <div className="block text-2xl font-display text-sea font-bold mb-2">Joel Hans</div>
           <div className="block text-xs font-medium">
-            Thanks for stopping by!{' '}
-            <span role="img" aria-label="emoji wave">
-              👋
-            </span>
+            <p>
+              Thanks for stopping by!{' '}
+              <span role="img" aria-label="emoji wave">
+                👋
+              </span>
+            </p>
+            <p className="mt-2">Built with Next.js, MDX, Tailwind, and Vercel.</p>
           </div>
         </div>
         <div className="w-1/4 mb-8 text-sm text-gray-500 dark:text-gray-200">
