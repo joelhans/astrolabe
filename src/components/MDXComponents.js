@@ -1,3 +1,20 @@
+// const MDXComponents = {
+//   Aside,
+//   Checkbox,
+//   Checklist,
+//   ChecklistProvider,
+//   Image,
+//   Sidenote,
+//   Video,
+//   SignUp,
+//   a: CustomLink,
+//   pre: CodeBlock,
+// }
+
+// export default MDXComponents
+
+import { useMemo } from 'react'
+import { getMDXComponent } from 'mdx-bundler/client'
 import Image from 'next/image'
 import CustomLink from './Link'
 import CodeBlock from '@components/mdx/CodeBlock'
@@ -9,17 +26,25 @@ import Sidenote from '@components/mdx/Sidenote'
 import Video from '@components/mdx/Video'
 import SignUp from '@components/mdx/SignUp'
 
-const MDXComponents = {
+export const MDXComponents = {
+  Image,
+  a: CustomLink,
+  pre: CodeBlock,
   Aside,
   Checkbox,
   Checklist,
   ChecklistProvider,
-  Image,
   Sidenote,
   Video,
   SignUp,
-  a: CustomLink,
-  pre: CodeBlock,
+  // wrapper: ({ components, layout, ...rest }) => {
+  //   const Layout = require(`../layouts/${layout}`).default
+  //   return <Layout {...rest} />
+  // },
 }
 
-export default MDXComponents
+export const MDXLayoutRenderer = ({ mdxSource, ...rest }) => {
+  const MDXLayout = useMemo(() => getMDXComponent(mdxSource), [mdxSource])
+
+  return <MDXLayout components={MDXComponents} {...rest} />
+}
