@@ -23,14 +23,20 @@ export default function Home({ posts }) {
       <div id="hero" className="pt-24 pb-16">
         <div className="prose prose-md lg:prose-lg xl:prose-xl dark:prose-dark">
           <p className="text-xl md:text-2xl lg:text-3xl text-steel">
-            I'm Joel. I'm a writer at the intersection between creative writing, copywriting, and
-            technical writing.
+            I'm Joel. I'm a writer with many disguises: fiction writer, copywriter, technical
+            writer, and a handful more, too.
+          </p>
+          <p>
+            This place serves as my <span className="font-medium text-sea">digital garden</span>{' '}
+            where I share what I learn and build. Right now, I'm working with tools and ecosystems
+            like MDX to improve the process and presentation of writing on the web.
           </p>
           <p>
             <CustomLink href="/about" className="hover:text-sea">
               Start here
             </CustomLink>
-            , or check out one of my recent articles below.
+            , find me on <CustomLink href="https://twitter.com/joelhans">Twitter</CustomLink>, or
+            check out one of my recent articles below.
           </p>
         </div>
       </div>
