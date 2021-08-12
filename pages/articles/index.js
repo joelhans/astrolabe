@@ -3,6 +3,7 @@ import ListLayout from '@/layouts/ListLayout'
 import { PageSeo } from '@components/SEO'
 import { getFrontMatter } from '@/lib/mdx'
 import { ARTICLES_CONTENT_PATH } from '@config/constants'
+import ConvertKit from '@components/ConvertKit'
 
 export async function getStaticProps() {
   const posts = await getFrontMatter(ARTICLES_CONTENT_PATH, true)
@@ -18,6 +19,7 @@ export default function Posts({ posts }) {
         url={`${siteMetadata.siteUrl}/articles`}
       />
       <ListLayout posts={posts} title="Articles" />
+      <ConvertKit />
     </>
   )
 }

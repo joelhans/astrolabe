@@ -29,7 +29,7 @@ export default function Fiction({ mdxSource, frontMatter }) {
         description={frontMatter.summary}
         url={`${siteMetadata.siteUrl}/${frontMatter.slug}`}
       />
-      <header className="mt-16">
+      <header className="mt-24">
         <PageTitle>{frontMatter.title}</PageTitle>
         <div className="prose prose-md lg:prose-lg xl:prose-xl dark:prose-dark">
           <p className="text-xl md:text-2xl lg:text-3xl text-steel">

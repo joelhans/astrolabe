@@ -4,8 +4,7 @@ import SectionContainer from '@components/SectionContainer'
 import { BlogSeo } from '@components/SEO'
 import Tag from '@components/Tag'
 import siteMetdata from '@data/siteMetadata'
-
-import ConvertKitForm from 'convertkit-react'
+import ConvertKit from '@components/ConvertKit'
 
 const config = {
   formId: 2474731,
@@ -25,7 +24,7 @@ export default function PostLayout({ children, frontMatter, next, prev }) {
       <BlogSeo url={`${siteMetdata.siteUrl}/articles/${frontMatter.slug}`} {...frontMatter} />
       <article>
         <div className="">
-          <header className="py-8 md:py-16 text-center">
+          <header className="mt-24 mb-24 text-center">
             <PageTitle>{title}</PageTitle>
           </header>
 
@@ -113,18 +112,9 @@ export default function PostLayout({ children, frontMatter, next, prev }) {
                     &larr; See my other articles
                   </CustomLink>
                 </div>
-                <div className="flex w-full flex-wrap bg-steel bg-opacity-10 mt-12 p-6 rounded">
-                  <div className="prose prose-md lg:prose-lg xl:prose-xl dark:prose-dark mx-auto">
-                    <p>
-                      Sign up for my newsletter, which I send once or twice a month, for helpful
-                      content for writers of all stripes. No spam, no pitches, and you can
-                      unsubscribe at any time.
-                    </p>
-                  </div>
-                  <ConvertKitForm className="w-full mt-8" {...config} />
-                </div>
               </footer>
             </div>
+            <ConvertKit />
           </div>
         </div>
       </article>

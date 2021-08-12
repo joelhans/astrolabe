@@ -30,7 +30,7 @@ export default function About({ mdxSource, frontMatter }) {
         description={frontMatter.summary}
         url={`${siteMetadata.siteUrl}/${frontMatter.slug}`}
       />
-      <header className="flex flex-row flex-wrap md:space-x-6 md:flex-nowrap items-center mt-16">
+      <header className="flex flex-row flex-wrap md:space-x-6 md:flex-nowrap mt-24">
         <div>
           <PageTitle>Hi, I'm Joel Hans.</PageTitle>
           <div className="prose prose-md lg:prose-lg xl:prose-xl dark:prose-dark">
@@ -50,9 +50,7 @@ export default function About({ mdxSource, frontMatter }) {
           />
         </div>
       </header>
-      <div className="prose prose-md lg:prose-lg xl:prose-xl dark:prose-dark mt-8 md:mt-16 mb-24">
-        {content}
-      </div>
+      <div className="prose prose-md lg:prose-lg xl:prose-xl dark:prose-dark mb-24">{content}</div>
     </>
   )
 }
