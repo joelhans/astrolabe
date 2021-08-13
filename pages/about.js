@@ -35,8 +35,7 @@ export default function About({ mdxSource, frontMatter }) {
           <PageTitle>Hi, I'm Joel Hans.</PageTitle>
           <div className="prose prose-md lg:prose-lg xl:prose-xl dark:prose-dark">
             <p className="text-xl md:text-2xl lg:text-3xl text-steel">
-              I'm a writer, teacher, and developer of things related to writing and teaching on the
-              web.
+              I'm a fiction writer with a few other disguises.
             </p>
           </div>
         </div>
