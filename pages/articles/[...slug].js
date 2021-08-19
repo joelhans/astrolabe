@@ -1,8 +1,8 @@
-// import fs from 'fs'
+import fs from 'fs'
 // import { getSingleContent } from '@/lib/mdx'
 import { getFrontMatter, getSingleContent } from '@/lib/mdx'
 // // import { getFrontMatter, getSingleContent, dateSortDesc } from '@/lib/mdx'
-// import generateRss from '@/lib/generate-rss'
+import generateRss from '@/lib/generate-rss'
 import { ARTICLES_CONTENT_PATH } from '@config/constants'
 import PostLayout from '@/layouts/PostLayout'
 
@@ -33,9 +33,9 @@ export async function getStaticProps({ params: { slug } }) {
   const rss = generateRss(posts)
   fs.writeFileSync('./public/index.xml', rss)
 
-  // if (!content) {
-  //   console.warn(`No content found for slug ${postSlug}`)
-  // }
+  if (!content) {
+    console.warn(`No content found for slug ${postSlug}`)
+  }
 
   return { props: { content } }
 }
