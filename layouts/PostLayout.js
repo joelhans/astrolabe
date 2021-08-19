@@ -4,6 +4,7 @@ import SectionContainer from '@components/SectionContainer'
 import { BlogSeo } from '@components/SEO'
 import Tag from '@components/Tag'
 import siteMetdata from '@data/siteMetadata'
+import { MDXLayoutRenderer } from '@components/MDXComponents'
 import ConvertKit from '@components/ConvertKit'
 
 const config = {
@@ -16,7 +17,7 @@ const config = {
 
 const postDateTemplate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
 
-export default function PostLayout({ children, frontMatter, next, prev }) {
+export default function PostLayout({ children, frontMatter }) {
   const { slug, fileName, date, title, lastmod, tags } = frontMatter
 
   return (
@@ -53,7 +54,9 @@ export default function PostLayout({ children, frontMatter, next, prev }) {
               </dd>
             </dl> */}
             <div className="prose prose-md lg:prose-lg xl:prose-xl dark:prose-dark mx-auto">
-              <div className="pb-8">{children}</div>
+              <MDXLayoutRenderer mdxSource={children} frontMatter={frontMatter} />
+
+              {/* <div className="pb-8">{children}</div> */}
               {/* <div className="pt-6 pb-6 text-sm text-gray-700 dark:text-gray-300">
                 <Link href={discussUrl(slug)} rel="nofollow">
                   {'Discuss on Twitter'}
