@@ -1,0 +1,18 @@
+[
+ {
+  "dest": "/articles/stupidly-simple-tip-copy/",
+  "sourceSlug": "/copywriting-cliches-tech"
+ },
+ {
+  "dest": "/articles/taglines-slogans",
+  "sourceSlug": "/stupidly-simple-tip-copy"
+ },
+ {
+  "dest": "/articles/grammarly/",
+  "sourceSlug": "/copywriting-checklist"
+ },
+ {
+  "dest": "/articles/copywriting-cliches-tech/",
+  "sourceSlug": "/copywriting-checklist"
+ }
+]
