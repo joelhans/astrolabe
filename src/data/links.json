@@ -1,18 +1,56 @@
 [
  {
   "dest": "/articles/stupidly-simple-tip-copy/",
-  "sourceSlug": "/copywriting-cliches-tech"
+  "source": "./content/articles/copywriting-cliches-tech.mdx",
+  "title": "27 copywriting clichés tech businesses need to delete",
+  "parentText": "The deeper I get into this research, the more I start to recognize patterns in the ways tech companies talk about themselves. And, unfortunately, it's quite common for these companies to copy rather than steal."
+ },
+ {
+  "dest": "/articles/grammarly",
+  "source": "./content/articles/stupidly-simple-tip-copy.mdx",
+  "title": "1 stupidly simple tip to help you write copy of your dreams",
+  "parentText": "You've probably heard this piece of advice before. Most likely from the mouth of Steve Jobs, co-founder and CEO of Apple, who stole it (with credit) from Picasso, the famous 20th century Cubist artist."
+ },
+ {
+  "dest": "/articles/copywriting-checklist",
+  "source": "./content/articles/stupidly-simple-tip-copy.mdx",
+  "title": "1 stupidly simple tip to help you write copy of your dreams",
+  "parentText": "I'm here to steal this piece of advice one more time, but with some actionable insights on how to do it properly."
+ },
+ {
+  "dest": "/articles/copywriting-checklist",
+  "source": "./content/articles/stupidly-simple-tip-copy.mdx",
+  "title": "1 stupidly simple tip to help you write copy of your dreams",
+  "parentText": "Because stealing poorly ends up in protestation of plagiarism, or, worse, legal copyright motions that you probably can't afford. Stealing correctly, on the other hand, means you can learn from those you appreciate most, elevate your work, and still make a unique impact through your brand."
+ },
+ {
+  "dest": "/articles/grammarly",
+  "source": "./content/articles/stupidly-simple-tip-copy.mdx",
+  "title": "1 stupidly simple tip to help you write copy of your dreams",
+  "parentText": "How to steal properly: An exercise for copywriters, content creators, marketers, and makers."
  },
  {
   "dest": "/articles/taglines-slogans",
-  "sourceSlug": "/stupidly-simple-tip-copy"
+  "source": "./content/articles/stupidly-simple-tip-copy.mdx",
+  "title": "1 stupidly simple tip to help you write copy of your dreams",
+  "parentText": "The first step is to find brands that you think are going incredible work for the same type of copy/content you're trying to produce. If you need to create a killer tagline or slogan (See: Taglines vs. slogans: What's the difference?), find a brand that does them well. Ctrl+c that piece of writing, stat."
+ },
+ {
+  "dest": "/articles/copywriting-checklist",
+  "source": "./content/articles/stupidly-simple-tip-copy.mdx",
+  "title": "1 stupidly simple tip to help you write copy of your dreams",
+  "parentText": "This exercise starts with the discovery phase, and if you're in the creation phase, you should probably stick to the\nmethods that have worked for you in the past and forge through—make sure you check out my\nchecklist for some ideas. But if you know a copywriting or content project is on your\nhorizon, you can set yourself up by doing this research early."
  },
  {
   "dest": "/articles/grammarly/",
-  "sourceSlug": "/copywriting-checklist"
+  "source": "./content/articles/copywriting-checklist.mdx",
+  "title": "The no-nonsense copywriting checklist for clarity and impact",
+  "parentText": "I'm a fan of Grammarly. If you're interested in a free alternative, be sure to check out Hemingway."
  },
  {
   "dest": "/articles/copywriting-cliches-tech/",
-  "sourceSlug": "/copywriting-checklist"
+  "source": "./content/articles/copywriting-checklist.mdx",
+  "title": "The no-nonsense copywriting checklist for clarity and impact",
+  "parentText": "I even wrote an entire piece about tech clichés new and old."
  }
 ]
