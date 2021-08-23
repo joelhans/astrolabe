@@ -37,20 +37,23 @@ export default function PostLayout({ children, frontMatter }) {
             <div className="prose prose-md lg:prose-lg xl:prose-xl dark:prose-dark mx-auto">
               <MDXLayoutRenderer mdxSource={children} frontMatter={frontMatter} />
               <footer className="mt-24">
-                <div className="p-8 bg-steel bg-opacity-5 rounded-sm mb-8">
+                <div className="p-8 bg-steel bg-opacity-5 rounded-sm mb-12">
                   <p className="font-bold !mt-0">Linked references</p>
                   <div className="grid grid-flow-col grid-cols-2 gap-4 mb-8">
-                    {LinkRefs.map((link) => {
-                      const { src, title, text } = link
-                      return (
-                        <CustomLink href={src} className="p-4 bg-white border border-gray-200 rounded-sm">
-                          <span className="block text-base font-medium mb-2">{title}</span>
-                          <span className="block text-sm text-gray-500 font-normal">{text}</span>
-                        </CustomLink>
-                      )
-                    })}
+                    {LinkRefs.length ? (
+                      LinkRefs.map((link) => {
+                        const { src, title, text } = link
+                        return (
+                          <CustomLink href={src} className="p-4 bg-white border border-gray-200 rounded-sm">
+                            <span className="block text-base font-medium mb-2">{title}</span>
+                            <span className="block text-sm text-gray-500 font-normal">{text}</span>
+                          </CustomLink>
+                        )
+                      })
+                      ) : <p className="text-sm text-gray-500 !-mt-4 !m-0">No linked references found.</p>
+                    }
                   </div>
-                  <p className="text-base font-bold text-gray-500 dark:text-gray-400 mt-12">
+                  <p className="text-base font-bold text-gray-500 dark:text-gray-400">
                     Last updated:{' '}
                     <time dateTime={lastmod}>
                       {new Date(lastmod).toLocaleDateString(siteMetdata.locale, postDateTemplate)}
