@@ -6,6 +6,12 @@
   "text": "The deeper I get into this research, the more I start to recognize patterns in the ways tech companies talk about themselves. And, unfortunately, it's quite common for these companies to copy rather than steal."
  },
  {
+  "dest": "/articles/taglines-slogans",
+  "src": "./content/articles/stupidly-simple-tip-copy.mdx",
+  "title": "1 stupidly simple tip to help you write copy of your dreams",
+  "text": "The first step is to find brands that you think are going incredible work for the same type of copy/content you're trying to produce. If you need to create a killer tagline or slogan (See: Taglines vs. slogans: What's the difference?), find a brand that does them well. Ctrl+c that piece of writing, stat."
+ },
+ {
   "dest": "/articles/grammarly/",
   "src": "./content/articles/copywriting-checklist.mdx",
   "title": "The no-nonsense copywriting checklist for clarity and impact",
@@ -16,11 +22,5 @@
   "src": "./content/articles/copywriting-checklist.mdx",
   "title": "The no-nonsense copywriting checklist for clarity and impact",
   "text": "I even wrote an entire piece about tech clichés new and old."
- },
- {
-  "dest": "/articles/taglines-slogans",
-  "src": "./content/articles/stupidly-simple-tip-copy.mdx",
-  "title": "1 stupidly simple tip to help you write copy of your dreams",
-  "text": "The first step is to find brands that you think are going incredible work for the same type of copy/content you're trying to produce. If you need to create a killer tagline or slogan (See: Taglines vs. slogans: What's the difference?), find a brand that does them well. Ctrl+c that piece of writing, stat."
  }
 ]
