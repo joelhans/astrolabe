@@ -25,6 +25,7 @@ import Checkbox from '@components/mdx/Checkbox'
 import Sidenote from '@components/mdx/Sidenote'
 import Video from '@components/mdx/Video'
 import SignUp from '@components/mdx/SignUp'
+import Statement from '@components/mdx/Statement'
 
 export const MDXComponents = {
   Image,
@@ -37,6 +38,7 @@ export const MDXComponents = {
   Sidenote,
   Video,
   SignUp,
+  Statement,
   // wrapper: ({ components, layout, ...rest }) => {
   //   const Layout = require(`../layouts/${layout}`).default
   //   return <Layout {...rest} />
