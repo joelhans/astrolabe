@@ -48,7 +48,7 @@ const Sidenote = ({ children }) => {
   // still breaks the first child from the others.
   let Header, Body
   if (children.length > 1) {
-    const idx = children.map((el) => el.props.mdxType).indexOf('hr')
+    const idx = children.map((el) => el.type).indexOf('hr')
     Header = children.slice(0, idx)
     Body = children.slice(idx + 1)
   } else {
