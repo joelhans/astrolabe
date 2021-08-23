@@ -5,6 +5,8 @@ import { visit } from 'unist-util-visit'
 import { bundleMDX } from 'mdx-bundler'
 import matter from 'gray-matter'
 
+const BASE_CONTENT_PATH = './content'
+
 ;(async () => {
   const files = glob.sync(`./content/articles/**/*.{md,mdx}`)
   if (!files.length) return false
@@ -55,7 +57,7 @@ import matter from 'gray-matter'
                     // Push to the `Links` array.
                     const link = {
                       dest: node.properties.href,
-                      src: filepath,
+                      src: filepath.replace(BASE_CONTENT_PATH, '').replace(/.(md|mdx)$/, ''),
                       title: matter(source).data.title,
                       text: text.join('')
                     }
