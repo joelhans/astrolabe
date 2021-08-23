@@ -24,15 +24,14 @@ import matter from 'gray-matter'
                   // between two posts.
                   if (node.tagName === 'a' && node.properties.href.startsWith('/')) {
 
-                    // Get the text of the parent element as best as possible.
-                    console.log(parent)
-                    const parentText = parent.children.map((child) => {
-                      let string
+                    // Get the text of the parent element as best as possible, returning 
+                    const text = parent.children.map((child) => {
+                      let values
                       const safes = ['a', 'em', 'strong', 'code']
 
                       // Text children, which are the easiest to get the value from.
                       if ( child.type === 'text' && child.value.length > 0 ) {
-                        string = child.value
+                        values = child.value
                       }
                       
                       // "safe" children, which reliably have a single `text`
@@ -40,25 +39,25 @@ import matter from 'gray-matter'
                       // first item in the `children` array and pass along its
                       // `value`.
                       else if ( safes.includes(child.tagName) && child.children[0].value.length > 0 ) {
-                        string = child.children[0].value
+                        values = child.children[0].value
                       }
 
                       // Provide a weird-looking result for anything that isn't
                       // matched above so that we can identify better ways to
                       // get all the parent text cleanly.
                       else {
-                        string = '~~~'
+                        values = '~~~'
                       }
 
-                      return string
+                      return values
                     })
 
                     // Push to the `Links` array.
                     const link = {
                       dest: node.properties.href,
-                      source: filepath,
+                      src: filepath,
                       title: matter(source).data.title,
-                      parentText: parentText.join('')
+                      text: text.join('')
                     }
                     Links.push(link)
                   }
