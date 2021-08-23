@@ -24,7 +24,6 @@ export default function PostLayout({ children, frontMatter }) {
 
   // Filter `LinkData` to only the links that reference this page as the destination.
   const LinkRefs = LinkData.filter(link => link.dest.includes(slug))
-  console.log(LinkRefs)
 
   return (
     <SectionContainer>

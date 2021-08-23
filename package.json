@@ -5,7 +5,7 @@
   "scripts": {
     "start": "next-remote-watch ./data",
     "dev": "next dev",
-    "build": "next build",
+    "build": "node scripts/generate-links.js && next build",
     "serve": "next start",
     "analyze": "cross-env ANALYZE=true next build",
     "lint": "next lint --fix --dir pages --dir src/components --dir lib --dir layouts --dir scripts",
