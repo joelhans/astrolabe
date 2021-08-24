@@ -1,7 +1,6 @@
 const FontLoader = ({ src }) => {
   return (
-    <link href={src} rel="stylesheet" /> 
-    // <p>hi</p>
+    <link href={src} rel="stylesheet" />
   )
 }
 
