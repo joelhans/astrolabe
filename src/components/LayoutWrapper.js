@@ -43,8 +43,8 @@ const LayoutWrapper = ({ children }) => {
                 </div>
               </div>
               <div className="flex justify-end items-center flex-1">
-                <ThemeSwitch />
-                <RSS />
+                {/* <ThemeSwitch />
+                <RSS /> */}
                 <MobileNav />
                 <button className="hidden md:block text-white text-sm font-medium ml-4 py-3 px-6 bg-sea rounded-sm hover:bg-steel transition-all">
                   <Link href="https://nurse.media">
@@ -58,7 +58,7 @@ const LayoutWrapper = ({ children }) => {
           </header>
           <main className="max-w-screen-lg mx-auto mb-auto px-6">{children}</main>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </>
   )

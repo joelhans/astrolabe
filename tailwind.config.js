@@ -92,6 +92,8 @@ module.exports = {
               color: theme('colors.gray.900'),
               borderLeftColor: theme('colors.gray.200'),
             },
+            'blockquote p:first-of-type::before': null,
+            'blockquote p:last-of-type::after': null,
           },
         },
         // xl: {

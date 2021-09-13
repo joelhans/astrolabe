@@ -27,6 +27,7 @@ import Sidenote from '@components/mdx/Sidenote'
 import Video from '@components/mdx/Video'
 import SignUp from '@components/mdx/SignUp'
 import Statement from '@components/mdx/Statement'
+import StoryQuote from '@components/mdx/StoryQuote'
 
 export const MDXComponents = {
   Image,
@@ -41,6 +42,7 @@ export const MDXComponents = {
   Video,
   SignUp,
   Statement,
+  StoryQuote,
   // wrapper: ({ components, layout, ...rest }) => {
   //   const Layout = require(`../layouts/${layout}`).default
   //   return <Layout {...rest} />

@@ -19,9 +19,7 @@ export default function ListLayout({ posts, title }) {
         <PageTitle>{title}</PageTitle>
         <div className="prose prose-md lg:prose-lg xl:prose-xl dark:prose-dark">
           <p className="text-xl md:text-2xl lg:text-3xl text-steel">
-            My articles about writing on the web, at the intersection between fiction, technical
-            writing, documentation, and the development tools you'll need to to be successful in
-            whichever path you choose.
+            Read my latest news, short essays, or long-form thoughts about how experiences in copywriting and technical writing.
           </p>
           <div className="relative max-w-lg">
             <input

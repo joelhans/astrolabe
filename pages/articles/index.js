@@ -14,12 +14,11 @@ export default function Posts({ posts }) {
   return (
     <>
       <PageSeo
-        title={`Articles`}
-        description={`My articles about writing on the web, at the intersection between fiction, technical writing, documentation, and the development tools you'll need to to be successful in whichever path you choose.`}
+        title={`Updates & articles`}
+        description={`Updates about my work and thoughts about fiction, copywriting, or technical writing.`}
         url={`${siteMetadata.siteUrl}/articles`}
       />
-      <ListLayout posts={posts} title="Articles" />
-      <ConvertKit />
+      <ListLayout posts={posts} title="Updates &amp; articles" />
     </>
   )
 }

@@ -3,7 +3,6 @@ import CustomLink from '@components/Link'
 import siteMetadata from '@data/siteMetadata'
 import { getFrontMatter } from '@/lib/mdx'
 import { ARTICLES_CONTENT_PATH } from '@config/constants'
-import ConvertKit from '@components/ConvertKit'
 
 export async function getStaticProps() {
   const posts = await getFrontMatter(ARTICLES_CONTENT_PATH)
@@ -23,21 +22,14 @@ export default function Home({ posts }) {
       <div id="hero" className="pt-24 pb-16">
         <div className="prose prose-md lg:prose-lg xl:prose-xl dark:prose-dark">
           <p className="text-xl md:text-2xl lg:text-3xl text-steel">
-            I'm Joel, a fiction writer who wears a few other disguises&mdash;copywriter, technical
-            writer, developer, and a handful more, too&mdash;when it's convenient.
-          </p>
+            I'm an author, copywriter, and technical writer living in Tucson, Arizona.</p>
           <p>
-            <CustomLink href="/about" className="hover:text-sea">
-              Start here
-            </CustomLink>
-            , find me on <CustomLink href="https://twitter.com/joelhans">Twitter</CustomLink>, read
-            some of my <CustomLink href="/fiction">fiction</CustomLink>, or check out one of my
-            recent articles below.
+            Read some of my <CustomLink href="/fiction">fiction</CustomLink>, learn a bit more <CustomLink href="/about" className="hover:text-sea">about me</CustomLink>, or find me on <CustomLink href="https://twitter.com/joelhans">Twitter</CustomLink>.
           </p>
         </div>
       </div>
       <div className="mb-24">
-        <h2 className="text-lg text-sea font-display font-bold uppercase mb-8">Recent articles</h2>
+        <h2 className="text-lg text-sea font-display font-bold uppercase mb-8">Recent updates &amp; articles</h2>
         <ul>
           {posts.slice(0, 3).map((frontMatter) => {
             const { slug, date, title, summary, tags } = frontMatter
@@ -58,7 +50,6 @@ export default function Home({ posts }) {
             )
           })}
         </ul>
-        <ConvertKit />
       </div>
     </>
   )

@@ -68,7 +68,7 @@ export default function PostLayout({ children, frontMatter }) {
                 </CustomLink>
               </footer>
             </div>
-            <ConvertKit />
+            {/* <ConvertKit /> */}
           </div>
         </div>
       </article>
