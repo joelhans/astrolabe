@@ -30,18 +30,6 @@
   "text": "Copying is taking, wholesale, something you wish you had done. It's exactly why we have\nclichés Stealing is understanding the underlying structure, the seemingly unseen\nmagic that makes good copy happen, and applying it to your work."
  },
  {
-  "dest": "/articles/grammarly/",
-  "src": "/articles/copywriting-checklist",
-  "title": "The no-nonsense copywriting checklist for clarity and impact",
-  "text": "I'm a fan of Grammarly. If you're interested in a free alternative, be sure to check out Hemingway."
- },
- {
-  "dest": "/articles/copywriting-cliches-tech/",
-  "src": "/articles/copywriting-checklist",
-  "title": "The no-nonsense copywriting checklist for clarity and impact",
-  "text": "I even wrote an entire piece about tech clichés new and old."
- },
- {
   "dest": "/articles/copywriting-checklist/",
   "src": "/articles/hand-clarity",
   "title": "Remembering clarity by breaking my hand",
@@ -52,5 +40,17 @@
   "src": "/articles/taglines-slogans",
   "title": "Taglines vs. slogans: What's the difference?",
   "text": "A good tagline is more than a witty phrase, although that's important, too. It also needs to identify core company values, key differentiators, and value propositions—everything that makes your brand worthy of someone's time or money. The best taglines not only establish the brand's benefits but also attract the right type of customer."
+ },
+ {
+  "dest": "/articles/grammarly/",
+  "src": "/articles/copywriting-checklist",
+  "title": "The no-nonsense copywriting checklist for clarity and impact",
+  "text": "I'm a fan of Grammarly. If you're interested in a free alternative, be sure to check out Hemingway."
+ },
+ {
+  "dest": "/articles/copywriting-cliches-tech/",
+  "src": "/articles/copywriting-checklist",
+  "title": "The no-nonsense copywriting checklist for clarity and impact",
+  "text": "I even wrote an entire piece about tech clichés new and old."
  }
 ]

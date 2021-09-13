@@ -12,24 +12,17 @@ const LayoutWrapper = ({ children }) => {
       <div className="flex flex-col h-screen">
         <div className="flex-1 w-full mx-auto">
           <header className="z-40 lg:z-50 px-6 lg:mx-auto border-b border-gray-200 dark:border-gray-500">
-            <div className="max-w-screen-lg flex items-center align-center justify-between py-2 px-6 mx-auto">
+            <div className="max-w-screen-lg flex items-baseline align-center justify-between pt-4 pb-2 px-6 mx-auto">
               <div className="flex justify-start">
                 <Link href="/" aria-label="Joel Hans">
                   <div className="flex items-center justify-start">
-                    {/* <Image
-                      width={48}
-                      height={48}
-                      src="/static/images/joel.jpg"
-                      className="rounded-full"
-                      alt="Joel Hans"
-                    /> */}
-                    <div className="text-lg font-display text-sea font-medium mr-6 hover:text-steel">
+                    <div className="text-3xl font-serif text-sea font-semibold mr-6 hover:text-steel">
                       Joel Hans
                     </div>
                   </div>
                 </Link>
               </div>
-              <div className="flex-1 lg:flex lg:items-center ">
+              <div className="flex-1 lg:flex lg:items-center">
                 <div className="hidden sm:block">
                   {headerNavLinks.map((link) => (
                     <Link
@@ -43,8 +36,6 @@ const LayoutWrapper = ({ children }) => {
                 </div>
               </div>
               <div className="flex justify-end items-center flex-1">
-                {/* <ThemeSwitch />
-                <RSS /> */}
                 <MobileNav />
                 <button className="hidden md:block text-white text-sm font-medium ml-4 py-3 px-6 bg-sea rounded-sm hover:bg-steel transition-all">
                   <Link href="https://nurse.media">
@@ -58,7 +49,6 @@ const LayoutWrapper = ({ children }) => {
           </header>
           <main className="max-w-screen-lg mx-auto mb-auto px-6">{children}</main>
         </div>
-        {/* <Footer /> */}
       </div>
     </>
   )

@@ -25,7 +25,7 @@ export default function Home({ posts }) {
             I'm an author, copywriter, and technical writer living in Tucson, Arizona.
           </p>
           <p>
-            Read some of my <CustomLink href="/fiction">fiction</CustomLink>, learn a bit more
+            Read some of my <CustomLink href="/fiction">fiction</CustomLink>, learn a bit more{` `}
             <CustomLink href="/about" className="hover:text-sea">
               about me
             </CustomLink>

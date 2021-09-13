@@ -21,6 +21,7 @@ module.exports = {
       fontFamily: {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
         display: ['Inter', ...defaultTheme.fontFamily.sans],
+        serif: ['Alegreya', ...defaultTheme.fontFamily.serif],
         mono: ['Inconsolata', ...defaultTheme.fontFamily.mono],
       },
       colors: {
