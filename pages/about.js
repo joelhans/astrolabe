@@ -24,11 +24,6 @@ export default function About({ content }) {
       <header className="flex flex-row flex-wrap md:space-x-6 md:flex-nowrap mt-24">
         <div>
           <PageTitle>Who am I?</PageTitle>
-          {/* <div className="prose prose-md lg:prose-lg xl:prose-xl dark:prose-dark">
-            <p className="text-xl md:text-2xl lg:text-3xl text-steel">
-             
-            </p>
-          </div> */}
         </div>
       </header>
       <div className="flex flex-row flex-nowrap items-start">
@@ -36,14 +31,14 @@ export default function About({ content }) {
           <MDXLayoutRenderer mdxSource={mdxSource} frontMatter={frontMatter} />
         </div>
         <div className="w-96 flex-shrink-0 ml-8">
-            <Image
-              width={450}
-              height={600}
-              src="/static/images/joel-large.jpg"
-              className="rounded"
-              alt="Joel Hans"
-            />
-          </div>
+          <Image
+            width={450}
+            height={600}
+            src="/static/images/joel-large.jpg"
+            className="rounded"
+            alt="Joel Hans"
+          />
+        </div>
       </div>
     </>
   )

@@ -22,14 +22,21 @@ export default function Home({ posts }) {
       <div id="hero" className="pt-24 pb-16">
         <div className="prose prose-md lg:prose-lg xl:prose-xl dark:prose-dark">
           <p className="text-xl md:text-2xl lg:text-3xl text-steel">
-            I'm an author, copywriter, and technical writer living in Tucson, Arizona.</p>
+            I'm an author, copywriter, and technical writer living in Tucson, Arizona.
+          </p>
           <p>
-            Read some of my <CustomLink href="/fiction">fiction</CustomLink>, learn a bit more <CustomLink href="/about" className="hover:text-sea">about me</CustomLink>, or find me on <CustomLink href="https://twitter.com/joelhans">Twitter</CustomLink>.
+            Read some of my <CustomLink href="/fiction">fiction</CustomLink>, learn a bit more
+            <CustomLink href="/about" className="hover:text-sea">
+              about me
+            </CustomLink>
+            , or find me on <CustomLink href="https://twitter.com/joelhans">Twitter</CustomLink>.
           </p>
         </div>
       </div>
       <div className="mb-24">
-        <h2 className="text-lg text-sea font-display font-bold uppercase mb-8">Recent updates &amp; articles</h2>
+        <h2 className="text-lg text-sea font-display font-bold uppercase mb-8">
+          Recent updates &amp; articles
+        </h2>
         <ul>
           {posts.slice(0, 3).map((frontMatter) => {
             const { slug, date, title, summary, tags } = frontMatter

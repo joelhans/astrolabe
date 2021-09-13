@@ -12,18 +12,6 @@
   "text": "Better. We can do better than better. It means something different to everyone. Be more specific about the value your product provides, or your customer won't know what you do well."
  },
  {
-  "dest": "/articles/copywriting-checklist/",
-  "src": "/articles/hand-clarity",
-  "title": "Remembering clarity by breaking my hand",
-  "text": "Ask yourself this question if a piece of writing, no matter the purpose, starts to drift or lose steam. If the answer is different than what you're currently writing, start over and head in the new, efficient direction."
- },
- {
-  "dest": "/articles/understand-your-value/",
-  "src": "/articles/taglines-slogans",
-  "title": "Taglines vs. slogans: What's the difference?",
-  "text": "A good tagline is more than a witty phrase, although that's important, too. It also needs to identify core company values, key differentiators, and value propositions—everything that makes your brand worthy of someone's time or money. The best taglines not only establish the brand's benefits but also attract the right type of customer."
- },
- {
   "dest": "/articles/taglines-slogans",
   "src": "/articles/stupidly-simple-tip-copy",
   "title": "1 stupidly simple tip to help you write copy of your dreams",
@@ -52,5 +40,17 @@
   "src": "/articles/copywriting-checklist",
   "title": "The no-nonsense copywriting checklist for clarity and impact",
   "text": "I even wrote an entire piece about tech clichés new and old."
+ },
+ {
+  "dest": "/articles/copywriting-checklist/",
+  "src": "/articles/hand-clarity",
+  "title": "Remembering clarity by breaking my hand",
+  "text": "Ask yourself this question if a piece of writing, no matter the purpose, starts to drift or lose steam. If the answer is different than what you're currently writing, start over and head in the new, efficient direction."
+ },
+ {
+  "dest": "/articles/understand-your-value/",
+  "src": "/articles/taglines-slogans",
+  "title": "Taglines vs. slogans: What's the difference?",
+  "text": "A good tagline is more than a witty phrase, although that's important, too. It also needs to identify core company values, key differentiators, and value propositions—everything that makes your brand worthy of someone's time or money. The best taglines not only establish the brand's benefits but also attract the right type of customer."
  }
 ]
