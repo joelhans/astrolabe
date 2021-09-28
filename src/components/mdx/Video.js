@@ -13,18 +13,18 @@ const Video = ({ src, autoPlay, controls, muted, loop }) => {
 
   return (
     <>
-      {youtube ?
-        <iframe 
+      {youtube ? (
+        <iframe
           width="812"
           height="455"
           className="w-full min-h-full"
           src={src}
           title="YouTube video player"
-          frameborder="0"
+          frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
+          allowFullScreen
         />
-      : (
+      ) : (
         <div className="px-6 py-8 bg-sea bg-opacity-10 rounded-lg">
           <video className="!mt-0 !mb-0" {...props} preload="preload">
             <source src={src} type="video/mp4" />

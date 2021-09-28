@@ -18,7 +18,11 @@ export default function Posts({ posts }) {
         description={`Updates about my work and thoughts about authoring for the web, copywriting, and technical writing.`}
         url={`${siteMetadata.siteUrl}/articles`}
       />
-      <ListLayout posts={posts} title="Articles" summary="Updates about my work and thoughts about authoring for the web, copywriting, and technical writing." />
+      <ListLayout
+        posts={posts}
+        title="Articles"
+        summary="Updates about my work and thoughts about authoring for the web, copywriting, and technical writing."
+      />
     </>
   )
 }
