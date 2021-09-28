@@ -10,9 +10,9 @@ module.exports = withTM()
     reactStrictMode: true,
     pageExtensions: ['js', 'jsx', 'md', 'mdx'],
     eslint: {
-      dirs: ['pages', 'components', 'lib', 'layouts', 'scripts'],
+      dirs: ['pages', 'src/components', 'lib', 'layouts', 'scripts'],
     },
-    
+
     webpack: (config, { dev, isServer }) => {
       config.module.rules.push({
         test: /\.(png|jpe?g|gif|mp4|pdf)$/i,
