@@ -26,11 +26,19 @@ export default function Home({ posts }) {
             Tucson, Arizona.
           </p>
           <p>
-            Read some of my <CustomLink href="/fiction">fiction</CustomLink>, learn a bit more{` `}
+            Read some of my <CustomLink href="/fiction">fiction</CustomLink>, read an{' '}
+            <CustomLink href="/articles" className="hover:text-sea">
+              article
+            </CustomLink>
+            , learn a bit more{' '}
             <CustomLink href="/about" className="hover:text-sea">
               about me
             </CustomLink>
-            , or find me on <CustomLink href="https://twitter.com/joelhans">Twitter</CustomLink>.
+            , or see what I'm up to{' '}
+            <CustomLink href="/now" className="hover:text-sea">
+              now
+            </CustomLink>
+            .
           </p>
         </div>
       </div>
@@ -45,7 +53,7 @@ export default function Home({ posts }) {
                   <h3 className="text-xl lg:text-2xl font-display font-bold mb-2 group-hover:text-sea transition-all">
                     {title}
                   </h3>
-                  <p className="prose prose-md lg:prose-lg xl:prose-xl dark:prose-dark text-gray-500 dark:text-gray-400 mb-1">
+                  <p className="prose prose-md lg:prose-lg dark:prose-dark text-gray-500 dark:text-gray-400 mb-1">
                     {summary}
                   </p>
                   <span className="text-sm font-bold group-hover:text-sea transition-all">
