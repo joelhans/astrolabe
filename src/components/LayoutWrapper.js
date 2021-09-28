@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import headerNavLinks from '@data/headerNavLinks'
 import Link from './Link'
 import Footer from './Footer'
@@ -20,7 +19,7 @@ const LayoutWrapper = ({ children }) => {
                   </div>
                 </Link>
               </div>
-              <div className="flex-1 lg:flex justify-end">
+              <div className="flex-1 lg:flex justify-start">
                 <div className="hidden sm:block">
                   {headerNavLinks.map((link) => (
                     <Link
@@ -37,13 +36,6 @@ const LayoutWrapper = ({ children }) => {
                 <ThemeSwitch />
                 <RSS />
                 <MobileNav />
-                {/* <button className="hidden md:block text-white text-sm font-medium ml-4 py-3 px-6 bg-sea rounded-sm hover:bg-steel transition-all">
-                  <Link href="https://nurse.media">
-                    <span className="hidden lg:inline-block">Copy &amp; content consulting</span>
-                    <span className="inline-block lg:hidden">Consulting</span>
-                    {` `}&rarr;
-                  </Link>
-                </button> */}
               </div>
             </div>
           </header>
