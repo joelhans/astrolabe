@@ -11,7 +11,7 @@ module.exports = withTM()
     experimental: { esmExternals: true },
     webpack: (config, { dev, isServer }) => {
       config.module.rules.push({
-        test: /\.(png|jpe?g|gif|mp4)$/i,
+        test: /\.(png|jpe?g|gif|mp4|pdf)$/i,
         use: [
           {
             loader: 'file-loader',

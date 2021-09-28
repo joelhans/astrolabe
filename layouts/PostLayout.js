@@ -26,7 +26,7 @@ export default function PostLayout({ children, frontMatter }) {
   const LinkRefs = LinkData.filter(link => link.dest.includes(slug))
 
   return (
-    <SectionContainer>
+    <>
       <BlogSeo url={`${siteMetdata.siteUrl}/articles/${frontMatter.slug}`} {...frontMatter} />
       <article>
         <div className="">
@@ -44,9 +44,9 @@ export default function PostLayout({ children, frontMatter }) {
                       LinkRefs.map((link) => {
                         const { src, title, text } = link
                         return (
-                          <CustomLink href={src} className="p-4 bg-white border border-gray-200 rounded-sm">
+                          <CustomLink href={src} className="p-4 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-500 rounded-sm">
                             <span className="block text-base font-medium mb-2">{title}</span>
-                            <span className="block text-sm text-gray-500 font-normal">{text}</span>
+                            <span className="block text-sm text-gray-500 dark:text-gray-300 font-normal">{text}</span>
                           </CustomLink>
                         )
                       })
@@ -72,6 +72,6 @@ export default function PostLayout({ children, frontMatter }) {
           </div>
         </div>
       </article>
-    </SectionContainer>
+    </>
   )
 }

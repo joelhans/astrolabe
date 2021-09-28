@@ -22,7 +22,7 @@ export default function Home({ posts }) {
       <div id="hero" className="pt-24 pb-16">
         <div className="prose prose-md lg:prose-lg xl:prose-xl dark:prose-dark">
           <p className="text-xl md:text-2xl lg:text-3xl text-steel">
-            I'm an author, copywriter, and technical writer living in Tucson, Arizona.
+            I'm a fiction writer and technical copywriter/content designer/educator living in Tucson, Arizona.
           </p>
           <p>
             Read some of my <CustomLink href="/fiction">fiction</CustomLink>, learn a bit more{` `}
@@ -35,7 +35,7 @@ export default function Home({ posts }) {
       </div>
       <div className="mb-24">
         <h2 className="text-lg text-sea font-display font-bold uppercase mb-8">
-          Recent updates &amp; articles
+          Recent articles
         </h2>
         <ul>
           {posts.slice(0, 3).map((frontMatter) => {
@@ -43,13 +43,13 @@ export default function Home({ posts }) {
             return (
               <li key={slug}>
                 <CustomLink key={slug} href={`/articles/${slug}`} className="group block mb-16">
-                  <h3 className="text-xl lg:text-2xl font-display font-bold mb-4 group-hover:text-steel transition-all">
+                  <h3 className="text-xl lg:text-2xl font-display font-bold mb-2 group-hover:text-sea transition-all">
                     {title}
                   </h3>
-                  <p className="prose prose-md lg:prose-lg xl:prose-xl dark:prose-dark text-gray-500 dark:text-gray-400 mb-2">
+                  <p className="prose prose-md lg:prose-lg xl:prose-xl dark:prose-dark text-gray-500 dark:text-gray-400 mb-1">
                     {summary}
                   </p>
-                  <span className="text-sm font-bold group-hover:text-steel transition-all">
+                  <span className="text-sm font-bold group-hover:text-sea transition-all">
                     Read more &rarr;
                   </span>
                 </CustomLink>
