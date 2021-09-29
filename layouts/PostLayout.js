@@ -3,7 +3,7 @@ import PageTitle from '@components/PageTitle'
 import SectionContainer from '@components/SectionContainer'
 import { BlogSeo } from '@components/SEO'
 import Tag from '@components/Tag'
-import siteMetdata from '@data/siteMetadata'
+import siteMetadata from '@data/siteMetadata'
 import { MDXLayoutRenderer } from '@components/MDXComponents'
 import ConvertKit from '@components/ConvertKit'
 
@@ -23,11 +23,13 @@ export default function PostLayout({ children, frontMatter }) {
   const { slug, fileName, date, title, lastmod, tags } = frontMatter
 
   // Filter `LinkData` to only the links that reference this page as the destination.
-  const LinkRefs = LinkData.filter(link => link.dest.includes(slug))
+  const LinkRefs = LinkData.filter((link) => link.dest.includes(slug))
+
+  console.log(tags)
 
   return (
     <>
-      <BlogSeo url={`${siteMetdata.siteUrl}/articles/${frontMatter.slug}`} {...frontMatter} />
+      <BlogSeo url={`${siteMetadata.siteUrl}/articles/${frontMatter.slug}`} {...frontMatter} />
       <article>
         <div className="">
           <header className="mt-24 mb-24 text-center">
@@ -44,19 +46,28 @@ export default function PostLayout({ children, frontMatter }) {
                       LinkRefs.map((link) => {
                         const { src, title, text } = link
                         return (
-                          <CustomLink href={src} className="p-4 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-500 rounded-sm">
+                          <CustomLink
+                            key={src}
+                            href={src}
+                            className="p-4 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-500 rounded-sm"
+                          >
                             <span className="block text-base font-medium mb-2">{title}</span>
-                            <span className="block text-sm text-gray-500 dark:text-gray-300 font-normal">{text}</span>
+                            <span className="block text-sm text-gray-500 dark:text-gray-300 font-normal">
+                              {text}
+                            </span>
                           </CustomLink>
                         )
                       })
-                      ) : <p className="text-sm text-gray-500 !-mt-4 !m-0">No linked references found.</p>
-                    }
+                    ) : (
+                      <p className="text-sm text-gray-500 !-mt-4 !m-0">
+                        No linked references found.
+                      </p>
+                    )}
                   </div>
                   <p className="text-base font-bold text-gray-500 dark:text-gray-400">
                     Last updated:{' '}
                     <time dateTime={lastmod}>
-                      {new Date(lastmod).toLocaleDateString(siteMetdata.locale, postDateTemplate)}
+                      {new Date(lastmod).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
                     </time>
                   </p>
                 </div>

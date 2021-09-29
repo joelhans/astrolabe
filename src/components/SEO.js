@@ -51,6 +51,44 @@ export const PageSeo = ({ title, description, url }) => {
   )
 }
 
+export const TagSEO = ({ title, description, url }) => {
+  // const ogImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner
+  // const twImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner
+  const router = useRouter()
+  return (
+    <NextSeo
+      title={`${router.asPath === '/' ? '' : `${title} •`} ${siteMetadata.title}`}
+      description={description}
+      canonical={url}
+      openGraph={{
+        url,
+        title,
+        description,
+      }}
+    />
+  )
+
+  // return (
+  //   <>
+  //     <CommonSEO
+  //       title={title}
+  //       description={description}
+  //       ogType="website"
+  //       ogImage={ogImageUrl}
+  //       twImage={twImageUrl}
+  //     />
+  //     <Head>
+  //       <link
+  //         rel="alternate"
+  //         type="application/rss+xml"
+  //         title={`${description} - RSS feed`}
+  //         href={`${siteMetadata.siteUrl}${router.asPath}/feed.xml`}
+  //       />
+  //     </Head>
+  //   </>
+  // )
+}
+
 export const BlogSeo = ({ title, summary, date, lastmod, url, tags, images = [] }) => {
   const publishedAt = new Date(date).toISOString()
   const modifiedAt = new Date(lastmod || date).toISOString()
