@@ -7,11 +7,15 @@ const withTM = transpileModules(['convertkit-react'])
 module.exports = withTM()
 ;(module.exports = withTM()),
   withBundleAnalyzer({
+    reactStrictMode: true,
     pageExtensions: ['js', 'jsx', 'md', 'mdx'],
-    experimental: { esmExternals: true },
+    eslint: {
+      dirs: ['pages', 'src/components', 'lib', 'layouts', 'scripts'],
+    },
+
     webpack: (config, { dev, isServer }) => {
       config.module.rules.push({
-        test: /\.(png|jpe?g|gif|mp4)$/i,
+        test: /\.(png|jpe?g|gif|mp4|pdf)$/i,
         use: [
           {
             loader: 'file-loader',

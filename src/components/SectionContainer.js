@@ -1,3 +1,3 @@
 export default function SectionContainer({ children }) {
-  return <div className="max-w-screen-lg xl:max-w-screen-xl mx-auto">{children}</div>
+  return <div className="max-w-screen-lg xl:max-w-screen-xl">{children}</div>
 }
