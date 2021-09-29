@@ -1,6 +1,7 @@
 import { PageSeo } from '@components/SEO'
 import CustomLink from '@components/Link'
 import siteMetadata from '@data/siteMetadata'
+import Tag from '@components/Tag'
 import { getFrontMatter } from '@/lib/mdx'
 import { ARTICLES_CONTENT_PATH } from '@config/constants'
 
@@ -48,17 +49,25 @@ export default function Home({ posts }) {
           {posts.slice(0, 3).map((frontMatter) => {
             const { slug, date, title, summary, tags } = frontMatter
             return (
-              <li key={slug}>
-                <CustomLink key={slug} href={`/articles/${slug}`} className="group block mb-16">
-                  <h3 className="text-xl lg:text-2xl font-display font-bold mb-2 group-hover:text-sea transition-all">
+              <li key={slug} className="block mb-16">
+                <CustomLink href={`/articles/${slug}`}>
+                  <h3 className="text-xl lg:text-2xl font-display font-bold mb-2 hover:text-sea transition-all">
                     {title}
                   </h3>
-                  <p className="prose prose-md lg:prose-lg dark:prose-dark text-gray-500 dark:text-gray-400 mb-1">
-                    {summary}
-                  </p>
-                  <span className="text-sm font-bold group-hover:text-sea transition-all">
-                    Read more &rarr;
-                  </span>
+                </CustomLink>
+                <div className="flex flex-wrap">
+                  {tags.map((tag) => (
+                    <Tag key={tag} text={tag} />
+                  ))}
+                </div>
+                <p className="prose prose-md lg:prose-lg dark:prose-dark text-gray-500 dark:text-gray-400 mb-1">
+                  {summary}
+                </p>
+                <CustomLink
+                  href={`/articles/${slug}`}
+                  className="text-sm font-bold hover:text-sea transition-all"
+                >
+                  Read more &rarr;
                 </CustomLink>
               </li>
             )

@@ -18,15 +18,13 @@ export default function ListLayout({ posts, title, summary }) {
       <div className="mt-24">
         <PageTitle>{title}</PageTitle>
         <div className="prose prose-md lg:prose-lg xl:prose-xl dark:prose-dark">
-          <p className="text-xl md:text-2xl lg:text-3xl text-steel">
-            {summary}
-          </p>
+          <p className="text-xl md:text-2xl lg:text-3xl text-steel">{summary}</p>
           <div className="relative max-w-lg">
             <input
-              aria-label="Search news &amp; articles"
+              aria-label="Search articles"
               type="text"
               onChange={(e) => setSearchValue(e.target.value)}
-              placeholder="Search news &amp; articles"
+              placeholder="Search articles"
               className="block w-full px-4 py-2 text-gray-900 bg-white border border-gray-300 rounded-md dark:border-gray-900 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:text-gray-100"
             />
             <svg
@@ -51,17 +49,25 @@ export default function ListLayout({ posts, title, summary }) {
             {filteredBlogPosts.map((frontMatter) => {
               const { slug, draft, date, title, summary, tags } = frontMatter
               return (
-                <li key={slug}>
-                  <CustomLink key={slug} href={`/articles/${slug}`} className="group block mb-16">
-                    <h3 className="text-xl lg:text-2xl font-display font-bold mb-2 group-hover:text-sea transition-all">
+                <li key={slug} className="block mb-16">
+                  <CustomLink href={`/articles/${slug}`}>
+                    <h3 className="text-xl lg:text-2xl font-display font-bold mb-2 hover:text-sea transition-all">
                       {title}
                     </h3>
-                    <p className="prose prose-md lg:prose-lg dark:prose-dark text-gray-500 dark:text-gray-400 mb-1">
-                      {summary}
-                    </p>
-                    <span className="text-sm font-bold group-hover:text-sea transition-all">
-                      Read more &rarr;
-                    </span>
+                  </CustomLink>
+                  <div className="flex flex-wrap">
+                    {tags.map((tag) => (
+                      <Tag key={tag} text={tag} />
+                    ))}
+                  </div>
+                  <p className="prose prose-md lg:prose-lg dark:prose-dark text-gray-500 dark:text-gray-400 mb-1">
+                    {summary}
+                  </p>
+                  <CustomLink
+                    href={`/articles/${slug}`}
+                    className="text-sm font-bold hover:text-sea transition-all"
+                  >
+                    Read more &rarr;
                   </CustomLink>
                 </li>
               )
