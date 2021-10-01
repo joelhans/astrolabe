@@ -24,13 +24,13 @@ export default function About({ content }) {
       <header className="flex flex-row flex-wrap md:space-x-6 md:flex-nowrap mt-24">
         <div>
           <PageTitle>{frontMatter.title}</PageTitle>
-          <p className="text-xl md:text-2xl lg:text-3xl text-steel">
+          <p className="text-xl lg:text-2xl text-steel">
             {frontMatter.summary} {frontMatter.summary_cont}
           </p>
         </div>
       </header>
       <div className="flex flex-row flex-nowrap items-start">
-        <div className="prose prose-md lg:prose-lg xl:prose-xl dark:prose-dark mt-8 md:mt-16  mb-24">
+        <div className="prose prose-md lg:prose-lg dark:prose-dark mt-8 md:mt-16 mb-24">
           <MDXLayoutRenderer mdxSource={mdxSource} frontMatter={frontMatter} />
         </div>
       </div>

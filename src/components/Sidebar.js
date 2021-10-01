@@ -260,7 +260,6 @@ const Sidebar = ({ SidebarType, SidebarDocsCloud, CollectorsSearch, FilterCollec
   }
 
   const CollectorsSearchResult = (string) => {
-    // console.log(string)
     CollectorsSearch(string)
   }
 

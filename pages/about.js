@@ -27,7 +27,7 @@ export default function About({ content }) {
         </div>
       </header>
       <div className="flex flex-row flex-nowrap items-start">
-        <div className="prose prose-md lg:prose-lg xl:prose-xl dark:prose-dark mb-24">
+        <div className="prose prose-md lg:prose-lg dark:prose-dark mb-24">
           <MDXLayoutRenderer mdxSource={mdxSource} frontMatter={frontMatter} />
         </div>
         <div className="w-96 flex-shrink-0 ml-8">
