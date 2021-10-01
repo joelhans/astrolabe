@@ -36,7 +36,7 @@ export default function PostLayout({ children, frontMatter }) {
             <PageTitle>{title}</PageTitle>
           </header>
           <div className="mb-24" style={{ gridTemplateRows: 'auto 1fr' }}>
-            <div className="prose prose-md lg:prose-lg xl:prose-xl dark:prose-dark mx-auto">
+            <div className="prose prose-md lg:prose-lg dark:prose-dark mx-auto">
               <MDXLayoutRenderer mdxSource={children} frontMatter={frontMatter} />
               <footer className="mt-24">
                 <div className="p-8 bg-steel bg-opacity-5 rounded-sm mb-12">
@@ -64,7 +64,7 @@ export default function PostLayout({ children, frontMatter }) {
                       </p>
                     )}
                   </div>
-                  <p className="text-base font-bold text-gray-500 dark:text-gray-400">
+                  <p className="text-base font-bold text-gray-500 dark:text-gray-400 !my-0">
                     Last updated:{' '}
                     <time dateTime={lastmod}>
                       {new Date(lastmod).toLocaleDateString(siteMetadata.locale, postDateTemplate)}

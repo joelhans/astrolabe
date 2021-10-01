@@ -10,7 +10,7 @@ export default function FourZeroFour() {
         </div>
       </header>
       <div className="flex flex-row flex-nowrap items-start">
-        <div className="prose prose-md lg:prose-lg xl:prose-xl dark:prose-dark mb-24">
+        <div className="prose prose-md lg:prose-lg dark:prose-dark mb-24">
           <p>Sorry, this page doesn't exist.</p>
           <p>
             Read some of my <CustomLink href="/fiction">fiction</CustomLink>, learn a bit more{` `}
