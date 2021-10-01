@@ -24,11 +24,7 @@ export async function getStaticProps({ params }) {
   const filteredPosts = allPosts.filter(
     (post) => post.draft !== true && post.tags.map((t) => kebabCase(t)).includes(params.tag)
   )
-
   const tagText = filteredPosts[0].tags.filter((t) => kebabCase(t).includes(params.tag))
-
-  console.log(tagText)
-
   return { props: { posts: filteredPosts, tag: params.tag, text: tagText } }
 }
 
