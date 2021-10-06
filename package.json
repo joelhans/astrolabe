@@ -67,7 +67,7 @@
     }
   },
   "lint-staged": {
-    "**/*.{md,mdx}": [
+    "*.+(md|mdx)": [
       "node scripts/updateFrontmatter.js"
     ],
     "*.+(js|jsx|ts|tsx)": [
