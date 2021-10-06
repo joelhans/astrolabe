@@ -7,9 +7,19 @@
       <language>en-us</language>
       <managingEditor>j@joelhans.com (Joel Hans)</managingEditor>
       <webMaster>j@joelhans.com (Joel Hans)</webMaster>
-      <lastBuildDate>Wed, 06 Oct 2021 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Invalid Date</lastBuildDate>
       <atom:link href="https://joelhans.com/index.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://joelhans.com/articles/buy-the-domain</guid>
+    <title>Ready for something new? Buy the domain name already</title>
+    <link>https://joelhans.com/articles/buy-the-domain</link>
+    <description>A really fantastic means to motivate yourself to jump into a new project is to buy it a domain name.</description>
+    <pubDate>Invalid Date</pubDate>
+    <author>j@joelhans.com (Joel Hans)</author>
+    <category>business</category><category>Present Games</category>
+  </item>
+
   <item>
     <guid>https://joelhans.com/articles/pride-freelance</guid>
     <title>Take pride in being freelance</title>
@@ -18,16 +28,6 @@
     <pubDate>Wed, 06 Oct 2021 00:00:00 GMT</pubDate>
     <author>j@joelhans.com (Joel Hans)</author>
     <category>business</category><category>freelance</category>
-  </item>
-
-  <item>
-    <guid>https://joelhans.com/articles/buy-the-domain</guid>
-    <title>Ready for something new? Buy the domain name already</title>
-    <link>https://joelhans.com/articles/buy-the-domain</link>
-    <description>A really fantastic means to motivate yourself to jump into a new project is to buy it a domain name.</description>
-    <pubDate>Fri, 01 Oct 2021 00:00:00 GMT</pubDate>
-    <author>j@joelhans.com (Joel Hans)</author>
-    <category>business</category><category>Present Games</category>
   </item>
 
   <item>

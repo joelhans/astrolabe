@@ -89,9 +89,7 @@ export const TagSEO = ({ title, description, url }) => {
   // )
 }
 
-export const BlogSeo = ({ title, summary, date, lastmod, url, tags, images = [] }) => {
-  const publishedAt = new Date(date).toISOString()
-  const modifiedAt = new Date(lastmod || date).toISOString()
+export const BlogSeo = ({ title, summary, publishedOn, updatedOn, url, tags, images = [] }) => {
   let imagesArr =
     images.length === 0
       ? [siteMetadata.socialBanner]
@@ -115,8 +113,8 @@ export const BlogSeo = ({ title, summary, date, lastmod, url, tags, images = [] 
         openGraph={{
           type: 'article',
           article: {
-            publishedTime: publishedAt,
-            modifiedTime: modifiedAt,
+            publishedTime: publishedOn,
+            modifiedTime: updatedOn,
             authors: [`${siteMetadata.siteUrl}/about`],
             tags,
           },
@@ -134,66 +132,9 @@ export const BlogSeo = ({ title, summary, date, lastmod, url, tags, images = [] 
       />
       <ArticleJsonLd
         authorName={siteMetadata.author}
-        dateModified={publishedAt}
-        datePublished={modifiedAt}
+        dateModified={publishedOn}
+        datePublished={updatedOn}
         description={summary}
-        images={featuredImages}
-        publisherName={siteMetadata.author}
-        title={title}
-        url={url}
-      />
-    </>
-  )
-}
-
-export const DocSeo = ({ title, description, date, lastmod, url, tags, images = [] }) => {
-  const publishedAt = new Date(lastmod || date).toISOString()
-  const modifiedAt = new Date(lastmod || date).toISOString()
-  let imagesArr =
-    images.length === 0
-      ? [siteMetadata.socialBanner]
-      : typeof images === 'string'
-      ? [images]
-      : images
-
-  const featuredImages = imagesArr.map((img) => {
-    return {
-      url: `${siteMetadata.siteUrl}${img}`,
-      alt: title,
-    }
-  })
-
-  return (
-    <>
-      <NextSeo
-        title={`${title} – ${siteMetadata.title}`}
-        description={description}
-        canonical={url}
-        openGraph={{
-          type: 'article',
-          article: {
-            // publishedTime: publishedAt,
-            modifiedTime: modifiedAt,
-            authors: [`${siteMetadata.siteUrl}/about`],
-            tags,
-          },
-          url,
-          title,
-          description: description,
-          images: featuredImages,
-        }}
-        additionalMetaTags={[
-          {
-            name: 'twitter:image',
-            content: featuredImages[0].url,
-          },
-        ]}
-      />
-      <ArticleJsonLd
-        authorName={siteMetadata.author}
-        dateModified={publishedAt}
-        datePublished={modifiedAt}
-        description={description}
         images={featuredImages}
         publisherName={siteMetadata.author}
         title={title}

@@ -6,12 +6,11 @@ const updateFrontmatter = async () => {
   mdFilePaths.forEach(async (path) => {
     const file = matter.read(path)
     const { data: currentFrontmatter } = file
-    if (currentFrontmatter.published === true) {
+    if (currentFrontmatter.draft === false) {
       const updatedFrontmatter = {
         ...currentFrontmatter,
         updatedOn: new Date().toISOString(),
       }
-      console.log(updatedFrontmatter)
       file.data = updatedFrontmatter
       const updatedFileContent = matter.stringify(file)
       fsp.writeFile(path, updatedFileContent)

@@ -20,7 +20,11 @@ const config = {
 const postDateTemplate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
 
 export default function PostLayout({ children, frontMatter }) {
-  const { slug, fileName, date, title, lastmod, tags } = frontMatter
+  const { slug, fileName, title, publishedOn, updatedOn, tags } = frontMatter
+
+  const date = updatedOn ? updatedOn : publishedOn
+
+  console.log(date)
 
   // Filter `LinkData` to only the links that reference this page as the destination.
   const LinkRefs = LinkData.filter((link) => link.dest.includes(slug))
@@ -64,8 +68,8 @@ export default function PostLayout({ children, frontMatter }) {
                   </div>
                   <p className="text-base font-bold text-gray-500 dark:text-gray-400 !my-0">
                     Last updated:{' '}
-                    <time dateTime={lastmod}>
-                      {new Date(lastmod).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
+                    <time dateTime={date}>
+                      {new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
                     </time>
                   </p>
                 </div>
