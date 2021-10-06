@@ -20,11 +20,9 @@ const config = {
 const postDateTemplate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
 
 export default function PostLayout({ children, frontMatter }) {
-  const { slug, fileName, title, publishedOn, updatedOn, tags } = frontMatter
+  const { slug, title, publishedOn, updatedOn, tags } = frontMatter
 
   const date = updatedOn ? updatedOn : publishedOn
-
-  console.log(date)
 
   // Filter `LinkData` to only the links that reference this page as the destination.
   const LinkRefs = LinkData.filter((link) => link.dest.includes(slug))
