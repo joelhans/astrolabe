@@ -9,7 +9,6 @@
     "serve": "next start",
     "analyze": "cross-env ANALYZE=true next build",
     "lint": "next lint --fix --dir pages --dir src/components --dir lib --dir layouts --dir scripts",
-    "lint:staged": "lint-staged",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -68,6 +67,9 @@
     }
   },
   "lint-staged": {
+    "**/*.{md,mdx}": [
+      "node updateFrontmatter.js"
+    ],
     "*.+(js|jsx|ts|tsx)": [
       "eslint --fix"
     ],
