@@ -68,7 +68,7 @@
   },
   "lint-staged": {
     "**/*.{md,mdx}": [
-      "node updateFrontmatter.js"
+      "node scripts/updateFrontmatter.js"
     ],
     "*.+(js|jsx|ts|tsx)": [
       "eslint --fix"
