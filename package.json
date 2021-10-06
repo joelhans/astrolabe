@@ -9,6 +9,7 @@
     "serve": "next start",
     "analyze": "cross-env ANALYZE=true next build",
     "lint": "next lint --fix --dir pages --dir src/components --dir lib --dir layouts --dir scripts",
+    "lint:staged": "lint-staged",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -57,7 +58,7 @@
     "globby": "11.0.3",
     "husky": "^6.0.0",
     "inquirer": "^8.1.1",
-    "lint-staged": "^11.0.0",
+    "lint-staged": "^11.2.0",
     "next-remote-watch": "^1.0.0",
     "prettier": "2.2.1"
   },
