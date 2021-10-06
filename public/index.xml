@@ -7,9 +7,19 @@
       <language>en-us</language>
       <managingEditor>j@joelhans.com (Joel Hans)</managingEditor>
       <webMaster>j@joelhans.com (Joel Hans)</webMaster>
-      <lastBuildDate>Fri, 01 Oct 2021 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Wed, 06 Oct 2021 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://joelhans.com/index.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://joelhans.com/articles/pride-freelance</guid>
+    <title>Take pride in being freelance</title>
+    <link>https://joelhans.com/articles/pride-freelance</link>
+    <description></description>
+    <pubDate>Wed, 06 Oct 2021 00:00:00 GMT</pubDate>
+    <author>j@joelhans.com (Joel Hans)</author>
+    <category>business</category><category>freelance</category>
+  </item>
+
   <item>
     <guid>https://joelhans.com/articles/buy-the-domain</guid>
     <title>Ready for something new? Buy the domain name already</title>
