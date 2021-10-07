@@ -13,6 +13,9 @@ export default function ListLayout({ posts, title, summary }) {
     return searchContent.toLowerCase().includes(searchValue.toLowerCase())
   })
 
+  // Detect the development environment.
+  const env = process.env.NODE_ENV
+
   return (
     <>
       <div className="mt-24">
@@ -47,29 +50,31 @@ export default function ListLayout({ posts, title, summary }) {
           <ul>
             {!filteredBlogPosts.length && 'No articles found.'}
             {filteredBlogPosts.map((frontMatter) => {
-              const { slug, draft, date, title, summary, tags } = frontMatter
+              const { slug, draft, title, summary, tags } = frontMatter
               return (
-                <li key={slug} className="block mb-16">
-                  <CustomLink href={`/articles/${slug}`}>
-                    <h3 className="text-xl lg:text-2xl font-display font-bold mb-2 hover:text-sea transition-all">
-                      {title}
-                    </h3>
-                  </CustomLink>
-                  <div className="flex flex-wrap">
-                    {tags.map((tag) => (
-                      <Tag key={tag} text={tag} />
-                    ))}
-                  </div>
-                  <p className="prose prose-md lg:prose-lg dark:prose-dark text-gray-500 dark:text-gray-400 mb-1">
-                    {summary}
-                  </p>
-                  <CustomLink
-                    href={`/articles/${slug}`}
-                    className="text-sm font-bold hover:text-sea transition-all"
-                  >
-                    Read more &rarr;
-                  </CustomLink>
-                </li>
+                draft === false && (
+                  <li key={slug} className="block mb-16">
+                    <CustomLink href={`/articles/${slug}`}>
+                      <h3 className="text-xl lg:text-2xl font-display font-bold mb-2 hover:text-sea transition-all">
+                        {title}
+                      </h3>
+                    </CustomLink>
+                    <div className="flex flex-wrap">
+                      {tags.map((tag) => (
+                        <Tag key={tag} text={tag} />
+                      ))}
+                    </div>
+                    <p className="prose prose-md lg:prose-lg dark:prose-dark text-gray-500 dark:text-gray-400 mb-1">
+                      {summary}
+                    </p>
+                    <CustomLink
+                      href={`/articles/${slug}`}
+                      className="text-sm font-bold hover:text-sea transition-all"
+                    >
+                      Read more &rarr;
+                    </CustomLink>
+                  </li>
+                )
               )
             })}
           </ul>

@@ -44,6 +44,10 @@ html {
   scroll-behavior: smooth;
 }
 
+.katex-html {
+  @apply hidden;
+}
+
 /* ConvertKit */
 
 .formkit-form.clare {

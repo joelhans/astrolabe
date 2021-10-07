@@ -57,7 +57,7 @@
     "globby": "11.0.3",
     "husky": "^6.0.0",
     "inquirer": "^8.1.1",
-    "lint-staged": "^11.0.0",
+    "lint-staged": "^11.2.0",
     "next-remote-watch": "^1.0.0",
     "prettier": "2.2.1"
   },
@@ -67,10 +67,13 @@
     }
   },
   "lint-staged": {
+    "*.+(md|mdx)": [
+      "node scripts/updateFrontmatter.js"
+    ],
     "*.+(js|jsx|ts|tsx)": [
       "eslint --fix"
     ],
-    "*.+(js|jsx|ts|tsx|json|css|md|mdx)": [
+    "*.+(js|jsx|ts|tsx|json|css)": [
       "prettier --write"
     ]
   }

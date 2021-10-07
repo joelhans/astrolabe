@@ -6,7 +6,7 @@ import { getFrontMatter } from '@/lib/mdx'
 import { ARTICLES_CONTENT_PATH } from '@config/constants'
 
 export async function getStaticProps() {
-  const posts = await getFrontMatter(ARTICLES_CONTENT_PATH)
+  const posts = await getFrontMatter(ARTICLES_CONTENT_PATH, true)
   return { props: { posts } }
 }
 
@@ -23,8 +23,8 @@ export default function Home({ posts }) {
       <div id="hero" className="pt-24 pb-16">
         <div className="prose prose-md lg:prose-lg dark:prose-dark">
           <p className="text-xl lg:text-2xl text-steel">
-            I'm a fiction writer and technical copywriter/content designer/educator living in
-            Tucson, Arizona.
+            I'm a fiction writer and freelance copywriter &amp; content designer living in Tucson,
+            Arizona.
           </p>
           <p>
             Read some of my <CustomLink href="/fiction">fiction</CustomLink>, read an{' '}
@@ -47,7 +47,7 @@ export default function Home({ posts }) {
         <h2 className="text-lg text-sea font-display font-bold uppercase mb-8">Recent articles</h2>
         <ul>
           {posts.slice(0, 3).map((frontMatter) => {
-            const { slug, date, title, summary, tags } = frontMatter
+            const { slug, draft, title, summary, tags } = frontMatter
             return (
               <li key={slug} className="block mb-16">
                 <CustomLink href={`/articles/${slug}`}>
