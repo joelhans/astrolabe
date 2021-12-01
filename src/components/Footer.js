@@ -25,6 +25,12 @@ export default function Footer() {
           <h3 className="font-bold mb-2">Links</h3>
           <Link
             className="block font-medium mb-1 hover:text-steel"
+            href="https://www.linkedin.com/in/joel-hans/"
+          >
+            LinkedIn
+          </Link>
+          <Link
+            className="block font-medium mb-1 hover:text-steel"
             href="https://twitter.com/joelhans"
           >
             Twitter
