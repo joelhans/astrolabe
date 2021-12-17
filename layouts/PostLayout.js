@@ -32,7 +32,7 @@ export default function PostLayout({ children, frontMatter }) {
               <footer className="mt-24">
                 {tags.indexOf('To Mabel, To Ida') === -1 && (
                   <div className="p-8 bg-steel bg-opacity-5 rounded-sm mb-12">
-                    <p className="font-bold !mt-0">Linked references</p>
+                    <p className="font-bold !mt-0">Links to this article</p>
                     <div className="grid grid-flow-col grid-cols-2 gap-4 mb-8">
                       {LinkRefs.length ? (
                         LinkRefs.map((link) => {
@@ -52,7 +52,7 @@ export default function PostLayout({ children, frontMatter }) {
                         })
                       ) : (
                         <p className="text-sm text-gray-500 !-mt-4 !m-0">
-                          No linked references found.
+                          No links to this article found.
                         </p>
                       )}
                     </div>
