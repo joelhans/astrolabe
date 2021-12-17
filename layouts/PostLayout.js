@@ -40,9 +40,11 @@ export default function PostLayout({ children, frontMatter }) {
                           <CustomLink
                             key={src}
                             href={src}
-                            className="p-4 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-500 rounded-sm"
+                            className="group p-4 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-500 rounded-sm"
                           >
-                            <h3 className="block !text-lg font-medium !mt-0 mb-2">{title}</h3>
+                            <h3 className="block !text-lg font-medium !mt-0 mb-2 group-hover:text-sea transition-all">
+                              {title}
+                            </h3>
                             <p
                               className="block text-sm text-gray-500 dark:text-gray-300 font-normal"
                               dangerouslySetInnerHTML={{ __html: text }}
