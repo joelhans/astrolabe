@@ -47,9 +47,3 @@ html {
 .katex-html {
   @apply hidden;
 }
-
-/* ConvertKit */
-
-.formkit-form.clare {
-  max-width: 100% !important;
-}

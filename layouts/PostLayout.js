@@ -5,17 +5,8 @@ import { BlogSeo } from '@components/SEO'
 import Tag from '@components/Tag'
 import siteMetadata from '@data/siteMetadata'
 import { MDXLayoutRenderer } from '@components/MDXComponents'
-import ConvertKit from '@components/ConvertKit'
 
 import LinkData from '@data/links.json'
-
-const config = {
-  formId: 2474731,
-  template: 'clare',
-  submitText: 'Sign up',
-  stack: false,
-  buttonBackground: '#20b2aa',
-}
 
 const postDateTemplate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
 
@@ -32,11 +23,11 @@ export default function PostLayout({ children, frontMatter }) {
       <BlogSeo url={`${siteMetadata.siteUrl}/articles/${frontMatter.slug}`} {...frontMatter} />
       <article>
         <div className="">
-          <header className="mt-24 mb-24 text-center">
+          <header className="mt-24 mb-24">
             <PageTitle>{title}</PageTitle>
           </header>
           <div className="mb-24" style={{ gridTemplateRows: 'auto 1fr' }}>
-            <div className="prose prose-md lg:prose-lg dark:prose-dark mx-auto">
+            <div className="prose prose-md lg:prose-lg dark:prose-dark mr-auto">
               <MDXLayoutRenderer mdxSource={children} frontMatter={frontMatter} />
               <footer className="mt-24">
                 {tags.indexOf('To Mabel, To Ida') === -1 && (
@@ -81,7 +72,6 @@ export default function PostLayout({ children, frontMatter }) {
                 </CustomLink>
               </footer>
             </div>
-            {/* <ConvertKit /> */}
           </div>
         </div>
       </article>
