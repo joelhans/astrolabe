@@ -1,17 +1,5 @@
 [
   {
-    "dest": "/articles/grammarly/",
-    "src": "/articles/copywriting-checklist",
-    "title": "A no-nonsense copywriting checklist for clarity and impact",
-    "text": "I'm a <strong>fan of Grammarly</strong>. If you're interested in a free alternative, be sure to check out <strong>Hemingway</strong>."
-  },
-  {
-    "dest": "/articles/copywriting-cliches-tech/",
-    "src": "/articles/copywriting-checklist",
-    "title": "A no-nonsense copywriting checklist for clarity and impact",
-    "text": "I even wrote an <strong>entire piece</strong> about tech clichés new and old."
-  },
-  {
     "dest": "/articles/stupidly-simple-tip-copy/",
     "src": "/articles/copywriting-cliches-tech",
     "title": "27 tech copywriting clichés I'm completely over",
@@ -24,22 +12,16 @@
     "text": "Better. We can do better than better. It means something different to everyone. Be more specific about the <strong>value</strong> your product provides, or your customer won't know what you do well."
   },
   {
-    "dest": "/articles/get-started-athens/",
-    "src": "/articles/creative-burnout",
-    "title": "How I deal with creative burnout",
-    "text": "A complete tell-all will have to wait, but here's a <strong>hint</strong>."
+    "dest": "/articles/grammarly/",
+    "src": "/articles/copywriting-checklist",
+    "title": "A no-nonsense copywriting checklist for clarity and impact",
+    "text": "I'm a <strong>fan of Grammarly</strong>. If you're interested in a free alternative, be sure to check out <strong>Hemingway</strong>."
   },
   {
-    "dest": "/articles/understand-your-value",
-    "src": "/articles/creative-burnout",
-    "title": "How I deal with creative burnout",
-    "text": "When I work with a client, they get the full force of my creativity in the form of a service or project, priced\naccording to the <strong>value it'll bring</strong> their business. It's never more complicated than\nthat. I'm not an employee, I'm not their part-time CMO. It's a creative version of\n<strong>timeboxing</strong>. I can make micro-adjustments to make sure that there's always a\nbalance between the creativity I give away and what I keep for myself."
-  },
-  {
-    "dest": "/articles/copywriting-checklist/",
-    "src": "/articles/hand-clarity",
-    "title": "Remembering clarity by breaking my hand",
-    "text": "Ask yourself this question if a piece of writing, no matter the purpose, starts to drift or lose steam. If the answer is different than what you're currently writing, start over and head in the <strong>new, efficient direction</strong>."
+    "dest": "/articles/copywriting-cliches-tech/",
+    "src": "/articles/copywriting-checklist",
+    "title": "A no-nonsense copywriting checklist for clarity and impact",
+    "text": "I even wrote an <strong>entire piece</strong> about tech clichés new and old."
   },
   {
     "dest": "/articles/taglines-slogans",
@@ -60,21 +42,39 @@
     "text": "Copying is taking, wholesale, something you wish you had done. It's exactly why we have\n<strong>clichés</strong> Stealing is understanding the underlying structure, the seemingly unseen\nmagic that makes good copy happen, and applying it to your work."
   },
   {
-    "dest": "/articles/understand-your-value/",
-    "src": "/articles/taglines-slogans",
-    "title": "Taglines vs. slogans: What's the difference?",
-    "text": "A good tagline is more than a witty phrase, although that's important, too. It also needs to identify core company values, key differentiators, and <strong>value propositions</strong>—everything that makes your brand worthy of someone's time or money. The best taglines not only establish the brand's benefits but also attract the right type of customer."
+    "dest": "/articles/copywriting-checklist/",
+    "src": "/articles/hand-clarity",
+    "title": "Remembering clarity by breaking my hand",
+    "text": "Ask yourself this question if a piece of writing, no matter the purpose, starts to drift or lose steam. If the answer is different than what you're currently writing, start over and head in the <strong>new, efficient direction</strong>."
+  },
+  {
+    "dest": "/articles/get-started-athens/",
+    "src": "/articles/creative-burnout",
+    "title": "How I deal with creative burnout",
+    "text": "A complete tell-all will have to wait, but here's a <strong>hint</strong>."
+  },
+  {
+    "dest": "/articles/understand-your-value",
+    "src": "/articles/creative-burnout",
+    "title": "How I deal with creative burnout",
+    "text": "When I work with a client, they get the full force of my creativity in the form of a service or project, priced\naccording to the <strong>value it'll bring</strong> their business. It's never more complicated than\nthat. I'm not an employee, I'm not their part-time CMO. It's a creative version of\n<strong>timeboxing</strong>. I can make micro-adjustments to make sure that there's always a\nbalance between the creativity I give away and what I keep for myself."
   },
   {
     "dest": "/articles/how-to-start-writing",
     "src": "/articles/learn-logging",
     "title": "Learn-logging > note-taking",
-    "text": "I'm big on journals. The <strong>morning pages exercise</strong> has undoubtedly saved my writing on\nmultiple occasions. When I'm having trouble working my way through an incomprehensibly large problem, I write about it\nuntil I have what I've dubbed, somewhat uncreatively, a big thought. I've taken extensive notes on books and\narticles, outlined novels, and rambled through thousands of words on my daily happenings, from breaking bones to having\nchildren to mountain bike rides."
+    "text": "I'm big on journals. The <strong>morning pages exercise</strong> has undoubtedly saved my writing on\nmultiple occasions. When I'm having trouble working through an incomprehensibly large problem, I write about it until I\nhave what I've dubbed, somewhat uncreatively, a big thought. I've taken extensive notes on books and articles,\noutlined novels, and rambled through thousands of words on my daily happenings, from breaking bones to having children\nto mountain bike rides."
   },
   {
     "dest": "/articles/get-started-athens",
     "src": "/articles/learn-logging",
     "title": "Learn-logging > note-taking",
-    "text": "I've journaled on paper, then in Obsidian, then in Notion, then in <strong>Athens</strong>, and back to\nObsidian again. But we're not talking about technology here."
+    "text": "I've journaled on paper, then in Obsidian, then in Notion, then in <strong>Athens</strong>, and back to\nObsidian again. But we're not talking about technology here. We're talking about the value of note-taking and why I've\nfound learn-logging to be far more effective."
+  },
+  {
+    "dest": "/articles/understand-your-value/",
+    "src": "/articles/taglines-slogans",
+    "title": "Taglines vs. slogans: What's the difference?",
+    "text": "A good tagline is more than a witty phrase, although that's important, too. It also needs to identify core company values, key differentiators, and <strong>value propositions</strong>—everything that makes your brand worthy of someone's time or money. The best taglines not only establish the brand's benefits but also attract the right type of customer."
   }
 ]
