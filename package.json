@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "next-remote-watch ./data",
+    "start": "next-remote-watch ./content",
     "dev": "next dev",
-    "build": "node scripts/generate-links.js && next build",
+    "build": "node scripts/generate-links.mjs && next build",
     "serve": "next start",
     "analyze": "cross-env ANALYZE=true next build",
     "lint": "next lint --fix --dir pages --dir src/components --dir lib --dir layouts --dir scripts",
@@ -15,15 +15,13 @@
     "@tailwindcss/forms": "^0.2.1",
     "@tailwindcss/typography": "^0.4.1",
     "autoprefixer": "^10.2.5",
-    "convertkit-react": "^1.5.5",
     "esbuild": "^0.12.15",
     "gray-matter": "^4.0.2",
     "image-size": "1.0.0",
-    "mdx-bundler": "^6.0.1",
+    "mdx-bundler": "^8.0.0",
     "next": "11.1.0",
     "next-seo": "^4.26.0",
     "next-themes": "^0.0.14",
-    "next-transpile-modules": "^8.0.0",
     "postcss": "^8.3.5",
     "preact": "^10.5.13",
     "prism-react-renderer": "^1.2.0",
@@ -68,7 +66,7 @@
   },
   "lint-staged": {
     "*.+(md|mdx)": [
-      "node scripts/updateFrontmatter.js"
+      "node scripts/updateFrontmatter.mjs"
     ],
     "*.+(js|jsx|ts|tsx)": [
       "eslint --fix"

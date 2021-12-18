@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  font-size: 115%;
+}
+
 /* .prose {
   max-width: 100%;
 } */
@@ -46,10 +50,4 @@ html {
 
 .katex-html {
   @apply hidden;
-}
-
-/* ConvertKit */
-
-.formkit-form.clare {
-  max-width: 100% !important;
 }

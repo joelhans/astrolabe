@@ -1,23 +1,9 @@
-// const MDXComponents = {
-//   Aside,
-//   Checkbox,
-//   Checklist,
-//   ChecklistProvider,
-//   Image,
-//   Sidenote,
-//   Video,
-//   SignUp,
-//   a: CustomLink,
-//   pre: CodeBlock,
-// }
-
-// export default MDXComponents
-
 import { useMemo } from 'react'
 import { getMDXComponent } from 'mdx-bundler/client'
 import Image from 'next/image'
 import CustomLink from './Link'
 import CodeBlock from '@components/mdx/CodeBlock'
+import Blockquote from '@components/mdx/Blockquote'
 import Aside from '@components/mdx/Aside'
 import ChecklistProvider from '@components/mdx/ChecklistProvider'
 import Checklist from '@components/mdx/Checklist'
@@ -25,7 +11,6 @@ import Checkbox from '@components/mdx/Checkbox'
 import FontLoader from '@components/mdx/FontLoader'
 import Sidenote from '@components/mdx/Sidenote'
 import Video from '@components/mdx/Video'
-import SignUp from '@components/mdx/SignUp'
 import Statement from '@components/mdx/Statement'
 import StoryQuote from '@components/mdx/StoryQuote'
 import { Tags, Tag } from '@components/mdx/Tags'
@@ -34,6 +19,7 @@ export const MDXComponents = {
   Image,
   a: CustomLink,
   pre: CodeBlock,
+  blockquote: Blockquote,
   Aside,
   Checkbox,
   Checklist,
@@ -41,7 +27,6 @@ export const MDXComponents = {
   FontLoader,
   Sidenote,
   Video,
-  SignUp,
   Statement,
   StoryQuote,
   Tags,

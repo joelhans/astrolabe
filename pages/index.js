@@ -72,6 +72,11 @@ export default function Home({ posts }) {
             )
           })}
         </ul>
+        <p className="text-xl font-medium">
+          <CustomLink className="hover:text-sea transition-all" href="/articles">
+            Read some other articles &rarr;
+          </CustomLink>
+        </p>
       </div>
     </>
   )

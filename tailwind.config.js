@@ -11,16 +11,13 @@ module.exports = {
       './layouts/**/*.js',
       './lib/**/*.js',
     ],
-    // options: {
-    //   safelist: ['type'], // [type='checkbox']
-    // },
   },
   darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', ...defaultTheme.fontFamily.sans],
-        display: ['Inter', ...defaultTheme.fontFamily.sans],
+        sans: ['Alegreya Sans', ...defaultTheme.fontFamily.sans],
+        display: ['Alegreya Sans', ...defaultTheme.fontFamily.sans],
         serif: ['Alegreya', ...defaultTheme.fontFamily.serif],
         mono: ['Inconsolata', ...defaultTheme.fontFamily.mono],
       },
@@ -97,13 +94,6 @@ module.exports = {
             'blockquote p:last-of-type::after': null,
           },
         },
-        // xl: {
-        //   css: {
-        //     h2: {
-        //       marginTop: '1.2em',
-        //     },
-        //   },
-        // },
         dark: {
           css: {
             color: theme('colors.gray.300'),

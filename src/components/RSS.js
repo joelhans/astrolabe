@@ -5,7 +5,7 @@ const RSS = () => {
   return (
     <div className="hidden sm:block ml-2">
       <Link href="/index.xml">
-        <IoLogoRss className="w-6 h-6" />
+        <IoLogoRss className="w-4 h-4" />
       </Link>
     </div>
   )
