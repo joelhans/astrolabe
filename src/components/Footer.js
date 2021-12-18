@@ -23,11 +23,8 @@ export default function Footer() {
         </div>
         <div className="w-1/4 mb-8 text-sm text-gray-500 dark:text-gray-200">
           <h3 className="font-bold mb-2">Links</h3>
-          <Link
-            className="block font-medium mb-1 hover:text-steel"
-            href="https://www.linkedin.com/in/joel-hans/"
-          >
-            LinkedIn
+          <Link className="block font-medium mb-1 hover:text-steel" href="mailto:j@joelhans.com">
+            Email
           </Link>
           <Link
             className="block font-medium mb-1 hover:text-steel"
@@ -35,11 +32,20 @@ export default function Footer() {
           >
             Twitter
           </Link>
+          <Link
+            className="block font-medium mb-1 hover:text-steel"
+            href="https://github.com/joelhans"
+          >
+            GitHub
+          </Link>
+          <Link
+            className="block font-medium mb-1 hover:text-steel"
+            href="https://www.linkedin.com/in/joel-hans/"
+          >
+            LinkedIn
+          </Link>
           <Link className="block font-medium mb-1 hover:text-steel" href="/index.xml">
             RSS
-          </Link>
-          <Link className="block font-medium mb-1 hover:text-steel" href="mailto:j@joelhans.com">
-            Email
           </Link>
         </div>
       </div>

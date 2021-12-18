@@ -3,6 +3,7 @@ import { getMDXComponent } from 'mdx-bundler/client'
 import Image from 'next/image'
 import CustomLink from './Link'
 import CodeBlock from '@components/mdx/CodeBlock'
+import Blockquote from '@components/mdx/Blockquote'
 import Aside from '@components/mdx/Aside'
 import ChecklistProvider from '@components/mdx/ChecklistProvider'
 import Checklist from '@components/mdx/Checklist'
@@ -18,6 +19,7 @@ export const MDXComponents = {
   Image,
   a: CustomLink,
   pre: CodeBlock,
+  blockquote: Blockquote,
   Aside,
   Checkbox,
   Checklist,
