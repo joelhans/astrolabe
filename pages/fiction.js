@@ -22,7 +22,7 @@ export default function Fiction({ content }) {
       />
       <header className="mt-24">
         <PageTitle>{frontMatter.title}</PageTitle>
-        <div className="prose prose-md lg:prose-lg dark:prose-dark">
+        <div className="prose prose-md lg:prose-lg dark:prose-dark mt-6">
           <p className="text-xl lg:text-2xl text-steel">
             {frontMatter.summary} {frontMatter.summary_cont}
           </p>

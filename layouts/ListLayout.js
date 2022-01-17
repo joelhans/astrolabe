@@ -20,7 +20,7 @@ export default function ListLayout({ posts, title, summary }) {
     <>
       <div className="mt-24">
         <PageTitle>{title}</PageTitle>
-        <div className="prose prose-md lg:prose-lg dark:prose-dark">
+        <div className="prose prose-md lg:prose-lg dark:prose-dark mt-6">
           <p className="text-xl lg:text-2xl text-steel">{summary}</p>
           <div className="relative max-w-lg">
             <input

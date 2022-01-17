@@ -1,3 +1,4 @@
+import Link from 'next/Link'
 import { getSingleContent } from '@/lib/mdx'
 import { PageSeo } from '@components/SEO'
 import { BASE_CONTENT_PATH } from '@config/constants'
@@ -22,9 +23,10 @@ export default function Fiction({ content }) {
       />
       <header className="mt-24">
         <PageTitle>{frontMatter.title}</PageTitle>
-        <div className="prose prose-md lg:prose-lg dark:prose-dark">
-          <p className="text-xl md:text-2xl lg:text-3xl text-steel">
-            {frontMatter.summary} {frontMatter.summary_cont}
+        <div className="prose prose-md lg:prose-lg dark:prose-dark mt-6">
+          <p className="text-xl lg:text-2xl text-steel">
+            In love with the idea of having a <Link href="https://nownownow.com/">/now</Link> page,
+            so here's my version.
           </p>
         </div>
       </header>
