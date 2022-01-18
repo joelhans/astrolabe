@@ -1,4 +1,4 @@
-import Link from 'next/Link'
+import CustomLink from '@components/Link'
 import { getSingleContent } from '@/lib/mdx'
 import { PageSeo } from '@components/SEO'
 import { BASE_CONTENT_PATH } from '@config/constants'
@@ -25,8 +25,8 @@ export default function Fiction({ content }) {
         <PageTitle>{frontMatter.title}</PageTitle>
         <div className="prose prose-md lg:prose-lg dark:prose-dark mt-6">
           <p className="text-xl lg:text-2xl text-steel">
-            In love with the idea of having a <Link href="https://nownownow.com/">/now</Link> page,
-            so here's my version.
+            In love with the idea of having a{' '}
+            <CustomLink to="https://nownownow.com/">/now</CustomLink> page, so here's my version.
           </p>
         </div>
       </header>

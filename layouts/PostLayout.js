@@ -38,7 +38,7 @@ export default function PostLayout({ children, frontMatter }) {
           </div>
           {images[0] && (
             <div className="mt-8">
-              <Image className="rounded-sm" src={images[0]} width={1200} height={630} />
+              <Image className="rounded-sm" src={images[0]} width={1200} height={630} alt={title} />
             </div>
           )}
         </header>
