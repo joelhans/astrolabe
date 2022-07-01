@@ -22,9 +22,7 @@ export default function Home({ posts }) {
 
       <div id="hero" className="pt-24 pb-16">
         <div className="prose prose-md lg:prose-lg dark:prose-dark">
-          <p className="text-xl lg:text-2xl text-steel">
-            I'm a fiction writer and copywriter living in Tucson, Arizona.
-          </p>
+          <p className="text-xl lg:text-2xl text-steel">I'm a writer in Tucson, Arizona.</p>
           <p>
             Read some of my <CustomLink href="/fiction">fiction</CustomLink>, read an{' '}
             <CustomLink href="/articles" className="hover:text-sea">

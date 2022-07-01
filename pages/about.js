@@ -24,18 +24,19 @@ export default function About({ content }) {
       <header className="flex flex-row flex-wrap md:space-x-6 md:flex-nowrap mt-24">
         <PageTitle>Who am I?</PageTitle>
       </header>
-      <div className="flex flex-row flex-nowrap items-start mt-6">
+      <div className="flex flex-row flex-wrap items-start mt-6">
         <div className="prose prose-md lg:prose-lg dark:prose-dark mb-24">
           <MDXLayoutRenderer mdxSource={mdxSource} frontMatter={frontMatter} />
-        </div>
-        <div className="w-96 flex-shrink-0 ml-8">
-          <Image
-            width={450}
-            height={600}
-            src="/static/images/joel-large.jpg"
-            className="rounded"
-            alt="Joel Hans"
-          />
+          <div className="mt-8">
+            <Image
+              width={2000}
+              height={1500}
+              src="/static/images/me-girls.jpeg"
+              className="rounded !mt-8"
+              alt="Joel Hans and his daughters"
+            />
+            <p className="!-mt-2">Me and my daughters. Mt. Lemmon, Arizona. Nov 8, 2021.</p>
+          </div>
         </div>
       </div>
     </>
