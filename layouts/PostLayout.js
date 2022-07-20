@@ -36,69 +36,63 @@ export default function PostLayout({ children, frontMatter }) {
               {new Date(publishedOn).toLocaleString(siteMetadata.locale, postDateTemplate)}
             </time>
           </div>
-          {images[0] && (
+          {/* {images[0] && (
             <div className="mt-8">
               <Image className="rounded-sm" src={images[0]} width={1200} height={630} alt={title} />
             </div>
-          )}
+          )} */}
         </header>
         <div className="mb-24">
           <div className="prose prose-md lg:prose-lg dark:prose-dark mr-auto">
             <MDXLayoutRenderer mdxSource={children} frontMatter={frontMatter} />
             <footer className="mt-16">
-              {tags.indexOf('To Mabel, To Ida') === -1 && (
-                <>
-                  <div className="pt-8 mb-8 border-t border-b border-gray-200">
-                    <p className="text-xl lg:text-2xl font-bold !mt-0 !mb-2">
-                      Links to this article
+              <div className="pt-8 mb-8 border-t border-b border-gray-200">
+                <p className="text-xl lg:text-2xl font-bold !mt-0 !mb-2">Links to this article</p>
+                <div className="grid grid-flow-col grid-cols-2 gap-4 mb-8">
+                  {LinkRefs.length ? (
+                    LinkRefs.map((link) => {
+                      const { src, title, text } = link
+                      return (
+                        <CustomLink
+                          key={src}
+                          href={src}
+                          className="group p-4 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-500 rounded-sm"
+                        >
+                          <h3 className="block !text-lg font-medium !mt-0 mb-2 group-hover:text-sea transition-all">
+                            {title}
+                          </h3>
+                          <p
+                            className="block text-sm text-gray-500 dark:text-gray-300 font-normal"
+                            dangerouslySetInnerHTML={{ __html: text }}
+                          />
+                        </CustomLink>
+                      )
+                    })
+                  ) : (
+                    <p className="text-sm text-gray-500 !mt-1 !m-0">
+                      No links to this article found.
                     </p>
-                    <div className="grid grid-flow-col grid-cols-2 gap-4 mb-8">
-                      {LinkRefs.length ? (
-                        LinkRefs.map((link) => {
-                          const { src, title, text } = link
-                          return (
-                            <CustomLink
-                              key={src}
-                              href={src}
-                              className="group p-4 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-500 rounded-sm"
-                            >
-                              <h3 className="block !text-lg font-medium !mt-0 mb-2 group-hover:text-sea transition-all">
-                                {title}
-                              </h3>
-                              <p
-                                className="block text-sm text-gray-500 dark:text-gray-300 font-normal"
-                                dangerouslySetInnerHTML={{ __html: text }}
-                              />
-                            </CustomLink>
-                          )
-                        })
-                      ) : (
-                        <p className="text-sm text-gray-500 !mt-1 !m-0">
-                          No links to this article found.
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                  <div className="mb-8 pb-8 border-b border-gray-200">
-                    <p className="text-base font-bold text-gray-500 dark:text-gray-400 !mb-1">
-                      Last updated:{' '}
-                      <time dateTime={date}>
-                        {new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
-                      </time>
-                    </p>
-                    <div>
-                      {tags.map((tag) => (
-                        <Tag key={tag} text={tag} />
-                      ))}
-                    </div>
-                  </div>
-                </>
-              )}
+                  )}
+                </div>
+              </div>
+              <div className="mb-8 pb-8 border-b border-gray-200">
+                <p className="text-base font-bold text-gray-500 dark:text-gray-400 !mb-1">
+                  Last updated:{' '}
+                  <time dateTime={date}>
+                    {new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
+                  </time>
+                </p>
+                <div>
+                  {tags.map((tag) => (
+                    <Tag key={tag} text={tag} />
+                  ))}
+                </div>
+              </div>
               <CustomLink
                 href="/articles"
                 className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
               >
-                &larr; See my other articles
+                &larr; See other work
               </CustomLink>
             </footer>
           </div>
