@@ -28,7 +28,6 @@ function drawChart(svgRef, posts) {
 
   const svg = d3
     .select(svgRef.current)
-    // .append("svg")
     .attr('width', width + margin.left + margin.right)
     .attr('height', height + margin.top + margin.bottom)
     .append('g')
@@ -36,30 +35,50 @@ function drawChart(svgRef, posts) {
 
   const link = svg.selectAll('line').data(GraphData.links).join('line').style('stroke', '#aaa')
 
-  const node = svg
-    .selectAll('circle')
-    .data(GraphData.nodes)
-    .join('circle')
-    .attr('r', 20)
-    .style('fill', '#69b3a2')
+  // const node = svg
+  //   .selectAll('circle')
+  //   .data(GraphData.nodes)
+  //   .join('circle')
+  //   .attr('r', 10)
+  //   .style('fill', '#69b3a2')
 
-  // Let's list the force we wanna apply on the network
+  const node = svg
+    .append('g')
+    .attr('class', 'nodes')
+    .selectAll('g')
+    .data(GraphData.nodes)
+    .enter()
+    .append('g')
+
+  const circles = node.append('circle').attr('r', 20).attr('fill', '#69b3a2')
+
+  const labels = node
+    .append('text')
+    .text(function (d) {
+      return d.id
+    })
+    .attr('x', 6)
+    .attr('y', 3)
+
+  node.append('title').text(function (d) {
+    return d.id
+  })
+
   const simulation = d3
-    .forceSimulation(GraphData.nodes) // Force algorithm is applied to data.nodes
+    .forceSimulation(GraphData.nodes)
     .force(
       'link',
       d3
-        .forceLink() // This force provides links between nodes
+        .forceLink()
         .id(function (d) {
           return d.id
-        }) // This provide  the id of a node
-        .links(GraphData.links) // and this the list of links
+        })
+        .links(GraphData.links)
     )
-    .force('charge', d3.forceManyBody().strength(-400)) // This adds repulsion between nodes. Play with the -400 for the repulsion strength
-    .force('center', d3.forceCenter(width / 2, height / 2)) // This force attracts nodes to the center of the svg area
-    .on('end', ticked)
+    .force('charge', d3.forceManyBody().strength(-200))
+    .force('center', d3.forceCenter(width / 2, height / 2))
+    .on('tick', ticked)
 
-  // This function is run at each iteration of the force algorithm, updating the nodes position.
   function ticked() {
     link
       .attr('x1', function (d) {
@@ -75,13 +94,9 @@ function drawChart(svgRef, posts) {
         return d.target.y
       })
 
-    node
-      .attr('cx', function (d) {
-        return d.x + 6
-      })
-      .attr('cy', function (d) {
-        return d.y - 6
-      })
+    node.attr('transform', function (d) {
+      return 'translate(' + d.x + ',' + d.y + ')'
+    })
   }
 
   // svg
