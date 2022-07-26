@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as d3 from 'd3'
 
 function drawChart(svgRef, posts) {
-  var Links = posts
+  const Links = posts
     .filter((post) => {
       if (post.linkedTo[0]) {
         return true
@@ -20,8 +20,6 @@ function drawChart(svgRef, posts) {
     links: Links,
   }
 
-  console.log(GraphData)
-
   const margin = { top: 50, right: 50, bottom: 50, left: 50 },
     width = 800 - margin.left - margin.right,
     height = 600 - margin.top - margin.bottom
@@ -34,13 +32,6 @@ function drawChart(svgRef, posts) {
     .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
 
   const link = svg.selectAll('line').data(GraphData.links).join('line').style('stroke', '#aaa')
-
-  // const node = svg
-  //   .selectAll('circle')
-  //   .data(GraphData.nodes)
-  //   .join('circle')
-  //   .attr('r', 10)
-  //   .style('fill', '#69b3a2')
 
   const node = svg
     .append('g')
