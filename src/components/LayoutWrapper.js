@@ -10,13 +10,13 @@ const LayoutWrapper = ({ children }) => {
     <>
       <div className="flex flex-col h-screen">
         <div className="flex-1 w-full mx-auto">
-          <header className="z-40 lg:z-50 lg:mx-auto">
-            <div className="max-w-screen-lg flex items-center align-center justify-between pt-6 px-6 mx-auto">
+          <header className="z-40 lg:z-50 fixed w-full bg-black bg-opacity-50">
+            <div className="max-w-screen-lg flex items-center align-center justify-between mx-auto p-6">
               <div className="flex items-baseline">
                 <div className="mr-6 lg:mr-12">
-                  <Link href="/" aria-label="Joel Hans">
+                  <Link href="/" aria-label="Astersomething">
                     <div className="text-2xl font-sans font-medium leading-none text-sea hover:text-steel">
-                      Aster
+                      Astersomething
                     </div>
                   </Link>
                 </div>
@@ -26,7 +26,7 @@ const LayoutWrapper = ({ children }) => {
                       <Link
                         key={link.title}
                         href={link.href}
-                        className="text-gray-900 dark:text-gray-200 text-base leading-none font-medium mr-4 md:mr-8 hover:text-sea dark:hover:text-sea transition-all"
+                        className="text-gray-200 text-base leading-none font-medium mr-4 md:mr-8 hover:text-sea dark:hover:text-sea transition-all"
                       >
                         {link.title}
                       </Link>
@@ -35,13 +35,14 @@ const LayoutWrapper = ({ children }) => {
                 </div>
               </div>
               <div className="flex justify-end items-center">
-                <ThemeSwitch />
+                {/* <ThemeSwitch /> */}
                 <RSS />
                 <MobileNav />
               </div>
             </div>
           </header>
-          <main className="max-w-screen-lg mx-auto mb-auto px-6">{children}</main>
+          {/* <main className="max-w-screen-lg mx-auto mb-auto px-6">{children}</main> */}
+          <main>{children}</main>
         </div>
         <Footer />
       </div>

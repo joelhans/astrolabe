@@ -21,14 +21,16 @@ export default function About({ content }) {
         description={frontMatter.summary}
         url={`${siteMetadata.siteUrl}/${frontMatter.slug}`}
       />
-      <header className="flex flex-row flex-wrap md:space-x-6 md:flex-nowrap mt-24">
-        <PageTitle>About</PageTitle>
-      </header>
-      <div className="flex flex-row flex-wrap items-start mt-6">
-        <div className="prose prose-md lg:prose-lg dark:prose-dark mb-24">
-          <MDXLayoutRenderer mdxSource={mdxSource} frontMatter={frontMatter} />
+      <main className="max-w-screen-lg mx-auto mb-auto px-6">
+        <header className="flex flex-row flex-wrap md:space-x-6 md:flex-nowrap mt-24">
+          <PageTitle>About</PageTitle>
+        </header>
+        <div className="flex flex-row flex-wrap items-start mt-6">
+          <div className="prose prose-md lg:prose-lg dark:prose-dark mb-24">
+            <MDXLayoutRenderer mdxSource={mdxSource} frontMatter={frontMatter} />
+          </div>
         </div>
-      </div>
+      </main>
     </>
   )
 }

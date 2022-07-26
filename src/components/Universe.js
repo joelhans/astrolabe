@@ -2,6 +2,15 @@ import * as React from 'react'
 import * as d3 from 'd3'
 
 function drawChart(svgRef, posts) {
+  const Callout = (d) => {
+    return (
+      <>
+        <p>{d.title}</p>
+        <p>{d.author}</p>
+      </>
+    )
+  }
+
   const Links = posts
     .filter((post) => {
       if (post.linkedTo[0]) {
@@ -20,16 +29,13 @@ function drawChart(svgRef, posts) {
     links: Links,
   }
 
-  const margin = { top: 50, right: 50, bottom: 50, left: 50 },
-    width = 800 - margin.left - margin.right,
-    height = 600 - margin.top - margin.bottom
-
   const svg = d3
     .select(svgRef.current)
-    .attr('width', width + margin.left + margin.right)
-    .attr('height', height + margin.top + margin.bottom)
+    .attr('width', window.innerWidth)
+    .attr('height', window.innerHeight)
     .append('g')
-    .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+
+  const tooltip = d3.select('#chart').append('div').attr('class', 'tooltip')
 
   const link = svg.selectAll('line').data(GraphData.links).join('line').style('stroke', '#aaa')
 
@@ -40,20 +46,30 @@ function drawChart(svgRef, posts) {
     .data(GraphData.nodes)
     .enter()
     .append('g')
-
-  const circles = node.append('circle').attr('r', 20).attr('fill', '#69b3a2')
-
-  const labels = node
-    .append('text')
-    .text(function (d) {
+    .append('a')
+    .attr('href', function (d) {
       return d.id
     })
-    .attr('x', 6)
-    .attr('y', 3)
+    .on('mouseover', function (d) {
+      d3.select(this).selectAll('circle').attr('fill', 'white')
+      tooltip
+        .html(
+          `
+          <p className="tooltipTitle">${d.title}</p>
+          <p>${d.author}</p>
+        `
+        )
+        .style('visibility', 'visible')
+    })
+    .on('mousemove', function () {
+      tooltip.style('top', event.y - 10 + 'px').style('left', event.x + 20 + 'px')
+    })
+    .on('mouseout', function () {
+      d3.select(this).selectAll('circle').attr('fill', '#69b3a2')
+      tooltip.style('visibility', 'hidden')
+    })
 
-  node.append('title').text(function (d) {
-    return d.id
-  })
+  const circles = node.append('circle').attr('r', 10).attr('fill', '#69b3a2')
 
   const simulation = d3
     .forceSimulation(GraphData.nodes)
@@ -65,9 +81,10 @@ function drawChart(svgRef, posts) {
           return d.id
         })
         .links(GraphData.links)
+        .distance(60)
     )
     .force('charge', d3.forceManyBody().strength(-200))
-    .force('center', d3.forceCenter(width / 2, height / 2))
+    .force('center', d3.forceCenter(window.innerWidth / 2, window.innerHeight / 2))
     .on('tick', ticked)
 
   function ticked() {
@@ -89,23 +106,6 @@ function drawChart(svgRef, posts) {
       return 'translate(' + d.x + ',' + d.y + ')'
     })
   }
-
-  // svg
-  //   .attr("width", w)
-  //   .attr("height", h)
-  //   .style("margin-top", 50)
-  //   .style("margin-left", 50);
-
-  // svg
-  //   .selectAll("rect")
-  //   .data(data)
-  //   .enter()
-  //   .append("rect")
-  //   .attr("x", (d, i) => i * 40)
-  //   .attr("y", (d, i) => h - 10 * d)
-  //   .attr("width", 20)
-  //   .attr("height", (d, i) => d * 10)
-  //   .attr("fill", "steelblue");
 }
 
 const Universe = (posts) => {

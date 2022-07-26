@@ -2,17 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
+/* html {
   font-size: 115%;
-}
-
-/* .prose {
-  max-width: 100%;
 } */
-
-.prose p > img[src*='icon/assets/'] {
-  @apply inline-block m-0;
-}
 
 #nav {
   height: 100%;
@@ -24,30 +16,11 @@ html {
   }
 }
 
-[aria-active='true'] {
-  @apply text-erin font-semibold;
-}
-
-.remark-code-title {
-  @apply px-5 py-3 font-mono text-sm font-bold text-erin bg-gray-700 rounded-t;
-}
-
-.remark-code-title + pre {
-  @apply mt-0 rounded-t-none;
-}
-
-.task-list-item:before {
-  @apply hidden;
-}
-
-.toc-item[aria-level='3'] {
-  @apply pl-4;
-}
-
 html {
   scroll-behavior: smooth;
 }
 
-.katex-html {
-  @apply hidden;
+.tooltip {
+  position: absolute;
+  @apply absolute block text-xl text-gray-900 px-6 py-4 bg-white rounded-lg;
 }

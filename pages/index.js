@@ -1,6 +1,3 @@
-// import React, { useEffect } from 'react'
-// import * as d3 from 'd3'
-// import { Graph } from 'react-d3-graph'
 import { PageSeo } from '@components/SEO'
 import CustomLink from '@components/Link'
 import siteMetadata from '@data/siteMetadata'
@@ -8,7 +5,6 @@ import Tag from '@components/Tag'
 import { getFrontMatter } from '@/lib/mdx'
 import { WORK_CONTENT_PATH } from '@config/constants'
 import Universe from '@components/Universe'
-import LinkData from '@data/linkData.json'
 
 export async function getStaticProps() {
   const posts = await getFrontMatter(WORK_CONTENT_PATH, true)
@@ -23,10 +19,8 @@ export default function Home({ posts }) {
         description={siteMetadata.description}
         url={siteMetadata.siteUrl}
       />
-      <div className="block mt-24">
-        <Universe posts={posts} />
-      </div>
-      <div className="mt-24 mb-24">
+      <Universe posts={posts} />
+      {/* <div className="mt-24 mb-24">
         <h2 className="text-lg text-sea font-display font-bold uppercase mb-8">Recent work</h2>
         <ul>
           {posts.slice(0, 3).map((frontMatter) => {
@@ -61,7 +55,7 @@ export default function Home({ posts }) {
             Read some other work &rarr;
           </CustomLink>
         </p>
-      </div>
+      </div> */}
     </>
   )
 }
