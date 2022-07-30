@@ -1,15 +1,10 @@
 import * as React from 'react'
 import * as d3 from 'd3'
+import Router from 'next/router'
+import CustomLink from '@components/Link'
 
 function drawChart(svgRef, posts) {
-  const Callout = (d) => {
-    return (
-      <>
-        <p>{d.title}</p>
-        <p>{d.author}</p>
-      </>
-    )
-  }
+  // const router = useRouter()
 
   const Links = posts
     .filter((post) => {
@@ -45,7 +40,6 @@ function drawChart(svgRef, posts) {
     .selectAll('g')
     .data(GraphData.nodes)
     .enter()
-    .append('g')
     .append('a')
     .attr('href', function (d) {
       return d.id
@@ -55,18 +49,23 @@ function drawChart(svgRef, posts) {
       tooltip
         .html(
           `
-          <p className="tooltipTitle">${d.title}</p>
-          <p>${d.author}</p>
+          <p class="tooltipTitle">${d.title}</p>
+          <p class="tooltipAuthor">${d.author}</p>
         `
         )
         .style('visibility', 'visible')
     })
     .on('mousemove', function () {
-      tooltip.style('top', event.y - 10 + 'px').style('left', event.x + 20 + 'px')
+      tooltip.style('top', d3.event.y - 10 + 'px').style('left', d3.event.x + 20 + 'px')
     })
     .on('mouseout', function () {
       d3.select(this).selectAll('circle').attr('fill', '#69b3a2')
       tooltip.style('visibility', 'hidden')
+    })
+    .on('click', function (d) {
+      d3.event.preventDefault()
+      d3.event.stopPropagation()
+      Router.push(d.slug)
     })
 
   const circles = node.append('circle').attr('r', 10).attr('fill', '#69b3a2')
