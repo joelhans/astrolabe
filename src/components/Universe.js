@@ -1,11 +1,8 @@
 import * as React from 'react'
 import * as d3 from 'd3'
 import Router from 'next/router'
-import CustomLink from '@components/Link'
 
 function drawChart(svgRef, posts) {
-  // const router = useRouter()
-
   const Links = posts
     .filter((post) => {
       if (post.linkedTo[0]) {
@@ -28,6 +25,11 @@ function drawChart(svgRef, posts) {
     .select(svgRef.current)
     .attr('width', window.innerWidth)
     .attr('height', window.innerHeight)
+    .call(
+      d3.zoom().on('zoom', () => {
+        svg.attr('transform', d3.event.transform)
+      })
+    )
     .append('g')
 
   const tooltip = d3.select('#chart').append('div').attr('class', 'tooltip')
