@@ -25,14 +25,22 @@ function drawScatter(scatterRef, posts) {
   const tooltipScatter = d3.select('#scatter').append('div').attr('class', 'tooltipScatter')
 
   const highlight = function (d) {
-    const cluster = d.asterism
+    d3.selectAll('.star').transition().duration(200).attr('r', 3)
+
+    if (d.asterism) {
+      d3.selectAll('.' + d.asterism)
+        .transition()
+        .duration(200)
+        .style('fill', '#fff')
+        .attr('r', 10)
+    }
   }
 
   const doNotHighlight = function () {
-    d3.selectAll('circle').transition().duration(200).style('fill', 'white')
+    d3.selectAll('circle').transition().duration(200).style('fill', '#69b3a2').attr('r', 5)
   }
 
-  svg
+  const stars = svg
     .selectAll('scatterPoints')
     .data(posts)
     .enter()
@@ -49,13 +57,14 @@ function drawScatter(scatterRef, posts) {
     .attr('r', 5)
     .attr('fill', '#69b3a2')
     .on('mouseover', function (d) {
+      highlight(d)
       d3.select(this).attr('fill', 'white')
       tooltipScatter
         .html(
           `
           <p class="tooltipTitle">${d.title}</p>
           <p class="tooltipAuthor">${d.author}</p>
-          <p class="tooltipAsterism">Part of the ${d.asterism} asterism.</p>
+          <p class="tooltipAsterism">Part of the ${d.asterismFull} asterism.</p>
         `
         )
         .style('visibility', 'visible')
@@ -64,6 +73,7 @@ function drawScatter(scatterRef, posts) {
       tooltipScatter.style('top', d3.event.y - 10 + 'px').style('left', d3.event.x + 20 + 'px')
     })
     .on('mouseout', function () {
+      doNotHighlight()
       d3.select(this).attr('fill', '#69b3a2')
       tooltipScatter.style('visibility', 'hidden')
     })
@@ -72,6 +82,21 @@ function drawScatter(scatterRef, posts) {
       d3.event.stopPropagation()
       Router.push(d.slug)
     })
+
+  const lines = function (d) {
+    console.log(d)
+    d3.line().x(d.declination).y(d.asension)
+  }
+
+  svg
+    .selectAll('scatterLines')
+    .data(posts)
+    .enter()
+    .append('path')
+    .attr('d', (d) => 'M' + x(d['declination']) + ',' + y(d['ascension']))
+    .attr('stroke', '#66c2a5')
+    .style('stroke-width', 4)
+    .style('fill', 'none')
 }
 
 function drawChart(svgRef, posts) {
@@ -104,11 +129,7 @@ function drawChart(svgRef, posts) {
     )
     .append('g')
 
-  const tooltip = d3
-    .select('#chart')
-    .append('div')
-    .attr('class', 'tooltip')
-    .style('visibility', 'hidden')
+  const tooltip = d3.select('#chart').append('div').attr('class', 'tooltip')
 
   const link = svg.selectAll('line').data(GraphData.links).join('line').style('stroke', '#aaa')
 
