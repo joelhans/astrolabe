@@ -20,11 +20,14 @@ html {
   scroll-behavior: smooth;
 }
 
+#scatter svg,
 #chart svg {
-  cursor: drag;
+  cursor: grab;
+  position: relative;
 }
 
-.tooltip {
+.tooltip,
+.tooltipScatter {
   position: absolute;
   @apply absolute -left-32 block text-xl text-gray-900 px-6 py-4 bg-white rounded-lg;
 }
@@ -34,5 +37,9 @@ html {
 }
 
 .tooltipAuthor {
-  @apply font-mono text-lg;
+  @apply font-mono text-lg mb-2;
+}
+
+.tooltipAsterism {
+  @apply font-bold text-sm;
 }
