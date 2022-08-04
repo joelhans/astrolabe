@@ -48,7 +48,7 @@ html {
   mask-position: 25% 90%;
   mask-repeat: no-repeat;
   mask-size: 100%;
-  mask: url('/static/title.svg') left -150% / 3000px 1400px no-repeat, linear-gradient(#fff, #fff);
+  mask: url('/static/title.svg') left bottom / 3000px 1400px no-repeat, linear-gradient(#fff, #fff);
   -webkit-mask-composite: destination-out;
   mask-composite: exclude;
 }

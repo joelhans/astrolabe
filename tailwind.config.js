@@ -19,6 +19,7 @@ module.exports = {
     },
     extend: {
       fontSize: {
+        '8x': '8rem',
         title: '10rem',
       },
       colors: {
@@ -33,8 +34,8 @@ module.exports = {
       typography: (theme) => ({
         DEFAULT: {
           css: {
-            fontFamily: `${theme('fontFamily.sans')}`,
-            color: theme('colors.gray.900'),
+            fontFamily: `${theme('fontFamily.serif')}`,
+            color: theme('colors.gray.100'),
             a: {
               color: theme('colors.steel'),
               textDecoration: 'none',
@@ -92,60 +93,6 @@ module.exports = {
             },
             'blockquote p:first-of-type::before': null,
             'blockquote p:last-of-type::after': null,
-          },
-        },
-        dark: {
-          css: {
-            color: theme('colors.gray.300'),
-            a: {
-              color: theme('colors.sea'),
-              textDecoration: 'none',
-              '&:hover': {
-                color: theme('colors.steel'),
-              },
-              code: { color: theme('colors.blue.400') },
-            },
-            h1: {
-              fontWeight: '700',
-              letterSpacing: theme('letterSpacing.tight'),
-              color: theme('colors.gray.300'),
-            },
-            h2: {
-              fontWeight: '700',
-              letterSpacing: theme('letterSpacing.tight'),
-              color: theme('colors.gray.300'),
-            },
-            h3: {
-              fontWeight: '600',
-              color: theme('colors.gray.300'),
-            },
-            'h4,h5,h6': {
-              color: theme('colors.gray.300'),
-            },
-            code: {
-              backgroundColor: theme('colors.gray.800'),
-            },
-            hr: { borderColor: theme('colors.gray.700') },
-            'ol li:before': {
-              fontWeight: '600',
-              color: theme('colors.gray.400'),
-            },
-            'ul li:before': {
-              backgroundColor: theme('colors.gray.400'),
-            },
-            strong: { color: theme('colors.gray.100') },
-            thead: {
-              color: theme('colors.gray.100'),
-            },
-            tbody: {
-              tr: {
-                borderBottomColor: theme('colors.gray.700'),
-              },
-            },
-            blockquote: {
-              color: theme('colors.gray.100'),
-              borderLeftColor: theme('colors.gray.700'),
-            },
           },
         },
       }),

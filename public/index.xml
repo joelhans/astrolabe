@@ -1,19 +1,19 @@
 
   <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-      <title>Astersomething</title>
-      <link>https://joelhans.com/articles</link>
+      <title>Astrolabe</title>
+      <link>https://astrolabe.ooo/articles</link>
       <description>This is a literary magazine.</description>
       <language>en-us</language>
       <managingEditor>j@joelhans.com (Joel Hans)</managingEditor>
       <webMaster>j@joelhans.com (Joel Hans)</webMaster>
       <lastBuildDate>Sun, 17 Jul 2022 00:00:00 GMT</lastBuildDate>
-      <atom:link href="https://joelhans.com/index.xml" rel="self" type="application/rss+xml"/>
+      <atom:link href="https://astrolabe.ooo/index.xml" rel="self" type="application/rss+xml"/>
       
   <item>
-    <guid>https://joelhans.com/articles/example-01</guid>
+    <guid>https://astrolabe.ooo/articles/example-01</guid>
     <title>Example 01</title>
-    <link>https://joelhans.com/articles/example-01</link>
+    <link>https://astrolabe.ooo/articles/example-01</link>
     <description>undefined</description>
     <pubDate>Sun, 17 Jul 2022 00:00:00 GMT</pubDate>
     <author>j@joelhans.com (Joel Hans)</author>
@@ -21,9 +21,9 @@
   </item>
 
   <item>
-    <guid>https://joelhans.com/articles/example-02</guid>
+    <guid>https://astrolabe.ooo/articles/example-02</guid>
     <title>Example 02</title>
-    <link>https://joelhans.com/articles/example-02</link>
+    <link>https://astrolabe.ooo/articles/example-02</link>
     <description>undefined</description>
     <pubDate>Sat, 16 Jul 2022 00:00:00 GMT</pubDate>
     <author>j@joelhans.com (Joel Hans)</author>
@@ -31,9 +31,9 @@
   </item>
 
   <item>
-    <guid>https://joelhans.com/articles/example-03</guid>
+    <guid>https://astrolabe.ooo/articles/example-03</guid>
     <title>Example 03</title>
-    <link>https://joelhans.com/articles/example-03</link>
+    <link>https://astrolabe.ooo/articles/example-03</link>
     <description>undefined</description>
     <pubDate>Sat, 16 Jul 2022 00:00:00 GMT</pubDate>
     <author>j@joelhans.com (Joel Hans)</author>
@@ -41,9 +41,9 @@
   </item>
 
   <item>
-    <guid>https://joelhans.com/articles/example-04</guid>
+    <guid>https://astrolabe.ooo/articles/example-04</guid>
     <title>Example 04</title>
-    <link>https://joelhans.com/articles/example-04</link>
+    <link>https://astrolabe.ooo/articles/example-04</link>
     <description>undefined</description>
     <pubDate>Thu, 14 Jul 2022 00:00:00 GMT</pubDate>
     <author>j@joelhans.com (Joel Hans)</author>
@@ -51,9 +51,9 @@
   </item>
 
   <item>
-    <guid>https://joelhans.com/articles/example-05</guid>
+    <guid>https://astrolabe.ooo/articles/example-05</guid>
     <title>Example 05</title>
-    <link>https://joelhans.com/articles/example-05</link>
+    <link>https://astrolabe.ooo/articles/example-05</link>
     <description>undefined</description>
     <pubDate>Wed, 13 Jul 2022 00:00:00 GMT</pubDate>
     <author>j@joelhans.com (Joel Hans)</author>
@@ -61,9 +61,9 @@
   </item>
 
   <item>
-    <guid>https://joelhans.com/articles/example-06</guid>
+    <guid>https://astrolabe.ooo/articles/example-06</guid>
     <title>Example 06</title>
-    <link>https://joelhans.com/articles/example-06</link>
+    <link>https://astrolabe.ooo/articles/example-06</link>
     <description>undefined</description>
     <pubDate>Tue, 12 Jul 2022 00:00:00 GMT</pubDate>
     <author>j@joelhans.com (Joel Hans)</author>
@@ -71,9 +71,9 @@
   </item>
 
   <item>
-    <guid>https://joelhans.com/articles/example-07</guid>
+    <guid>https://astrolabe.ooo/articles/example-07</guid>
     <title>Example 07</title>
-    <link>https://joelhans.com/articles/example-07</link>
+    <link>https://astrolabe.ooo/articles/example-07</link>
     <description>undefined</description>
     <pubDate>Mon, 11 Jul 2022 00:00:00 GMT</pubDate>
     <author>j@joelhans.com (Joel Hans)</author>
@@ -81,9 +81,9 @@
   </item>
 
   <item>
-    <guid>https://joelhans.com/articles/example-08</guid>
+    <guid>https://astrolabe.ooo/articles/example-08</guid>
     <title>Example 08</title>
-    <link>https://joelhans.com/articles/example-08</link>
+    <link>https://astrolabe.ooo/articles/example-08</link>
     <description>undefined</description>
     <pubDate>Sun, 10 Jul 2022 00:00:00 GMT</pubDate>
     <author>j@joelhans.com (Joel Hans)</author>
@@ -91,9 +91,9 @@
   </item>
 
   <item>
-    <guid>https://joelhans.com/articles/example-09</guid>
+    <guid>https://astrolabe.ooo/articles/example-09</guid>
     <title>Example 09</title>
-    <link>https://joelhans.com/articles/example-09</link>
+    <link>https://astrolabe.ooo/articles/example-09</link>
     <description>undefined</description>
     <pubDate>Sat, 09 Jul 2022 00:00:00 GMT</pubDate>
     <author>j@joelhans.com (Joel Hans)</author>
@@ -101,9 +101,9 @@
   </item>
 
   <item>
-    <guid>https://joelhans.com/articles/example-10</guid>
+    <guid>https://astrolabe.ooo/articles/example-10</guid>
     <title>Example 10</title>
-    <link>https://joelhans.com/articles/example-10</link>
+    <link>https://astrolabe.ooo/articles/example-10</link>
     <description>undefined</description>
     <pubDate>Fri, 08 Jul 2022 00:00:00 GMT</pubDate>
     <author>j@joelhans.com (Joel Hans)</author>

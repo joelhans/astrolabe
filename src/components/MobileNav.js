@@ -72,7 +72,7 @@ const MobileNav = () => {
             </div>
           ))}
         </nav>
-        <h1 className="-translate-x-full">Astersomething</h1>
+        <h1 className="-translate-x-full">Astrolabe</h1>
       </div>
     </header>
   )
