@@ -2,7 +2,6 @@ import Image from 'next/image'
 import CustomLink from '@components/Link'
 import PageTitle from '@components/PageTitle'
 import { BlogSeo } from '@components/SEO'
-import Tag from '@components/Tag'
 import siteMetadata from '@data/siteMetadata'
 import { MDXLayoutRenderer } from '@components/MDXComponents'
 

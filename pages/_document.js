@@ -23,13 +23,13 @@ class MyDocument extends Document {
           <meta name="theme-color" content="#000000" />
           <link rel="alternate" type="application/rss+xml" href="/index.xml" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin={true} />
           <link
             href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:ital,wght@0,400;0,700;1,400;1,700&display=swap"
             rel="stylesheet"
           />
         </Head>
-        <body className="antialiased font-sans bg-gray-900 text-gray-200">
+        <body className="antialiased font-serif bg-gray-900 text-gray-200">
           <Main />
           <NextScript />
         </body>

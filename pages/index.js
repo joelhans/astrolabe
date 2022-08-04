@@ -1,7 +1,5 @@
 import { PageSeo } from '@components/SEO'
-import CustomLink from '@components/Link'
 import siteMetadata from '@data/siteMetadata'
-import Tag from '@components/Tag'
 import { getFrontMatter } from '@/lib/mdx'
 import { WORK_CONTENT_PATH } from '@config/constants'
 import Universe from '@components/Universe'

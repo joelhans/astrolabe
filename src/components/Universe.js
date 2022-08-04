@@ -3,6 +3,21 @@ import * as d3 from 'd3'
 import Router from 'next/router'
 
 function drawScatter(scatterRef, posts) {
+  const asterisms = posts
+    .filter((post) => {
+      if (post.asterism) {
+        return true
+      } else {
+        return false
+      }
+    })
+    .reduce((a, { slug, asterism }) => {
+      a.push({ ...a, asterism })
+      return a
+    }, [])
+
+  console.log(asterisms)
+
   // Set the margins and width/height.
   const margin = { top: 50, right: 50, bottom: 50, left: 50 },
     width = window.innerWidth - margin.left - margin.right,
@@ -66,12 +81,12 @@ function drawScatter(scatterRef, posts) {
       tooltipScatter
         .html(
           `
-          <p class="text-3xl font-medium mb-2">${d.title}</p>
-          <p class="font-mono text-lg">${d.author}</p>
+          <p class="text-3xl font-bold mb-2">${d.title}</p>
+          <p class="text-lg">${d.author}</p>
           ${
             d.asterism
               ? `
-            <p class="font-bold text-sm mt-2">Part of the ${d.asterismFull} asterism.</p>
+            <p class="text-base italic mt-2">Part of the <span class="font-bold">${d.asterismFull}</span> asterism.</p>
           `
               : ``
           }
