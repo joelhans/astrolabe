@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import CustomLink from '@components/Link'
-import Tag from '@components/Tag'
 import siteMetdata from '@data/siteMetadata'
 import PageTitle from '@components/PageTitle'
 
@@ -59,11 +58,11 @@ export default function ListLayout({ posts, title, summary }) {
                         {title}
                       </h3>
                     </CustomLink>
-                    <div className="flex flex-wrap">
+                    {/* <div className="flex flex-wrap">
                       {tags.map((tag) => (
                         <Tag key={tag} text={tag} />
                       ))}
-                    </div>
+                    </div> */}
                     <p className="prose prose-md lg:prose-lg dark:prose-dark text-gray-500 dark:text-gray-400 mb-1">
                       {summary}
                     </p>
