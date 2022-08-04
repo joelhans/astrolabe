@@ -100,5 +100,15 @@
     <category>poetry</category>
   </item>
 
+  <item>
+    <guid>https://joelhans.com/articles/example-10</guid>
+    <title>Example 10</title>
+    <link>https://joelhans.com/articles/example-10</link>
+    <description>undefined</description>
+    <pubDate>Fri, 08 Jul 2022 00:00:00 GMT</pubDate>
+    <author>j@joelhans.com (Joel Hans)</author>
+    <category>prose</category>
+  </item>
+
     </channel>
   </rss>

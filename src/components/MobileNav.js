@@ -18,10 +18,10 @@ const MobileNav = () => {
   }
 
   return (
-    <div className="sm:hidden">
+    <header className="absolute">
       <button
         type="button"
-        className="w-8 h-8 p-1 ml-1 mr-1 rounded sm:ml-4"
+        className="z-50 relative w-8 h-8 mt-12 ml-12"
         aria-label="Toggle Menu"
         onClick={onToggleNav}
       >
@@ -29,7 +29,9 @@ const MobileNav = () => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
           fill="currentColor"
-          className="text-gray-900 dark:text-gray-100"
+          className={`${
+            navShow ? 'text-gray-900' : 'text-gray-100'
+          } hover:text-sea transform ease-in-out duration-300`}
         >
           {navShow ? (
             <path
@@ -47,22 +49,22 @@ const MobileNav = () => {
         </svg>
       </button>
       <div
-        className={`fixed w-full h-full top-16 right-0 bg-gray-100 dark:bg-gray-800 opacity-95 z-10 transform ease-in-out duration-300 ${
-          navShow ? 'translate-x-0' : 'translate-x-full'
+        className={`clip overflow-hidden z-10 fixed w-1/2 h-full bg-gray-100 top-0 left-0 transform ease-in-out duration-300 ${
+          navShow ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         <button
           type="button"
           aria-label="toggle modal"
-          className="fixed w-full h-full cursor-auto focus:outline-none"
+          className=" fixed w-full h-full cursor-auto focus:outline-none"
           onClick={onToggleNav}
         ></button>
-        <nav className="fixed h-full mt-8">
+        <nav className="fixed h-full mt-32 ml-12">
           {headerNavLinks.map((link) => (
-            <div key={link.title} className="px-6 py-2">
+            <div key={link.title} className="py-4">
               <Link
                 href={link.href}
-                className="text-xl font-medium tracking-wide text-gray-900 dark:text-gray-100 hover:text-sea"
+                className="font-serif text-4xl italic tracking-wide text-gray-900 hover:text-sea transform ease-in-out duration-300"
                 onClick={onToggleNav}
               >
                 {link.title}
@@ -70,8 +72,9 @@ const MobileNav = () => {
             </div>
           ))}
         </nav>
+        <h1 className="-translate-x-full">Astersomething</h1>
       </div>
-    </div>
+    </header>
   )
 }
 

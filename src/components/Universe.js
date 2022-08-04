@@ -3,7 +3,8 @@ import * as d3 from 'd3'
 import Router from 'next/router'
 
 function drawScatter(scatterRef, posts) {
-  const margin = { top: 10, right: 30, bottom: 30, left: 60 },
+  // Set the margins and width/height.
+  const margin = { top: 50, right: 50, bottom: 50, left: 50 },
     width = window.innerWidth - margin.left - margin.right,
     height = window.innerHeight - margin.top - margin.bottom
 
@@ -20,8 +21,8 @@ function drawScatter(scatterRef, posts) {
     .append('g')
 
   // Create our scatter plot axes.
-  const x = d3.scaleLinear().domain([0, 10]).range([0, width])
-  const y = d3.scaleLinear().domain([0, 10]).range([height, 0])
+  const x = d3.scaleLinear().domain([-10, 10]).range([0, width])
+  const y = d3.scaleLinear().domain([-10, 10]).range([height, 0])
 
   // Initialize the tooltip.
   const tooltipScatter = d3.select('#scatter').append('div').attr('class', 'tooltipScatter')
@@ -30,7 +31,7 @@ function drawScatter(scatterRef, posts) {
   // automatically makes all stars smaller upon mouseover on any star. Then,
   // depending on whether or not it's part of an asterism, it either highlights
   // the asterism or just the single star.
-  const highlight = function (d, obj) {
+  const highlight = function (d) {
     d3.selectAll('circle').transition().duration(200).attr('r', 3)
 
     d3.selectAll(d.asterism ? '.' + d.asterism : '.' + d.slug)
@@ -55,15 +56,13 @@ function drawScatter(scatterRef, posts) {
       return d.id
     })
     .append('circle')
-    .attr('class', function (d) {
-      return 'star ' + d.asterism + ' ' + d.slug
-    })
+    .attr('class', (d) => 'star ' + d.asterism + ' ' + d.slug)
     .attr('cx', (d) => x(d['declination']))
     .attr('cy', (d) => y(d['ascension']))
     .attr('r', 5)
     .attr('fill', '#69b3a2')
     .on('mouseover', function (d) {
-      highlight(d, this)
+      highlight(d)
       tooltipScatter
         .html(
           `

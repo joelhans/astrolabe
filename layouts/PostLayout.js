@@ -40,7 +40,7 @@ export default function PostLayout({ children, frontMatter }) {
           <div className="mb-24">
             <div className="prose prose-dark prose-md lg:prose-lg mr-auto">
               <MDXLayoutRenderer mdxSource={children} frontMatter={frontMatter} />
-              <footer className="mt-16">
+              {/* <footer className="mt-16">
                 <div className="text-sm font-mono pt-8 mb-8 border-t border-gray-200">
                   Published:{` `}
                   <time
@@ -50,7 +50,7 @@ export default function PostLayout({ children, frontMatter }) {
                     {new Date(publishedOn).toLocaleString(siteMetadata.locale, postDateTemplate)}
                   </time>
                 </div>
-              </footer>
+              </footer> */}
             </div>
           </div>
         </article>

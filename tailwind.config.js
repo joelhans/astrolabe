@@ -11,12 +11,15 @@ module.exports = {
   ],
   darkMode: 'class',
   theme: {
+    fontFamily: {
+      sans: ['Albert Sans', ...defaultTheme.fontFamily.sans],
+      display: ['Ibarra Real Nova', ...defaultTheme.fontFamily.serif],
+      serif: ['Ibarra Real Nova', ...defaultTheme.fontFamily.serif],
+      mono: ['Inconsolata', ...defaultTheme.fontFamily.mono],
+    },
     extend: {
-      fontFamily: {
-        sans: ['Alegreya Sans', ...defaultTheme.fontFamily.sans],
-        display: ['Alegreya Sans', ...defaultTheme.fontFamily.sans],
-        serif: ['Alegreya', ...defaultTheme.fontFamily.serif],
-        mono: ['Inconsolata', ...defaultTheme.fontFamily.mono],
+      fontSize: {
+        title: '10rem',
       },
       colors: {
         steel: '#4682B4',
