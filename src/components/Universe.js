@@ -1,7 +1,12 @@
 import * as React from 'react'
 import * as d3 from 'd3'
 import Router from 'next/router'
-var _ = require('lodash')
+// var _ = require('lodash')
+
+// TODOs
+// - [ ] Add support for multiple linkedTo targets.
+// - [ ] Figure out how to fix the fact that different viewports affect the shape of asterisms.
+// - [ ] Add zoom controls (or at least a popup with details?).
 
 function drawScatter(scatterRef, posts) {
   // Set the margins and width/height.
@@ -22,8 +27,8 @@ function drawScatter(scatterRef, posts) {
     .append('g')
 
   // Create our scatter plot axes.
-  const x = d3.scaleLinear().domain([-10, 10]).range([0, width])
-  const y = d3.scaleLinear().domain([-10, 10]).range([height, 0])
+  const x = d3.scaleLinear().domain([0, 20]).range([0, width])
+  const y = d3.scaleLinear().domain([0, 20]).range([height, 0])
 
   // Group our `posts` object by the asterisms we've already defined.
   // Not currently used for d3's sake!
@@ -98,8 +103,8 @@ function drawScatter(scatterRef, posts) {
     .attr('y1', (d) => d.sourceY)
     .attr('x2', (d) => d.targetX)
     .attr('y2', (d) => d.targetY)
-    .attr('stroke-width', 4)
-    .attr('stroke', '#fff')
+    .attr('stroke-width', 2)
+    .attr('stroke', '#D3D3D3')
     .attr('stroke-opacity', '0%')
 
   // Create the stars.
@@ -136,7 +141,7 @@ function drawScatter(scatterRef, posts) {
         .style('visibility', 'visible')
     })
     .on('mousemove', function () {
-      tooltipScatter.style('top', d3.event.y - 10 + 'px').style('left', d3.event.x + 20 + 'px')
+      tooltipScatter.style('top', d3.event.y - 10 + 'px').style('left', d3.event.x + 40 + 'px')
     })
     .on('mouseout', function () {
       doNotHighlight()
