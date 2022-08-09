@@ -1,23 +1,9 @@
 import * as React from 'react'
 import * as d3 from 'd3'
 import Router from 'next/router'
+var _ = require('lodash')
 
 function drawScatter(scatterRef, posts) {
-  const asterisms = posts
-    .filter((post) => {
-      if (post.asterism) {
-        return true
-      } else {
-        return false
-      }
-    })
-    .reduce((a, { slug, asterism }) => {
-      a.push({ ...a, asterism })
-      return a
-    }, [])
-
-  console.log(asterisms)
-
   // Set the margins and width/height.
   const margin = { top: 50, right: 50, bottom: 50, left: 50 },
     width = window.innerWidth - margin.left - margin.right,
@@ -39,6 +25,34 @@ function drawScatter(scatterRef, posts) {
   const x = d3.scaleLinear().domain([-10, 10]).range([0, width])
   const y = d3.scaleLinear().domain([-10, 10]).range([height, 0])
 
+  // Group our `posts` object by the asterisms we've already defined.
+  // Not currently used for d3's sake!
+  // const asterisms = d3.nest()
+  //   .key((d) => { return d.asterism })
+  //   .entries(posts)
+
+  // Build a list of links using {source: x, target: y} syntax.
+  const Links = posts
+    .filter((post) => {
+      if (post.linkedTo[0]) {
+        return true
+      } else {
+        return false
+      }
+    })
+    .reduce((a, { asterism, id, declination, ascension, linkedTo }) => {
+      a.push({
+        asterism: asterism,
+        source: id,
+        sourceX: x(declination),
+        sourceY: y(ascension),
+        target: linkedTo[0],
+        targetX: x(posts.find((x) => x.id === linkedTo[0]).declination),
+        targetY: y(posts.find((x) => x.id === linkedTo[0]).ascension),
+      })
+      return a
+    }, [])
+
   // Initialize the tooltip.
   const tooltipScatter = d3.select('#scatter').append('div').attr('class', 'tooltipScatter')
 
@@ -47,19 +61,46 @@ function drawScatter(scatterRef, posts) {
   // depending on whether or not it's part of an asterism, it either highlights
   // the asterism or just the single star.
   const highlight = function (d) {
+    // Shrink all stars.
     d3.selectAll('circle').transition().duration(200).attr('r', 3)
 
+    // Highlight stars of the asterism.
+    // If there is no asterism, then select only that star.
     d3.selectAll(d.asterism ? '.' + d.asterism : '.' + d.slug)
+      .filter('.star')
       .transition()
       .duration(200)
       .attr('fill', '#fff')
       .attr('r', 10)
+
+    // Highlight the lines between the stars of the chosen asterism.
+    d3.selectAll(d.asterism && '.' + d.asterism)
+      .filter('.line')
+      .transition()
+      .duration(200)
+      .attr('stroke-opacity', '100%')
   }
 
   // Function to reset highlighting.
   const doNotHighlight = function () {
     d3.selectAll('circle').transition().duration(200).attr('fill', '#69b3a2').attr('r', 5)
+    d3.selectAll('line').transition().duration(200).attr('stroke-opacity', '0%')
   }
+
+  // Draw lines between the stars of an asterism.
+  const lines = svg
+    .selectAll('line')
+    .data(Links)
+    .enter()
+    .append('line')
+    .attr('class', (d) => 'line ' + d.asterism)
+    .attr('x1', (d) => d.sourceX)
+    .attr('y1', (d) => d.sourceY)
+    .attr('x2', (d) => d.targetX)
+    .attr('y2', (d) => d.targetY)
+    .attr('stroke-width', 4)
+    .attr('stroke', '#fff')
+    .attr('stroke-opacity', '0%')
 
   // Create the stars.
   const stars = svg
@@ -106,16 +147,6 @@ function drawScatter(scatterRef, posts) {
       d3.event.stopPropagation()
       Router.push(d.slug)
     })
-
-  svg
-    .selectAll('scatterLines')
-    .data(posts)
-    .enter()
-    .append('path')
-    .attr('d', (d) => 'M' + x(d['declination']) + ',' + y(d['ascension']))
-    .attr('stroke', '#66c2a5')
-    .style('stroke-width', 4)
-    .style('fill', 'none')
 }
 
 // function drawChart(svgRef, posts) {
