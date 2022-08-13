@@ -1,7 +1,5 @@
 import '@/css/tailwind.css'
 
-import * as React from 'react'
-
 import { ThemeProvider } from 'next-themes'
 import Head from 'next/head'
 
