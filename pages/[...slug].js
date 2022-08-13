@@ -1,8 +1,8 @@
 import fs from 'fs'
-import { getFrontMatter, getSingleContent } from '@/lib/mdx'
-import generateRss from '@/lib/generate-rss'
 import { WORK_CONTENT_PATH } from '@config/constants'
-import PostLayout from '@/layouts/PostLayout'
+import { getFrontMatter, getSingleContent } from '@lib/mdx'
+import generateRss from '@lib/generate-rss'
+import PostLayout from '@layouts/PostLayout'
 
 export async function getStaticPaths() {
   const posts = await getFrontMatter(WORK_CONTENT_PATH, false)
