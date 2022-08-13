@@ -4,6 +4,7 @@ import Router from 'next/router'
 // var _ = require('lodash')
 
 // TODOs
+// - [ ] Show the name of the asterism when hovering over it.
 // - [ ] Add support for multiple linkedTo targets.
 // - [ ] Figure out how to fix the fact that different viewports affect the shape of asterisms.
 // - [ ] Add zoom controls (or at least a popup with details?).
@@ -30,11 +31,15 @@ function drawScatter(scatterRef, posts) {
   const x = d3.scaleLinear().domain([0, 20]).range([0, width])
   const y = d3.scaleLinear().domain([0, 20]).range([height, 0])
 
-  // Group our `posts` object by the asterisms we've already defined.
-  // Not currently used for d3's sake!
-  // const asterisms = d3.nest()
-  //   .key((d) => { return d.asterism })
-  //   .entries(posts)
+  // Group our `posts` object by the asterisms we've already defined and remove
+  // any that aren't part of an asterism (aka `key` = `null`).
+  const Asterisms = d3
+    .nest()
+    .key((d) => {
+      return d.asterism
+    })
+    .entries(posts)
+    .filter((d) => d.key !== 'null')
 
   // Build a list of links using {source: x, target: y} syntax.
   const Links = posts
@@ -106,6 +111,25 @@ function drawScatter(scatterRef, posts) {
     .attr('stroke-width', 2)
     .attr('stroke', '#D3D3D3')
     .attr('stroke-opacity', '0%')
+
+  // Create the asterism name.
+  const names = svg
+    .selectAll('asterismNames')
+    .data(Asterisms)
+    .enter()
+    .append('text')
+    .text(function (d) {
+      return `${d.values[0].asterismFull}`
+    })
+    .attr('x', function (d) {
+      const xeses = d.values.map((star) => {
+        return star.declination
+      })
+      console.log(xeses)
+      return 100
+    })
+    .attr('y', 100)
+    .attr('fill', '#fff')
 
   // Create the stars.
   const stars = svg
