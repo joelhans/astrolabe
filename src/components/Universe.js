@@ -114,7 +114,7 @@ function drawScatter(scatterRef, posts) {
     .enter()
     .append('a')
     .attr('href', function (d) {
-      return d.id
+      return `/work/${d.id}`
     })
     .append('circle')
     .attr('class', (d) => 'star ' + d.asterism + ' ' + d.slug)
@@ -150,7 +150,7 @@ function drawScatter(scatterRef, posts) {
     .on('click', function (d) {
       d3.event.preventDefault()
       d3.event.stopPropagation()
-      Router.push(d.slug)
+      Router.push(`/work/${d.slug}`)
     })
 }
 
