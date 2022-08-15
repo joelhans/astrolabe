@@ -71,6 +71,13 @@ const MobileNav = () => {
               </Link>
             </div>
           ))}
+          <div className="mt-24 prose prose-sm text-gray-900">
+            <p className="">To navigate with Astrolabe:</p>
+            <ul>
+              <li>Zoom with your mousewheel or a pinch-to-zoom gesture.</li>
+              <li>Pan with a click-and-drag or touch-and-drag.</li>
+            </ul>
+          </div>
         </nav>
         <h1 className="-translate-x-full">Astrolabe</h1>
       </div>

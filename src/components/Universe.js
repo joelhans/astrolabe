@@ -1,12 +1,6 @@
 import * as React from 'react'
 import * as d3 from 'd3'
 import Router from 'next/router'
-// var _ = require('lodash')
-
-// TODOs
-// - [ ] Add support for multiple linkedTo targets.
-// - [ ] Figure out how to fix the fact that different viewports affect the shape of asterisms.
-// - [ ] Add zoom controls (or at least a popup with details?).
 
 function drawScatter(scatterRef, posts) {
   // Set the margins and width/height.
