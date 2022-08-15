@@ -30,11 +30,15 @@ function drawScatter(scatterRef, posts) {
   const x = d3.scaleLinear().domain([0, 20]).range([0, width])
   const y = d3.scaleLinear().domain([0, 20]).range([height, 0])
 
-  // Group our `posts` object by the asterisms we've already defined.
-  // Not currently used for d3's sake!
-  // const asterisms = d3.nest()
-  //   .key((d) => { return d.asterism })
-  //   .entries(posts)
+  // Group our `posts` object by the asterisms we've already defined and remove
+  // any that aren't part of an asterism (aka `key` = `null`).
+  const Asterisms = d3
+    .nest()
+    .key((d) => {
+      return d.asterism
+    })
+    .entries(posts)
+    .filter((d) => d.key !== 'null')
 
   // Build a list of links using {source: x, target: y} syntax.
   const Links = posts
@@ -84,12 +88,20 @@ function drawScatter(scatterRef, posts) {
       .transition()
       .duration(200)
       .attr('stroke-opacity', '100%')
+
+    // Highlight the name of the chosen asterism.
+    d3.selectAll(d.asterism && '.' + d.asterism)
+      .filter('.name')
+      .transition()
+      .duration(200)
+      .attr('fill-opacity', '100%')
   }
 
   // Function to reset highlighting.
   const doNotHighlight = function () {
     d3.selectAll('circle').transition().duration(200).attr('fill', '#69b3a2').attr('r', 5)
     d3.selectAll('line').transition().duration(200).attr('stroke-opacity', '0%')
+    d3.selectAll('text').transition().duration(200).attr('fill-opacity', '0%')
   }
 
   // Draw lines between the stars of an asterism.
@@ -106,6 +118,41 @@ function drawScatter(scatterRef, posts) {
     .attr('stroke-width', 2)
     .attr('stroke', '#D3D3D3')
     .attr('stroke-opacity', '0%')
+
+  // Create the asterism name.
+  const names = svg
+    .selectAll('asterismNames')
+    .data(Asterisms)
+    .enter()
+    .append('text')
+    .attr('class', (d) => 'name ' + d.values[0].asterism)
+    .text(function (d) {
+      return `${d.values[0].asterismFull}`
+    })
+    .attr('x', function (d) {
+      // Calculate the average X position of all the stars in this asterism.
+      const exes =
+        d.values
+          .map((star) => {
+            return star.declination
+          })
+          .reduce((a, b) => a + b) / d.values.length
+      return x(exes)
+    })
+    .attr('y', function (d) {
+      // Calculate the average Y position of all the stars in this asterism.
+      const whys =
+        d.values
+          .map((star) => {
+            return star.ascension
+          })
+          .reduce((a, b) => a + b) / d.values.length
+      return y(whys)
+    })
+    .attr('fill', '#fff')
+    .attr('font-size', '2rem')
+    .attr('font-style', 'italic')
+    .attr('fill-opacity', '0%')
 
   // Create the stars.
   const stars = svg
