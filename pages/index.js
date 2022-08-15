@@ -1,4 +1,4 @@
-import { PageSeo } from '@components/SEO'
+import { PageSEO } from '@components/SEO'
 import siteMetadata from '@data/siteMetadata'
 import { getFrontMatter } from '@/lib/mdx'
 import { WORK_CONTENT_PATH } from '@config/constants'
@@ -12,11 +12,7 @@ export async function getStaticProps() {
 export default function Home({ posts }) {
   return (
     <>
-      <PageSeo
-        title={siteMetadata.title}
-        description={siteMetadata.description}
-        url={siteMetadata.siteUrl}
-      />
+      <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
       <Universe posts={posts} />
       {/* <div className="mt-24 mb-24">
         <h2 className="text-lg text-sea font-display font-bold uppercase mb-8">Recent work</h2>

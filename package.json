@@ -5,7 +5,7 @@
   "scripts": {
     "start": "next-remote-watch ./content",
     "dev": "next dev",
-    "build": "node scripts/generate-links.mjs && next build",
+    "build": "next build",
     "serve": "next start",
     "analyze": "cross-env ANALYZE=true next build",
     "lint": "next lint --fix --dir pages --dir src/components --dir lib --dir layouts --dir scripts",
@@ -20,7 +20,7 @@
     "image-size": "1.0.0",
     "lodash": "^4.17.21",
     "mdx-bundler": "^8.0.0",
-    "next": "^12.2.0",
+    "next": "11.1.0",
     "next-seo": "^4.26.0",
     "next-themes": "^0.0.14",
     "next-transpile-modules": "^9.0.0",

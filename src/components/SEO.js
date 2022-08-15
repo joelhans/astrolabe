@@ -1,95 +1,90 @@
-import { NextSeo, ArticleJsonLd } from 'next-seo'
-import siteMetadata from '@data/siteMetadata'
+import Head from 'next/head'
 import { useRouter } from 'next/router'
+import siteMetadata from '@data/siteMetadata'
 
-export const SEO = {
-  title: siteMetadata.title,
-  description: siteMetadata.description,
-  openGraph: {
-    type: 'website',
-    locale: siteMetadata.language,
-    url: siteMetadata.siteUrl,
-    title: siteMetadata.title,
-    description: siteMetadata.description,
-    images: [
-      {
-        url: `${siteMetadata.siteUrl}${siteMetadata.socialBanner}`,
-        alt: siteMetadata.title,
-        width: 1200,
-        height: 600,
-      },
-    ],
-  },
-  twitter: {
-    handle: siteMetadata.twitter,
-    site: siteMetadata.twitter,
-    cardType: 'summary_large_image',
-  },
-  additionalMetaTags: [
-    {
-      name: 'author',
-      content: siteMetadata.author,
-    },
-  ],
+const CommonSEO = ({ title, description, ogType, ogImage, twImage, canonicalUrl }) => {
+  const router = useRouter()
+  return (
+    <Head>
+      <title>{title}</title>
+      <meta name="robots" content="follow, index" />
+      <meta name="description" content={description} />
+      <meta property="og:url" content={`${siteMetadata.siteUrl}${router.asPath}`} />
+      <meta property="og:type" content={ogType} />
+      <meta property="og:site_name" content={siteMetadata.title} />
+      <meta property="og:description" content={description} />
+      <meta property="og:title" content={title} />
+      {ogImage.constructor.name === 'Array' ? (
+        ogImage.map(({ url }) => <meta property="og:image" content={url} key={url} />)
+      ) : (
+        <meta property="og:image" content={ogImage} key={ogImage} />
+      )}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content={siteMetadata.twitter} />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={twImage} />
+      <link
+        rel="canonical"
+        href={canonicalUrl ? canonicalUrl : `${siteMetadata.siteUrl}${router.asPath}`}
+      />
+    </Head>
+  )
 }
 
-export const PageSeo = ({ title, description, url }) => {
-  const router = useRouter()
-  const path = router.query
-
+export const PageSEO = ({ title, description }) => {
+  const ogImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner
+  const twImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner
   return (
-    <NextSeo
-      title={`${router.asPath === '/' ? '' : `${title} •`} ${siteMetadata.title}`}
+    <CommonSEO
+      title={title}
       description={description}
-      canonical={url}
-      openGraph={{
-        url,
-        title,
-        description,
-      }}
+      ogType="website"
+      ogImage={ogImageUrl}
+      twImage={twImageUrl}
     />
   )
 }
 
-export const TagSEO = ({ title, description, url }) => {
-  // const ogImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner
-  // const twImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner
+export const TagSEO = ({ title, description }) => {
+  const ogImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner
+  const twImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner
   const router = useRouter()
   return (
-    <NextSeo
-      title={`${router.asPath === '/' ? '' : `${title} •`} ${siteMetadata.title}`}
-      description={description}
-      canonical={url}
-      openGraph={{
-        url,
-        title,
-        description,
-      }}
-    />
+    <>
+      <CommonSEO
+        title={title}
+        description={description}
+        ogType="website"
+        ogImage={ogImageUrl}
+        twImage={twImageUrl}
+      />
+      <Head>
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title={`${description} - RSS feed`}
+          href={`${siteMetadata.siteUrl}${router.asPath}/feed.xml`}
+        />
+      </Head>
+    </>
   )
-
-  // return (
-  //   <>
-  //     <CommonSEO
-  //       title={title}
-  //       description={description}
-  //       ogType="website"
-  //       ogImage={ogImageUrl}
-  //       twImage={twImageUrl}
-  //     />
-  //     <Head>
-  //       <link
-  //         rel="alternate"
-  //         type="application/rss+xml"
-  //         title={`${description} - RSS feed`}
-  //         href={`${siteMetadata.siteUrl}${router.asPath}/feed.xml`}
-  //       />
-  //     </Head>
-  //   </>
-  // )
 }
 
-export const BlogSeo = ({ title, summary, publishedOn, updatedOn, url, tags, images = [] }) => {
+export const BlogSEO = ({
+  authorDetails,
+  title,
+  summary,
+  publishedOn,
+  updatedOn,
+  url,
+  images = [],
+  canonicalUrl,
+}) => {
+  const router = useRouter()
+  const publishedAt = new Date(publishedOn).toISOString()
+  const modifiedAt = new Date(updatedOn || publishedOn).toISOString()
+
   let imagesArr =
     images.length === 0
       ? [siteMetadata.socialBanner]
@@ -99,47 +94,71 @@ export const BlogSeo = ({ title, summary, publishedOn, updatedOn, url, tags, ima
 
   const featuredImages = imagesArr.map((img) => {
     return {
-      url: `${siteMetadata.siteUrl}${img}`,
-      alt: title,
+      '@type': 'ImageObject',
+      url: img.includes('http') ? img : siteMetadata.siteUrl + img,
     }
   })
 
+  let authorList
+  if (authorDetails) {
+    authorList = authorDetails.map((author) => {
+      return {
+        '@type': 'Person',
+        name: author.name,
+      }
+    })
+  } else {
+    authorList = {
+      '@type': 'Person',
+      name: siteMetadata.author,
+    }
+  }
+
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': url,
+    },
+    headline: title,
+    image: featuredImages,
+    datePublished: publishedAt,
+    dateModified: modifiedAt,
+    author: authorList,
+    publisher: {
+      '@type': 'Organization',
+      name: siteMetadata.author,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${siteMetadata.siteUrl}${siteMetadata.siteLogo}`,
+      },
+    },
+    description: summary,
+  }
+
+  const twImageUrl = featuredImages[0].url
+
   return (
     <>
-      <NextSeo
-        title={`${title} • ${siteMetadata.title}`}
-        description={summary}
-        canonical={url}
-        openGraph={{
-          type: 'article',
-          article: {
-            publishedTime: publishedOn,
-            modifiedTime: updatedOn,
-            authors: [`${siteMetadata.siteUrl}/about`],
-            tags,
-          },
-          url,
-          title,
-          description: summary,
-          images: featuredImages,
-        }}
-        additionalMetaTags={[
-          {
-            name: 'twitter:image',
-            content: featuredImages[0].url,
-          },
-        ]}
-      />
-      <ArticleJsonLd
-        authorName={siteMetadata.author}
-        dateModified={publishedOn}
-        datePublished={updatedOn}
-        description={summary}
-        images={featuredImages}
-        publisherName={siteMetadata.author}
+      <CommonSEO
         title={title}
-        url={url}
+        description={summary}
+        ogType="article"
+        ogImage={featuredImages}
+        twImage={twImageUrl}
+        canonicalUrl={canonicalUrl}
       />
+      <Head>
+        {publishedOn && <meta property="article:published_time" content={publishedAt} />}
+        {updatedOn && <meta property="article:modified_time" content={modifiedAt} />}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData, null, 2),
+          }}
+        />
+      </Head>
     </>
   )
 }
