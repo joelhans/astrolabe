@@ -1,8 +1,8 @@
 import fs from 'fs'
-import { getFrontMatter, getSingleContent } from '@/lib/mdx'
-import generateRss from '@/lib/generate-rss'
 import { WORK_CONTENT_PATH } from '@config/constants'
-import PostLayout from '@/layouts/PostLayout'
+import { getFrontMatter, getSingleContent } from '@lib/mdx'
+import generateRss from '@lib/generate-rss'
+import PostLayout from '@layouts/PostLayout'
 
 export async function getStaticPaths() {
   const posts = await getFrontMatter(WORK_CONTENT_PATH, false)
@@ -22,13 +22,10 @@ export async function getStaticProps({ params: { slug } }) {
   const postSlug = slug.join('/')
   const content = await getSingleContent(WORK_CONTENT_PATH, postSlug)
 
+  // Generate RSS feed.
   const posts = await getFrontMatter(WORK_CONTENT_PATH, true)
   const rss = generateRss(posts)
   fs.writeFileSync('./public/index.xml', rss)
-  // const postsSorted = posts.sort((a, b) => dateSortDesc(a.date, b.date))
-  // const postIndex = postsSorted.findIndex((post) => post.slug === postSlug)
-  // const prev = postsSorted[postIndex + 1] || null
-  // const next = postsSorted[postIndex - 1] || null
 
   if (!content) {
     console.warn(`No content found for slug ${postSlug}`)

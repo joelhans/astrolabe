@@ -9,10 +9,8 @@ module.exports = {
     './layouts/**/*.js',
     './lib/**/*.js',
   ],
-  darkMode: 'class',
   theme: {
     fontFamily: {
-      sans: ['Albert Sans', ...defaultTheme.fontFamily.sans],
       display: ['Ibarra Real Nova', ...defaultTheme.fontFamily.serif],
       serif: ['Ibarra Real Nova', ...defaultTheme.fontFamily.serif],
       mono: ['Inconsolata', ...defaultTheme.fontFamily.mono],
