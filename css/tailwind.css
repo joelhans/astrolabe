@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* html {
+  font-size: 115%;
+} */
+
+#nav {
+  height: 100%;
+}
+
+@media (min-width: 1024px) {
+  #nav {
+    height: calc(100vh - 8rem);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+#scatter svg,
+#chart svg {
+  cursor: grab;
+  position: relative;
+}
+
+.tooltip,
+.tooltipScatter {
+  position: absolute;
+  @apply absolute -left-32 block text-xl text-gray-900 px-6 py-4 bg-white rounded-lg;
+}
+
+.tooltipTitle {
+  @apply text-3xl font-medium mb-2;
+}
+
+.tooltipAuthor {
+  @apply font-mono text-lg mb-2;
+}
+
+.tooltipAsterism {
+  @apply font-bold text-sm;
+}
+
+.clip {
+  mask-position: 25% 90%;
+  mask-repeat: no-repeat;
+  mask-size: 100%;
+  mask: url('/static/title.svg') left bottom / 3000px 1400px no-repeat, linear-gradient(#fff, #fff);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+}

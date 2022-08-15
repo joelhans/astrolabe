@@ -1,0 +1,13 @@
+{
+  "title": "Astrolabe",
+  "author": "Joel Hans",
+  "headerTitle": "Astrolabe",
+  "description": "This is a literary magazine.",
+  "language": "en-us",
+  "siteUrl": "https://astrolabe.ooo",
+  "siteRepo": "https://github.com/joelhans/astrolabe",
+  "image": "/static/images/avatar.jpg",
+  "socialBanner": "/static/images/twitter-card.png",
+  "email": "j@joelhans.com",
+  "locale": "en-US"
+}
