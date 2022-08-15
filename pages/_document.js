@@ -29,7 +29,7 @@ class MyDocument extends Document {
             rel="stylesheet"
           />
         </Head>
-        <body className="antialiased font-serif bg-gray-900 text-gray-200">
+        <body className="overflow-hidden antialiased font-serif bg-gray-900 text-gray-200">
           <Main />
           <NextScript />
         </body>
