@@ -25,7 +25,11 @@ export default function PostLayout({ children, frontMatter }) {
 
   return (
     <>
-      <BlogSEO url={`${siteMetadata.siteUrl}/${frontMatter.slug}`} {...frontMatter} />
+      <BlogSEO
+        {...frontMatter}
+        url={`${siteMetadata.siteUrl}/articles/${slug}`}
+        title={`${title} • ${siteMetadata.title}`}
+      />
       <main className="max-w-screen-lg mx-auto mb-auto px-6">
         <article className="mt-48">
           <header className="my-16 lg:my-24">
