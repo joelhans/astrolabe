@@ -3,16 +3,16 @@ import * as d3 from 'd3'
 import Router from 'next/router'
 
 function drawScatter(scatterRef, posts) {
-  // Set the margins and width/height.
-  const margin = { top: 50, right: 50, bottom: 50, left: 50 },
-    width = window.innerWidth - margin.left - margin.right,
-    height = window.innerHeight - margin.top - margin.bottom
+  // Set a fixed width/height to prevent different screen sizes (or changing
+  // screen sizes) from altering the shape of the asterisms.
+  const width = 2000,
+    height = 2000
 
   // Create the SVG container, set its dimensions, and initiate zoom+pan.
   const svg = d3
     .select(scatterRef.current)
-    .attr('width', window.innerWidth)
-    .attr('height', window.innerHeight)
+    .attr('width', width)
+    .attr('height', height)
     .call(
       d3.zoom().on('zoom', () => {
         svg.attr('transform', d3.event.transform)
