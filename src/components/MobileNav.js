@@ -30,7 +30,7 @@ const MobileNav = () => {
           viewBox="0 0 20 20"
           fill="currentColor"
           className={`${
-            navShow ? 'text-gray-900' : 'text-gray-100'
+            navShow ? 'text-gray-800' : 'text-gray-800'
           } hover:text-sea transform ease-in-out duration-300`}
         >
           {navShow ? (
@@ -49,7 +49,7 @@ const MobileNav = () => {
         </svg>
       </button>
       <div
-        className={`clip overflow-hidden z-10 fixed w-1/2 h-full bg-gray-100 top-0 left-0 transform ease-in-out duration-300 ${
+        className={`clip overflow-hidden z-10 fixed w-1/2 h-full bg-gray-100 border-gray-400 border-r top-0 left-0 transform ease-in-out duration-300 ${
           navShow ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
@@ -64,16 +64,18 @@ const MobileNav = () => {
             <div key={link.title} className="py-4">
               <Link
                 href={link.href}
-                className="font-serif text-4xl italic tracking-wide text-gray-900 hover:text-sea transform ease-in-out duration-300"
+                className="font-serif text-4xl italic tracking-wide text-gray-900 hover:text-cyan transform ease-in-out duration-300"
                 onClick={onToggleNav}
               >
                 {link.title}
               </Link>
             </div>
           ))}
-          <div className="mt-24 prose prose-sm text-gray-900">
-            <p className="">To navigate with Astrolabe:</p>
+          <div className="mt-24 prose text-gray-900">
+            <p className="">To navigate through the Universe:</p>
             <ul>
+              <li>Hover over a star to see its details.</li>
+              <li>Click or tap a star to take a closer look.</li>
               <li>Zoom with your mousewheel or a pinch-to-zoom gesture.</li>
               <li>Pan with a click-and-drag or touch-and-drag.</li>
             </ul>

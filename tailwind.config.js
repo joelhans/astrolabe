@@ -21,26 +21,20 @@ module.exports = {
         title: '10rem',
       },
       colors: {
-        steel: '#4682B4',
-        sea: '#20B2AA',
-        blue: colors.sky,
-        erin: '#48E499',
-        lilac: '#B596F8',
-        indigo: '#5790FF',
-        salmon: '#FCAF3B',
+        cyan: '#69b3a2',
       },
       typography: (theme) => ({
         DEFAULT: {
           css: {
             fontFamily: `${theme('fontFamily.serif')}`,
-            color: theme('colors.gray.100'),
+            color: theme('colors.gray.800'),
             a: {
-              color: theme('colors.steel'),
+              color: theme('colors.cyan'),
               textDecoration: 'none',
               transition: theme('transition.all'),
               fontWeight: theme('font.semibold'),
               '&:hover': {
-                color: theme('colors.sea'),
+                color: theme('colors.cyan'),
               },
               code: { color: theme('colors.blue.400') },
             },
@@ -63,7 +57,7 @@ module.exports = {
               color: theme('colors.gray.900'),
             },
             code: {
-              color: theme('colors.sea'),
+              color: theme('colors.cyan'),
               backgroundColor: theme('colors.gray.100'),
               paddingLeft: '4px',
               paddingRight: '4px',

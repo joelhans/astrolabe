@@ -207,7 +207,7 @@ const Universe = (posts) => {
 
   return (
     <>
-      <div id="scatter">
+      <div id="scatter" className="bg-gray-900">
         <svg ref={scatterRef} />
       </div>
     </>
