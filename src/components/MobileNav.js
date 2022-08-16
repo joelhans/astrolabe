@@ -1,8 +1,10 @@
 import { useState } from 'react'
+import { useRouter } from 'next/router'
 import Link from './Link'
 import headerNavLinks from '@data/headerNavLinks'
 
 const MobileNav = () => {
+  const router = useRouter()
   const [navShow, setNavShow] = useState(false)
 
   const onToggleNav = () => {
@@ -17,6 +19,8 @@ const MobileNav = () => {
     })
   }
 
+  console.log(router.asPath)
+
   return (
     <header className="absolute">
       <button
@@ -29,8 +33,9 @@ const MobileNav = () => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
           fill="currentColor"
-          className={`${
-            navShow ? 'text-gray-800' : 'text-gray-800'
+          className={`text-gray-800 
+          ${
+            navShow ? 'text-gray-800' : router.asPath === '/' ? 'text-gray-200' : 'text-gray-800'
           } hover:text-sea transform ease-in-out duration-300`}
         >
           {navShow ? (
