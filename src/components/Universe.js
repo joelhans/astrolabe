@@ -21,8 +21,8 @@ function drawScatter(scatterRef, posts) {
     .append('g')
 
   // Create our scatter plot axes.
-  const x = d3.scaleLinear().domain([0, 20]).range([0, width])
-  const y = d3.scaleLinear().domain([0, 20]).range([height, 0])
+  const x = d3.scaleLinear().domain([-10, 10]).range([0, width])
+  const y = d3.scaleLinear().domain([-10, 10]).range([height, 0])
 
   // Group our `posts` object by the asterisms we've already defined and remove
   // any that aren't part of an asterism (aka `key` = `null`).
