@@ -7,7 +7,10 @@ function drawScatter(scatterRef, posts) {
   // Initiate cookies and set the `visitedStars` cookie to an empty array if
   // there are no cookies previously.
   const cookies = new Cookies()
-  !cookies.get('visitedStars') && cookies.set('visitedStars', [], { path: '/', sameSite: 'strict' })
+  const visitedStars = cookies.get('visitedStars')
+  !visitedStars && cookies.set('visitedStars', [], { path: '/', sameSite: 'strict' })
+
+  console.log(visitedStars)
 
   // Set a fixed width/height to prevent different screen sizes (or changing
   // screen sizes) from altering the shape of the asterisms.

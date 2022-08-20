@@ -39,16 +39,20 @@ export async function getStaticProps({ params: { slug } }) {
 export default function Article({ content }) {
   const { mdxSource, frontMatter } = content
 
-  // Set cookie for this star page.
+  // Set cookie for this star page. If there is not currently any cookies set,
+  // create the proper cookie. If there are cookies set, simply add this new
+  // visit to the list.
   const cookies = new Cookies()
   let visitedStars = cookies.get('visitedStars')
+  const cookie = {
+    slug: frontMatter.slug,
+    time: Date(),
+  }
   if (!visitedStars) {
-    cookies.set('visitedStars', [frontMatter.slug], { path: '/', sameSite: 'strict' })
+    cookies.set('visitedStars', [cookie], { path: '/', sameSite: 'strict' })
   } else {
-    if (!visitedStars.includes(frontMatter.slug)) {
-      visitedStars.push(frontMatter.slug)
-      cookies.set('visitedStars', visitedStars)
-    }
+    visitedStars.push(cookie)
+    cookies.set('visitedStars', visitedStars)
   }
 
   // Detect the development environment.
