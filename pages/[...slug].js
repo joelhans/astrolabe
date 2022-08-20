@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import fs from 'fs'
+import Cookies from 'universal-cookie'
 import { WORK_CONTENT_PATH } from '@config/constants'
 import { getFrontMatter, getSingleContent } from '@lib/mdx'
 import generateRss from '@lib/generate-rss'
@@ -37,6 +38,18 @@ export async function getStaticProps({ params: { slug } }) {
 
 export default function Article({ content }) {
   const { mdxSource, frontMatter } = content
+
+  // Set cookie for this star page.
+  const cookies = new Cookies()
+  let visitedStars = cookies.get('visitedStars')
+  if (!visitedStars) {
+    cookies.set('visitedStars', [frontMatter.slug], { path: '/', sameSite: 'strict' })
+  } else {
+    if (!visitedStars.includes(frontMatter.slug)) {
+      visitedStars.push(frontMatter.slug)
+      cookies.set('visitedStars', visitedStars)
+    }
+  }
 
   // Detect the development environment.
   const env = process.env.NODE_ENV
