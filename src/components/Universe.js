@@ -77,7 +77,7 @@ function drawScatter(scatterRef, posts) {
       .transition()
       .duration(200)
       .attr('fill', '#fff')
-      .attr('r', 10)
+    // .attr('r', 10)
 
     // Highlight the lines between the stars of the chosen asterism.
     d3.selectAll(d.asterism && '.' + d.asterism)
@@ -96,7 +96,11 @@ function drawScatter(scatterRef, posts) {
 
   // Function to reset highlighting.
   const doNotHighlight = function () {
-    d3.selectAll('circle').transition().duration(200).attr('fill', '#69b3a2').attr('r', 5)
+    d3.selectAll('circle')
+      .transition()
+      .duration(200)
+      .attr('r', (d) => (d.size ? d.size : 8))
+      .attr('fill', (d) => (d.color ? d.color : '#69b3a2'))
     d3.selectAll('line').transition().duration(200).attr('stroke-opacity', '0%')
     d3.selectAll('text').transition().duration(200).attr('fill-opacity', '0%')
   }
@@ -164,8 +168,8 @@ function drawScatter(scatterRef, posts) {
     .attr('class', (d) => 'star ' + d.asterism + ' ' + d.slug)
     .attr('cx', (d) => x(d['declination']))
     .attr('cy', (d) => y(d['ascension']))
-    .attr('r', 5)
-    .attr('fill', '#69b3a2')
+    .attr('r', (d) => (d.size ? d.size : 8))
+    .attr('fill', (d) => (d.color ? d.color : '#69b3a2'))
     .on('mouseover', function (d) {
       highlight(d)
       tooltipScatter
@@ -173,13 +177,6 @@ function drawScatter(scatterRef, posts) {
           `
           <p class="text-3xl font-bold mb-2">${d.title}</p>
           <p class="text-lg">${d.author}</p>
-          ${
-            d.asterism
-              ? `
-            <p class="text-base italic mt-2">Part of the <span class="font-bold">${d.asterismFull}</span> asterism.</p>
-          `
-              : ``
-          }
         `
         )
         .style('visibility', 'visible')
