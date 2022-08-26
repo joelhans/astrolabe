@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import fs from 'fs'
 import { WORK_CONTENT_PATH } from '@config/constants'
 import { getFrontMatter, getSingleContent } from '@lib/mdx'
@@ -39,6 +40,11 @@ export default function Article({ content }) {
 
   // Detect the development environment.
   const env = process.env.NODE_ENV
+
+  // Force overflow so we can scroll on this page.
+  useEffect(() => {
+    document.body.style.overflow = 'auto'
+  })
 
   return (
     <>

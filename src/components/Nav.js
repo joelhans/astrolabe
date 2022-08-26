@@ -19,10 +19,8 @@ const MobileNav = () => {
     })
   }
 
-  console.log(router.asPath)
-
   return (
-    <header className="absolute">
+    <header className="fixed z-20">
       <button
         type="button"
         className="z-50 relative w-8 h-8 mt-12 ml-12"
@@ -33,10 +31,7 @@ const MobileNav = () => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
           fill="currentColor"
-          className={`text-gray-800 
-          ${
-            navShow ? 'text-gray-800' : router.asPath === '/' ? 'text-gray-200' : 'text-gray-800'
-          } hover:text-sea transform ease-in-out duration-300`}
+          className={`text-gray-100 hover:text-sea transform ease-in-out duration-300`}
         >
           {navShow ? (
             <path
@@ -53,8 +48,9 @@ const MobileNav = () => {
           )}
         </svg>
       </button>
+      <div className="clip overflow-hidden z-20 fixed top-0 left-0 w-32 h-full bg-cyan" />
       <div
-        className={`clip overflow-hidden z-10 fixed w-full md:w-1/2 h-full bg-gray-100 border-gray-400 border-r top-0 left-0 transform ease-in-out duration-300 ${
+        className={`overflow-hidden z-10 fixed w-full md:w-auto h-full bg-white top-0 left-0 pl-32 transform ease-in-out duration-300 ${
           navShow ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
@@ -64,7 +60,7 @@ const MobileNav = () => {
           className="fixed w-full h-full cursor-auto focus:outline-none"
           onClick={onToggleNav}
         ></button>
-        <nav className="fixed w-full h-full pt-32 pl-12">
+        <nav className="relative z-50 w-full h-full pt-8 px-12">
           {headerNavLinks.map((link) => (
             <div key={link.title} className="py-4">
               <Link

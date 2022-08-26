@@ -1,11 +1,11 @@
-import MobileNav from './MobileNav'
+import Nav from './Nav'
 
 const LayoutWrapper = ({ children }) => {
   return (
     <>
       <div className="flex flex-col h-screen">
         <div className="flex-1 w-full mx-auto">
-          <MobileNav />
+          <Nav />
           <main>{children}</main>
         </div>
       </div>
