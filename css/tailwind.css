@@ -8,10 +8,9 @@ html {
 
 /* Title in navigation */
 .clip {
-  mask-position: 25% 90%;
-  mask-repeat: no-repeat;
-  mask-size: 100%;
-  mask: url('/static/title.svg') left bottom / 3000px 1400px no-repeat, linear-gradient(#fff, #fff);
+  -webkit-mask-origin: border;
+  mask: url('/static/title-vert.svg') left bottom / 1400px 1600px no-repeat,
+    linear-gradient(#fff, #fff);
   -webkit-mask-composite: destination-out;
   mask-composite: exclude;
 }
@@ -38,4 +37,10 @@ html {
 
 .tooltipAsterism {
   @apply font-bold text-sm;
+}
+
+.star-content.prose p:first-child:first-letter,
+.meta-content.prose p:first-child:first-letter {
+  float: left;
+  @apply text-cyan text-7xl font-bold pt-2 pr-4;
 }

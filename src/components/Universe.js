@@ -203,6 +203,7 @@ const Universe = (posts) => {
 
   React.useEffect(() => {
     drawScatter(scatterRef, posts.posts)
+    document.body.style.overflow = 'hidden'
   }, [scatterRef])
 
   return (
