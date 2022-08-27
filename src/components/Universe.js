@@ -5,8 +5,8 @@ import Router from 'next/router'
 function drawScatter(scatterRef, posts) {
   // Set a fixed width/height to prevent different screen sizes (or changing
   // screen sizes) from altering the shape of the asterisms.
-  const width = 2000,
-    height = 2000
+  const width = 4000,
+    height = 4000
 
   // Create the SVG container, set its dimensions, and initiate zoom+pan.
   const svg = d3
