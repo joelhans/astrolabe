@@ -62,7 +62,7 @@ export default function Article({ content, visits }) {
     // Create a new cookie entry.
     const cookie = {
       slug: frontMatter.slug,
-      time: Date(),
+      time: new Date().toISOString(),
     }
 
     // Regardless of whether there's a cookie or not, we push this new cookie to
