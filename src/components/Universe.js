@@ -13,19 +13,24 @@ function drawScatter(scatterRef, posts) {
   // Set a fixed width/height to prevent different screen sizes (or changing
   // screen sizes) from altering the shape of the asterisms.
   const width = 4000,
-    height = 4000
+    height = 4000,
+    xx = 0,
+    yy = 0,
+    scale = 0.4
 
   // Create the SVG container, set its dimensions, and initiate zoom+pan.
   const svg = d3
     .select(scatterRef.current)
     .attr('width', width)
     .attr('height', height)
+    .call(d3.zoom().transform, d3.zoomIdentity.translate(xx, yy).scale(scale))
     .call(
       d3.zoom().on('zoom', () => {
         svg.attr('transform', d3.event.transform)
       })
     )
     .append('g')
+    .attr('transform', `translate(${xx}, ${yy})scale(${scale})`)
 
   // Create our scatter plot axes.
   const x = d3.scaleLinear().domain([-10, 10]).range([0, width])
