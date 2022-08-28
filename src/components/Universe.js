@@ -7,7 +7,7 @@ function drawScatter(scatterRef, posts) {
   // Initiate cookies and set the `visitedStars` cookie to an empty array if
   // there are no cookies previously.
   const cookies = new Cookies()
-  const visitedStars = cookies.get('visitedStars')
+  const visitedStars = cookies.get('visitedStars') || []
   !visitedStars && cookies.set('visitedStars', [], { path: '/', sameSite: 'strict' })
 
   // Set a fixed width/height to prevent different screen sizes (or changing
@@ -40,6 +40,14 @@ function drawScatter(scatterRef, posts) {
     })
     .entries(posts)
     .filter((d) => d.key !== 'null')
+
+  // Mutate the `posts` array to include a `visited` attribute for any star that
+  // our user has already visited, which is stored in cookies.
+  posts.forEach(function (e) {
+    if (visitedStars.some((f) => f.slug === e.slug)) {
+      e.visited = true
+    }
+  })
 
   // Build a list of links using {source: x, target: y} syntax.
   const Links = posts
@@ -107,7 +115,7 @@ function drawScatter(scatterRef, posts) {
       .transition()
       .duration(200)
       .attr('r', (d) => (d.size ? d.size : 8))
-      .attr('fill', (d) => (d.color ? d.color : '#69b3a2'))
+      .attr('fill', (d) => (d.visited ? '#444' : d.color ? d.color : '#69b3a2'))
     d3.selectAll('line').transition().duration(200).attr('stroke-opacity', '0%')
     d3.selectAll('text').transition().duration(200).attr('fill-opacity', '0%')
   }
@@ -176,7 +184,7 @@ function drawScatter(scatterRef, posts) {
     .attr('cx', (d) => x(d['declination']))
     .attr('cy', (d) => y(d['ascension']))
     .attr('r', (d) => (d.size ? d.size : 8))
-    .attr('fill', (d) => (d.color ? d.color : '#69b3a2'))
+    .attr('fill', (d) => (d.visited ? '#444' : d.color ? d.color : '#69b3a2'))
     .on('mouseover', function (d) {
       highlight(d)
       tooltipScatter
