@@ -171,7 +171,7 @@ function drawScatter(scatterRef, posts) {
       return y(whys)
     })
     .attr('fill', '#fff')
-    .attr('font-size', '2rem')
+    .attr('font-size', '3rem')
     .attr('font-style', 'italic')
     .attr('fill-opacity', '0%')
 
@@ -195,8 +195,13 @@ function drawScatter(scatterRef, posts) {
       tooltipScatter
         .html(
           `
-          <p class="text-3xl font-bold mb-2">${d.title}</p>
-          <p class="text-lg">${d.author}</p>
+          <p class="text-5xl font-bold mb-4">${d.title}</p>
+          <p class="text-sm text-gray-400 font-mono font-bold">${d.author}</p>
+          ${
+            d.summary
+              ? `<p class="prose prose-2xl !text-fuchsia-400 italic mt-3">${d.summary}</p>`
+              : ``
+          }
         `
         )
         .style('visibility', 'visible')
