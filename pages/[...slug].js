@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import Cookies from 'universal-cookie'
 import moment from 'moment'
 import fs from 'fs'
-import { WORK_CONTENT_PATH } from '@config/constants'
+import { STAR_CONTENT_PATH } from '@config/constants'
 import { getFrontMatter, getSingleContent } from '@lib/mdx'
 import generateRss from '@lib/generate-rss'
 import siteMetadata from '@data/siteMetadata'
@@ -11,7 +11,7 @@ import PageTitle from '@components/PageTitle'
 import { BlogSEO } from '@components/SEO'
 
 export async function getStaticPaths() {
-  const posts = await getFrontMatter(WORK_CONTENT_PATH, false)
+  const posts = await getFrontMatter(STAR_CONTENT_PATH, false)
   const paths = posts.map(({ slug }) => ({
     params: {
       slug: slug.split('/'),
@@ -26,10 +26,10 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params: { slug } }) {
   const postSlug = slug.join('/')
-  const content = await getSingleContent(WORK_CONTENT_PATH, postSlug)
+  const content = await getSingleContent(STAR_CONTENT_PATH, postSlug)
 
   // Generate RSS feed.
-  const posts = await getFrontMatter(WORK_CONTENT_PATH, true)
+  const posts = await getFrontMatter(STAR_CONTENT_PATH, true)
   const rss = generateRss(posts)
   fs.writeFileSync('./public/index.xml', rss)
 

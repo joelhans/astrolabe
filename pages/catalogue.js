@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { WORK_CONTENT_PATH } from '@config/constants'
+import { STAR_CONTENT_PATH } from '@config/constants'
 import siteMetadata from '@data/siteMetadata'
 import { getFrontMatter } from '@lib/mdx'
 import PageTitle from '@components/PageTitle'
 import { PageSEO } from '@components/SEO'
 
 export async function getStaticProps() {
-  const posts = await getFrontMatter(WORK_CONTENT_PATH, true)
+  const posts = await getFrontMatter(STAR_CONTENT_PATH, true)
   return { props: { posts } }
 }
 
@@ -36,8 +36,8 @@ export default function Catalogue({ posts }) {
           <header className="mt-48">
             <PageTitle>The Catalogue</PageTitle>
             <p className="text-lg md:text-xl mt-8">
-              The Catalogue is another way of accessing the works of <em>Astrolabe</em>. Look
-              through the list or search via a piece's name, author, or asterism.
+              The Catalogue is another way of accessing the stars of the Universe. Look through the
+              list or search via a piece's name, author, or asterism.
             </p>
           </header>
           <div className="relative max-w-lg mt-16">
