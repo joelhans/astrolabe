@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import Cookies from 'universal-cookie'
 import moment from 'moment'
 import fs from 'fs'
-import { STAR_CONTENT_PATH } from '@config/constants'
+import { STAR_CONTENT_PATH, CATACLYSM } from '@config/constants'
 import { getFrontMatter, getSingleContent } from '@lib/mdx'
 import generateRss from '@lib/generate-rss'
 import siteMetadata from '@data/siteMetadata'
@@ -113,17 +113,24 @@ export default function Article({ content, visits }) {
                 {log.length > 0 && (
                   <div className="pt-16 border-t border-gray-400">
                     <p className="text-3xl italic">You have visited this star before.</p>
-                    <div className="grid gap-8 grid-cols-3 mt-12">
-                      {/* Filter out only visits for this star, then loop through the visits to create the log. */}
-                      {log.map((visit) => {
-                        return (
-                          <div key={visit.time} className="px-4 py-2 bg-violet-700 rounded">
-                            <span className="text-sm font-mono font-bold text-white">
-                              {moment(visit.time).fromNow()}
-                            </span>
-                          </div>
-                        )
-                      })}
+                    <div className="mt-4">
+                      {/* Loop through the visits to create the log. */}
+                      {log
+                        .slice(0)
+                        .reverse()
+                        .map((visit, i) => {
+                          const { time } = visit
+                          const diff = Math.floor(
+                            moment.duration(moment(time).diff(CATACLYSM)).asHours()
+                          )
+                          return (
+                            <div key={time} className="py-2">
+                              <span className="text-sm text-violet-500 font-mono font-bold">
+                                {i + 1}: {diff} hours after the last cataclysm.
+                              </span>
+                            </div>
+                          )
+                        })}
                     </div>
                   </div>
                 )}
