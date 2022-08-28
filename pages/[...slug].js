@@ -7,6 +7,7 @@ import { STAR_CONTENT_PATH } from '@config/constants'
 import { getFrontMatter, getSingleContent } from '@lib/mdx'
 import generateRss from '@lib/generate-rss'
 import siteMetadata from '@data/siteMetadata'
+import CustomLink from '@components/Link'
 import { MDXLayoutRenderer } from '@components/MDXComponents'
 import PageTitle from '@components/PageTitle'
 import { BlogSEO } from '@components/SEO'
@@ -38,10 +39,10 @@ export async function getStaticProps({ params: { slug } }) {
     console.warn(`No content found for slug ${postSlug}`)
   }
 
-  return { props: { content } }
+  return { props: { content, posts } }
 }
 
-export default function Article({ content, visits }) {
+export default function Article({ content, posts }) {
   const [log, setLog] = useState([])
 
   const { mdxSource, frontMatter } = content
@@ -119,7 +120,30 @@ export default function Article({ content, visits }) {
                 </div>
                 {frontMatter.asterism && (
                   <div className="mt-12 p-8 bg-lime-200 rounded">
-                    <h2 className="text-2xl">Other stars in {frontMatter.asterismFull}:</h2>
+                    <h2 className="text-2xl mb-4">Other stars in {frontMatter.asterismFull}:</h2>
+                    <div className="grid gap-4 grid-cols-3">
+                      {posts
+                        .filter(
+                          (post) =>
+                            post.asterism === frontMatter.asterism && post.slug !== frontMatter.slug
+                        )
+                        .map((star) => {
+                          const { slug, title, author, summary } = star
+                          return (
+                            <CustomLink
+                              key={slug}
+                              href={`/${slug}`}
+                              className="block bg-white px-6 py-6 rounded"
+                            >
+                              <a>
+                                <h3 className="text-2xl mb-2">{title}</h3>
+                                <p className="mb-2">{author}</p>
+                                <p className="italic">{summary}</p>
+                              </a>
+                            </CustomLink>
+                          )
+                        })}
+                    </div>
                   </div>
                 )}
                 {log.length > 0 && (
