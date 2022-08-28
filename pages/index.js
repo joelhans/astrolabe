@@ -1,11 +1,11 @@
-import { WORK_CONTENT_PATH } from '@config/constants'
+import { STAR_CONTENT_PATH } from '@config/constants'
 import siteMetadata from '@data/siteMetadata'
 import { getFrontMatter } from '@lib/mdx'
 import { PageSEO } from '@components/SEO'
 import Universe from '@components/Universe'
 
 export async function getStaticProps() {
-  const posts = await getFrontMatter(WORK_CONTENT_PATH, true)
+  const posts = await getFrontMatter(STAR_CONTENT_PATH, true)
   return { props: { posts } }
 }
 
