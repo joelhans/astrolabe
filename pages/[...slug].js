@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import Cookies from 'universal-cookie'
 import moment from 'moment'
+import { IoTelescopeOutline } from 'react-icons/io5'
 import fs from 'fs'
 import { STAR_CONTENT_PATH } from '@config/constants'
 import { getFrontMatter, getSingleContent } from '@lib/mdx'
@@ -103,15 +104,26 @@ export default function Article({ content, visits }) {
               <header className="mt-48">
                 <PageTitle>{frontMatter.title}</PageTitle>
                 <p className="text-2xl mt-8">
-                  {frontMatter.author} ★ {frontMatter.date}
+                  {frontMatter.author}{' '}
+                  <IoTelescopeOutline className="inline-block mx-4 mb-2 text-cyan" />{' '}
+                  {frontMatter.date}
                 </p>
               </header>
               <div className="mt-32 mb-32">
-                <div className="star-content prose prose-lg lg:prose-2xl mb-24">
+                <div className="star-content prose prose-lg lg:prose-2xl mb-16">
                   <MDXLayoutRenderer mdxSource={mdxSource} frontMatter={frontMatter} />
+                  <div className="flex justify-center mt-16">
+                    <IoTelescopeOutline className="w-8 h-8 text-cyan" />
+                  </div>
+                  <div className="mt-16 prose-xl lg:prose-2xl italic">{frontMatter.authorBio}</div>
                 </div>
+                {frontMatter.asterism && (
+                  <div className="mt-12 p-8 bg-lime-200 rounded">
+                    <h2 className="text-2xl">Other stars in {frontMatter.asterismFull}:</h2>
+                  </div>
+                )}
                 {log.length > 0 && (
-                  <div className="pt-16 border-t border-gray-400">
+                  <div className="mt-16 pt-16 border-t border-gray-400">
                     <p className="text-3xl italic">You have visited this star before.</p>
                     <div className="grid gap-8 grid-cols-3 mt-12">
                       {/* Filter out only visits for this star, then loop through the visits to create the log. */}
