@@ -120,7 +120,10 @@ export default function Article({ content, posts }) {
                 </div>
                 {frontMatter.asterism && (
                   <div className="mt-12 p-8 bg-lime-200 rounded">
-                    <h2 className="text-2xl mb-4">Other stars in {frontMatter.asterismFull}:</h2>
+                    <h2 className="text-2xl mb-4">
+                      Other stars in{' '}
+                      <span className="font-bold italic">{frontMatter.asterismFull}</span>:
+                    </h2>
                     <div className="grid gap-4 grid-cols-3">
                       {posts
                         .filter(
