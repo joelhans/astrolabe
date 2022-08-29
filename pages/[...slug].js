@@ -133,13 +133,11 @@ export default function Article({ content, posts }) {
                             <CustomLink
                               key={slug}
                               href={`/${slug}`}
-                              className="block bg-white px-6 py-6 rounded"
+                              className="group block bg-white hover:bg-lime-100 px-6 py-6 rounded duration-300"
                             >
-                              <a>
-                                <h3 className="text-2xl mb-2">{title}</h3>
-                                <p className="mb-2">{author}</p>
-                                <p className="italic">{summary}</p>
-                              </a>
+                              <h3 className="text-2xl mb-2">{title}</h3>
+                              <p className="mb-2">{author}</p>
+                              <p className="italic">{summary}</p>
                             </CustomLink>
                           )
                         })}
