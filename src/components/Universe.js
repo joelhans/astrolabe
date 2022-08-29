@@ -80,7 +80,7 @@ function drawScatter(scatterRef, tooltipRef, posts) {
     }, [])
 
   // Initialize the tooltip.
-  // const tooltipScatter = d3.select('#scatter').append('div').attr('ref', 'tooltipRef').attr('class', 'tooltipScatter')
+  const tooltipScatter = d3.select('.tooltipScatter')
 
   // Function to highlight a specific star or an asterism of stars. The function
   // automatically makes all stars smaller upon mouseover on any star. Then,
@@ -191,7 +191,7 @@ function drawScatter(scatterRef, tooltipRef, posts) {
     .attr('fill', (d) => (d.visited ? '#444' : d.color ? d.color : '#69b3a2'))
     .on('mouseover', function (d) {
       highlight(d)
-      d3.select('.tooltipScatter')
+      tooltipScatter
         .html(
           `
           <p class="text-5xl font-bold mb-4">${d.title}</p>
@@ -209,15 +209,13 @@ function drawScatter(scatterRef, tooltipRef, posts) {
       // Account for the star position along the x axis in relationship to the
       // window's width so that we can place the tooltip on the correct side.
       d3.event.x + tooltipRef.current.offsetWidth < window.innerWidth
-        ? d3.select('.tooltipScatter').style('left', d3.event.x + 30 + 'px')
-        : d3.select('.tooltipScatter').style('left', d3.event.x - 485 + 'px')
+        ? tooltipScatter.style('left', d3.event.x + 30 + 'px')
+        : tooltipScatter.style('left', d3.event.x - tooltipRef.current.offsetWidth - 30 + 'px')
 
       // Same for the y axis.
       d3.event.y + tooltipRef.current.offsetHeight < window.innerHeight
-        ? d3.select('.tooltipScatter').style('top', d3.event.y - 10 + 'px')
-        : d3
-            .select('.tooltipScatter')
-            .style('top', d3.event.y - tooltipRef.current.offsetHeight + 10 + 'px')
+        ? tooltipScatter.style('top', d3.event.y - 10 + 'px')
+        : tooltipScatter.style('top', d3.event.y - tooltipRef.current.offsetHeight + 10 + 'px')
     })
     .on('mouseout', function () {
       doNotHighlight()
