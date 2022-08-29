@@ -3,7 +3,7 @@ import * as d3 from 'd3'
 import Cookies from 'universal-cookie'
 import Router from 'next/router'
 
-function drawScatter(scatterRef, posts) {
+function drawScatter(scatterRef, tooltipRef, posts) {
   // Initiate cookies and set the `visitedStars` cookie to an empty array if
   // there are no cookies previously.
   const cookies = new Cookies()
@@ -80,7 +80,7 @@ function drawScatter(scatterRef, posts) {
     }, [])
 
   // Initialize the tooltip.
-  const tooltipScatter = d3.select('#scatter').append('div').attr('class', 'tooltipScatter')
+  // const tooltipScatter = d3.select('#scatter').append('div').attr('ref', 'tooltipRef').attr('class', 'tooltipScatter')
 
   // Function to highlight a specific star or an asterism of stars. The function
   // automatically makes all stars smaller upon mouseover on any star. Then,
@@ -97,7 +97,6 @@ function drawScatter(scatterRef, posts) {
       .transition()
       .duration(200)
       .attr('fill', '#fff')
-    // .attr('r', 10)
 
     // Highlight the lines between the stars of the chosen asterism.
     d3.selectAll(d.asterism && '.' + d.asterism)
@@ -192,7 +191,7 @@ function drawScatter(scatterRef, posts) {
     .attr('fill', (d) => (d.visited ? '#444' : d.color ? d.color : '#69b3a2'))
     .on('mouseover', function (d) {
       highlight(d)
-      tooltipScatter
+      d3.select('.tooltipScatter')
         .html(
           `
           <p class="text-5xl font-bold mb-4">${d.title}</p>
@@ -207,11 +206,22 @@ function drawScatter(scatterRef, posts) {
         .style('visibility', 'visible')
     })
     .on('mousemove', function () {
-      tooltipScatter.style('top', d3.event.y - 10 + 'px').style('left', d3.event.x + 40 + 'px')
+      // Account for the star position along the x axis in relationship to the
+      // window's width so that we can place the tooltip on the correct side.
+      d3.event.x + tooltipRef.current.offsetWidth < window.innerWidth
+        ? d3.select('.tooltipScatter').style('left', d3.event.x + 30 + 'px')
+        : d3.select('.tooltipScatter').style('left', d3.event.x - 485 + 'px')
+
+      // Same for the y axis.
+      d3.event.y + tooltipRef.current.offsetHeight < window.innerHeight
+        ? d3.select('.tooltipScatter').style('top', d3.event.y - 10 + 'px')
+        : d3
+            .select('.tooltipScatter')
+            .style('top', d3.event.y - tooltipRef.current.offsetHeight + 10 + 'px')
     })
     .on('mouseout', function () {
       doNotHighlight()
-      tooltipScatter.style('visibility', 'hidden')
+      d3.select('.tooltipScatter').style('visibility', 'hidden')
     })
     .on('click', function (d) {
       d3.event.preventDefault()
@@ -222,16 +232,18 @@ function drawScatter(scatterRef, posts) {
 
 const Universe = (posts) => {
   const scatterRef = React.useRef(null)
+  const tooltipRef = React.useRef(null)
 
   React.useEffect(() => {
-    drawScatter(scatterRef, posts.posts)
+    drawScatter(scatterRef, tooltipRef, posts.posts)
     document.body.style.overflow = 'hidden'
-  }, [scatterRef])
+  }, [scatterRef, tooltipRef])
 
   return (
     <>
       <div id="scatter" className="bg-gray-900">
         <svg ref={scatterRef} />
+        <div ref={tooltipRef} className="tooltipScatter" />
       </div>
     </>
   )

@@ -24,7 +24,7 @@ html {
 .tooltip,
 .tooltipScatter {
   position: absolute;
-  @apply absolute -left-32 block max-w-md text-xl !text-fuchsia-400 px-8 py-6 bg-gray-800 bg-opacity-80 rounded;
+  @apply absolute -left-32 block w-full max-w-md text-xl !text-fuchsia-400 px-8 py-6 bg-gray-800 bg-opacity-80 rounded;
 }
 
 /* Prose */
