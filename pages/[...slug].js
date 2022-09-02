@@ -103,8 +103,7 @@ export default function Article({ content, posts }) {
           <header className="mt-48">
             <PageTitle>{frontMatter.title}</PageTitle>
             <p className="text-2xl mt-8">
-              {frontMatter.author}{' '}
-              <IoTelescopeOutline className="inline-block mx-4 mb-2 text-cyan" />{' '}
+              {frontMatter.author}{' '}<IoTelescopeOutline className="inline-block mx-4 mb-2 text-cyan" />{' '}
               {frontMatter.date}
             </p>
           </header>
