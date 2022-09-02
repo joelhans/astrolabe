@@ -197,6 +197,11 @@ function drawScatter(scatterRef, posts) {
           `
           <p class="text-3xl font-bold mb-2">${d.title}</p>
           <p class="text-lg">${d.author}</p>
+          ${
+            d.visited
+              ? `<p class="text-sm font-mono font-bold mt-2">You've visited this star before.</p>`
+              : ``
+          }
         `
         )
         .style('visibility', 'visible')
