@@ -201,6 +201,11 @@ function drawScatter(scatterRef, tooltipRef, posts) {
               ? `<p class="prose prose-2xl !text-fuchsia-400 italic mt-3">${d.summary}</p>`
               : ``
           }
+          ${
+            d.visited
+              ? `<p class="text-sm text-gray-400 font-mono font-bold mt-3">You've visited this star before.</p>`
+              : ``
+          }
         `
         )
         .style('visibility', 'visible')

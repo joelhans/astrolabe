@@ -1,10 +1,8 @@
 import { useState } from 'react'
-import { useRouter } from 'next/router'
 import Link from './Link'
 import headerNavLinks from '@data/headerNavLinks'
 
 const MobileNav = () => {
-  const router = useRouter()
   const [navShow, setNavShow] = useState(false)
 
   const onToggleNav = () => {

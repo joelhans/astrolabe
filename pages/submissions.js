@@ -25,16 +25,12 @@ export default function About({ content }) {
         title={`${frontMatter.title} • ${siteMetadata.title}`}
         description={siteMetadata.description}
       />
-      <div className="ml-48 lg:ml-64">
-        <div className="max-w-screen-lg mx-auto mb-auto px-6">
-          <header className="flex flex-row flex-wrap md:space-x-6 md:flex-nowrap mt-48">
-            <PageTitle>Submissions</PageTitle>
-          </header>
-          <div className="flex flex-row flex-wrap items-start mt-16">
-            <div className="meta-content prose prose-lg lg:prose-2xl mb-24">
-              <MDXLayoutRenderer mdxSource={mdxSource} frontMatter={frontMatter} />
-            </div>
-          </div>
+      <header className="flex flex-row flex-wrap md:space-x-6 md:flex-nowrap mt-48">
+        <PageTitle>Submissions</PageTitle>
+      </header>
+      <div className="flex flex-row flex-wrap items-start mt-16">
+        <div className="meta-content prose prose-lg lg:prose-2xl mb-24">
+          <MDXLayoutRenderer mdxSource={mdxSource} frontMatter={frontMatter} />
         </div>
       </div>
     </>

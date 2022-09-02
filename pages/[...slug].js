@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import Cookies from 'universal-cookie'
 import moment from 'moment'
 import fs from 'fs'
-import { STAR_CONTENT_PATH } from '@config/constants'
+import { STAR_CONTENT_PATH, CATACLYSM } from '@config/constants'
 import { getFrontMatter, getSingleContent } from '@lib/mdx'
 import generateRss from '@lib/generate-rss'
 import siteMetadata from '@data/siteMetadata'
@@ -98,37 +98,46 @@ export default function Article({ content, visits }) {
             url={`${siteMetadata.siteUrl}/articles/${frontMatter.slug}`}
             title={`${frontMatter.title} • ${siteMetadata.title}`}
           />
-          <div className="ml-48 lg:ml-64">
-            <div className="max-w-screen-lg mx-auto mb-auto px-6">
-              <header className="mt-48">
-                <PageTitle>{frontMatter.title}</PageTitle>
-                <p className="text-2xl mt-8">
-                  {frontMatter.author} ★ {frontMatter.date}
-                </p>
-              </header>
-              <div className="mt-32 mb-32">
-                <div className="star-content prose prose-lg lg:prose-2xl mb-24">
-                  <MDXLayoutRenderer mdxSource={mdxSource} frontMatter={frontMatter} />
-                </div>
-                {log.length > 0 && (
-                  <div className="pt-16 border-t border-gray-400">
-                    <p className="text-3xl italic">You have visited this star before.</p>
-                    <div className="grid gap-8 grid-cols-3 mt-12">
-                      {/* Filter out only visits for this star, then loop through the visits to create the log. */}
-                      {log.map((visit) => {
-                        return (
-                          <div key={visit.time} className="px-4 py-2 bg-violet-700 rounded">
-                            <span className="text-sm font-mono font-bold text-white">
-                              {moment(visit.time).fromNow()}
-                            </span>
-                          </div>
-                        )
-                      })}
-                    </div>
-                  </div>
-                )}
-              </div>
+          <header className="mt-48">
+            <PageTitle>{frontMatter.title}</PageTitle>
+            <p className="text-2xl mt-8">
+              {frontMatter.author} ★ {frontMatter.date}
+            </p>
+          </header>
+          <div className="mt-32 mb-32">
+            <div className="star-content prose prose-lg lg:prose-2xl mb-24">
+              <MDXLayoutRenderer mdxSource={mdxSource} frontMatter={frontMatter} />
             </div>
+            {log.length > 0 && (
+              <div className="pt-16 border-t border-gray-400">
+                <p className="text-3xl italic">You have visited this star before.</p>
+                <div className="mt-4">
+                  {/* Loop through the visits to create the log. */}
+                  {log
+                    .slice(0)
+                    .reverse()
+                    .map((visit) => {
+                      const { time } = visit
+                      const hours = moment
+                          .duration(moment(time).diff(CATACLYSM))
+                          .asHours()
+                          .toString(),
+                        minutes = (hours.substring(hours.indexOf('.')) * 60).toString(),
+                        seconds = (minutes.substring(minutes.indexOf('.')) * 60).toString()
+
+                      return (
+                        <div key={time} className="py-2">
+                          <span className="text-sm text-gray-600 font-mono">
+                            {moment(time).format('dddd, MMMM Do YYYY, h:mm:ss a')}; or{' '}
+                            {Math.floor(hours)} hours, {Math.floor(minutes)} minutes, and{' '}
+                            {Math.floor(seconds)} seconds after the last cataclysm.
+                          </span>
+                        </div>
+                      )
+                    })}
+                </div>
+              </div>
+            )}
           </div>
         </>
       ) : (
