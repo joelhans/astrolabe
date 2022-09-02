@@ -203,7 +203,7 @@ function drawScatter(scatterRef, tooltipRef, posts) {
           }
           ${
             d.visited
-              ? `<p class="text-sm font-mono font-bold mt-2">You've visited this star before.</p>`
+              ? `<p class="text-sm text-gray-400 font-mono font-bold mt-3">You've visited this star before.</p>`
               : ``
           }
         `
