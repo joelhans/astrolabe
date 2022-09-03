@@ -93,99 +93,94 @@ export default function Article({ content, posts }) {
 
   return (
     <>
-      {frontMatter.draft !== true || (frontMatter.draft === true && env === 'development') ? (
-        <>
-          <BlogSEO
-            {...frontMatter}
-            url={`${siteMetadata.siteUrl}/articles/${frontMatter.slug}`}
-            title={`${frontMatter.title} • ${siteMetadata.title}`}
-          />
-          <header className="mt-48">
-            <PageTitle>{frontMatter.title}</PageTitle>
-            <p className="text-2xl mt-8">
-              {frontMatter.author}{' '}
-              <IoTelescopeOutline className="inline-block mx-4 mb-2 text-cyan" /> {frontMatter.date}
-            </p>
-          </header>
-          <div className="mt-32 mb-32">
-            <div className="star-content prose prose-lg lg:prose-2xl mb-24">
-              <MDXLayoutRenderer mdxSource={mdxSource} frontMatter={frontMatter} />
-              <div className="flex justify-center mt-16">
-                <IoTelescopeOutline className="w-8 h-8 text-cyan" />
-              </div>
-              <div className="mt-16 prose-xl lg:prose-2xl italic">{frontMatter.authorBio}</div>
-            </div>
-            {frontMatter.asterism && (
-              <div className="mt-12 p-8 bg-lime-200 rounded">
-                <h2 className="text-2xl mb-4">
-                  Other stars in{' '}
-                  <span className="font-bold italic">{frontMatter.asterismFull}</span>:
-                </h2>
-                <div className="grid gap-4 grid-cols-3">
-                  {posts
-                    .filter(
-                      (post) =>
-                        post.asterism === frontMatter.asterism && post.slug !== frontMatter.slug
-                    )
-                    .map((star) => {
-                      const { slug, title, author, summary } = star
-                      return (
-                        <CustomLink
-                          key={slug}
-                          href={`/${slug}`}
-                          className="group block bg-white hover:bg-lime-100 px-6 py-6 rounded duration-300"
-                        >
-                          <h3 className="text-2xl mb-2">{title}</h3>
-                          <p className="mb-2">{author}</p>
-                          <p className="italic">{summary}</p>
-                        </CustomLink>
-                      )
-                    })}
-                </div>
-              </div>
-            )}
-            {log.length > 0 && (
-              <div className="pt-16 border-t border-gray-400">
-                <p className="text-3xl italic">You have visited this star before.</p>
-                <div className="mt-4">
-                  {/* Loop through the visits to create the log. */}
-                  {log
-                    .slice(0)
-                    .reverse()
-                    .map((visit) => {
-                      const { time } = visit
-                      const hours = moment
-                          .duration(moment(time).diff(CATACLYSM))
-                          .asHours()
-                          .toString(),
-                        minutes = (hours.substring(hours.indexOf('.')) * 60).toString(),
-                        seconds = (minutes.substring(minutes.indexOf('.')) * 60).toString()
-
-                      return (
-                        <div key={time} className="py-2">
-                          <span className="text-sm text-gray-600 font-mono">
-                            {moment(time).format('dddd, MMMM Do YYYY, h:mm:ss a')}; or{' '}
-                            {Math.floor(hours)} hours, {Math.floor(minutes)} minutes, and{' '}
-                            {Math.floor(seconds)} seconds after the last cataclysm.
-                          </span>
-                        </div>
-                      )
-                    })}
-                </div>
-              </div>
-            )}
+      {/* {frontMatter.draft !== true || (frontMatter.draft === true && env === 'development') ? (
+        <> */}
+      <BlogSEO
+        {...frontMatter}
+        url={`${siteMetadata.siteUrl}/articles/${frontMatter.slug}`}
+        title={`${frontMatter.title} • ${siteMetadata.title}`}
+      />
+      <header className="mt-48">
+        <PageTitle>{frontMatter.title}</PageTitle>
+        <p className="text-2xl mt-8">
+          {frontMatter.author} <IoTelescopeOutline className="inline-block mx-4 mb-2 text-cyan" />{' '}
+          {frontMatter.date}
+        </p>
+      </header>
+      <div className="mt-32 mb-32">
+        <div className="star-content prose prose-lg lg:prose-2xl mb-24">
+          <MDXLayoutRenderer mdxSource={mdxSource} frontMatter={frontMatter} />
+          <div className="flex justify-center mt-16">
+            <IoTelescopeOutline className="w-8 h-8 text-cyan" />
           </div>
-        </>
-      ) : (
-        <div className="my-48 text-center">
-          <h1 className="text-xl font-bold">
-            Under construction.{' '}
-            <span role="img" aria-label="roadwork sign">
-              🚧
-            </span>
-          </h1>
+          <div className="mt-16 prose-xl lg:prose-2xl italic">{frontMatter.authorBio}</div>
         </div>
-      )}
+        {frontMatter.asterism && (
+          <div className="mt-12 p-8 bg-lime-200 rounded">
+            <h2 className="text-2xl mb-4">
+              Other stars in <span className="font-bold italic">{frontMatter.asterismFull}</span>:
+            </h2>
+            <div className="grid gap-4 grid-cols-3">
+              {posts
+                .filter(
+                  (post) => post.asterism === frontMatter.asterism && post.slug !== frontMatter.slug
+                )
+                .map((star) => {
+                  const { slug, title, author, summary } = star
+                  return (
+                    <CustomLink
+                      key={slug}
+                      href={`/${slug}`}
+                      className="group block bg-white hover:bg-lime-100 px-6 py-6 rounded duration-300"
+                    >
+                      <h3 className="text-2xl mb-2">{title}</h3>
+                      <p className="mb-2">{author}</p>
+                      <p className="italic">{summary}</p>
+                    </CustomLink>
+                  )
+                })}
+            </div>
+          </div>
+        )}
+        {log.length > 0 && (
+          <div className="pt-16 border-t border-gray-400">
+            <p className="text-3xl italic">You have visited this star before.</p>
+            <div className="mt-4">
+              {/* Loop through the visits to create the log. */}
+              {log
+                .slice(0)
+                .reverse()
+                .map((visit) => {
+                  const { time } = visit
+                  const hours = moment.duration(moment(time).diff(CATACLYSM)).asHours().toString(),
+                    minutes = (hours.substring(hours.indexOf('.')) * 60).toString(),
+                    seconds = (minutes.substring(minutes.indexOf('.')) * 60).toString()
+
+                  return (
+                    <div key={time} className="py-2">
+                      <span className="text-sm text-gray-600 font-mono">
+                        {moment(time).format('dddd, MMMM Do YYYY, h:mm:ss a')}; or{' '}
+                        {Math.floor(hours)} hours, {Math.floor(minutes)} minutes, and{' '}
+                        {Math.floor(seconds)} seconds after the last cataclysm.
+                      </span>
+                    </div>
+                  )
+                })}
+            </div>
+          </div>
+        )}
+      </div>
     </>
+    //   ) : (
+    //     <div className="my-48 text-center">
+    //       <h1 className="text-xl font-bold">
+    //         Under construction.{' '}
+    //         <span role="img" aria-label="roadwork sign">
+    //           🚧
+    //         </span>
+    //       </h1>
+    //     </div>
+    //   )}
+    // </>
   )
 }
