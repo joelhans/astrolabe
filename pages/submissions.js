@@ -28,8 +28,8 @@ export default function About({ content }) {
       <header className="flex flex-row flex-wrap md:space-x-6 md:flex-nowrap mt-48">
         <PageTitle>Submissions</PageTitle>
       </header>
-      <div className="flex flex-row flex-wrap items-start mt-16">
-        <div className="meta-content prose prose-lg lg:prose-2xl mb-24">
+      <div className="flex flex-row flex-wrap items-start mt-32 mb-48">
+        <div className="meta-content prose prose-lg lg:prose-2xl">
           <MDXLayoutRenderer mdxSource={mdxSource} frontMatter={frontMatter} />
         </div>
       </div>

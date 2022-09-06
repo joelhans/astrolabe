@@ -61,29 +61,27 @@ export default function Catalogue({ posts }) {
           />
         </svg>
       </div>
-      <div className="flex flex-row flex-wrap items-start mt-24">
-        <div className="mb-24">
-          <ul>
-            {filteredArticles.map((post) => {
-              const { id, title, summary, author, asterismFull } = post
-              return (
-                <li key={id} className="mb-16 last:mb-0">
-                  <Link href={`/${post.id}`}>
-                    <a className="group">
-                      <h2 className="text-black text-3xl font-bold mb-2 transition-all group-hover:text-cyan">
-                        {title}
-                      </h2>
-                      <p className="text-base mb-2">
-                        {author} {asterismFull && `| ${asterismFull}`}
-                      </p>
-                      <p className="text-xl text-gray-600 italic">{summary}</p>
-                    </a>
-                  </Link>
-                </li>
-              )
-            })}
-          </ul>
-        </div>
+      <div className="flex flex-row flex-wrap items-start mt-32 mb-48">
+        <ul>
+          {filteredArticles.map((post) => {
+            const { id, title, summary, author, asterismFull } = post
+            return (
+              <li key={id} className="mb-16 last:mb-0">
+                <Link href={`/${post.id}`}>
+                  <a className="group">
+                    <h2 className="text-black text-3xl font-bold mb-2 transition-all group-hover:text-cyan">
+                      {title}
+                    </h2>
+                    <p className="text-base mb-2">
+                      {author} {asterismFull && `| ${asterismFull}`}
+                    </p>
+                    <p className="text-xl text-gray-600 italic">{summary}</p>
+                  </a>
+                </Link>
+              </li>
+            )
+          })}
+        </ul>
       </div>
     </>
   )
