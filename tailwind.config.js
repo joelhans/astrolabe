@@ -27,12 +27,12 @@ module.exports = {
         DEFAULT: {
           css: {
             fontFamily: `${theme('fontFamily.serif')}`,
-            color: theme('colors.gray.800'),
+            color: theme('colors.gray.900'),
             a: {
-              color: theme('colors.cyan'),
+              color: theme('colors.fuchsia.400'),
               textDecoration: 'none',
               transition: theme('transition.all'),
-              fontWeight: theme('font.semibold'),
+              fontWeight: 700,
               '&:hover': {
                 color: theme('colors.cyan'),
               },
@@ -57,7 +57,7 @@ module.exports = {
               color: theme('colors.gray.900'),
             },
             code: {
-              color: theme('colors.cyan'),
+              color: theme('colors.amber.500'),
               backgroundColor: theme('colors.gray.100'),
               paddingLeft: '4px',
               paddingRight: '4px',
@@ -65,10 +65,10 @@ module.exports = {
               paddingBottom: '2px',
               borderRadius: '0.25rem',
             },
-            'code:before': {
+            'code::before': {
               content: 'none',
             },
-            'code:after': {
+            'code::after': {
               content: 'none',
             },
             hr: { borderColor: theme('colors.gray.200') },

@@ -29,8 +29,7 @@ html {
 
 /* Prose */
 
-.star-content.prose p:first-child:first-letter,
-.meta-content.prose p:first-child:first-letter {
+.star-content.prose p:first-child:first-letter {
   float: left;
   @apply text-cyan text-7xl font-bold pt-2 pr-4;
 }

@@ -107,7 +107,7 @@ export default function Article({ content, posts }) {
           {frontMatter.date}
         </p>
       </header>
-      <div className="mt-32 mb-32">
+      <div className="mt-32 mb-48">
         <div className="star-content prose prose-lg lg:prose-2xl mb-24">
           <MDXLayoutRenderer mdxSource={mdxSource} frontMatter={frontMatter} />
           <div className="flex justify-center mt-16">
