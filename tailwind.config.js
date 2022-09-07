@@ -29,7 +29,7 @@ module.exports = {
             fontFamily: `${theme('fontFamily.serif')}`,
             color: theme('colors.gray.900'),
             a: {
-              color: theme('colors.fuchsia.400'),
+              color: theme('colors.fuchsia.600'),
               textDecoration: 'none',
               transition: theme('transition.all'),
               fontWeight: 700,
@@ -58,7 +58,7 @@ module.exports = {
             },
             code: {
               color: theme('colors.amber.500'),
-              backgroundColor: theme('colors.gray.100'),
+              backgroundColor: theme('colors.gray.200'),
               paddingLeft: '4px',
               paddingRight: '4px',
               paddingTop: '2px',
