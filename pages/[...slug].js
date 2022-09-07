@@ -93,8 +93,6 @@ export default function Article({ content, posts }) {
 
   return (
     <>
-      {/* {frontMatter.draft !== true || (frontMatter.draft === true && env === 'development') ? (
-        <> */}
       <BlogSEO
         {...frontMatter}
         url={`${siteMetadata.siteUrl}/articles/${frontMatter.slug}`}
@@ -102,9 +100,9 @@ export default function Article({ content, posts }) {
       />
       <header className="mt-48">
         <PageTitle>{frontMatter.title}</PageTitle>
-        <p className="text-2xl mt-8">
-          {frontMatter.author} <IoTelescopeOutline className="inline-block mx-4 mb-2 text-cyan" />{' '}
-          {frontMatter.date}
+        <p className="text-2xl italic mt-8">
+          Discovered by <span className="text-fuchsia-600 font-bold">{frontMatter.author}</span> on{' '}
+          {moment(frontMatter.publishedOn).format('dddd, MMMM Do YYYY')}.
         </p>
       </header>
       <div className="mt-32 mb-48">
@@ -115,12 +113,15 @@ export default function Article({ content, posts }) {
           </div>
           <div className="mt-16 prose-xl lg:prose-2xl italic">{frontMatter.authorBio}</div>
         </div>
+
+        {/* If there are other stars in this asterism... */}
         {frontMatter.asterism && (
           <div className="mt-12 p-8 bg-lime-200 rounded">
             <h2 className="text-2xl mb-4">
               Other stars in <span className="font-bold italic">{frontMatter.asterismFull}</span>:
             </h2>
             <div className="grid gap-4 grid-cols-3">
+              {/* Filter out any stars that are *not* in this asterism and loop through those that are. */}
               {posts
                 .filter(
                   (post) => post.asterism === frontMatter.asterism && post.slug !== frontMatter.slug
@@ -171,16 +172,5 @@ export default function Article({ content, posts }) {
         )}
       </div>
     </>
-    //   ) : (
-    //     <div className="my-48 text-center">
-    //       <h1 className="text-xl font-bold">
-    //         Under construction.{' '}
-    //         <span role="img" aria-label="roadwork sign">
-    //           🚧
-    //         </span>
-    //       </h1>
-    //     </div>
-    //   )}
-    // </>
   )
 }
