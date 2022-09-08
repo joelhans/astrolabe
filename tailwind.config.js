@@ -22,6 +22,9 @@ module.exports = {
       },
       colors: {
         cyan: '#69b3a2',
+        green: colors.emerald[600],
+        pink: colors.fuchsia[600],
+        orange: colors.amber[500],
       },
       typography: (theme) => ({
         DEFAULT: {
@@ -31,10 +34,9 @@ module.exports = {
             a: {
               color: theme('colors.fuchsia.600'),
               textDecoration: 'none',
-              transition: theme('transition.all'),
               fontWeight: 700,
               '&:hover': {
-                color: theme('colors.cyan'),
+                color: theme('colors.green'),
               },
               code: { color: theme('colors.blue.400') },
             },
@@ -57,7 +59,7 @@ module.exports = {
               color: theme('colors.gray.900'),
             },
             code: {
-              color: theme('colors.amber.500'),
+              color: theme('colors.orange'),
               backgroundColor: theme('colors.gray.200'),
               paddingLeft: '4px',
               paddingRight: '4px',

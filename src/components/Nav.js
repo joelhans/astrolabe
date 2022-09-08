@@ -46,7 +46,7 @@ const MobileNav = () => {
           )}
         </svg>
       </button>
-      <div className="clip overflow-hidden z-20 fixed top-0 left-0 w-32 h-full bg-cyan" />
+      <div className="clip overflow-hidden z-20 fixed top-0 left-0 w-32 h-full bg-green" />
       <div
         className={`overflow-hidden z-10 fixed w-full md:w-auto h-full bg-white top-0 left-0 pl-32 transform ease-in-out duration-300 ${
           navShow ? 'translate-x-0' : '-translate-x-full'
@@ -63,7 +63,7 @@ const MobileNav = () => {
             <div key={link.title} className="py-4">
               <Link
                 href={link.href}
-                className="font-serif text-4xl italic tracking-wide text-gray-900 hover:text-cyan transform ease-in-out duration-300"
+                className="font-serif text-4xl italic tracking-wide text-gray-900 hover:text-green transform ease-in-out duration-300"
                 onClick={onToggleNav}
               >
                 {link.title}

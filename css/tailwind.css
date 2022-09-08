@@ -33,3 +33,7 @@ html {
   float: left;
   @apply text-cyan text-7xl font-bold pt-2 pr-4;
 }
+
+.prose a {
+  @apply transform ease-in-out duration-300;
+}
