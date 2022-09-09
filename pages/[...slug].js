@@ -157,6 +157,8 @@ export default function Article({ content, posts }) {
                     minutes = (hours.substring(hours.indexOf('.')) * 60).toString(),
                     seconds = (minutes.substring(minutes.indexOf('.')) * 60).toString()
 
+                  console.log(CATACLYSM)
+
                   return (
                     <div key={time} className="py-2">
                       <span className="text-sm text-gray-600 font-mono">
