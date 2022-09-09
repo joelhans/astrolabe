@@ -170,7 +170,7 @@ function drawScatter(scatterRef, tooltipRef, posts) {
       return y(whys)
     })
     .attr('fill', '#fff')
-    .attr('font-size', '3rem')
+    .attr('font-size', '5rem')
     .attr('font-style', 'italic')
     .attr('fill-opacity', '0%')
 
