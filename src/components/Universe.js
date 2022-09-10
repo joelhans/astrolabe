@@ -151,23 +151,19 @@ function drawScatter(scatterRef, tooltipRef, posts) {
     })
     .attr('x', function (d) {
       // Calculate the average X position of all the stars in this asterism.
-      const exes =
-        d.values
-          .map((star) => {
-            return star.declination
-          })
-          .reduce((a, b) => a + b) / d.values.length
-      return x(exes)
+      const width = this.getComputedTextLength()
+      const max = Math.max(...d.values.map((o) => o.declination)),
+        min = Math.min(...d.values.map((o) => o.declination)),
+        mid = (max + min) / 2
+      return x(mid) - width * 2
     })
     .attr('y', function (d) {
       // Calculate the average Y position of all the stars in this asterism.
-      const whys =
-        d.values
-          .map((star) => {
-            return star.ascension
-          })
-          .reduce((a, b) => a + b) / d.values.length
-      return y(whys)
+      const height = this.getBoundingClientRect().height
+      const max = Math.max(...d.values.map((o) => o.ascension)),
+        min = Math.min(...d.values.map((o) => o.ascension)),
+        mid = (max + min) / 2
+      return y(mid) + 40
     })
     .attr('fill', '#fff')
     .attr('font-size', '5rem')
