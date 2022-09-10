@@ -68,7 +68,7 @@ function drawScatter(scatterRef, tooltipRef, posts) {
       linkedTo.map((link) => {
         a.push({
           asterism: asterism,
-          source: id,
+          source: id.split('/')[0],
           sourceX: x(declination),
           sourceY: y(ascension),
           target: link,
