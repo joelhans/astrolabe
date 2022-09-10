@@ -106,7 +106,7 @@ export default function Article({ content, posts }) {
         </p>
       </header>
       <div className="mt-32 mb-48">
-        <div className="star-content prose prose-lg lg:prose-2xl mb-24">
+        <div className="star-content prose prose-lg lg:prose-2xl">
           <MDXLayoutRenderer mdxSource={mdxSource} frontMatter={frontMatter} />
           <div className="flex justify-center mt-16">
             <IoTelescopeOutline className="w-8 h-8 text-cyan" />
@@ -116,8 +116,8 @@ export default function Article({ content, posts }) {
 
         {/* If there are other stars in this asterism... */}
         {frontMatter.asterism && (
-          <div className="mt-12 p-8 bg-lime-200 rounded">
-            <h2 className="text-2xl mb-4">
+          <div className="mt-24 p-8 bg-emerald-600 rounded">
+            <h2 className="text-gray-100 text-2xl mb-4">
               Other stars in <span className="font-bold italic">{frontMatter.asterismFull}</span>:
             </h2>
             <div className="grid gap-4 grid-cols-3">
@@ -132,7 +132,7 @@ export default function Article({ content, posts }) {
                     <CustomLink
                       key={slug}
                       href={`/${slug}`}
-                      className="group block bg-white hover:bg-lime-100 px-6 py-6 rounded duration-300"
+                      className="group block bg-white hover:bg-gray-100 hover:bg-opacity-90 px-6 py-6 rounded duration-300"
                     >
                       <h3 className="text-2xl mb-2">{title}</h3>
                       <p className="mb-2">{author}</p>
@@ -144,7 +144,7 @@ export default function Article({ content, posts }) {
           </div>
         )}
         {log.length > 0 && (
-          <div className="pt-16 border-t border-gray-400">
+          <div className="mt-24">
             <p className="text-3xl italic">You have visited this star before.</p>
             <div className="mt-4">
               {/* Loop through the visits to create the log. */}
@@ -157,12 +157,13 @@ export default function Article({ content, posts }) {
                     minutes = (hours.substring(hours.indexOf('.')) * 60).toString(),
                     seconds = (minutes.substring(minutes.indexOf('.')) * 60).toString()
 
-                  console.log(CATACLYSM)
-
                   return (
                     <div key={time} className="py-2">
-                      <span className="text-sm text-gray-600 font-mono">
-                        {moment(time).format('dddd, MMMM Do YYYY, h:mm:ss a')}; or{' '}
+                      <span className="text-lg text-fuchsia-600 italic">
+                        {moment(time).format('dddd, MMMM Do YYYY, h:mm:ss a')}
+                      </span>
+                      <br />
+                      <span className="text-xs text-gray-600 font-mono">
                         {Math.floor(hours)} hours, {Math.floor(minutes)} minutes, and{' '}
                         {Math.floor(seconds)} seconds after the last cataclysm.
                       </span>
