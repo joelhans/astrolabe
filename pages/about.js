@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { BASE_CONTENT_PATH } from '@config/constants'
 import siteMetadata from '@data/siteMetadata'
 import { getSingleContent } from '@lib/mdx'
@@ -12,6 +13,11 @@ export async function getStaticProps() {
 
 export default function About({ content }) {
   const { mdxSource, frontMatter } = content
+
+  // Force overflow so we can scroll on this page.
+  useEffect(() => {
+    document.body.style.overflow = 'auto'
+  })
 
   return (
     <>

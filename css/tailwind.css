@@ -16,9 +16,13 @@ html {
 }
 
 /* Universe */
-#scatter svg {
+#scatter > svg {
   cursor: grab;
   position: relative;
+}
+
+.welcome {
+  left: calc(50% + 4rem);
 }
 
 .tooltip,
