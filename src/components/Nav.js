@@ -58,7 +58,7 @@ const MobileNav = () => {
           className="fixed w-full h-full cursor-auto focus:outline-none"
           onClick={onToggleNav}
         ></button>
-        <nav className="relative z-50 w-full h-full pt-8 px-12">
+        <nav className="relative z-50 w-full h-full pt-8 pl-16 pr-24">
           {headerNavLinks.map((link) => (
             <div key={link.title} className="py-4">
               <Link
@@ -70,15 +70,6 @@ const MobileNav = () => {
               </Link>
             </div>
           ))}
-          <div className="mt-24 prose text-gray-900">
-            <p className="">To navigate through the Universe:</p>
-            <ul>
-              <li>Hover over a star to see its details.</li>
-              <li>Click or tap a star to take a closer look.</li>
-              <li>Zoom with your mousewheel or a pinch-to-zoom gesture.</li>
-              <li>Pan with a click-and-drag or touch-and-drag.</li>
-            </ul>
-          </div>
         </nav>
         <h1 className="-translate-x-full">Astrolabe</h1>
       </div>
