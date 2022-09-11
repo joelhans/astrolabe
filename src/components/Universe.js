@@ -230,7 +230,7 @@ function drawScatter(scatterRef, tooltipRef, posts) {
 }
 
 const Universe = (posts) => {
-  const [helpShow, setHelpShow] = useState(true)
+  const [helpShow, setHelpShow] = useState(false)
 
   const scatterRef = useRef(null)
   const tooltipRef = useRef(null)
@@ -248,7 +248,7 @@ const Universe = (posts) => {
     drawScatter(scatterRef, tooltipRef, posts.posts)
     document.body.style.overflow = 'hidden'
     visitedUniverse = localStorage.getItem('visitedUniverse')
-    visitedUniverse && toggleHelp()
+    !visitedUniverse && toggleHelp()
   }, [scatterRef, tooltipRef, visitedUniverse])
 
   return (
