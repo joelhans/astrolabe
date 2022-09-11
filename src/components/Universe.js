@@ -253,7 +253,7 @@ const Universe = (posts) => {
 
   return (
     <>
-      <div id="scatter" className="bg-gray-900">
+      <div id="scatter" className="w-screen h-screen bg-gray-900">
         <svg ref={scatterRef} />
         {helpShow && (
           <div className="welcome z-50 absolute top-1/2 left-1/2 text-2xl !text-gray-900 bg-white bg-opacity-90 p-12 rounded transform -translate-x-1/2">
