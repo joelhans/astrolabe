@@ -9,6 +9,7 @@ import generateRss from '@lib/generate-rss'
 import siteMetadata from '@data/siteMetadata'
 import CustomLink from '@components/Link'
 import { MDXLayoutRenderer } from '@components/MDXComponents'
+import PageHeader from '@components/PageHeader'
 import PageTitle from '@components/PageTitle'
 import { BlogSEO } from '@components/SEO'
 
@@ -98,20 +99,19 @@ export default function Article({ content, posts }) {
         url={`${siteMetadata.siteUrl}/articles/${frontMatter.slug}`}
         title={`${frontMatter.title} • ${siteMetadata.title}`}
       />
-      <header className="mt-48">
-        <PageTitle>{frontMatter.title}</PageTitle>
-        <p className="text-2xl italic mt-8">
+      <PageHeader title={frontMatter.title}>
+        <p className="text-lg lg:text-2xl italic mt-8">
           Discovered by <span className="text-fuchsia-600 font-bold">{frontMatter.author}</span> on{' '}
           {moment(frontMatter.publishedOn).format('dddd, MMMM Do YYYY')}.
         </p>
-      </header>
-      <div className="mt-32 mb-48">
-        <div className="star-content prose prose-lg lg:prose-2xl">
+      </PageHeader>
+      <div className="mt-16 lg:mt-32 mb-32 lg:mb-48">
+        <div className="star-content prose lg:prose-2xl">
           <MDXLayoutRenderer mdxSource={mdxSource} frontMatter={frontMatter} />
           <div className="flex justify-center mt-16">
             <IoTelescopeOutline className="w-8 h-8 text-cyan" />
           </div>
-          <div className="mt-16 prose-xl lg:prose-2xl italic">{frontMatter.authorBio}</div>
+          <div className="mt-16 prose lg:prose-2xl italic">{frontMatter.authorBio}</div>
         </div>
 
         {/* If there are other stars in this asterism... */}
@@ -120,7 +120,7 @@ export default function Article({ content, posts }) {
             <h2 className="text-gray-100 text-2xl mb-4">
               Other stars in <span className="font-bold italic">{frontMatter.asterismFull}</span>:
             </h2>
-            <div className="grid gap-4 grid-cols-3">
+            <div className="grid gap-4 lg:grid-cols-3">
               {/* Filter out any stars that are *not* in this asterism and loop through those that are. */}
               {posts
                 .filter(

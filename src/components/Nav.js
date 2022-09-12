@@ -7,21 +7,15 @@ const MobileNav = () => {
 
   const onToggleNav = () => {
     setNavShow((status) => {
-      if (status) {
-        document.body.style.overflow = 'auto'
-      } else {
-        // Prevent scrolling
-        document.body.style.overflow = 'hidden'
-      }
       return !status
     })
   }
 
   return (
-    <header className="fixed z-20">
+    <header className="fixed z-50">
       <button
         type="button"
-        className="z-50 relative w-8 h-8 mt-12 ml-12"
+        className="z-50 relative w-8 h-8 mt-4 lg:mt-12 ml-4 lg:ml-12"
         aria-label="Toggle Menu"
         onClick={onToggleNav}
       >
@@ -29,7 +23,9 @@ const MobileNav = () => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
           fill="currentColor"
-          className={`text-gray-100 hover:text-sea transform ease-in-out duration-300`}
+          className={`text-green lg:text-gray-100 hover:text-sea transform ease-in-out duration-300 ${
+            navShow ? '!text-gray-100' : ''
+          }`}
         >
           {navShow ? (
             <path
@@ -46,9 +42,13 @@ const MobileNav = () => {
           )}
         </svg>
       </button>
-      <div className="clip overflow-hidden z-20 fixed top-0 left-0 w-32 h-full bg-green" />
       <div
-        className={`overflow-hidden z-10 fixed w-full md:w-auto h-full bg-white top-0 left-0 pl-32 transform ease-in-out duration-300 ${
+        className={`clip overflow-hidden z-20 fixed top-0 left-0 w-16 lg:w-32 h-screen bg-green lg:!translate-x-0 ${
+          navShow ? 'translate-x-0' : '-translate-x-full'
+        }`}
+      />
+      <div
+        className={`overflow-hidden z-10 fixed w-screen lg:w-auto h-screen bg-white top-0 left-0 pl-16 lg:pl-32 transform ease-in-out duration-300 ${
           navShow ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
@@ -58,12 +58,12 @@ const MobileNav = () => {
           className="fixed w-full h-full cursor-auto focus:outline-none"
           onClick={onToggleNav}
         ></button>
-        <nav className="relative z-50 w-full h-full pt-8 pl-16 pr-24">
+        <nav className="relative z-50 w-full h-full pt-8 pl-8 lg:pl-16 pr-0 lg:pr-24">
           {headerNavLinks.map((link) => (
             <div key={link.title} className="py-4">
               <Link
                 href={link.href}
-                className="font-serif text-4xl italic tracking-wide text-gray-900 hover:text-green transform ease-in-out duration-300"
+                className="font-serif text-3xl lg:text-4xl italic tracking-wide text-gray-900 hover:text-green transform ease-in-out duration-300"
                 onClick={onToggleNav}
               >
                 {link.title}

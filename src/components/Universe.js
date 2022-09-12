@@ -253,10 +253,10 @@ const Universe = (posts) => {
 
   return (
     <>
-      <div id="scatter" className="w-screen h-screen bg-gray-900">
+      <div id="scatter" className="bg-gray-900">
         <svg ref={scatterRef} />
         {helpShow && (
-          <div className="welcome z-50 absolute top-1/2 left-1/2 text-2xl !text-gray-900 bg-white bg-opacity-90 p-12 rounded transform -translate-x-1/2">
+          <div className="welcome z-30 absolute w-full lg:w-auto top-1/2 lg:left-1/2 !text-gray-900 bg-white bg-opacity-90 p-8 lg:p-12 rounded transform -translate-y-1/2 lg:-translate-x-1/2">
             <button
               type="button"
               className="z-50 absolute w-8 h-8 top-2 right-2"
@@ -276,8 +276,7 @@ const Universe = (posts) => {
                 />
               </svg>
             </button>
-
-            <div className="prose prose-lg">
+            <div className="prose lg:prose-lg">
               <h1 className="italic">Welcome to Astrolabe.</h1>
               <p>
                 Hover over a star to see its details. Click or tap a star to take a closer look.

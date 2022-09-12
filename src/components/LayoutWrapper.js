@@ -12,8 +12,8 @@ const LayoutWrapper = ({ children }) => {
           {router.asPath === '/' ? (
             <main>{children}</main>
           ) : (
-            <main className="ml-32">
-              <div className="max-w-screen-lg mx-auto mb-auto px-12">{children}</div>
+            <main className="lg:ml-32">
+              <div className="max-w-screen-lg mx-auto mb-auto px-6 lg:px-12">{children}</div>
             </main>
           )}
         </div>
