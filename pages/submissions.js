@@ -3,7 +3,8 @@ import { BASE_CONTENT_PATH } from '@config/constants'
 import siteMetadata from '@data/siteMetadata'
 import { getSingleContent } from '@lib/mdx'
 import { MDXLayoutRenderer } from '@components/MDXComponents'
-import PageTitle from '@components/PageTitle'
+import PageHeader from '@components/PageHeader'
+import PageBody from '@components/PageBody'
 import { PageSEO } from '@components/SEO'
 
 export async function getStaticProps() {
@@ -25,14 +26,10 @@ export default function About({ content }) {
         title={`${frontMatter.title} • ${siteMetadata.title}`}
         description={siteMetadata.description}
       />
-      <header className="flex flex-row flex-wrap md:space-x-6 md:flex-nowrap mt-48">
-        <PageTitle>Submissions</PageTitle>
-      </header>
-      <div className="flex flex-row flex-wrap items-start mt-32 mb-48">
-        <div className="meta-content prose prose-lg lg:prose-2xl">
-          <MDXLayoutRenderer mdxSource={mdxSource} frontMatter={frontMatter} />
-        </div>
-      </div>
+      <PageHeader title={frontMatter.title} />
+      <PageBody>
+        <MDXLayoutRenderer mdxSource={mdxSource} frontMatter={frontMatter} />
+      </PageBody>
     </>
   )
 }

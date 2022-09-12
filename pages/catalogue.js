@@ -3,7 +3,8 @@ import Link from 'next/link'
 import { STAR_CONTENT_PATH } from '@config/constants'
 import siteMetadata from '@data/siteMetadata'
 import { getFrontMatter } from '@lib/mdx'
-import PageTitle from '@components/PageTitle'
+import PageHeader from '@components/PageHeader'
+import PageBody from '@components/PageBody'
 import { PageSEO } from '@components/SEO'
 
 export async function getStaticProps() {
@@ -31,14 +32,13 @@ export default function Catalogue({ posts }) {
   return (
     <>
       <PageSEO title={`Catalogue • ${siteMetadata.title}`} description={siteMetadata.description} />
-      <header className="mt-48">
-        <PageTitle>The Catalogue</PageTitle>
+      <PageHeader title="The Catalogue">
         <p className="text-lg md:text-xl mt-8">
           The Catalogue is another way of accessing the stars of the Universe. Look through the list
           or search via a piece's name, author, or asterism.
         </p>
-      </header>
-      <div className="relative max-w-lg mt-16">
+      </PageHeader>
+      <div className="relative max-w-lg mt-8 lg:mt-16">
         <input
           aria-label="Search the stars"
           type="text"
@@ -61,7 +61,7 @@ export default function Catalogue({ posts }) {
           />
         </svg>
       </div>
-      <div className="flex flex-row flex-wrap items-start mt-32 mb-48">
+      <div className="flex flex-row flex-wrap items-start mt-16 lg:mt-32 mb-32 lg:mb-48">
         <ul>
           {filteredArticles.map((post) => {
             const { id, title, summary, author, asterismFull } = post
