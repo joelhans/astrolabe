@@ -3,8 +3,8 @@ import CustomLink from '@components/Link'
 const Masthead = () => {
   return (
     <>
-      <div className="grid grid-cols-2 gap-8">
-        <div className="prose prose-xl">
+      <div className="grid lg:grid-cols-2 gap-8">
+        <div className="prose lg:prose-xl">
           <p>
             Joel Hans (he/him) was once called a saguaro in disguise. His prose has been published
             in <em>West Branch</em>, <em>No Tokens</em>, <em>Puerto del Sol</em>,{' '}
@@ -15,7 +15,7 @@ const Masthead = () => {
             <CustomLink href="https://joelhans.com">joelhans.com</CustomLink>.
           </p>
         </div>
-        <div className="prose prose-xl">
+        <div className="prose lg:prose-xl">
           <p>
             Jae Towle Vieira (she/they) always returns to the river. Their short fiction has been
             published in <em>Carve</em>, <em>Passages North</em>, <em>Mississippi Review</em>,{' '}

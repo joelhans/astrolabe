@@ -11,7 +11,7 @@ html {
   -webkit-mask-origin: border;
   mask: url('/static/title-vert.svg') left bottom / 700px 900px no-repeat,
     linear-gradient(#fff, #fff);
-  -webkit-mask-composite: destination-out;
+  -webkit-mask-composite: exclude;
   mask-composite: exclude;
 }
 
@@ -32,7 +32,13 @@ html {
 }
 
 .welcome {
-  left: calc(50% + 4rem);
+  left: 50% + 4rem;
+}
+
+@screen lg {
+  .welcome {
+    left: calc(50% + 4rem);
+  }
 }
 
 .tooltip,
