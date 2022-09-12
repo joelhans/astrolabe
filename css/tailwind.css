@@ -9,10 +9,20 @@ html {
 /* Title in navigation */
 .clip {
   -webkit-mask-origin: border;
-  mask: url('/static/title-vert.svg') left bottom / 1400px 1600px no-repeat,
+  mask: url('/static/title-vert.svg') left bottom / 700px 900px no-repeat,
     linear-gradient(#fff, #fff);
-  -webkit-mask-composite: exclude;
+  -webkit-mask-composite: destination-out;
   mask-composite: exclude;
+}
+
+@screen lg {
+  .clip {
+    -webkit-mask-origin: border;
+    mask: url('/static/title-vert.svg') left bottom / 1400px 1600px no-repeat,
+      linear-gradient(#fff, #fff);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+  }
 }
 
 /* Universe */
