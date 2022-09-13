@@ -110,6 +110,7 @@ function drawScatter(scatterRef, tooltipRef, posts) {
       .filter('.name')
       .transition()
       .duration(200)
+      .attr('fill', '#059669')
       .attr('fill-opacity', '100%')
   }
 
@@ -121,7 +122,7 @@ function drawScatter(scatterRef, tooltipRef, posts) {
       .attr('r', (d) => (d.size ? d.size : 8))
       .attr('fill', (d) => (d.visited ? '#444' : d.color ? d.color : '#69b3a2'))
     d3.selectAll('line').transition().duration(200).attr('stroke-opacity', '0%')
-    d3.selectAll('text').transition().duration(200).attr('fill-opacity', '0%')
+    d3.selectAll('text').transition().duration(200).attr('fill', '#fff').attr('fill-opacity', '20%')
   }
 
   // Draw lines between the stars of an asterism.
@@ -168,7 +169,7 @@ function drawScatter(scatterRef, tooltipRef, posts) {
     .attr('fill', '#fff')
     .attr('font-size', '5rem')
     .attr('font-style', 'italic')
-    .attr('fill-opacity', '0%')
+    .attr('fill-opacity', '20%')
 
   // Create the stars.
   const stars = svg
