@@ -90,27 +90,52 @@ function drawScatter(scatterRef, tooltipRef, posts) {
     // Shrink all stars.
     d3.selectAll('circle').transition().duration(200).attr('r', 3)
 
-    // Highlight stars of the asterism.
-    // If there is no asterism, then select only that star.
-    d3.selectAll(d.asterism ? '.' + d.asterism : '.' + d.slug)
-      .filter('.star')
-      .transition()
-      .duration(200)
-      .attr('fill', '#fff')
+    if (d.asterism) {
+      // Highlight stars of the asterism.
+      // If there is no asterism, then select only that star.
+      d3.selectAll(d.asterism ? '.' + d.asterism : '.' + d.slug)
+        .filter('.star')
+        .transition()
+        .duration(200)
+        .attr('fill', '#fff')
 
-    // Highlight the lines between the stars of the chosen asterism.
-    d3.selectAll(d.asterism && '.' + d.asterism)
-      .filter('.line')
-      .transition()
-      .duration(200)
-      .attr('stroke-opacity', '100%')
+      // Highlight the lines between the stars of the chosen asterism.
+      d3.selectAll(d.asterism && '.' + d.asterism)
+        .filter('.line')
+        .transition()
+        .duration(200)
+        .attr('stroke-opacity', '100%')
 
-    // Highlight the name of the chosen asterism.
-    d3.selectAll(d.asterism && '.' + d.asterism)
-      .filter('.name')
-      .transition()
-      .duration(200)
-      .attr('fill-opacity', '100%')
+      // Highlight the name of the chosen asterism.
+      d3.selectAll(d.asterism && '.' + d.asterism)
+        .filter('.name')
+        .transition()
+        .duration(200)
+        .attr('fill', '#059669')
+        .attr('fill-opacity', '100%')
+    } else if (d.key) {
+      // Highlight stars of the asterism.
+      d3.selectAll('.' + d.key)
+        .filter('.star')
+        .transition()
+        .duration(200)
+        .attr('fill', '#fff')
+
+      // Highlight the lines between the stars of the chosen asterism.
+      d3.selectAll('.' + d.key)
+        .filter('.line')
+        .transition()
+        .duration(200)
+        .attr('stroke-opacity', '100%')
+
+      // Highlight the name of the chosen asterism.
+      d3.selectAll('.' + d.key)
+        .filter('.name')
+        .transition()
+        .duration(200)
+        .attr('fill', '#059669')
+        .attr('fill-opacity', '100%')
+    }
   }
 
   // Function to reset highlighting.
@@ -121,7 +146,43 @@ function drawScatter(scatterRef, tooltipRef, posts) {
       .attr('r', (d) => (d.size ? d.size : 8))
       .attr('fill', (d) => (d.visited ? '#444' : d.color ? d.color : '#69b3a2'))
     d3.selectAll('line').transition().duration(200).attr('stroke-opacity', '0%')
-    d3.selectAll('text').transition().duration(200).attr('fill-opacity', '0%')
+    d3.selectAll('text').transition().duration(200).attr('fill', '#fff').attr('fill-opacity', '20%')
+    d3.select('.tooltipScatter').style('visibility', 'hidden')
+  }
+
+  // Function to show the tooltip.
+  const tooltipShow = function (d) {
+    tooltipScatter
+      .html(
+        `
+        <p class="text-5xl font-bold mb-4">${d.title}</p>
+        ${d.author ? `<p class="text-sm text-gray-400 font-mono font-bold">${d.author}</p>` : ``}
+        ${
+          d.summary
+            ? `<p class="prose prose-2xl !text-fuchsia-400 italic mt-3">${d.summary}</p>`
+            : ``
+        }
+        ${
+          d.visited
+            ? `<p class="text-sm text-gray-400 font-mono font-bold mt-3">You've visited this star before.</p>`
+            : ``
+        }
+      `
+      )
+      .style('visibility', 'visible')
+  }
+
+  const tooltipPosition = function () {
+    // Account for the star position along the x axis in relationship to the
+    // window's width so that we can place the tooltip on the correct side.
+    d3.event.x + tooltipRef.current.offsetWidth < window.innerWidth
+      ? tooltipScatter.style('left', d3.event.x + 30 + 'px')
+      : tooltipScatter.style('left', d3.event.x - tooltipRef.current.offsetWidth - 30 + 'px')
+
+    // Same for the y axis.
+    d3.event.y + tooltipRef.current.offsetHeight < window.innerHeight
+      ? tooltipScatter.style('top', d3.event.y - 10 + 'px')
+      : tooltipScatter.style('top', d3.event.y - tooltipRef.current.offsetHeight + 10 + 'px')
   }
 
   // Draw lines between the stars of an asterism.
@@ -168,7 +229,17 @@ function drawScatter(scatterRef, tooltipRef, posts) {
     .attr('fill', '#fff')
     .attr('font-size', '5rem')
     .attr('font-style', 'italic')
-    .attr('fill-opacity', '0%')
+    .attr('fill-opacity', '20%')
+    .on('mouseover', function (d) {
+      highlight(d)
+      // tooltipShow(d)
+    })
+    .on('mousemove', function () {
+      // tooltipPosition()
+    })
+    .on('mouseout', function () {
+      doNotHighlight()
+    })
 
   // Create the stars.
   const stars = svg
@@ -187,40 +258,13 @@ function drawScatter(scatterRef, tooltipRef, posts) {
     .attr('fill', (d) => (d.visited ? '#444' : d.color ? d.color : '#69b3a2'))
     .on('mouseover', function (d) {
       highlight(d)
-      tooltipScatter
-        .html(
-          `
-          <p class="text-5xl font-bold mb-4">${d.title}</p>
-          ${d.author ? `<p class="text-sm text-gray-400 font-mono font-bold">${d.author}</p>` : ``}
-          ${
-            d.summary
-              ? `<p class="prose prose-2xl !text-fuchsia-400 italic mt-3">${d.summary}</p>`
-              : ``
-          }
-          ${
-            d.visited
-              ? `<p class="text-sm text-gray-400 font-mono font-bold mt-3">You've visited this star before.</p>`
-              : ``
-          }
-        `
-        )
-        .style('visibility', 'visible')
+      tooltipShow(d)
     })
     .on('mousemove', function () {
-      // Account for the star position along the x axis in relationship to the
-      // window's width so that we can place the tooltip on the correct side.
-      d3.event.x + tooltipRef.current.offsetWidth < window.innerWidth
-        ? tooltipScatter.style('left', d3.event.x + 30 + 'px')
-        : tooltipScatter.style('left', d3.event.x - tooltipRef.current.offsetWidth - 30 + 'px')
-
-      // Same for the y axis.
-      d3.event.y + tooltipRef.current.offsetHeight < window.innerHeight
-        ? tooltipScatter.style('top', d3.event.y - 10 + 'px')
-        : tooltipScatter.style('top', d3.event.y - tooltipRef.current.offsetHeight + 10 + 'px')
+      tooltipPosition()
     })
     .on('mouseout', function () {
       doNotHighlight()
-      d3.select('.tooltipScatter').style('visibility', 'hidden')
     })
     .on('click', function (d) {
       d3.event.preventDefault()
