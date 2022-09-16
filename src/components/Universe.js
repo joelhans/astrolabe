@@ -15,13 +15,21 @@ function drawScatter(scatterRef, tooltipRef, posts) {
 
   // Set a fixed width/height to prevent different screen sizes (or changing
   // screen sizes) from altering the shape of the asterisms.
-  const width = 4000,
+  const winWidth = window.innerWidth,
+    winHeight = window.innerHeight,
+    width = 4000,
     height = 4000
 
   let xx = universePosition ? universePosition.x : 0,
     yy = universePosition ? universePosition.y : 0,
     scale = universePosition ? universePosition.k : 0.4,
     isMobile = window.innerWidth < 768
+
+  if (isMobile) {
+    xx = -250
+    yy = 200
+    scale = 0.2
+  }
 
   // Create the SVG container, set its dimensions, and initiate zoom+pan.
   const svg = d3
@@ -36,9 +44,11 @@ function drawScatter(scatterRef, tooltipRef, posts) {
     )
     .append('g')
     .attr('transform', `translate(${xx}, ${yy})scale(${scale})`)
-    .on('touchstart', function () {
-      doNotHighlight()
-    })
+
+  // On mobile, this allows you to click the background and un-highlight the current star.
+  d3.select('#scatter').on('click', function () {
+    doNotHighlight()
+  })
 
   // Create our scatter plot axes.
   const x = d3.scaleLinear().domain([-10, 10]).range([0, width])
@@ -96,12 +106,12 @@ function drawScatter(scatterRef, tooltipRef, posts) {
   // the asterism or just the single star.
   const highlight = function (d) {
     // Shrink all stars.
-    d3.selectAll('circle').transition().duration(200).attr('r', 3)
+    // d3.selectAll('circle').transition().duration(200).attr('r', 3)
 
     if (d.asterism) {
       // Highlight stars of the asterism when you hover over a star.
       // If there is no asterism, then select only that star.
-      d3.selectAll(d.asterism ? '.' + d.asterism : '.' + d.slug)
+      d3.selectAll('.' + d.slug)
         .filter('.star')
         .transition()
         .duration(200)
@@ -290,6 +300,7 @@ function drawScatter(scatterRef, tooltipRef, posts) {
       Router.push(d.slug)
     })
     .on('touchstart', function (d) {
+      doNotHighlight()
       d3.event.preventDefault()
       d3.event.stopPropagation()
       highlight(d)
