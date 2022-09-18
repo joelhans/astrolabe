@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import Cookies from 'universal-cookie'
 import moment from 'moment'
 import { IoTelescopeOutline } from 'react-icons/io5'
 import fs from 'fs'
@@ -48,19 +47,14 @@ export default function Article({ content, posts }) {
 
   const { mdxSource, frontMatter } = content
 
-  // Detect the development environment.
-  const env = process.env.NODE_ENV
-
   // This function handles cookies for stars.
-  function setCookie() {
-    const cookies = new Cookies()
-
+  function setVisit() {
     // Either instantiate our list of visits based on our cookies, or create a
     // new array if there are no cookies. We also create a new variable that we
     // can push into and use to update cookies without updating the previous
     // log.
-    const visits = cookies.get('visitedStars') || new Array()
-    let visitList = Object.assign([], visits)
+    const visits = JSON.parse(localStorage.getItem('visitedStars')) || new Array()
+    let visitList = [...visits]
 
     // Create a new cookie entry.
     const cookie = {
@@ -72,7 +66,7 @@ export default function Article({ content, posts }) {
     // our array, then set that full array as the cookie. We can then return the
     // array for state to take over.
     visitList.push(cookie)
-    cookies.set('visitedStars', visitList, { path: '/', sameSite: 'strict' })
+    localStorage.setItem('visitedStars', JSON.stringify(visitList))
 
     // Return the original visits array, not the updated one, so that we don't
     // show the *current* pageview in the list, only past ones.
@@ -84,10 +78,9 @@ export default function Article({ content, posts }) {
       // Force overflow so we can scroll on this page.
       document.body.style.overflow = 'auto'
 
-      // Grab the visits via cookies and filter for only those related to this
-      // star's slug.
-      const visits = await setCookie().filter((d) => d.slug === frontMatter.slug)
-      setLog(visits)
+      // Grab the visits via localStorage and filter for only those related to
+      // this star's slug.
+      setLog(setVisit().filter((d) => d.slug === frontMatter.slug))
     })()
     return () => {}
   }, [])
