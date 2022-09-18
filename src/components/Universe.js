@@ -1,14 +1,17 @@
 import { useState, useRef, useEffect } from 'react'
 import * as d3 from 'd3'
-import Cookies from 'universal-cookie'
 import Router from 'next/router'
 
 function drawScatter(scatterRef, tooltipRef, posts) {
   // Initiate cookies and set the `visitedStars` cookie to an empty array if
   // there are no cookies previously.
-  const cookies = new Cookies()
-  const visitedStars = cookies.get('visitedStars') || []
-  !visitedStars && cookies.set('visitedStars', [], { path: '/', sameSite: 'strict' })
+  // const cookies = new Cookies()
+  // const visitedStars = cookies.get('visitedStars') || []
+  // !visitedStars && cookies.set('visitedStars', [], { path: '/', sameSite: 'strict' })
+  const visitedStars = JSON.parse(localStorage.getItem('visitedStars')) || new Array()
+  !visitedStars && localStorage.setItem('visitedStars', JSON.stringify(visitedStars))
+
+  console.log(visitedStars)
 
   // Set a fixed width/height to prevent different screen sizes (or changing
   // screen sizes) from altering the shape of the asterisms.
