@@ -3,23 +3,23 @@ import * as d3 from 'd3'
 import Router from 'next/router'
 
 function drawScatter(scatterRef, tooltipRef, posts) {
-  // Initiate cookies and set the `visitedStars` cookie to an empty array if
-  // there are no cookies previously.
-  // const cookies = new Cookies()
-  // const visitedStars = cookies.get('visitedStars') || []
-  // !visitedStars && cookies.set('visitedStars', [], { path: '/', sameSite: 'strict' })
+  // Set the `visitedStars` cookie to an empty array if there is no localStorage
+  // already, then set it to be used here and on individual stars.
   const visitedStars = JSON.parse(localStorage.getItem('visitedStars')) || new Array()
   !visitedStars && localStorage.setItem('visitedStars', JSON.stringify(visitedStars))
 
-  console.log(visitedStars)
+  // Find the last universe position, if it exists, which we use use to set the
+  // x, y, and scale of the Universe itself.
+  const universePosition = JSON.parse(localStorage.getItem('universePosition'))
 
   // Set a fixed width/height to prevent different screen sizes (or changing
   // screen sizes) from altering the shape of the asterisms.
   const width = 4000,
-    height = 4000,
-    xx = 0,
-    yy = 0,
-    scale = 0.4
+    height = 4000
+
+  let xx = universePosition ? universePosition.x : 0,
+    yy = universePosition ? universePosition.y : 0,
+    scale = universePosition ? universePosition.k : 0.4
 
   // Create the SVG container, set its dimensions, and initiate zoom+pan.
   const svg = d3
@@ -272,6 +272,7 @@ function drawScatter(scatterRef, tooltipRef, posts) {
     .on('click', function (d) {
       d3.event.preventDefault()
       d3.event.stopPropagation()
+      localStorage.setItem('universePosition', JSON.stringify(d3.zoomTransform(this)))
       Router.push(d.slug)
     })
 }
