@@ -20,16 +20,10 @@ function drawScatter(scatterRef, tooltipRef, posts) {
     width = 4000,
     height = 4000
 
-  let xx = universePosition ? universePosition.x : 0,
-    yy = universePosition ? universePosition.y : 0,
-    scale = universePosition ? universePosition.k : 0.4,
-    isMobile = window.innerWidth < 768
-
-  if (isMobile) {
-    xx = -250
-    yy = 200
-    scale = 0.2
-  }
+  let isMobile = winWidth < 768,
+    xx = universePosition ? universePosition.x : isMobile ? -250 : 0,
+    yy = universePosition ? universePosition.y : isMobile ? 200 : 0,
+    scale = universePosition ? universePosition.k : isMobile ? 0.2 : 0.4
 
   // Create the SVG container, set its dimensions, and initiate zoom+pan.
   const svg = d3
@@ -306,6 +300,7 @@ function drawScatter(scatterRef, tooltipRef, posts) {
       highlight(d)
       tooltipShow(d)
       tooltipPosition(isMobile)
+      localStorage.setItem('universePosition', JSON.stringify(d3.zoomTransform(this)))
     })
 }
 
