@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import * as d3 from 'd3'
 import Router from 'next/router'
+import CustomLink from '@components/Link'
 
 function drawScatter(scatterRef, tooltipRef, posts) {
   // Set the `visitedStars` cookie to an empty array if there is no localStorage
@@ -14,12 +15,15 @@ function drawScatter(scatterRef, tooltipRef, posts) {
 
   // Set a fixed width/height to prevent different screen sizes (or changing
   // screen sizes) from altering the shape of the asterisms.
-  const width = 4000,
+  const winWidth = window.innerWidth,
+    winHeight = window.innerHeight,
+    width = 4000,
     height = 4000
 
-  let xx = universePosition ? universePosition.x : 0,
-    yy = universePosition ? universePosition.y : 0,
-    scale = universePosition ? universePosition.k : 0.4
+  let isMobile = winWidth < 768,
+    xx = universePosition ? universePosition.x : isMobile ? -250 : 0,
+    yy = universePosition ? universePosition.y : isMobile ? 200 : 0,
+    scale = universePosition ? universePosition.k : isMobile ? 0.2 : 0.4
 
   // Create the SVG container, set its dimensions, and initiate zoom+pan.
   const svg = d3
@@ -34,6 +38,11 @@ function drawScatter(scatterRef, tooltipRef, posts) {
     )
     .append('g')
     .attr('transform', `translate(${xx}, ${yy})scale(${scale})`)
+
+  // On mobile, this allows you to click the background and un-highlight the current star.
+  d3.select('#scatter').on('click', function () {
+    doNotHighlight()
+  })
 
   // Create our scatter plot axes.
   const x = d3.scaleLinear().domain([-10, 10]).range([0, width])
@@ -91,12 +100,12 @@ function drawScatter(scatterRef, tooltipRef, posts) {
   // the asterism or just the single star.
   const highlight = function (d) {
     // Shrink all stars.
-    d3.selectAll('circle').transition().duration(200).attr('r', 3)
+    // d3.selectAll('circle').transition().duration(200).attr('r', 3)
 
     if (d.asterism) {
-      // Highlight stars of the asterism.
+      // Highlight stars of the asterism when you hover over a star.
       // If there is no asterism, then select only that star.
-      d3.selectAll(d.asterism ? '.' + d.asterism : '.' + d.slug)
+      d3.selectAll('.' + d.slug)
         .filter('.star')
         .transition()
         .duration(200)
@@ -117,7 +126,7 @@ function drawScatter(scatterRef, tooltipRef, posts) {
         .attr('fill', '#059669')
         .attr('fill-opacity', '100%')
     } else if (d.key) {
-      // Highlight stars of the asterism.
+      // Highlight stars of the asterism when you hover over an asterism.
       d3.selectAll('.' + d.key)
         .filter('.star')
         .transition()
@@ -158,16 +167,25 @@ function drawScatter(scatterRef, tooltipRef, posts) {
     tooltipScatter
       .html(
         `
-        <p class="text-5xl font-bold mb-4">${d.title}</p>
-        ${d.author ? `<p class="text-sm text-gray-400 font-mono font-bold">${d.author}</p>` : ``}
+        <p class="text-3xl lg:text-5xl font-bold mb-3">${d.title}</p>
         ${
-          d.summary
-            ? `<p class="prose prose-2xl !text-fuchsia-400 italic mt-3">${d.summary}</p>`
+          d.author
+            ? `<p class="text-xs lg:text-sm text-gray-400 font-mono font-bold">${d.author}</p>`
             : ``
         }
         ${
+          d.summary
+            ? `<p class="prose lg:prose-2xl !text-fuchsia-400 italic mt-3">${d.summary}</p>`
+            : ``
+        }
+        <button class="lg:hidden font-mono text-sm text-gray-100 mt-3 bg-green rounded">
+          <a href="${d.slug}" class="block px-3 py-2">
+            Visit this star
+          </a>
+        </button>
+        ${
           d.visited
-            ? `<p class="text-sm text-gray-400 font-mono font-bold mt-3">You've visited this star before.</p>`
+            ? `<p class="text-xs lg:text-sm text-gray-400 font-mono font-bold mt-3">You've visited this star before.</p>`
             : ``
         }
       `
@@ -175,17 +193,21 @@ function drawScatter(scatterRef, tooltipRef, posts) {
       .style('visibility', 'visible')
   }
 
-  const tooltipPosition = function () {
-    // Account for the star position along the x axis in relationship to the
-    // window's width so that we can place the tooltip on the correct side.
-    d3.event.x + tooltipRef.current.offsetWidth < window.innerWidth
-      ? tooltipScatter.style('left', d3.event.x + 30 + 'px')
-      : tooltipScatter.style('left', d3.event.x - tooltipRef.current.offsetWidth - 30 + 'px')
+  const tooltipPosition = function (isMobile) {
+    if (!isMobile) {
+      // Account for the star position along the x axis in relationship to the
+      // window's width so that we can place the tooltip on the correct side.
+      d3.event.x + tooltipRef.current.offsetWidth < window.innerWidth
+        ? tooltipScatter.style('left', d3.event.x + 30 + 'px')
+        : tooltipScatter.style('left', d3.event.x - tooltipRef.current.offsetWidth - 30 + 'px')
 
-    // Same for the y axis.
-    d3.event.y + tooltipRef.current.offsetHeight < window.innerHeight
-      ? tooltipScatter.style('top', d3.event.y - 10 + 'px')
-      : tooltipScatter.style('top', d3.event.y - tooltipRef.current.offsetHeight + 10 + 'px')
+      // Same for the y axis.
+      d3.event.y + tooltipRef.current.offsetHeight < window.innerHeight
+        ? tooltipScatter.style('top', d3.event.y - 10 + 'px')
+        : tooltipScatter.style('top', d3.event.y - tooltipRef.current.offsetHeight + 10 + 'px')
+    } else {
+      tooltipScatter.style('left', 0).style('bottom', '0')
+    }
   }
 
   // Draw lines between the stars of an asterism.
@@ -235,10 +257,6 @@ function drawScatter(scatterRef, tooltipRef, posts) {
     .attr('fill-opacity', '20%')
     .on('mouseover', function (d) {
       highlight(d)
-      // tooltipShow(d)
-    })
-    .on('mousemove', function () {
-      // tooltipPosition()
     })
     .on('mouseout', function () {
       doNotHighlight()
@@ -264,7 +282,7 @@ function drawScatter(scatterRef, tooltipRef, posts) {
       tooltipShow(d)
     })
     .on('mousemove', function () {
-      tooltipPosition()
+      tooltipPosition(isMobile)
     })
     .on('mouseout', function () {
       doNotHighlight()
@@ -274,6 +292,15 @@ function drawScatter(scatterRef, tooltipRef, posts) {
       d3.event.stopPropagation()
       localStorage.setItem('universePosition', JSON.stringify(d3.zoomTransform(this)))
       Router.push(d.slug)
+    })
+    .on('touchstart', function (d) {
+      doNotHighlight()
+      d3.event.preventDefault()
+      d3.event.stopPropagation()
+      highlight(d)
+      tooltipShow(d)
+      tooltipPosition(isMobile)
+      localStorage.setItem('universePosition', JSON.stringify(d3.zoomTransform(this)))
     })
 }
 
