@@ -69,9 +69,10 @@ export default function Catalogue({ posts }) {
               <li key={id} className="mb-16 last:mb-0">
                 <Link href={`/${post.id}`}>
                   <a className="group">
-                    <h2 className="text-black text-3xl font-bold mb-2 transition-all group-hover:text-cyan">
-                      {title}
-                    </h2>
+                    <h2
+                      dangerouslySetInnerHTML={{ __html: title }}
+                      className="text-black text-3xl font-bold mb-2 transition-all group-hover:text-cyan"
+                    />
                     <p className="text-base mb-2">
                       {author} {asterismFull && `| ${asterismFull}`}
                     </p>
