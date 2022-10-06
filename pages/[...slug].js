@@ -46,6 +46,7 @@ export default function Article({ content, posts }) {
   const [log, setLog] = useState([])
 
   const { mdxSource, frontMatter } = content
+  const cleanTitle = frontMatter.title.replace(/<[^>]+>/g, '')
 
   // This function handles cookies for stars.
   function setVisit() {
@@ -90,7 +91,7 @@ export default function Article({ content, posts }) {
       <BlogSEO
         {...frontMatter}
         url={`${siteMetadata.siteUrl}/articles/${frontMatter.slug}`}
-        title={`${frontMatter.title} • ${siteMetadata.title}`}
+        title={`${cleanTitle} • ${siteMetadata.title}`}
       />
       <PageHeader title={frontMatter.title}>
         <p className="text-lg lg:text-2xl italic mt-8">
