@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import * as d3 from 'd3'
 import Router from 'next/router'
-import CustomLink from '@components/Link'
+import Starscape from '@data/stars.json'
 
 function drawScatter(scatterRef, tooltipRef, posts) {
   // Set the `visitedStars` cookie to an empty array if there is no localStorage
@@ -47,6 +47,23 @@ function drawScatter(scatterRef, tooltipRef, posts) {
   // Create our scatter plot axes.
   const x = d3.scaleLinear().domain([-10, 10]).range([0, width])
   const y = d3.scaleLinear().domain([-10, 10]).range([height, 0])
+
+  const scape = svg
+    .selectAll('scapePoints')
+    .data(Starscape)
+    .enter()
+    .append('circle')
+    .attr('cx', (d) => x(d[0]))
+    .attr('cy', (d) => y(d[1]))
+    .attr('r', '2')
+    .attr('fill', '#444')
+
+  // Fun star generator!
+  // const num = 1000
+  // const particles = d3.range(num).map(function(i) {
+  //   return [Math.random() * 20 * (Math.round(Math.random()) ? 1 : -1), Math.random() * 20 * (Math.round(Math.random()) ? 1 : -1)];
+  // })
+  // console.log(JSON.stringify(particles))
 
   // Group our `posts` object by the asterisms we've already defined and remove
   // any that aren't part of an asterism (aka `key` = `null`).
@@ -153,6 +170,7 @@ function drawScatter(scatterRef, tooltipRef, posts) {
   // Function to reset highlighting.
   const doNotHighlight = function () {
     d3.selectAll('circle')
+      .filter('.star')
       .transition()
       .duration(200)
       .attr('r', (d) => (d.size ? d.size : 8))
