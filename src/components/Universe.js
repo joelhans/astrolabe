@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from 'react'
 import * as d3 from 'd3'
+import moment from 'moment'
 import Router from 'next/router'
-import Starscape from '@data/stars.json'
+import StarscapeData from '@data/stars.json'
 
 function drawScatter(scatterRef, tooltipRef, posts) {
   // Set the `visitedStars` cookie to an empty array if there is no localStorage
@@ -48,22 +49,21 @@ function drawScatter(scatterRef, tooltipRef, posts) {
   const x = d3.scaleLinear().domain([-10, 10]).range([0, width])
   const y = d3.scaleLinear().domain([-10, 10]).range([height, 0])
 
-  const scape = svg
+  // Generate the Starscape.
+  // And the star "generator".
+  // const particles = d3.range(1000).map(function(i) {
+  //   return [Math.random() * 20 * (Math.round(Math.random()) ? 1 : -1), Math.random() * 20 * (Math.round(Math.random()) ? 1 : -1)];
+  // })
+  // console.log(JSON.stringify(particles))
+  const Starscape = svg
     .selectAll('scapePoints')
-    .data(Starscape)
+    .data(StarscapeData)
     .enter()
     .append('circle')
     .attr('cx', (d) => x(d[0]))
     .attr('cy', (d) => y(d[1]))
     .attr('r', '2')
     .attr('fill', '#444')
-
-  // Fun star generator!
-  // const num = 1000
-  // const particles = d3.range(num).map(function(i) {
-  //   return [Math.random() * 20 * (Math.round(Math.random()) ? 1 : -1), Math.random() * 20 * (Math.round(Math.random()) ? 1 : -1)];
-  // })
-  // console.log(JSON.stringify(particles))
 
   // Group our `posts` object by the asterisms we've already defined and remove
   // any that aren't part of an asterism (aka `key` = `null`).
@@ -185,25 +185,23 @@ function drawScatter(scatterRef, tooltipRef, posts) {
     tooltipScatter
       .html(
         `
-        <p class="text-3xl lg:text-5xl font-bold mb-3">${d.title}</p>
+        <p class="text-3xl lg:text-5xl font-bold mb-4">${d.title}</p>
         ${
           d.author
-            ? `<p class="text-xs lg:text-sm text-gray-400 font-mono font-bold">${d.author}</p>`
+            ? `<p class="text-base lg:text-xl">Discovered by <span class="text-gray-100 font-bold">${
+                d.author
+              }</span> on ${moment(d.publishedOn).format('dddd, MMMM Do YYYY')}.</p>`
             : ``
         }
-        ${
-          d.summary
-            ? `<p class="prose lg:prose-2xl !text-fuchsia-400 italic mt-3">${d.summary}</p>`
-            : ``
-        }
-        <button class="lg:hidden font-mono text-sm text-gray-100 mt-3 bg-green rounded">
+        ${d.summary ? `<p class="prose lg:prose-2xl italic mt-3">${d.summary}</p>` : ``}
+        <button class="lg:hidden font-mono text-sm text-green mt-4 bg-gray-100 rounded">
           <a href="${d.slug}" class="block px-3 py-2">
-            Visit this star
+            Explore &rarr;
           </a>
         </button>
         ${
           d.visited
-            ? `<p class="text-xs lg:text-sm text-gray-400 font-mono font-bold mt-3">You've visited this star before.</p>`
+            ? `<p class="text-xs lg:text-sm text-gray-100 font-mono font-bold mt-4">You've visited this star before.</p>`
             : ``
         }
       `
@@ -323,33 +321,37 @@ function drawScatter(scatterRef, tooltipRef, posts) {
 }
 
 const Universe = (posts) => {
-  const [helpShow, setHelpShow] = useState(false)
+  // const [helpShow, setHelpShow] = useState(false)
 
   const scatterRef = useRef(null)
   const tooltipRef = useRef(null)
-  let visitedUniverse
+  // let visitedUniverse
 
-  const toggleHelp = () => {
-    setHelpShow((status) => {
-      localStorage.setItem('visitedUniverse', true)
-      visitedUniverse = true
-      return !status
-    })
-  }
+  // const toggleHelp = () => {
+  //   setHelpShow((status) => {
+  //     localStorage.setItem('visitedUniverse', true)
+  //     visitedUniverse = true
+  //     return !status
+  //   })
+  // }
 
   useEffect(() => {
     drawScatter(scatterRef, tooltipRef, posts.posts)
     document.body.style.overflow = 'hidden'
-    visitedUniverse = localStorage.getItem('visitedUniverse')
-    !visitedUniverse && toggleHelp()
-  }, [scatterRef, tooltipRef, visitedUniverse])
+    // visitedUniverse = localStorage.getItem('visitedUniverse')
+    // !visitedUniverse && toggleHelp()
+  }, [
+    scatterRef,
+    tooltipRef,
+    // visitedUniverse
+  ])
 
   return (
     <>
       <div id="scatter" className="bg-gray-900">
         <svg ref={scatterRef} />
-        {helpShow && (
-          <div className="welcome z-30 absolute w-full lg:w-auto top-1/2 lg:left-1/2 !text-gray-900 bg-white bg-opacity-90 p-8 lg:p-12 rounded transform -translate-y-1/2 lg:-translate-x-1/2">
+        {/* {helpShow && (
+          <div className="welcome z-30 absolute w-full lg:w-auto top-1/2 lg:left-1/2 !text-gray-900 px-12 py-10 bg-green rounded-sm transform -translate-y-1/2 lg:-translate-x-1/2">
             <button
               type="button"
               className="z-50 absolute w-8 h-8 top-2 right-2"
@@ -369,17 +371,17 @@ const Universe = (posts) => {
                 />
               </svg>
             </button>
-            <div className="prose lg:prose-lg">
-              <h1 className="italic">Welcome to Astrolabe.</h1>
-              <p>
+            <div className="max-w-xl">
+              <h1 className="text-4xl lg:text-6xl font-bold mb-6">Welcome to <em>Astrolabe</em>.</h1>
+              <p className="text-2xl mb-6">
                 Hover over a star to see its details. Click or tap a star to take a closer look.
                 Zoom with your mousewheel or a pinch-to-zoom gesture. Pan with a click-and-drag or
                 touch-and-drag.
               </p>
-              <p className="text-3xl italic">Explore.</p>
+              <p className="text-3xl italic cursor-pointer hover:text-white" onClick={toggleHelp}>Explore.</p>
             </div>
           </div>
-        )}
+        )} */}
         <div ref={tooltipRef} className="tooltipScatter" />
       </div>
     </>
