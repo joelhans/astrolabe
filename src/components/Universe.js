@@ -116,18 +116,14 @@ function drawScatter(scatterRef, tooltipRef, posts) {
   // depending on whether or not it's part of an asterism, it either highlights
   // the asterism or just the single star.
   const highlight = function (d) {
-    // Shrink all stars.
-    // d3.selectAll('circle').transition().duration(200).attr('r', 3)
+    // Highlight the star you're hovered over.
+    d3.selectAll('.' + d.slug)
+      .filter('.star')
+      .transition()
+      .duration(200)
+      .attr('fill', '#fff')
 
     if (d.asterism) {
-      // Highlight stars of the asterism when you hover over a star.
-      // If there is no asterism, then select only that star.
-      d3.selectAll('.' + d.slug)
-        .filter('.star')
-        .transition()
-        .duration(200)
-        .attr('fill', '#fff')
-
       // Highlight the lines between the stars of the chosen asterism.
       d3.selectAll(d.asterism && '.' + d.asterism)
         .filter('.line')
