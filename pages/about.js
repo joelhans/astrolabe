@@ -5,6 +5,7 @@ import { getSingleContent } from '@lib/mdx'
 import { MDXLayoutRenderer } from '@components/MDXComponents'
 import PageHeader from '@components/PageHeader'
 import PageBody from '@components/PageBody'
+import PageFooter from '@components/PageFooter'
 import { PageSEO } from '@components/SEO'
 
 export async function getStaticProps() {
@@ -30,6 +31,7 @@ export default function About({ content }) {
       <PageBody>
         <MDXLayoutRenderer mdxSource={mdxSource} frontMatter={frontMatter} />
       </PageBody>
+      <PageFooter />
     </>
   )
 }
