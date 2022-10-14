@@ -31,7 +31,6 @@ export default function About({ content }) {
       <PageBody>
         <MDXLayoutRenderer mdxSource={mdxSource} frontMatter={frontMatter} />
       </PageBody>
-      <PageFooter />
     </>
   )
 }

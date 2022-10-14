@@ -28,7 +28,7 @@ class MyDocument extends Document {
             rel="stylesheet"
           />
         </Head>
-        <body className="antialiased font-serif bg-gray-100 text-gray-800">
+        <body className="antialiased font-serif bg-gray-50 text-gray-800">
           <Main />
           <NextScript />
         </body>

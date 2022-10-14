@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
-import Nav from './Nav'
+import Nav from '@components/Nav'
+import PageFooter from '@components/PageFooter'
 
 const LayoutWrapper = ({ children }) => {
   const router = useRouter()
@@ -12,9 +13,12 @@ const LayoutWrapper = ({ children }) => {
           {router.asPath === '/' ? (
             <main>{children}</main>
           ) : (
-            <main className="lg:ml-32">
-              <div className="max-w-screen-lg mx-auto mb-auto px-6 lg:px-12">{children}</div>
-            </main>
+            <>
+              <main className="lg:ml-32">
+                <div className="max-w-screen-lg mx-auto mb-auto px-12">{children}</div>
+              </main>
+              <PageFooter />
+            </>
           )}
         </div>
       </div>
