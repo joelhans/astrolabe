@@ -55,7 +55,8 @@ html {
 
 .star-content.prose p:first-child:first-letter {
   float: left;
-  @apply text-green text-7xl font-bold pt-2 pr-4;
+  @apply text-green text-8xl pt-2 pr-4;
+  line-height: 1;
 }
 
 .prose a {
