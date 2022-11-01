@@ -82,9 +82,9 @@ export default function Article({ content, posts }) {
       // Grab the visits via localStorage and filter for only those related to
       // this star's slug.
       setLog(setVisit().filter((d) => d.slug === frontMatter.slug))
-    })()
+    })(setVisit)
     return () => {}
-  }, [])
+  }, [frontMatter.slug, setVisit])
 
   return (
     <>
