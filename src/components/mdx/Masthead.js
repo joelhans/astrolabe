@@ -10,8 +10,8 @@ const Masthead = () => {
             in <em>West Branch</em>, <em>No Tokens</em>, <em>Puerto del Sol</em>,{' '}
             <em>Booth: A Journal</em>, and more. He has an MFA from the University of Arizona, where
             he also served as the managing editor of <em>Fairy Tale Review</em>. He still lives in
-            Tucson, Arizona with his family. Find him{' '}
-            <CustomLink href="https://twitter.com/joelhans">@joelhans</CustomLink> or at{' '}
+            Tucson, Arizona with his family. Find him on{' '}
+            <CustomLink href="https://mastodon.social/@joelhans">Mastodon</CustomLink> or at{' '}
             <CustomLink href="https://joelhans.com">joelhans.com</CustomLink>.
           </p>
         </div>
