@@ -1,26 +1,28 @@
 import Mail from './mail.svg'
-import Twitter from './twitter.svg'
+import Mastodon from './mastodon.svg'
+import Instagram from './instagram.svg'
 
 // Icons taken from: https://simpleicons.org/
 
 const components = {
   mail: Mail,
-  twitter: Twitter,
+  mastodon: Mastodon,
+  instagram: Instagram,
 }
 
-const SocialIcon = ({ kind, href, size = 8 }) => {
+const SocialIcon = ({ kind, href, className = '' }) => {
   const SocialSvg = components[kind]
 
   return (
     <a
-      className="text-sm text-gray-500 transition hover:text-gray-600"
+      className={`block text-sm text-pink transition hover:text-gray-600 ${className}`}
       target="_blank"
       rel="noopener noreferrer"
       href={href}
     >
       <span className="sr-only">{kind}</span>
       <SocialSvg
-        className={`fill-current text-gray-700 dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 h-${size} w-${size}`}
+        className={`fill-current text-green dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 h-6 w-6`}
       />
     </a>
   )
