@@ -1,8 +1,4 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
-
-module.exports = withBundleAnalyzer({
+module.exports = {
   reactStrictMode: true,
   pageExtensions: ['js', 'jsx', 'md', 'mdx'],
   eslint: {
@@ -26,4 +22,4 @@ module.exports = withBundleAnalyzer({
 
     return config
   },
-})
+}

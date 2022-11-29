@@ -100,17 +100,17 @@ export default function Article({ content, posts }) {
         </p>
       </PageHeader>
       <div className="mt-16 lg:mt-32 mb-32 lg:mb-48">
-        <div className="star-content prose lg:prose-2xl">
+        <div className="relative block star-content prose max-w-none lg:prose-2xl">
           <MDXLayoutRenderer mdxSource={mdxSource} frontMatter={frontMatter} />
           <div className="flex justify-center mt-16">
-            <IoTelescopeOutline className="w-8 h-8 text-cyan" />
+            <IoTelescopeOutline className="w-8 h-8 text-orange" />
           </div>
           <div className="mt-16 prose lg:prose-2xl italic">{frontMatter.authorBio}</div>
         </div>
 
         {/* If there are other stars in this asterism... */}
         {frontMatter.asterism && (
-          <div className="mt-24 p-8 bg-emerald-600 rounded">
+          <div className="mt-24 p-8 bg-green rounded">
             <h2 className="text-gray-100 text-2xl mb-4">
               Other stars in <span className="font-bold italic">{frontMatter.asterismFull}</span>:
             </h2>
@@ -128,7 +128,7 @@ export default function Article({ content, posts }) {
                       href={`/${slug}`}
                       className="group block bg-white hover:bg-gray-100 hover:bg-opacity-90 px-6 py-6 rounded duration-300"
                     >
-                      <h3 className="text-2xl mb-2">{title}</h3>
+                      <h3 dangerouslySetInnerHTML={{ __html: title }} className="text-2xl mb-2" />
                       <p className="mb-2">{author}</p>
                       <p className="italic">{summary}</p>
                     </CustomLink>
