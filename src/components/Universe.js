@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import * as d3 from 'd3'
 import moment from 'moment'
 import Router from 'next/router'
+import Image from 'next/image'
 import StarscapeData from '@data/stars.json'
 
 function drawScatter(scatterRef, tooltipRef, posts) {
@@ -184,12 +185,17 @@ function drawScatter(scatterRef, tooltipRef, posts) {
         <p class="text-3xl lg:text-5xl font-bold mb-4">${d.title}</p>
         ${
           d.author
-            ? `<p class="text-base lg:text-xl">Discovered by <span class="text-gray-100 font-bold">${
+            ? `<p class="text-base lg:text-xl mb-3">Discovered by <span class="text-gray-100 font-bold">${
                 d.author
               }</span> on ${moment(d.publishedOn).format('dddd, MMMM Do YYYY')}.</p>`
             : ``
         }
         ${d.summary ? `<p class="prose lg:prose-2xl italic mt-3">${d.summary}</p>` : ``}
+        ${
+          d.artworkUrl
+            ? `<div class="blur-sm block relative mt-3"><Image class="" src="${d.artworkUrl}" width="400" height="2O0" /></div>`
+            : ``
+        }
         <button class="lg:hidden font-mono text-sm text-green mt-4 bg-gray-100 rounded">
           <a href="${d.slug}" class="block px-3 py-2">
             Explore &rarr;
