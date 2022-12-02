@@ -34,16 +34,16 @@ export default function Catalogue({ posts }) {
       <PageSEO title={`Catalogue • ${siteMetadata.title}`} description={siteMetadata.description} />
       <PageHeader title="The Catalogue">
         <p className="text-lg md:text-xl mt-8">
-          The Catalogue is another way of accessing the stars of the Universe. Look through the list
-          or search via a piece's name, author, or asterism.
+          Discover the Universe by browsing our growing list of astrolabists and their
+          transmissions.
         </p>
       </PageHeader>
       <div className="relative max-w-lg mt-8 lg:mt-16">
         <input
-          aria-label="Search the stars"
+          aria-label="Search..."
           type="text"
           onChange={(e) => setSearchValue(e.target.value)}
-          placeholder="Search the stars"
+          placeholder="Search..."
           className="block w-full text-lg text-gray-900 placeholder-gray-600 px-4 py-2 bg-gray-200 border border-gray-500 rounded-md  focus:ring-cyan focus:border-cyan"
         />
         <svg
