@@ -12,11 +12,16 @@ const PageFooter = () => {
             <p className="text-2xl">&copy; Astrolabe, 2022 &rarr; ?</p>
             <div className="flex mt-4">
               <SocialIcon
-                kind="mastodon"
-                href="https://writing.exchange/@astrolabe"
+                kind="twitter"
+                href="https://twitter.com/ooo_astrolabe"
                 className="mr-2"
               />
-              <SocialIcon kind="instagram" href="https://www.instagram.com/ooo_astrolabe/" />
+              <SocialIcon
+                kind="instagram"
+                href="https://www.instagram.com/ooo_astrolabe/"
+                className="mr-2"
+              />
+              <SocialIcon kind="mastodon" href="https://writing.exchange/@astrolabe" />
             </div>
           </div>
           <div>

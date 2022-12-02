@@ -1,6 +1,7 @@
 import Mail from './mail.svg'
 import Mastodon from './mastodon.svg'
 import Instagram from './instagram.svg'
+import Twitter from './twitter.svg'
 
 // Icons taken from: https://simpleicons.org/
 
@@ -8,6 +9,7 @@ const components = {
   mail: Mail,
   mastodon: Mastodon,
   instagram: Instagram,
+  twitter: Twitter,
 }
 
 const SocialIcon = ({ kind, href, className = '' }) => {

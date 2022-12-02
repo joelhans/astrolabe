@@ -6,12 +6,13 @@ const Masthead = () => {
       <div className="grid lg:grid-cols-2 gap-8">
         <div className="prose lg:prose-xl">
           <p>
-            Joel Hans (he/him) was once called a saguaro in disguise. His prose has been published
-            in <em>West Branch</em>, <em>No Tokens</em>, <em>Puerto del Sol</em>,{' '}
-            <em>Booth: A Journal</em>, and more. He has an MFA from the University of Arizona, where
-            he also served as the managing editor of <em>Fairy Tale Review</em>. He still lives in
-            Tucson, Arizona with his family. Find him on{' '}
-            <CustomLink href="https://mastodon.social/@joelhans">Mastodon</CustomLink> or at{' '}
+            Joel Hans (he/him) was once called a saguaro in disguise. His fiction is published or
+            forthcoming in <em>Story</em>, <em>West Branch</em>, <em>No Tokens</em>,{' '}
+            <em>Puerto del Sol</em>, <em>Booth: A Journal</em>, and more. He has an MFA from the
+            University of Arizona, where he also served as the managing editor of{' '}
+            <em>Fairy Tale Review</em>. He still lives in Tucson, Arizona with his family. Find him
+            on <CustomLink href="https://twitter.com/joelhans">Twitter</CustomLink>,{' '}
+            <CustomLink href="https://mastodon.social/@joelhans">Mastodon</CustomLink>, or at{' '}
             <CustomLink href="https://joelhans.com">joelhans.com</CustomLink>.
           </p>
         </div>
