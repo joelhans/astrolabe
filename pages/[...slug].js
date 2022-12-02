@@ -95,8 +95,8 @@ export default function Article({ content, posts }) {
       />
       <PageHeader title={frontMatter.title}>
         <p className="text-lg lg:text-2xl italic mt-8">
-          Discovered by <span className="text-fuchsia-600 font-bold">{frontMatter.author}</span> on{' '}
-          {moment(frontMatter.publishedOn).format('dddd, MMMM Do YYYY')}.
+          Materialized by <span className="text-fuchsia-600 font-bold">{frontMatter.author}</span>{' '}
+          on {moment(frontMatter.publishedOn).format('dddd, MMMM Do YYYY')}.
         </p>
       </PageHeader>
       <div className="mt-16 lg:mt-32 mb-32 lg:mb-48">
