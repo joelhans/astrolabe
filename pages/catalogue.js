@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
+import _ from 'lodash'
 import Link from 'next/link'
 import { STAR_CONTENT_PATH } from '@config/constants'
 import siteMetadata from '@data/siteMetadata'
 import { getFrontMatter } from '@lib/mdx'
 import PageHeader from '@components/PageHeader'
-import PageBody from '@components/PageBody'
 import { PageSEO } from '@components/SEO'
 
 export async function getStaticProps() {
@@ -14,15 +14,23 @@ export async function getStaticProps() {
 
 export default function Catalogue({ posts }) {
   const [searchValue, setSearchValue] = useState('')
-  const filteredArticles = posts.filter((frontMatter) => {
-    const searchContent =
-      frontMatter.title +
-      frontMatter.summary +
-      frontMatter.author +
-      frontMatter.asterismFull +
-      frontMatter.tags.join(' ')
-    return searchContent.toLowerCase().includes(searchValue.toLowerCase())
-  })
+
+  const filteredStars = _(posts)
+    .groupBy((x) => x.author)
+    .map((value, key) => ({ author: key, stars: value }))
+    .value()
+
+  console.log(filteredStars)
+
+  // const filteredArticles = posts.filter((frontMatter) => {
+  //   const searchContent =
+  //     frontMatter.title +
+  //     frontMatter.summary +
+  //     frontMatter.author +
+  //     frontMatter.asterismFull +
+  //     frontMatter.tags.join(' ')
+  //   return searchContent.toLowerCase().includes(searchValue.toLowerCase())
+  // })
 
   // Force overflow so we can scroll on this page.
   useEffect(() => {
@@ -62,25 +70,47 @@ export default function Catalogue({ posts }) {
         </svg>
       </div>
       <div className="flex flex-row flex-wrap items-start mt-16 lg:mt-32 mb-32 lg:mb-48">
-        <ul>
-          {filteredArticles.map((post) => {
-            const { id, title, summary, author, asterismFull } = post
+        <div className="relative w-full gap-8 columns-3">
+          {filteredStars.map((authorCluster) => {
+            const { author, stars } = authorCluster
             return (
-              <li key={id} className="mb-16 last:mb-0">
-                <Link className="group" href={`/${post.id}`} passHref>
-                  <h2
-                    dangerouslySetInnerHTML={{ __html: title }}
-                    className="text-black text-3xl font-bold mb-2 transition-all group-hover:text-cyan"
-                  />
-                  <p className="text-base mb-2">
-                    {author} {asterismFull && `| ${asterismFull}`}
-                  </p>
-                  <p className="text-xl text-gray-600 italic">{summary}</p>
-                </Link>
-              </li>
+              <div key={author} className="relative first-of-type:mt-0 mt-8">
+                <h2 className="text-2xl">{author}</h2>
+                <ul>
+                  {stars.map((star) => {
+                    const { id, title, asterismFull } = star
+                    return (
+                      <li key={id}>
+                        <h3>{title}</h3>
+                      </li>
+                    )
+                  })}
+                </ul>
+              </div>
             )
+
+            // {author.stars.map((star) => {
+            //   const { id, title, summary, authorFirst, authorLast, asterismFull } = star
+            //   return (
+            //     <li key={id} className="mb-16 last:mb-0">
+            //       <h2>{authorFirst}</h2>
+            //       {/* <Link className="group" href={`/${post.id}`} passHref>
+            //         <>
+            //           <h2
+            //             dangerouslySetInnerHTML={{ __html: title }}
+            //             className="text-black text-3xl font-bold mb-2 transition-all group-hover:text-cyan"
+            //           />
+            //           <p className="text-base mb-2">
+            //             {author} {asterismFull && `| ${asterismFull}`}
+            //           </p>
+            //           <p className="text-xl text-gray-600 italic">{summary}</p>
+            //         </>
+            //       </Link> */}
+            //     </li>
+            //   )
+            // })}
           })}
-        </ul>
+        </div>
       </div>
     </>
   )
