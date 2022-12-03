@@ -19,8 +19,11 @@ export default function Catalogue({ posts }) {
     .groupBy((x) => x.author)
     .map((value, key) => ({ author: key, stars: value }))
     .value()
-
-  console.log(filteredStars)
+    .sort((a, b) => {
+      const aLastName = a.author.split(' ').pop()
+      const bLastName = b.author.split(' ').pop()
+      aLastName.localeCompare(bLastName)
+    })
 
   // const filteredArticles = posts.filter((frontMatter) => {
   //   const searchContent =
@@ -70,45 +73,29 @@ export default function Catalogue({ posts }) {
         </svg>
       </div>
       <div className="flex flex-row flex-wrap items-start mt-16 lg:mt-32 mb-32 lg:mb-48">
-        <div className="relative w-full gap-8 columns-3">
+        <div className="relative w-full gap-8 columns-1 md:columns-3">
           {filteredStars.map((authorCluster) => {
             const { author, stars } = authorCluster
             return (
-              <div key={author} className="relative first-of-type:mt-0 mt-8">
+              <div
+                key={author}
+                className="relative break-inside-avoid-column first-of-type:mt-0 mt-8"
+              >
                 <h2 className="text-2xl">{author}</h2>
                 <ul>
                   {stars.map((star) => {
                     const { id, title, asterismFull } = star
                     return (
-                      <li key={id}>
-                        <h3>{title}</h3>
+                      <li className="mt-2" key={id}>
+                        <Link href={id} className="text-lg hover:text-green" passHref>
+                          <h3 dangerouslySetInnerHTML={{ __html: title }} />
+                        </Link>
                       </li>
                     )
                   })}
                 </ul>
               </div>
             )
-
-            // {author.stars.map((star) => {
-            //   const { id, title, summary, authorFirst, authorLast, asterismFull } = star
-            //   return (
-            //     <li key={id} className="mb-16 last:mb-0">
-            //       <h2>{authorFirst}</h2>
-            //       {/* <Link className="group" href={`/${post.id}`} passHref>
-            //         <>
-            //           <h2
-            //             dangerouslySetInnerHTML={{ __html: title }}
-            //             className="text-black text-3xl font-bold mb-2 transition-all group-hover:text-cyan"
-            //           />
-            //           <p className="text-base mb-2">
-            //             {author} {asterismFull && `| ${asterismFull}`}
-            //           </p>
-            //           <p className="text-xl text-gray-600 italic">{summary}</p>
-            //         </>
-            //       </Link> */}
-            //     </li>
-            //   )
-            // })}
           })}
         </div>
       </div>
