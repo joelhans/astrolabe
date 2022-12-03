@@ -15,11 +15,11 @@ export default function Links() {
       <PageSEO title={`Links • ${siteMetadata.title}`} description={siteMetadata.description} />
       <PageHeader title={'Links'} />
       <div className="flex flex-row flex-wrap items-start mt-16 lg:mt-32 mb-32 lg:mb-48">
-        <div className="w-full grid gap-16">
+        <div className="w-full grid gap-12">
           <div className="w-full">
             <Link
               href="/about"
-              className="w-full block text-white text-4xl bg-green p-8 rounded"
+              className="w-full block text-white text-3xl bg-green p-6 rounded"
               passHref
             >
               About <em>Astrolabe</em>
@@ -28,10 +28,10 @@ export default function Links() {
           <div className="w-full">
             <Link
               href="/submissions"
-              className="w-full block text-white text-4xl bg-green p-8 rounded"
+              className="w-full block text-white text-3xl bg-green p-6 rounded"
               passHref
             >
-              Submissions
+              <h2>Submissions</h2>
             </Link>
           </div>
         </div>
