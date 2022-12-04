@@ -19,17 +19,20 @@ export default function Catalogue({ posts }) {
     .groupBy((x) => x.author)
     .map((value, key) => ({ author: key, stars: value }))
     .value()
-    .sort((a, b) => {
-      const aLastName = a.author.split(' ').pop()
-      const bLastName = b.author.split(' ').pop()
-      aLastName.localeCompare(bLastName)
-    })
     .filter((cluster) => {
+      // Create searchable content string with the author, and then the title
+      // and asterisms of each star that's under their cluster.
       let searchContent = cluster.author
       cluster.stars.map((star) => {
         searchContent += star.title + star.asterism + star.asterismFull
       })
       return searchContent.toLowerCase().includes(searchValue.toLowerCase())
+    })
+    .sort((a, b) => {
+      // Sort the `filteredStars` array by last name first, then first name.
+      const aLastName = a.author.split(' ').pop() + ' ' + a.author.split(' ').slice(0, -1).join(' ')
+      const bLastName = b.author.split(' ').pop() + ' ' + b.author.split(' ').slice(0, -1).join(' ')
+      return aLastName.localeCompare(bLastName)
     })
 
   // Force overflow so we can scroll on this page.
