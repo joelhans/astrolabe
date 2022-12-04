@@ -205,7 +205,7 @@ function drawScatter(scatterRef, tooltipRef, posts) {
         </button>
         ${
           d.visited
-            ? `<p class="text-sm lg:text-base 2xl:text-xl text-pink font-sans font-medium mt-4">You've visited this star before.</p>`
+            ? `<p class="text-sm lg:text-base text-pink font-sans font-medium mt-4">You've visited this star before.</p>`
             : ``
         }
       `
