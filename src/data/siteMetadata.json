@@ -7,7 +7,7 @@
   "siteUrl": "https://astrolabe.ooo",
   "siteRepo": "https://github.com/joelhans/astrolabe",
   "image": "/static/images/avatar.jpg",
-  "socialBanner": "/static/images/twitter-card.png",
+  "socialBanner": "/static/twitter-card.png",
   "email": "editors@astrolabe.ooo",
   "locale": "en-US"
 }
