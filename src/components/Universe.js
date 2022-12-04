@@ -1,12 +1,8 @@
 import { React, useState, useRef, useEffect } from 'react'
 import * as d3 from 'd3'
 import moment from 'moment'
-import ReactDOM from 'react-dom'
-import Countdown, { CountdownApi } from 'react-countdown'
 import Router from 'next/router'
-import Image from 'next/image'
 import StarscapeData from '@data/stars.json'
-import { CATACLYSM } from '@config/constants'
 
 function drawScatter(scatterRef, tooltipRef, posts) {
   // Set the `visitedStars` cookie to an empty array if there is no localStorage
@@ -325,131 +321,19 @@ function drawScatter(scatterRef, tooltipRef, posts) {
     })
 }
 
-const CountdownTimer = () => {
-  const [timeLeft, setTimeLeft] = useState()
-
-  const remainingTime = () => {
-    const difference = +new Date('2022-12-21T10:00:00-07:00') - +new Date()
-    let timeLeft = {}
-
-    if (difference > 0) {
-      timeLeft = {
-        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((difference / 1000 / 60) % 60),
-        seconds: Math.floor((difference / 1000) % 60),
-      }
-    }
-
-    return timeLeft
-  }
-
-  useEffect(() => {
-    setTimeout(() => {
-      setTimeLeft(remainingTime())
-    }, 1000)
-  })
-
-  return (
-    <div className="welcome z-30 absolute w-full md:max-w-lg lg:max-w-2xl bottom-0 text-2xl text-center px-12 py-10 bg-white rounded transform -translate-y-1/2 lg:-translate-x-1/2">
-      <p>
-        A giant molecular cloud has formed. <em>Astrolabe</em>—a new literary magazine in the form
-        of a dynamic universe, will materialize on the winter solstice.
-      </p>
-      {timeLeft ? (
-        <div className="mt-8 max-w-md mx-auto">
-          <div className="grid grid-cols-4">
-            <div className="absolute">
-              <div className="text-4xl">-</div>
-            </div>
-            <div>
-              <div className="text-4xl">{timeLeft.days}</div>
-              <div className="text-base">day</div>
-            </div>
-            <div>
-              <div className="text-4xl">{timeLeft.hours}</div>
-              <div className="text-base">hour</div>
-            </div>
-            <div>
-              <div className="text-4xl">{timeLeft.minutes}</div>
-              <div className="text-base">minute</div>
-            </div>
-            <div>
-              <div className="text-4xl">{timeLeft.seconds}</div>
-              <div className="text-base">second</div>
-            </div>
-          </div>
-        </div>
-      ) : (
-        <div className="block h-16 mt-8" />
-      )}
-    </div>
-  )
-}
-
 const Universe = ({ posts }) => {
-  // const [helpShow, setHelpShow] = useState(false)
-
   const scatterRef = useRef(null)
   const tooltipRef = useRef(null)
-  // const countdownRef = useRef(null)
-
-  // let visitedUniverse
-
-  // const toggleHelp = () => {
-  //   setHelpShow((status) => {
-  //     localStorage.setItem('visitedUniverse', true)
-  //     visitedUniverse = true
-  //     return !status
-  //   })
-  // }
 
   useEffect(() => {
     drawScatter(scatterRef, tooltipRef, posts)
     document.body.style.overflow = 'hidden'
-    // visitedUniverse = localStorage.getItem('visitedUniverse')
-    // !visitedUniverse && toggleHelp()
   }, [scatterRef, tooltipRef])
 
   return (
     <>
       <div id="scatter" className="bg-gray-900">
         <svg ref={scatterRef} />
-
-        <CountdownTimer />
-
-        {/* {helpShow && (
-          <div className="welcome z-30 absolute w-full lg:w-auto top-1/2 lg:left-1/2 !text-gray-900 px-12 py-10 bg-green rounded-sm transform -translate-y-1/2 lg:-translate-x-1/2">
-            <button
-              type="button"
-              className="z-50 absolute w-8 h-8 top-2 right-2"
-              aria-label="Toggle Menu"
-              onClick={toggleHelp}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className={`text-gray-900 hover:text-green transform ease-in-out duration-300 hover:cursor-pointer`}
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </button>
-            <div className="max-w-xl">
-              <h1 className="text-4xl lg:text-6xl font-bold mb-6">Welcome to <em>Astrolabe</em>.</h1>
-              <p className="text-2xl mb-6">
-                Hover over a star to see its details. Click or tap a star to take a closer look.
-                Zoom with your mousewheel or a pinch-to-zoom gesture. Pan with a click-and-drag or
-                touch-and-drag.
-              </p>
-              <p className="text-3xl italic cursor-pointer hover:text-white" onClick={toggleHelp}>Explore.</p>
-            </div>
-          </div>
-        )} */}
         <div ref={tooltipRef} className="tooltipScatter" />
       </div>
     </>
