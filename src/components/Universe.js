@@ -352,6 +352,14 @@ const Universe = (posts) => {
     <>
       <div id="scatter" className="bg-gray-900">
         <svg ref={scatterRef} />
+
+        <div className="welcome z-30 absolute w-full lg:w-auto bottom-0 text-2xl text-center px-12 py-10 bg-white rounded transform -translate-y-1/2 lg:-translate-x-1/2">
+          <p>
+            A giant molecular cloud has formed. <em>Astrolabe</em>—a new literary magazine in the
+            form of a dynamic universe, will materialize on the winter solstice.
+          </p>
+        </div>
+
         {/* {helpShow && (
           <div className="welcome z-30 absolute w-full lg:w-auto top-1/2 lg:left-1/2 !text-gray-900 px-12 py-10 bg-green rounded-sm transform -translate-y-1/2 lg:-translate-x-1/2">
             <button

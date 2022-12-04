@@ -2,12 +2,12 @@
   "title": "Astrolabe",
   "author": "Joel Hans",
   "headerTitle": "Astrolabe",
-  "description": "This is a literary magazine.",
+  "description": "A new literary magazine in the form of a dynamic universe.",
   "language": "en-us",
   "siteUrl": "https://astrolabe.ooo",
   "siteRepo": "https://github.com/joelhans/astrolabe",
   "image": "/static/images/avatar.jpg",
   "socialBanner": "/static/images/twitter-card.png",
-  "email": "j@joelhans.com",
+  "email": "editors@astrolabe.ooo",
   "locale": "en-US"
 }
