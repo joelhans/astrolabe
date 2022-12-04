@@ -24,16 +24,13 @@ export default function Catalogue({ posts }) {
       const bLastName = b.author.split(' ').pop()
       aLastName.localeCompare(bLastName)
     })
-
-  // const filteredArticles = posts.filter((frontMatter) => {
-  //   const searchContent =
-  //     frontMatter.title +
-  //     frontMatter.summary +
-  //     frontMatter.author +
-  //     frontMatter.asterismFull +
-  //     frontMatter.tags.join(' ')
-  //   return searchContent.toLowerCase().includes(searchValue.toLowerCase())
-  // })
+    .filter((cluster) => {
+      let searchContent = cluster.author
+      cluster.stars.map((star) => {
+        searchContent += star.title + star.asterism + star.asterismFull
+      })
+      return searchContent.toLowerCase().includes(searchValue.toLowerCase())
+    })
 
   // Force overflow so we can scroll on this page.
   useEffect(() => {
