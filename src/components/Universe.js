@@ -185,15 +185,13 @@ function drawScatter(scatterRef, tooltipRef, posts) {
         <p class="text-3xl lg:text-3xl 2xl:text-4xl font-bold mb-4">${d.title}</p>
         ${
           d.author
-            ? `<p class="text-base lg:text-lg font-sans font-medium first-letter:mb-3">Materialized by <span class="text-pink font-bold">${
+            ? `<p class="text-base 2xl:text-lg font-sans font-medium first-letter:mb-3">Materialized by <span class="text-pink font-bold">${
                 d.author
               }</span> on ${moment(d.publishedOn).format('dddd, MMMM Do YYYY')}.</p>`
             : ``
         }
         ${
-          d.summary
-            ? `<p class="prose md:prose-lg xl:prose-xl min-[1800px]:prose-2xl italic mt-3">${d.summary}</p>`
-            : ``
+          d.summary ? `<p class="prose md:prose-lg 2xl:prose-2xl italic mt-3">${d.summary}</p>` : ``
         }
         ${
           d.artworkUrl
@@ -207,7 +205,7 @@ function drawScatter(scatterRef, tooltipRef, posts) {
         </button>
         ${
           d.visited
-            ? `<p class="text-xs lg:text-sm text-pink font-sans font-medium mt-4">You've visited this star before.</p>`
+            ? `<p class="text-sm lg:text-base 2xl:text-xl text-pink font-sans font-medium mt-4">You've visited this star before.</p>`
             : ``
         }
       `
