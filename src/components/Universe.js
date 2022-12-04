@@ -181,28 +181,30 @@ function drawScatter(scatterRef, tooltipRef, posts) {
     tooltipScatter
       .html(
         `
-        <p class="text-3xl lg:text-5xl font-bold mb-4">${d.title}</p>
+        <p class="text-3xl lg:text-3xl 2xl:text-4xl font-bold mb-4">${d.title}</p>
         ${
           d.author
-            ? `<p class="text-base lg:text-xl mb-3">Discovered by <span class="text-gray-100 font-bold">${
+            ? `<p class="text-base 2xl:text-lg font-sans font-medium first-letter:mb-3">Materialized by <span class="text-pink font-bold">${
                 d.author
               }</span> on ${moment(d.publishedOn).format('dddd, MMMM Do YYYY')}.</p>`
             : ``
         }
-        ${d.summary ? `<p class="prose lg:prose-2xl italic mt-3">${d.summary}</p>` : ``}
+        ${
+          d.summary ? `<p class="prose md:prose-lg 2xl:prose-2xl italic mt-3">${d.summary}</p>` : ``
+        }
         ${
           d.artworkUrl
-            ? `<div class="blur-sm block relative mt-3"><Image class="" src="${d.artworkUrl}" width="400" height="2O0" /></div>`
+            ? `<div class="blur-sm block relative max-h-64 overflow-hidden mt-3"><Image src="${d.artworkUrl}" width="400" height="2O0" /></div>`
             : ``
         }
-        <button class="lg:hidden font-mono text-sm text-green mt-4 bg-gray-100 rounded">
+        <button class="lg:hidden font-mono text-sm text-gray-100 mt-4 bg-green rounded">
           <a href="${d.slug}" class="block px-3 py-2">
-            Explore &rarr;
+            See more &rarr;
           </a>
         </button>
         ${
           d.visited
-            ? `<p class="text-xs lg:text-sm text-gray-100 font-mono font-bold mt-4">You've visited this star before.</p>`
+            ? `<p class="text-sm lg:text-base text-pink font-sans font-medium mt-4">You've visited this star before.</p>`
             : ``
         }
       `
@@ -214,14 +216,21 @@ function drawScatter(scatterRef, tooltipRef, posts) {
     if (!isMobile) {
       // Account for the star position along the x axis in relationship to the
       // window's width so that we can place the tooltip on the correct side.
-      d3.event.x + tooltipRef.current.offsetWidth < window.innerWidth
-        ? tooltipScatter.style('left', d3.event.x + 30 + 'px')
-        : tooltipScatter.style('left', d3.event.x - tooltipRef.current.offsetWidth - 30 + 'px')
+      d3.event.x + tooltipRef.current.offsetWidth + 20 < window.innerWidth
+        ? tooltipScatter.style('left', d3.event.x + 20 + 'px')
+        : tooltipScatter.style('left', d3.event.x - tooltipRef.current.offsetWidth - 20 + 'px')
 
-      // Same for the y axis.
-      d3.event.y + tooltipRef.current.offsetHeight < window.innerHeight
-        ? tooltipScatter.style('top', d3.event.y - 10 + 'px')
-        : tooltipScatter.style('top', d3.event.y - tooltipRef.current.offsetHeight + 10 + 'px')
+      // With the y axis, we default to centering the tooltip relative to the
+      // star itself, which provides the maximum flexibility. But, in cases
+      // where it would clip the top of the window from the centered position,
+      // we push it down. Vice versa for the bottom of the window.
+      if (d3.event.y - tooltipRef.current.offsetHeight / 2 < 0) {
+        tooltipScatter.style('top', d3.event.y - 10 + 'px')
+      } else if (d3.event.y + tooltipRef.current.offsetHeight / 2 > window.innerHeight) {
+        tooltipScatter.style('top', d3.event.y - tooltipRef.current.offsetHeight + 10 + 'px')
+      } else {
+        tooltipScatter.style('top', d3.event.y - tooltipRef.current.offsetHeight * 0.5 + 'px')
+      }
     } else {
       tooltipScatter.style('left', 0).style('bottom', '0')
     }

@@ -38,7 +38,7 @@ html {
 .tooltip,
 .tooltipScatter {
   position: absolute;
-  @apply absolute -left-32 block w-full max-w-md text-xl !text-gray-900 px-12 py-10 bg-green rounded-sm;
+  @apply absolute -left-32 block w-full max-w-md text-xl !text-gray-900 px-8 2xl:px-12 py-6 2xl:py-10 bg-gray-100 rounded-sm;
 }
 
 /* Prose */
