@@ -13,6 +13,7 @@ module.exports = {
     fontFamily: {
       display: ['Ibarra Real Nova', ...defaultTheme.fontFamily.serif],
       serif: ['Ibarra Real Nova', ...defaultTheme.fontFamily.serif],
+      sans: ['Raleway', ...defaultTheme.fontFamily.sans],
       mono: ['Inconsolata', ...defaultTheme.fontFamily.mono],
     },
     extend: {

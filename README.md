@@ -1,6 +1,6 @@
 # Astrolabe
 
-A literary magazine for exploration in form, content, or spirit.
+A new literary magazine in the form of a dynamic universe.
 
 The Universe lives at [astrolabe.ooo](https://astrolabe.ooo).
 

@@ -35,16 +35,6 @@ html {
   position: relative;
 }
 
-.welcome {
-  left: 50% + 4rem;
-}
-
-@screen lg {
-  .welcome {
-    left: calc(50% + 4rem);
-  }
-}
-
 .tooltip,
 .tooltipScatter {
   position: absolute;

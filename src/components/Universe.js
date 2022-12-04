@@ -1,8 +1,7 @@
-import { useState, useRef, useEffect } from 'react'
+import { React, useState, useRef, useEffect } from 'react'
 import * as d3 from 'd3'
 import moment from 'moment'
 import Router from 'next/router'
-import Image from 'next/image'
 import StarscapeData from '@data/stars.json'
 
 function drawScatter(scatterRef, tooltipRef, posts) {
@@ -322,68 +321,19 @@ function drawScatter(scatterRef, tooltipRef, posts) {
     })
 }
 
-const Universe = (posts) => {
-  // const [helpShow, setHelpShow] = useState(false)
-
+const Universe = ({ posts }) => {
   const scatterRef = useRef(null)
   const tooltipRef = useRef(null)
-  // let visitedUniverse
-
-  // const toggleHelp = () => {
-  //   setHelpShow((status) => {
-  //     localStorage.setItem('visitedUniverse', true)
-  //     visitedUniverse = true
-  //     return !status
-  //   })
-  // }
 
   useEffect(() => {
-    drawScatter(scatterRef, tooltipRef, posts.posts)
+    drawScatter(scatterRef, tooltipRef, posts)
     document.body.style.overflow = 'hidden'
-    // visitedUniverse = localStorage.getItem('visitedUniverse')
-    // !visitedUniverse && toggleHelp()
-  }, [
-    scatterRef,
-    tooltipRef,
-    // visitedUniverse
-  ])
+  }, [scatterRef, tooltipRef])
 
   return (
     <>
       <div id="scatter" className="bg-gray-900">
         <svg ref={scatterRef} />
-        {/* {helpShow && (
-          <div className="welcome z-30 absolute w-full lg:w-auto top-1/2 lg:left-1/2 !text-gray-900 px-12 py-10 bg-green rounded-sm transform -translate-y-1/2 lg:-translate-x-1/2">
-            <button
-              type="button"
-              className="z-50 absolute w-8 h-8 top-2 right-2"
-              aria-label="Toggle Menu"
-              onClick={toggleHelp}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className={`text-gray-900 hover:text-green transform ease-in-out duration-300 hover:cursor-pointer`}
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </button>
-            <div className="max-w-xl">
-              <h1 className="text-4xl lg:text-6xl font-bold mb-6">Welcome to <em>Astrolabe</em>.</h1>
-              <p className="text-2xl mb-6">
-                Hover over a star to see its details. Click or tap a star to take a closer look.
-                Zoom with your mousewheel or a pinch-to-zoom gesture. Pan with a click-and-drag or
-                touch-and-drag.
-              </p>
-              <p className="text-3xl italic cursor-pointer hover:text-white" onClick={toggleHelp}>Explore.</p>
-            </div>
-          </div>
-        )} */}
         <div ref={tooltipRef} className="tooltipScatter" />
       </div>
     </>
