@@ -1,9 +1,12 @@
-import { useState, useRef, useEffect } from 'react'
+import { React, useState, useRef, useEffect } from 'react'
 import * as d3 from 'd3'
 import moment from 'moment'
+import ReactDOM from 'react-dom'
+import Countdown, { CountdownApi } from 'react-countdown'
 import Router from 'next/router'
 import Image from 'next/image'
 import StarscapeData from '@data/stars.json'
+import { CATACLYSM } from '@config/constants'
 
 function drawScatter(scatterRef, tooltipRef, posts) {
   // Set the `visitedStars` cookie to an empty array if there is no localStorage
@@ -322,11 +325,75 @@ function drawScatter(scatterRef, tooltipRef, posts) {
     })
 }
 
-const Universe = (posts) => {
+const CountdownTimer = () => {
+  const [timeLeft, setTimeLeft] = useState()
+
+  const remainingTime = () => {
+    const difference = +new Date('2022-12-21T10:00:00-07:00') - +new Date()
+    let timeLeft = {}
+
+    if (difference > 0) {
+      timeLeft = {
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((difference / 1000 / 60) % 60),
+        seconds: Math.floor((difference / 1000) % 60),
+      }
+    }
+
+    return timeLeft
+  }
+
+  useEffect(() => {
+    setTimeout(() => {
+      setTimeLeft(remainingTime())
+    }, 1000)
+  })
+
+  return (
+    <div className="welcome z-30 absolute w-full md:max-w-lg lg:max-w-2xl bottom-0 text-2xl text-center px-12 py-10 bg-white rounded transform -translate-y-1/2 lg:-translate-x-1/2">
+      <p>
+        A giant molecular cloud has formed. <em>Astrolabe</em>—a new literary magazine in the form
+        of a dynamic universe, will materialize on the winter solstice.
+      </p>
+      {timeLeft ? (
+        <div className="mt-8 max-w-md mx-auto">
+          <div className="grid grid-cols-4">
+            <div className="absolute">
+              <div className="text-4xl">-</div>
+            </div>
+            <div>
+              <div className="text-4xl">{timeLeft.days}</div>
+              <div className="text-base">day</div>
+            </div>
+            <div>
+              <div className="text-4xl">{timeLeft.hours}</div>
+              <div className="text-base">hour</div>
+            </div>
+            <div>
+              <div className="text-4xl">{timeLeft.minutes}</div>
+              <div className="text-base">minute</div>
+            </div>
+            <div>
+              <div className="text-4xl">{timeLeft.seconds}</div>
+              <div className="text-base">second</div>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="block h-16 mt-8" />
+      )}
+    </div>
+  )
+}
+
+const Universe = ({ posts }) => {
   // const [helpShow, setHelpShow] = useState(false)
 
   const scatterRef = useRef(null)
   const tooltipRef = useRef(null)
+  // const countdownRef = useRef(null)
+
   // let visitedUniverse
 
   // const toggleHelp = () => {
@@ -338,27 +405,18 @@ const Universe = (posts) => {
   // }
 
   useEffect(() => {
-    drawScatter(scatterRef, tooltipRef, posts.posts)
+    drawScatter(scatterRef, tooltipRef, posts)
     document.body.style.overflow = 'hidden'
     // visitedUniverse = localStorage.getItem('visitedUniverse')
     // !visitedUniverse && toggleHelp()
-  }, [
-    scatterRef,
-    tooltipRef,
-    // visitedUniverse
-  ])
+  }, [scatterRef, tooltipRef])
 
   return (
     <>
       <div id="scatter" className="bg-gray-900">
         <svg ref={scatterRef} />
 
-        <div className="welcome z-30 absolute w-full lg:w-auto bottom-0 text-2xl text-center px-12 py-10 bg-white rounded transform -translate-y-1/2 lg:-translate-x-1/2">
-          <p>
-            A giant molecular cloud has formed. <em>Astrolabe</em>—a new literary magazine in the
-            form of a dynamic universe, will materialize on the winter solstice.
-          </p>
-        </div>
+        <CountdownTimer />
 
         {/* {helpShow && (
           <div className="welcome z-30 absolute w-full lg:w-auto top-1/2 lg:left-1/2 !text-gray-900 px-12 py-10 bg-green rounded-sm transform -translate-y-1/2 lg:-translate-x-1/2">
