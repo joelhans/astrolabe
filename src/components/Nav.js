@@ -70,6 +70,28 @@ const MobileNav = () => {
               </Link>
             </div>
           ))}
+          <div className="mt-8">
+            <h3 className="text-lg lg:text-xl italic">Elsewhere:</h3>
+            <Link
+              className="block font-sans font-medium hover:text-pink transform ease-in-out duration-300 mt-2"
+              href="https://twitter.com/ooo_astrolabe"
+            >
+              Twitter
+            </Link>
+            <Link
+              className="block font-sans font-medium hover:text-pink transform ease-in-out duration-300 mt-2"
+              href="https://www.instagram.com/ooo_astrolabe/"
+            >
+              Instagram
+            </Link>
+            <Link
+              rel="me"
+              className="block font-sans font-medium hover:text-pink transform ease-in-out duration-300 mt-2"
+              href="https://writing.exchange/@astrolabe"
+            >
+              Mastodon
+            </Link>
+          </div>
         </nav>
         <h1 className="-translate-x-full">Astrolabe</h1>
       </div>
