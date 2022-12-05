@@ -3,10 +3,10 @@
     <channel>
       <title>Astrolabe</title>
       <link>https://astrolabe.ooo/articles</link>
-      <description>This is a literary magazine.</description>
+      <description>A new literary magazine in the form of a dynamic universe.</description>
       <language>en-us</language>
-      <managingEditor>j@joelhans.com (Joel Hans)</managingEditor>
-      <webMaster>j@joelhans.com (Joel Hans)</webMaster>
+      <managingEditor>editors@astrolabe.ooo (Joel Hans)</managingEditor>
+      <webMaster>editors@astrolabe.ooo (Joel Hans)</webMaster>
       <lastBuildDate>Sun, 17 Jul 2022 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://astrolabe.ooo/index.xml" rel="self" type="application/rss+xml"/>
       
@@ -16,7 +16,7 @@
     <link>https://astrolabe.ooo/articles/example-01</link>
     <description>There was once on a time, an old Goat who had seven little Kids, and loved them with all the love of a mother for her children.</description>
     <pubDate>Sun, 17 Jul 2022 00:00:00 GMT</pubDate>
-    <author>j@joelhans.com (Joel Hans)</author>
+    <author>editors@astrolabe.ooo (Joel Hans)</author>
     <category>poetry</category>
   </item>
 
@@ -26,7 +26,7 @@
     <link>https://astrolabe.ooo/articles/example-02</link>
     <description>HERE was a Mountain Spirit, which stole corpses from their graves and ate them when it came home. And a man, wishing to see who did this thing, let himself be buried alive.</description>
     <pubDate>Sat, 16 Jul 2022 00:00:00 GMT</pubDate>
-    <author>j@joelhans.com (Joel Hans)</author>
+    <author>editors@astrolabe.ooo (Joel Hans)</author>
     <category>prose</category>
   </item>
 
@@ -36,7 +36,7 @@
     <link>https://astrolabe.ooo/articles/example-03</link>
     <description>undefined</description>
     <pubDate>Sat, 16 Jul 2022 00:00:00 GMT</pubDate>
-    <author>j@joelhans.com (Joel Hans)</author>
+    <author>editors@astrolabe.ooo (Joel Hans)</author>
     <category>poetry</category>
   </item>
 
@@ -46,7 +46,7 @@
     <link>https://astrolabe.ooo/articles/example-04</link>
     <description>undefined</description>
     <pubDate>Thu, 14 Jul 2022 00:00:00 GMT</pubDate>
-    <author>j@joelhans.com (Joel Hans)</author>
+    <author>editors@astrolabe.ooo (Joel Hans)</author>
     <category>poetry</category>
   </item>
 
@@ -56,7 +56,7 @@
     <link>https://astrolabe.ooo/articles/example-05</link>
     <description>undefined</description>
     <pubDate>Wed, 13 Jul 2022 00:00:00 GMT</pubDate>
-    <author>j@joelhans.com (Joel Hans)</author>
+    <author>editors@astrolabe.ooo (Joel Hans)</author>
     <category>prose</category>
   </item>
 
@@ -66,7 +66,7 @@
     <link>https://astrolabe.ooo/articles/example-06</link>
     <description>undefined</description>
     <pubDate>Tue, 12 Jul 2022 00:00:00 GMT</pubDate>
-    <author>j@joelhans.com (Joel Hans)</author>
+    <author>editors@astrolabe.ooo (Joel Hans)</author>
     <category>poetry</category>
   </item>
 
@@ -76,7 +76,7 @@
     <link>https://astrolabe.ooo/articles/example-07</link>
     <description>undefined</description>
     <pubDate>Mon, 11 Jul 2022 00:00:00 GMT</pubDate>
-    <author>j@joelhans.com (Joel Hans)</author>
+    <author>editors@astrolabe.ooo (Joel Hans)</author>
     <category>prose</category>
   </item>
 
@@ -86,7 +86,7 @@
     <link>https://astrolabe.ooo/articles/example-08</link>
     <description>undefined</description>
     <pubDate>Sun, 10 Jul 2022 00:00:00 GMT</pubDate>
-    <author>j@joelhans.com (Joel Hans)</author>
+    <author>editors@astrolabe.ooo (Joel Hans)</author>
     <category>artwork</category>
   </item>
 
@@ -96,7 +96,7 @@
     <link>https://astrolabe.ooo/articles/example-09</link>
     <description>undefined</description>
     <pubDate>Sat, 09 Jul 2022 00:00:00 GMT</pubDate>
-    <author>j@joelhans.com (Joel Hans)</author>
+    <author>editors@astrolabe.ooo (Joel Hans)</author>
     <category>poetry</category>
   </item>
 
@@ -106,7 +106,7 @@
     <link>https://astrolabe.ooo/articles/example-10</link>
     <description>undefined</description>
     <pubDate>Fri, 08 Jul 2022 00:00:00 GMT</pubDate>
-    <author>j@joelhans.com (Joel Hans)</author>
+    <author>editors@astrolabe.ooo (Joel Hans)</author>
     <category>prose</category>
   </item>
 

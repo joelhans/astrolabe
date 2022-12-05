@@ -68,7 +68,7 @@ const CountdownTimer = () => {
               />
             </svg>
           </button>
-          <p className="text-xl md:text-2xl">
+          <p className="font-serif text-xl md:text-2xl">
             A giant molecular cloud has formed. <em>Astrolabe</em>—a new literary magazine in the
             form of a dynamic universe, will materialize on the winter solstice.
           </p>
