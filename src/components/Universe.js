@@ -205,7 +205,7 @@ function drawScatter(scatterRef, tooltipRef, setTooltipState, setTooltipData, po
     .data(Asterisms)
     .enter()
     .append('text')
-    .attr('class', (d) => 'name ' + d.values[0].asterism)
+    .attr('class', (d) => 'name ' + d.values[0].asterism + ' font-serif')
     .text(function (d) {
       return `${d.values[0].asterismFull}`
     })

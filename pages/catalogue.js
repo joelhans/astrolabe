@@ -44,7 +44,7 @@ export default function Catalogue({ posts }) {
     <>
       <PageSEO title={`Catalogue • ${siteMetadata.title}`} description={siteMetadata.description} />
       <PageHeader title="The Catalogue">
-        <p className="text-lg md:text-xl mt-8">
+        <p className="font-serif text-lg md:text-xl mt-8">
           Discover the Universe by browsing our growing list of astrolabists and their
           transmissions.
         </p>
