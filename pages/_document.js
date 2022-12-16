@@ -22,13 +22,8 @@ class MyDocument extends Document {
           <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
           <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
           <link rel="alternate" type="application/rss+xml" href="/index.xml" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:ital,wght@0,400;0,700;1,400;1,700&family=Raleway:wght@400;500;700&display=swap"
-            rel="stylesheet"
-          />
         </Head>
-        <body className="antialiased font-serif bg-gray-50 text-gray-800">
+        <body className="antialiased font-serif font-normal bg-gray-50 text-gray-800">
           <Main />
           <NextScript />
         </body>

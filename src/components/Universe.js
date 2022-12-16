@@ -181,10 +181,10 @@ function drawScatter(scatterRef, tooltipRef, posts) {
     tooltipScatter
       .html(
         `
-        <p class="text-3xl lg:text-3xl 2xl:text-4xl font-bold mb-4">${d.title}</p>
+        <p class="font-serif text-3xl lg:text-3xl 2xl:text-4xl font-bold mb-4">${d.title}</p>
         ${
           d.author
-            ? `<p class="text-base 2xl:text-lg font-sans font-medium first-letter:mb-3">Materialized by <span class="text-pink font-bold">${
+            ? `<p class="font-sans text-base 2xl:text-lg font-sans font-medium first-letter:mb-3">Materialized by <span class="text-pink font-bold">${
                 d.author
               }</span> on ${moment(d.publishedOn).format('dddd, MMMM Do YYYY')}.</p>`
             : ``
@@ -197,7 +197,7 @@ function drawScatter(scatterRef, tooltipRef, posts) {
             ? `<div class="blur-sm block relative max-h-64 overflow-hidden mt-3"><Image src="${d.artworkUrl}" width="400" height="2O0" /></div>`
             : ``
         }
-        <button class="lg:hidden font-mono text-sm text-gray-100 mt-4 bg-green rounded">
+        <button class="lg:hidden font-sans font-bold text-sm text-gray-100 mt-4 bg-green rounded">
           <a href="${d.slug}" class="block px-3 py-2">
             See more &rarr;
           </a>
@@ -257,7 +257,7 @@ function drawScatter(scatterRef, tooltipRef, posts) {
     .data(Asterisms)
     .enter()
     .append('text')
-    .attr('class', (d) => 'name ' + d.values[0].asterism)
+    .attr('class', (d) => 'name ' + d.values[0].asterism + ' font-serif')
     .text(function (d) {
       return `${d.values[0].asterismFull}`
     })

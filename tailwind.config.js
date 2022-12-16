@@ -11,9 +11,9 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      display: ['Ibarra Real Nova', ...defaultTheme.fontFamily.serif],
-      serif: ['Ibarra Real Nova', ...defaultTheme.fontFamily.serif],
-      sans: ['Raleway', ...defaultTheme.fontFamily.sans],
+      display: ['var(--font-ibarra)', ...defaultTheme.fontFamily.serif],
+      serif: ['var(--font-ibarra)', ...defaultTheme.fontFamily.serif],
+      sans: ['var(--font-raleway)', ...defaultTheme.fontFamily.sans],
       mono: ['Inconsolata', ...defaultTheme.fontFamily.mono],
     },
     extend: {
