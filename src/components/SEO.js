@@ -73,6 +73,7 @@ export const TagSEO = ({ title, description }) => {
 
 export const BlogSEO = ({
   authorDetails,
+  author,
   title,
   summary,
   publishedOn,
@@ -80,6 +81,7 @@ export const BlogSEO = ({
   url,
   images = [],
   canonicalUrl,
+  tags,
 }) => {
   const router = useRouter()
   const publishedAt = new Date(publishedOn).toISOString()
@@ -99,21 +101,6 @@ export const BlogSEO = ({
     }
   })
 
-  let authorList
-  if (authorDetails) {
-    authorList = authorDetails.map((author) => {
-      return {
-        '@type': 'Person',
-        name: author.name,
-      }
-    })
-  } else {
-    authorList = {
-      '@type': 'Person',
-      name: siteMetadata.author,
-    }
-  }
-
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -125,7 +112,7 @@ export const BlogSEO = ({
     image: featuredImages,
     datePublished: publishedAt,
     dateModified: modifiedAt,
-    author: authorList,
+    author: author,
     publisher: {
       '@type': 'Organization',
       name: siteMetadata.author,
@@ -142,7 +129,7 @@ export const BlogSEO = ({
   return (
     <>
       <CommonSEO
-        title={title}
+        title={`${title} • ${tags[0]} by ${author} • ${siteMetadata.title}`}
         description={summary}
         ogType="article"
         ogImage={featuredImages}

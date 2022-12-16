@@ -91,7 +91,7 @@ export default function Article({ content, posts }) {
       <BlogSEO
         {...frontMatter}
         url={`${siteMetadata.siteUrl}/articles/${frontMatter.slug}`}
-        title={`${cleanTitle} • ${siteMetadata.title}`}
+        title={`${cleanTitle}`}
       />
       <PageHeader title={frontMatter.title}>
         <p className="text-lg lg:text-2xl italic mt-8">
