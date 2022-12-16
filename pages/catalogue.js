@@ -55,7 +55,7 @@ export default function Catalogue({ posts }) {
           type="text"
           onChange={(e) => setSearchValue(e.target.value)}
           placeholder="Search..."
-          className="block w-full text-lg text-gray-900 placeholder-gray-600 px-4 py-2 bg-gray-200 border border-gray-500 rounded-md  focus:ring-cyan focus:border-cyan"
+          className="block w-full font-sans text-lg text-gray-900 placeholder-gray-600 px-4 py-2 bg-gray-200 border border-gray-500 rounded-md  focus:ring-cyan focus:border-cyan"
         />
         <svg
           className="absolute w-5 h-5 text-gray-500 right-3 top-3 dark:text-gray-200"
@@ -81,13 +81,17 @@ export default function Catalogue({ posts }) {
                 key={author}
                 className="relative break-inside-avoid-column first-of-type:mt-0 mt-8"
               >
-                <h2 className="text-2xl">{author}</h2>
+                <h2 className="font-sans text-2xl font-medium">{author}</h2>
                 <ul>
                   {stars.map((star) => {
                     const { id, title, asterismFull } = star
                     return (
                       <li className="mt-2" key={id}>
-                        <Link href={id} className="text-lg hover:text-green" passHref>
+                        <Link
+                          href={id}
+                          className="font-serif text-lg hover:text-pink transition-all ease-in-out"
+                          passHref
+                        >
                           <h3 dangerouslySetInnerHTML={{ __html: title }} />
                         </Link>
                       </li>
