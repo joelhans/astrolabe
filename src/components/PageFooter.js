@@ -9,7 +9,7 @@ const PageFooter = () => {
       <div className="max-w-screen-lg mx-auto mb-auto px-12">
         <div className="grid lg:grid-cols-3 gap-8">
           <div>
-            <p className="text-2xl">&copy; Astrolabe, 2022 &rarr; ?</p>
+            <p className="font-serif text-2xl">&copy; Astrolabe, 2022 &rarr; ?</p>
             <div className="flex mt-4">
               <SocialIcon
                 kind="twitter"
@@ -29,7 +29,7 @@ const PageFooter = () => {
               <div key={link.title} className="mb-2 last:mb-0">
                 <Link
                   href={link.href}
-                  className="text-2xl italic tracking-wide text-gray-900 hover:text-green transform ease-in-out duration-300"
+                  className="font-serif text-2xl italic tracking-wide text-gray-900 hover:text-green transform ease-in-out duration-300"
                 >
                   {link.title}
                 </Link>

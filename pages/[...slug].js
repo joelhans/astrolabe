@@ -94,7 +94,7 @@ export default function Article({ content, posts }) {
         title={`${cleanTitle} • ${siteMetadata.title}`}
       />
       <PageHeader title={frontMatter.title}>
-        <p className="text-lg lg:text-2xl italic mt-8">
+        <p className="font-sans font-medium text-lg lg:text-2xl italic mt-8">
           Materialized by <span className="text-fuchsia-600 font-bold">{frontMatter.author}</span>{' '}
           on {moment(frontMatter.publishedOn).format('dddd, MMMM Do YYYY')}.
         </p>
@@ -111,7 +111,7 @@ export default function Article({ content, posts }) {
         {/* If there are other stars in this asterism... */}
         {frontMatter.asterism && (
           <div className="mt-24 p-8 bg-green rounded">
-            <h2 className="text-gray-100 text-2xl mb-4">
+            <h2 className="font-serif text-gray-100 text-2xl mb-4">
               Other stars in <span className="font-bold italic">{frontMatter.asterismFull}</span>:
             </h2>
             <div className="grid gap-4 lg:grid-cols-3">
@@ -128,9 +128,12 @@ export default function Article({ content, posts }) {
                       href={`/${slug}`}
                       className="group block bg-white hover:bg-gray-100 hover:bg-opacity-90 px-6 py-6 rounded duration-300"
                     >
-                      <h3 dangerouslySetInnerHTML={{ __html: title }} className="text-2xl mb-2" />
-                      <p className="mb-2">{author}</p>
-                      <p className="italic">{summary}</p>
+                      <h3
+                        dangerouslySetInnerHTML={{ __html: title }}
+                        className="font-serif text-2xl mb-2"
+                      />
+                      <p className="font-sans font-medium mb-2">{author}</p>
+                      <p className="font-serif italic">{summary}</p>
                     </CustomLink>
                   )
                 })}
@@ -139,7 +142,9 @@ export default function Article({ content, posts }) {
         )}
         {log.length > 0 && (
           <div className="mt-24">
-            <p className="text-3xl italic">You have visited this star before.</p>
+            <p className="font-serif text-2xl lg:text-3xl italic">
+              You have visited this star before.
+            </p>
             <div className="mt-4">
               {/* Loop through the visits to create the log. */}
               {log
@@ -153,11 +158,11 @@ export default function Article({ content, posts }) {
 
                   return (
                     <div key={time} className="py-2">
-                      <span className="text-lg text-fuchsia-600 italic">
+                      <span className="font-serif text-lg text-fuchsia-600 italic">
                         {moment(time).format('dddd, MMMM Do YYYY, h:mm:ss a')}
                       </span>
                       <br />
-                      <span className="text-xs text-gray-600 font-mono">
+                      <span className="font-sans font-medium text-sm text-gray-600">
                         {Math.floor(hours)} hours, {Math.floor(minutes)} minutes, and{' '}
                         {Math.floor(seconds)} seconds after the last cataclysm.
                       </span>
