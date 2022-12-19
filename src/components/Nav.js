@@ -91,6 +91,13 @@ const MobileNav = () => {
             >
               Mastodon
             </Link>
+            <Link
+              rel="me"
+              className="block font-sans font-medium hover:text-pink transform ease-in-out duration-300 mt-2"
+              href="https://duotrope.com/listing/35081/astrolabe"
+            >
+              Duotrope
+            </Link>
           </div>
         </nav>
         <h1 className="-translate-x-full">Astrolabe</h1>
