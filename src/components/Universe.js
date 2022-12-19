@@ -22,9 +22,9 @@ function drawScatter(scatterRef, tooltipRef, posts) {
     height = 4000
 
   let isMobile = winWidth < 768,
-    xx = universePosition ? universePosition.x : isMobile ? -250 : 0,
-    yy = universePosition ? universePosition.y : isMobile ? 200 : 0,
-    scale = universePosition ? universePosition.k : isMobile ? 0.2 : 0.4
+    xx = universePosition ? universePosition.x : isMobile ? -250 : -300,
+    yy = universePosition ? universePosition.y : isMobile ? 200 : -75,
+    scale = universePosition ? universePosition.k : isMobile ? 0.2 : 0.3
 
   // Create the SVG container, set its dimensions, and initiate zoom+pan.
   const svg = d3
