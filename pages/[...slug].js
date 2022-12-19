@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import moment from 'moment'
 import { IoTelescopeOutline } from 'react-icons/io5'
 import fs from 'fs'
+import Image from 'next/image'
 import { STAR_CONTENT_PATH, CATACLYSM } from '@config/constants'
 import { getFrontMatter, getSingleContent } from '@lib/mdx'
 import generateRss from '@lib/generate-rss'
@@ -93,7 +94,7 @@ export default function Article({ content, posts }) {
         title={`${cleanTitle}`}
       />
       <PageHeader title={frontMatter.title}>
-        <p className="text-lg lg:text-2xl italic mt-8">
+        <p className="font-sans text-lg lg:text-2xl font-medium italic mt-8">
           Materialized by <span className="text-fuchsia-600 font-bold">{frontMatter.author}</span>{' '}
           on {moment(frontMatter.publishedOn).format('dddd, MMMM Do YYYY')}.
         </p>
@@ -112,8 +113,9 @@ export default function Article({ content, posts }) {
         {/* If there are other stars in this asterism... */}
         {frontMatter.asterism && (
           <div className="mt-24 p-8 bg-green rounded">
-            <h2 className="text-gray-100 text-2xl mb-4">
-              Other stars in <span className="font-bold italic">{frontMatter.asterismFull}</span>:
+            <h2 className="font-sans text-gray-100 text-lg lg:text-xl font-medium mb-6">
+              Other stars in <span className="font-bold italic">{frontMatter.asterismFull}</span>{' '}
+              asterism:
             </h2>
             <div className="grid gap-4 lg:grid-cols-3">
               {/* Filter out any stars that are *not* in this asterism and loop through those that are. */}
@@ -122,7 +124,7 @@ export default function Article({ content, posts }) {
                   (post) => post.asterism === frontMatter.asterism && post.slug !== frontMatter.slug
                 )
                 .map((star) => {
-                  const { slug, title, author, summary } = star
+                  const { slug, title, author, summary, artworkUrl } = star
                   return (
                     <CustomLink
                       key={slug}
@@ -130,8 +132,13 @@ export default function Article({ content, posts }) {
                       className="group block bg-white hover:bg-gray-100 hover:bg-opacity-90 px-6 py-6 rounded duration-300"
                     >
                       <h3 dangerouslySetInnerHTML={{ __html: title }} className="text-2xl mb-2" />
-                      <p className="mb-2">{author}</p>
-                      <p className="italic">{summary}</p>
+                      <p className="font-sans text-sm font-medium mb-2">{author}</p>
+                      {summary && <p className="italic">{summary}</p>}
+                      {artworkUrl && (
+                        <div className="blur-sm block relative mt-4">
+                          <Image src={artworkUrl} width={400} height={200} />
+                        </div>
+                      )}
                     </CustomLink>
                   )
                 })}
@@ -140,7 +147,7 @@ export default function Article({ content, posts }) {
         )}
         {log.length > 0 && (
           <div className="mt-24">
-            <p className="text-3xl italic">You have visited this star before.</p>
+            <p className="text-3xl italic">You&rsquo;ve looked at this star before.</p>
             <div className="mt-4">
               {/* Loop through the visits to create the log. */}
               {log
