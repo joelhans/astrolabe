@@ -114,8 +114,8 @@ export default function Article({ content, posts }) {
         {frontMatter.asterism && (
           <div className="mt-24 p-8 bg-green rounded">
             <h2 className="font-sans text-gray-100 text-lg lg:text-xl font-medium mb-6">
-              Other stars in <span className="font-bold italic">{frontMatter.asterismFull}</span>{' '}
-              asterism:
+              Other stars in the{' '}
+              <span className="font-bold italic">{frontMatter.asterismFull}</span> asterism:
             </h2>
             <div className="grid gap-4 lg:grid-cols-3">
               {/* Filter out any stars that are *not* in this asterism and loop through those that are. */}
