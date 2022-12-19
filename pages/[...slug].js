@@ -155,7 +155,11 @@ export default function Article({ content, posts }) {
                 .reverse()
                 .map((visit) => {
                   const { time } = visit
-                  const hours = moment.duration(moment(time).diff(CATACLYSM)).asHours().toString(),
+                  console.log(frontMatter.publishedOn)
+                  const hours = moment
+                      .duration(moment(time).diff(frontMatter.publishedOn))
+                      .asHours()
+                      .toString(),
                     minutes = (hours.substring(hours.indexOf('.')) * 60).toString(),
                     seconds = (minutes.substring(minutes.indexOf('.')) * 60).toString()
 
@@ -167,7 +171,7 @@ export default function Article({ content, posts }) {
                       <br />
                       <span className="text-xs text-gray-600 font-mono">
                         {Math.floor(hours)} hours, {Math.floor(minutes)} minutes, and{' '}
-                        {Math.floor(seconds)} seconds after the last cataclysm.
+                        {Math.floor(seconds)} seconds after it materialized.
                       </span>
                     </div>
                   )
