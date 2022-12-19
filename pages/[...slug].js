@@ -9,7 +9,6 @@ import siteMetadata from '@data/siteMetadata'
 import CustomLink from '@components/Link'
 import { MDXLayoutRenderer } from '@components/MDXComponents'
 import PageHeader from '@components/PageHeader'
-import PageTitle from '@components/PageTitle'
 import { BlogSEO } from '@components/SEO'
 
 export async function getStaticPaths() {
@@ -105,7 +104,9 @@ export default function Article({ content, posts }) {
           <div className="flex justify-center mt-16">
             <IoTelescopeOutline className="w-8 h-8 text-orange" />
           </div>
-          <div className="mt-16 prose lg:prose-2xl italic">{frontMatter.authorBio}</div>
+          <div className="mt-16 prose lg:prose-2xl">
+            <MDXLayoutRenderer mdxSource={frontMatter.authorBioMdx} />
+          </div>
         </div>
 
         {/* If there are other stars in this asterism... */}
