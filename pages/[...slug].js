@@ -1,5 +1,4 @@
-import { useEffect, useState, useMemo } from 'react'
-import { getMDXComponent } from 'mdx-bundler/client'
+import { useEffect, useState } from 'react'
 import moment from 'moment'
 import { IoTelescopeOutline } from 'react-icons/io5'
 import fs from 'fs'
@@ -10,7 +9,6 @@ import siteMetadata from '@data/siteMetadata'
 import CustomLink from '@components/Link'
 import { MDXLayoutRenderer } from '@components/MDXComponents'
 import PageHeader from '@components/PageHeader'
-import PageTitle from '@components/PageTitle'
 import { BlogSEO } from '@components/SEO'
 
 export async function getStaticPaths() {
@@ -48,11 +46,6 @@ export default function Article({ content, posts }) {
 
   const { mdxSource, frontMatter } = content
   const cleanTitle = frontMatter.title.replace(/<[^>]+>/g, '')
-
-  // Take the MDX code for the author bio and convert it into HTML.
-  const AuthorBioMdx = useMemo(() => getMDXComponent(frontMatter.authorBioMdx), [
-    frontMatter.authorBioMdx,
-  ])
 
   // This function handles cookies for stars.
   function setVisit() {
@@ -112,7 +105,7 @@ export default function Article({ content, posts }) {
             <IoTelescopeOutline className="w-8 h-8 text-orange" />
           </div>
           <div className="mt-16 prose lg:prose-2xl">
-            <AuthorBioMdx />
+            <MDXLayoutRenderer mdxSource={frontMatter.authorBioMdx} />
           </div>
         </div>
 
