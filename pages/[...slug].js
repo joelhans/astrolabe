@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
+import { getMDXComponent } from 'mdx-bundler/client'
 import moment from 'moment'
 import { IoTelescopeOutline } from 'react-icons/io5'
 import fs from 'fs'
@@ -47,6 +48,11 @@ export default function Article({ content, posts }) {
 
   const { mdxSource, frontMatter } = content
   const cleanTitle = frontMatter.title.replace(/<[^>]+>/g, '')
+
+  // Take the MDX code for the author bio and convert it into HTML.
+  const AuthorBioMdx = useMemo(() => getMDXComponent(frontMatter.authorBioMdx), [
+    frontMatter.authorBioMdx,
+  ])
 
   // This function handles cookies for stars.
   function setVisit() {
@@ -105,7 +111,9 @@ export default function Article({ content, posts }) {
           <div className="flex justify-center mt-16">
             <IoTelescopeOutline className="w-8 h-8 text-orange" />
           </div>
-          <div className="mt-16 prose lg:prose-2xl italic">{frontMatter.authorBio}</div>
+          <div className="mt-16 prose lg:prose-2xl">
+            <AuthorBioMdx />
+          </div>
         </div>
 
         {/* If there are other stars in this asterism... */}

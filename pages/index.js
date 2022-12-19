@@ -38,7 +38,6 @@ const CountdownTimer = () => {
   }
 
   useEffect(() => {
-    console.log(localStorage.getItem('closedTimer'))
     !localStorage.getItem('closedTimer') && setTimerShow(true)
     setTimeout(() => {
       setTimeLeft(remainingTime())
