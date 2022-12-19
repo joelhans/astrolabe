@@ -94,7 +94,7 @@ export default function Article({ content, posts }) {
         title={`${cleanTitle}`}
       />
       <PageHeader title={frontMatter.title}>
-        <p className="font-sans text-lg lg:text-2xl font-medium italic mt-8">
+        <p className="font-sans text-lg lg:text-2xl font-medium mt-12">
           Materialized by <span className="text-fuchsia-600 font-bold">{frontMatter.author}</span>{' '}
           on {moment(frontMatter.publishedOn).format('dddd, MMMM Do YYYY')}.
         </p>
@@ -105,7 +105,7 @@ export default function Article({ content, posts }) {
           <div className="flex justify-center mt-16">
             <IoTelescopeOutline className="w-8 h-8 text-orange" />
           </div>
-          <div className="mt-16 prose lg:prose-2xl">
+          <div className="mt-16 meta-content max-w-full prose lg:prose-xl">
             <MDXLayoutRenderer mdxSource={frontMatter.authorBioMdx} />
           </div>
         </div>
