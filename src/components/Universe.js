@@ -121,7 +121,7 @@ function drawScatter(scatterRef, tooltipRef, posts) {
       .filter('.star')
       .transition()
       .duration(200)
-      .attr('fill', '#fff')
+      .attr('fill', (d) => (d.gradient ? `url(#white)` : '#fff'))
 
     if (d.asterism) {
       // Highlight the lines between the stars of the chosen asterism.
@@ -170,7 +170,9 @@ function drawScatter(scatterRef, tooltipRef, posts) {
       .transition()
       .duration(200)
       .attr('r', (d) => (d.size ? d.size : 8))
-      .attr('fill', (d) => (d.visited ? '#444' : d.color ? d.color : '#69b3a2'))
+      .attr('fill', (d) =>
+        d.visited ? '#666' : d.gradient ? `url(#${d.gradient})` : d.color ? d.color : '#69b3a2'
+      )
     d3.selectAll('line').transition().duration(200).attr('stroke-opacity', '0%')
     d3.selectAll('text').transition().duration(200).attr('fill', '#fff').attr('fill-opacity', '20%')
     d3.select('.tooltipScatter').style('visibility', 'hidden')
@@ -278,7 +280,7 @@ function drawScatter(scatterRef, tooltipRef, posts) {
       return y(mid) + 40
     })
     .attr('fill', '#fff')
-    .attr('font-size', '5rem')
+    .attr('font-size', '7rem')
     .attr('font-style', 'italic')
     .attr('fill-opacity', '20%')
     .on('mouseover', function (d) {
@@ -302,7 +304,9 @@ function drawScatter(scatterRef, tooltipRef, posts) {
     .attr('cx', (d) => x(d['declination']))
     .attr('cy', (d) => y(d['ascension']))
     .attr('r', (d) => (d.size ? d.size : 8))
-    .attr('fill', (d) => (d.visited ? '#444' : d.color ? d.color : '#69b3a2'))
+    .attr('fill', (d) =>
+      d.visited ? '#666' : d.gradient ? `url(#${d.gradient})` : d.color ? d.color : '#69b3a2'
+    )
     .on('mouseover', function (d) {
       highlight(d)
       tooltipShow(d)
@@ -342,7 +346,19 @@ const Universe = ({ posts }) => {
   return (
     <>
       <div id="scatter" className="bg-gray-900">
-        <svg ref={scatterRef} />
+        <svg ref={scatterRef}>
+          <defs>
+            <radialGradient id="black-hole">
+              <stop offset="85%" stopColor="rgba(0,0,0,1)" />
+              <stop offset="92%" stopColor="rgba(255,255,255,1)" />
+              <stop offset="100%" stopColor="rgba(255,255,255,0)" />
+            </radialGradient>
+            <radialGradient id="white">
+              <stop offset="0%" stopColor="rgba(255,255,255,1)" />
+              <stop offset="100%" stopColor="rgba(255,255,255,1)" />
+            </radialGradient>
+          </defs>
+        </svg>
         <div ref={tooltipRef} className="tooltipScatter" />
       </div>
     </>
