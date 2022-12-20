@@ -55,6 +55,7 @@ function drawScatter(scatterRef, tooltipRef, posts) {
   //   return [Math.random() * 20 * (Math.round(Math.random()) ? 1 : -1), Math.random() * 20 * (Math.round(Math.random()) ? 1 : -1)];
   // })
   // console.log(JSON.stringify(particles))
+  const colors = ['#F94144', '#4D908E', '#f59e0b', '#F9C74F', '#c026d3', '#059669', '#4D908E']
   const Starscape = svg
     .selectAll('scapePoints')
     .data(StarscapeData)
@@ -63,7 +64,8 @@ function drawScatter(scatterRef, tooltipRef, posts) {
     .attr('cx', (d) => x(d[0]))
     .attr('cy', (d) => y(d[1]))
     .attr('r', '2')
-    .attr('fill', '#444')
+    .attr('fill', (d) => colors[Math.floor(Math.random() * colors.length)])
+    .attr('fill-opacity', '50%')
 
   // Group our `posts` object by the asterisms we've already defined and remove
   // any that aren't part of an asterism (aka `key` = `null`).
