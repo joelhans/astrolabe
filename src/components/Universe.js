@@ -1,10 +1,12 @@
 import { React, useState, useRef, useEffect } from 'react'
 import * as d3 from 'd3'
 import moment from 'moment'
+import { IoTelescopeOutline } from 'react-icons/io5'
+import Image from 'next/image'
 import Router from 'next/router'
 import StarscapeData from '@data/stars.json'
 
-function drawScatter(scatterRef, tooltipRef, posts) {
+function drawScatter(scatterRef, tooltipRef, setTooltipState, setTooltipData, posts) {
   // Set the `visitedStars` cookie to an empty array if there is no localStorage
   // already, then set it to be used here and on individual stars.
   const visitedStars = JSON.parse(localStorage.getItem('visitedStars')) || new Array()
@@ -38,11 +40,12 @@ function drawScatter(scatterRef, tooltipRef, posts) {
       })
     )
     .append('g')
-    .attr('transform', `translate(${xx}, ${yy})scale(${scale})`)
+    .attr('transform', `translate(${xx}, ${yy}) scale(${scale})`)
 
   // On mobile, this allows you to click the background and un-highlight the current star.
-  d3.select('#scatter').on('click', function () {
+  d3.select('#scatter svg').on('click', function () {
     doNotHighlight()
+    setTooltipState(false)
   })
 
   // Create our scatter plot axes.
@@ -110,9 +113,6 @@ function drawScatter(scatterRef, tooltipRef, posts) {
       return a
     }, [])
 
-  // Initialize the tooltip.
-  const tooltipScatter = d3.select('.tooltipScatter')
-
   // Function to highlight a specific star or an asterism of stars. The function
   // automatically makes all stars smaller upon mouseover on any star. Then,
   // depending on whether or not it's part of an asterism, it either highlights
@@ -171,73 +171,18 @@ function drawScatter(scatterRef, tooltipRef, posts) {
       .filter('.star')
       .transition()
       .duration(200)
-      .attr('r', (d) => (d.size ? d.size : 8))
+      .attr('r', (d) => (d.size ? d.size : 20))
       .attr('fill', (d) =>
         d.visited ? '#666' : d.gradient ? `url(#${d.gradient})` : d.color ? d.color : '#69b3a2'
       )
     d3.selectAll('line').transition().duration(200).attr('stroke-opacity', '0%')
     d3.selectAll('text').transition().duration(200).attr('fill', '#fff').attr('fill-opacity', '20%')
-    d3.select('.tooltipScatter').style('visibility', 'hidden')
   }
 
   // Function to show the tooltip.
   const tooltipShow = function (d) {
-    tooltipScatter
-      .html(
-        `
-        <p class="text-3xl lg:text-3xl 2xl:text-4xl font-bold mb-4">${d.title}</p>
-        ${
-          d.author
-            ? `<p class="text-base 2xl:text-lg font-sans font-medium first-letter:mb-3">Materialized by <span class="text-pink font-bold">${
-                d.author
-              }</span> on ${moment(d.publishedOn).format('dddd, MMMM Do YYYY')}.</p>`
-            : ``
-        }
-        ${
-          d.summary ? `<p class="prose md:prose-lg 2xl:prose-2xl italic mt-3">${d.summary}</p>` : ``
-        }
-        ${
-          d.artworkUrl
-            ? `<div class="blur-sm block relative max-h-64 overflow-hidden mt-3"><Image src="${d.artworkUrl}" width="400" height="2O0" /></div>`
-            : ``
-        }
-        <button class="lg:hidden font-mono text-sm text-gray-100 mt-4 bg-green rounded">
-          <a href="${d.slug}" class="block px-3 py-2">
-            See more &rarr;
-          </a>
-        </button>
-        ${
-          d.visited
-            ? `<p class="text-sm lg:text-base text-pink font-sans font-medium mt-4">You've visited this star before.</p>`
-            : ``
-        }
-      `
-      )
-      .style('visibility', 'visible')
-  }
-
-  const tooltipPosition = function (isMobile) {
-    if (!isMobile) {
-      // Account for the star position along the x axis in relationship to the
-      // window's width so that we can place the tooltip on the correct side.
-      d3.event.x + tooltipRef.current.offsetWidth + 20 < window.innerWidth
-        ? tooltipScatter.style('left', d3.event.x + 20 + 'px')
-        : tooltipScatter.style('left', d3.event.x - tooltipRef.current.offsetWidth - 20 + 'px')
-
-      // With the y axis, we default to centering the tooltip relative to the
-      // star itself, which provides the maximum flexibility. But, in cases
-      // where it would clip the top of the window from the centered position,
-      // we push it down. Vice versa for the bottom of the window.
-      if (d3.event.y - tooltipRef.current.offsetHeight / 2 < 0) {
-        tooltipScatter.style('top', d3.event.y - 10 + 'px')
-      } else if (d3.event.y + tooltipRef.current.offsetHeight / 2 > window.innerHeight) {
-        tooltipScatter.style('top', d3.event.y - tooltipRef.current.offsetHeight + 10 + 'px')
-      } else {
-        tooltipScatter.style('top', d3.event.y - tooltipRef.current.offsetHeight * 0.5 + 'px')
-      }
-    } else {
-      tooltipScatter.style('left', 0).style('bottom', '0')
-    }
+    setTooltipState(true)
+    setTooltipData(d)
   }
 
   // Draw lines between the stars of an asterism.
@@ -305,25 +250,20 @@ function drawScatter(scatterRef, tooltipRef, posts) {
     .attr('class', (d) => 'star ' + d.asterism + ' ' + d.slug)
     .attr('cx', (d) => x(d['declination']))
     .attr('cy', (d) => y(d['ascension']))
-    .attr('r', (d) => (d.size ? d.size : 8))
+    .attr('r', (d) => (d.size ? d.size : 20))
     .attr('fill', (d) =>
       d.visited ? '#666' : d.gradient ? `url(#${d.gradient})` : d.color ? d.color : '#69b3a2'
     )
     .on('mouseover', function (d) {
       highlight(d)
-      tooltipShow(d)
-    })
-    .on('mousemove', function () {
-      tooltipPosition(isMobile)
-    })
-    .on('mouseout', function () {
-      doNotHighlight()
     })
     .on('click', function (d) {
+      doNotHighlight()
       d3.event.preventDefault()
       d3.event.stopPropagation()
+      highlight(d)
+      tooltipShow(d)
       localStorage.setItem('universePosition', JSON.stringify(d3.zoomTransform(this)))
-      Router.push(d.slug)
     })
     .on('touchstart', function (d) {
       doNotHighlight()
@@ -331,7 +271,6 @@ function drawScatter(scatterRef, tooltipRef, posts) {
       d3.event.stopPropagation()
       highlight(d)
       tooltipShow(d)
-      tooltipPosition(isMobile)
       localStorage.setItem('universePosition', JSON.stringify(d3.zoomTransform(this)))
     })
 }
@@ -340,8 +279,15 @@ const Universe = ({ posts }) => {
   const scatterRef = useRef(null)
   const tooltipRef = useRef(null)
 
+  const [tooltipState, setTooltipState] = useState(false)
+  const [tooltipData, setTooltipData] = useState({})
+
+  const closeTooltip = () => {
+    setTooltipState(false)
+  }
+
   useEffect(() => {
-    drawScatter(scatterRef, tooltipRef, posts)
+    drawScatter(scatterRef, tooltipRef, setTooltipState, setTooltipData, posts)
     document.body.style.overflow = 'hidden'
   }, [scatterRef, tooltipRef])
 
@@ -361,7 +307,45 @@ const Universe = ({ posts }) => {
             </radialGradient>
           </defs>
         </svg>
-        <div ref={tooltipRef} className="tooltipScatter" />
+        <div
+          ref={tooltipRef}
+          className={`tooltipScatter absolute bottom-0 md:top-0 ${
+            tooltipState ? `right-0` : `-right-full`
+          } block w-full md:h-screen md:w-4/12 lg:3/12 flex flex-col justify-center text-xl !text-gray-900 p-8 lg:p-12 bg-gray-100 rounded-sm transition-all ease-in-out`}
+        >
+          <div>
+            <p className="text-3xl lg:text-3xl 2xl:text-4xl font-bold mb-4">{tooltipData.title}</p>
+            <p className="text-base 2xl:text-lg font-sans font-medium mb-3">
+              Materialized by <span className="text-pink font-bold">{tooltipData.author}</span> on{' '}
+              {moment(tooltipData.publishedOn).format('dddd, MMMM Do YYYY')}.
+            </p>
+            {tooltipData.summary && (
+              <p className="prose md:prose-lg 2xl:prose-2xl italic">{tooltipData.summary}</p>
+            )}
+            {tooltipData.artworkUrl && (
+              <div className="blur-sm block relative max-h-64 overflow-hidden mt-3">
+                <Image src={tooltipData.artworkUrl} width={400} height={200} />
+              </div>
+            )}
+            <button className="font-sans text-base lg:text-lg font-medium text-gray-100 mt-4 bg-green hover:bg-pink rounded-sm transition-all ease-in-out">
+              <a href={tooltipData.slug} className="block px-3 py-2">
+                Take a look{` `}
+                <IoTelescopeOutline className="inline w-4 h-4 ml-1 text-white" />
+              </a>
+            </button>
+            {tooltipData.visited && (
+              <p className="text-sm lg:text-base text-pink font-sans font-medium mt-4">
+                You've visited this star before.
+              </p>
+            )}
+          </div>
+          <button
+            className="absolute top-6 right-6 font-sans font-medium text-3xl"
+            onClick={closeTooltip}
+          >
+            x
+          </button>
+        </div>
       </div>
     </>
   )
