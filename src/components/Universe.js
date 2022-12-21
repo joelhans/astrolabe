@@ -111,9 +111,6 @@ function drawScatter(scatterRef, tooltipRef, setTooltipState, setTooltipData, po
       return a
     }, [])
 
-  // Initialize the tooltip.
-  const tooltipScatter = d3.select('.tooltipScatter')
-
   // Function to highlight a specific star or an asterism of stars. The function
   // automatically makes all stars smaller upon mouseover on any star. Then,
   // depending on whether or not it's part of an asterism, it either highlights
@@ -164,12 +161,6 @@ function drawScatter(scatterRef, tooltipRef, setTooltipState, setTooltipData, po
         .attr('fill', '#059669')
         .attr('fill-opacity', '100%')
     }
-  }
-
-  const center = function (d) {
-    console.log(x(d.declination), y(d.ascension))
-    // svg.attr('transform', `translate(${x(d.declination)}, ${y(d.ascension)})`)
-    svg.call(d3.zoom().transform, d3.zoomIdentity.translate(x(d.declination), y(d.ascension)))
   }
 
   // Function to reset highlighting.
@@ -264,9 +255,7 @@ function drawScatter(scatterRef, tooltipRef, setTooltipState, setTooltipData, po
       doNotHighlight()
       d3.event.preventDefault()
       d3.event.stopPropagation()
-      // setSelectedStar(d)
       highlight(d)
-      // center(d)
       tooltipShow(d)
       localStorage.setItem('universePosition', JSON.stringify(d3.zoomTransform(this)))
     })
