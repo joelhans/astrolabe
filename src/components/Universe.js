@@ -58,6 +58,7 @@ function drawScatter(scatterRef, tooltipRef, setTooltipState, setTooltipData, po
   //   return [Math.random() * 20 * (Math.round(Math.random()) ? 1 : -1), Math.random() * 20 * (Math.round(Math.random()) ? 1 : -1)];
   // })
   // console.log(JSON.stringify(particles))
+  const colors = ['#F94144', '#4D908E', '#f59e0b', '#F9C74F', '#c026d3', '#059669', '#4D908E']
   const Starscape = svg
     .selectAll('scapePoints')
     .data(StarscapeData)
@@ -66,7 +67,8 @@ function drawScatter(scatterRef, tooltipRef, setTooltipState, setTooltipData, po
     .attr('cx', (d) => x(d[0]))
     .attr('cy', (d) => y(d[1]))
     .attr('r', '2')
-    .attr('fill', '#444')
+    .attr('fill', (d) => colors[Math.floor(Math.random() * colors.length)])
+    .attr('fill-opacity', '50%')
 
   // Group our `posts` object by the asterisms we've already defined and remove
   // any that aren't part of an asterism (aka `key` = `null`).
@@ -121,7 +123,7 @@ function drawScatter(scatterRef, tooltipRef, setTooltipState, setTooltipData, po
       .filter('.star')
       .transition()
       .duration(200)
-      .attr('fill', '#fff')
+      .attr('fill', (d) => (d.gradient ? `url(#white)` : '#fff'))
 
     if (d.asterism) {
       // Highlight the lines between the stars of the chosen asterism.
@@ -225,7 +227,7 @@ function drawScatter(scatterRef, tooltipRef, setTooltipState, setTooltipData, po
       return y(mid) + 40
     })
     .attr('fill', '#fff')
-    .attr('font-size', '5rem')
+    .attr('font-size', '7rem')
     .attr('font-style', 'italic')
     .attr('fill-opacity', '20%')
     .on('mouseover', function (d) {
@@ -292,7 +294,19 @@ const Universe = ({ posts }) => {
   return (
     <>
       <div id="scatter" className="bg-gray-900">
-        <svg ref={scatterRef} />
+        <svg ref={scatterRef}>
+          <defs>
+            <radialGradient id="black-hole">
+              <stop offset="85%" stopColor="rgba(0,0,0,1)" />
+              <stop offset="92%" stopColor="rgba(255,255,255,1)" />
+              <stop offset="100%" stopColor="rgba(255,255,255,0)" />
+            </radialGradient>
+            <radialGradient id="white">
+              <stop offset="0%" stopColor="rgba(255,255,255,1)" />
+              <stop offset="100%" stopColor="rgba(255,255,255,1)" />
+            </radialGradient>
+          </defs>
+        </svg>
         <div
           ref={tooltipRef}
           className={`tooltipScatter absolute bottom-0 md:top-0 ${
