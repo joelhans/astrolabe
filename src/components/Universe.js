@@ -170,7 +170,9 @@ function drawScatter(scatterRef, tooltipRef, setTooltipState, setTooltipData, po
       .transition()
       .duration(200)
       .attr('r', (d) => (d.size ? d.size : 20))
-      .attr('fill', (d) => (d.visited ? '#444' : d.color ? d.color : '#69b3a2'))
+      .attr('fill', (d) =>
+        d.visited ? '#666' : d.gradient ? `url(#${d.gradient})` : d.color ? d.color : '#69b3a2'
+      )
     d3.selectAll('line').transition().duration(200).attr('stroke-opacity', '0%')
     d3.selectAll('text').transition().duration(200).attr('fill', '#fff').attr('fill-opacity', '20%')
   }
@@ -247,7 +249,9 @@ function drawScatter(scatterRef, tooltipRef, setTooltipState, setTooltipData, po
     .attr('cx', (d) => x(d['declination']))
     .attr('cy', (d) => y(d['ascension']))
     .attr('r', (d) => (d.size ? d.size : 20))
-    .attr('fill', (d) => (d.visited ? '#444' : d.color ? d.color : '#69b3a2'))
+    .attr('fill', (d) =>
+      d.visited ? '#666' : d.gradient ? `url(#${d.gradient})` : d.color ? d.color : '#69b3a2'
+    )
     .on('mouseover', function (d) {
       highlight(d)
     })
@@ -293,7 +297,7 @@ const Universe = ({ posts }) => {
           ref={tooltipRef}
           className={`tooltipScatter absolute bottom-0 md:top-0 ${
             tooltipState ? `right-0` : `-right-full`
-          } block w-full md:h-screen md:w-3/12 flex flex-col justify-center text-xl !text-gray-900 p-8 lg:p-12 bg-gray-100 rounded-sm transition-all ease-in-out`}
+          } block w-full md:h-screen md:w-4/12 lg:3/12 flex flex-col justify-center text-xl !text-gray-900 p-8 lg:p-12 bg-gray-100 rounded-sm transition-all ease-in-out`}
         >
           <div>
             <p className="text-3xl lg:text-3xl 2xl:text-4xl font-bold mb-4">{tooltipData.title}</p>
