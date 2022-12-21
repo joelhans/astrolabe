@@ -257,6 +257,9 @@ function drawScatter(scatterRef, tooltipRef, setTooltipState, setTooltipData, po
     .on('mouseover', function (d) {
       highlight(d)
     })
+    .on('mouseout', function () {
+      doNotHighlight()
+    })
     .on('click', function (d) {
       doNotHighlight()
       d3.event.preventDefault()
