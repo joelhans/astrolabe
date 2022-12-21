@@ -287,6 +287,10 @@ const Universe = ({ posts }) => {
   const [tooltipState, setTooltipState] = useState(false)
   const [tooltipData, setTooltipData] = useState({})
 
+  const closeTooltip = () => {
+    setTooltipState(false)
+  }
+
   useEffect(() => {
     drawScatter(scatterRef, tooltipRef, setTooltipState, setTooltipData, posts)
     document.body.style.overflow = 'hidden'
@@ -316,10 +320,10 @@ const Universe = ({ posts }) => {
                 <Image src={tooltipData.artworkUrl} width={400} height={200} />
               </div>
             )}
-            <button className="font-sans text-sm lg:text-base font-medium text-gray-100 mt-4 bg-green hover:bg-pink rounded-sm transition-all ease-in-out">
+            <button className="font-sans text-base lg:text-lg font-medium text-gray-100 mt-4 bg-green hover:bg-pink rounded-sm transition-all ease-in-out">
               <a href="${d.slug}" className="block px-3 py-2">
                 Take a look{` `}
-                <IoTelescopeOutline class="inline w-4 h-4 ml-1 text-white" />
+                <IoTelescopeOutline className="inline w-4 h-4 ml-1 text-white" />
               </a>
             </button>
             {tooltipData.visited && (
@@ -328,7 +332,12 @@ const Universe = ({ posts }) => {
               </p>
             )}
           </div>
-          <button className="absolute top-4 right-4 font-sans font-medium">x</button>
+          <button
+            className="absolute top-6 right-6 font-sans font-medium text-3xl"
+            onClick={closeTooltip}
+          >
+            x
+          </button>
         </div>
       </div>
     </>
