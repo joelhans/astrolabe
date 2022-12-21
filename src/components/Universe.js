@@ -43,7 +43,7 @@ function drawScatter(scatterRef, tooltipRef, setTooltipState, setTooltipData, po
     .attr('transform', `translate(${xx}, ${yy}) scale(${scale})`)
 
   // On mobile, this allows you to click the background and un-highlight the current star.
-  d3.select('#scatter').on('click', function () {
+  d3.select('#scatter svg').on('click', function () {
     doNotHighlight()
     setTooltipState(false)
   })
@@ -321,7 +321,7 @@ const Universe = ({ posts }) => {
               </div>
             )}
             <button className="font-sans text-base lg:text-lg font-medium text-gray-100 mt-4 bg-green hover:bg-pink rounded-sm transition-all ease-in-out">
-              <a href="${d.slug}" className="block px-3 py-2">
+              <a href={tooltipData.slug} className="block px-3 py-2">
                 Take a look{` `}
                 <IoTelescopeOutline className="inline w-4 h-4 ml-1 text-white" />
               </a>
