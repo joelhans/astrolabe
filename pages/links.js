@@ -18,6 +18,15 @@ export default function Links() {
         <div className="w-full grid gap-12">
           <div className="w-full">
             <Link
+              href="/"
+              className="w-full block text-white text-3xl bg-green p-6 rounded"
+              passHref
+            >
+              The Universe
+            </Link>
+          </div>
+          <div className="w-full">
+            <Link
               href="/about"
               className="w-full block text-white text-3xl bg-green p-6 rounded"
               passHref

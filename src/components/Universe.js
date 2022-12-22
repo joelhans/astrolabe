@@ -3,7 +3,6 @@ import * as d3 from 'd3'
 import moment from 'moment'
 import { IoTelescopeOutline } from 'react-icons/io5'
 import Image from 'next/image'
-import Router from 'next/router'
 import StarscapeData from '@data/stars.json'
 
 function drawScatter(scatterRef, tooltipRef, setTooltipState, setTooltipData, posts) {
@@ -317,27 +316,29 @@ const Universe = ({ posts }) => {
           } block w-full md:h-screen md:w-4/12 lg:3/12 flex flex-col justify-center text-xl !text-gray-900 p-8 lg:p-12 bg-gray-100 rounded-sm transition-all ease-in-out`}
         >
           <div>
-            <p className="text-3xl lg:text-3xl 2xl:text-4xl font-bold mb-4">{tooltipData.title}</p>
-            <p className="text-base 2xl:text-lg font-sans font-medium mb-3">
-              Materialized by <span className="text-pink font-bold">{tooltipData.author}</span> on{' '}
-              {moment(tooltipData.publishedOn).format('dddd, MMMM Do YYYY')}.
-            </p>
+            <p className="text-3xl lg:text-3xl 2xl:text-4xl font-bold mb-6">{tooltipData.title}</p>
+            {tooltipData.author && (
+              <p className="text-base 2xl:text-lg font-sans font-medium mb-6">
+                Materialized by <span className="text-pink font-bold">{tooltipData.author}</span> on{' '}
+                {moment(tooltipData.publishedOn).format('dddd, MMMM Do YYYY')}.
+              </p>
+            )}
             {tooltipData.summary && (
               <p className="prose md:prose-lg 2xl:prose-2xl italic">{tooltipData.summary}</p>
             )}
             {tooltipData.artworkUrl && (
-              <div className="blur-sm block relative max-h-64 overflow-hidden mt-3">
+              <div className="blur-sm block relative max-h-64 overflow-hidden mt-6">
                 <Image src={tooltipData.artworkUrl} width={400} height={200} />
               </div>
             )}
-            <button className="font-sans text-base lg:text-lg font-medium text-gray-100 mt-4 bg-green hover:bg-pink rounded-sm transition-all ease-in-out">
-              <a href={tooltipData.slug} className="block px-3 py-2">
+            <button className="font-sans text-base lg:text-lg font-medium text-white mt-6 bg-gradient-to-tr from-[#0d1c48] to-[#0f062d] rounded-sm transition-all ease-in-out hover:brightness-150">
+              <a href={tooltipData.slug} className="block px-4 py-3">
                 Take a look{` `}
-                <IoTelescopeOutline className="inline w-4 h-4 ml-1 text-white" />
+                <IoTelescopeOutline className="inline w-4 h-4 ml-1 text-gray-100" />
               </a>
             </button>
             {tooltipData.visited && (
-              <p className="text-sm lg:text-base text-pink font-sans font-medium mt-4">
+              <p className="text-sm lg:text-base text-pink font-sans font-medium mt-8">
                 You've visited this star before.
               </p>
             )}
