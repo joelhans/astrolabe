@@ -93,6 +93,7 @@ export default function Article({ content, posts }) {
         url={`${siteMetadata.siteUrl}/articles/${frontMatter.slug}`}
         title={`${cleanTitle}`}
       />
+
       <PageHeader title={frontMatter.title}>
         <p className="font-sans text-lg lg:text-2xl font-medium mt-12">
           Materialized by <span className="text-fuchsia-600 font-bold">{frontMatter.author}</span>{' '}
@@ -112,7 +113,7 @@ export default function Article({ content, posts }) {
 
         {/* If there are other stars in this asterism... */}
         {frontMatter.asterism && (
-          <div className="mt-24 p-8 bg-green rounded">
+          <div className="mt-24 p-8 bg-gradient-to-tr from-[#0d1c48] to-[#0f062d] rounded-sm">
             <h2 className="font-sans text-gray-100 text-lg lg:text-xl font-medium mb-6">
               Other stars in the{' '}
               <span className="font-bold italic">{frontMatter.asterismFull}</span> asterism:
@@ -179,6 +180,14 @@ export default function Article({ content, posts }) {
             </div>
           </div>
         )}
+        <div className="mt-24">
+          <CustomLink
+            href={`/`}
+            className="font-sans font-medium text-white p-8 bg-gradient-to-tr from-[#0d1c48] to-[#0f062d] rounded-sm transition-all ease-in-out hover:brightness-150"
+          >
+            Back to the Universe <IoTelescopeOutline className="inline w-4 h-4 ml-1" />
+          </CustomLink>
+        </div>
       </div>
     </>
   )
