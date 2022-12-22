@@ -317,10 +317,12 @@ const Universe = ({ posts }) => {
         >
           <div>
             <p className="text-3xl lg:text-3xl 2xl:text-4xl font-bold mb-6">{tooltipData.title}</p>
-            <p className="text-base 2xl:text-lg font-sans font-medium mb-6">
-              Materialized by <span className="text-pink font-bold">{tooltipData.author}</span> on{' '}
-              {moment(tooltipData.publishedOn).format('dddd, MMMM Do YYYY')}.
-            </p>
+            {tooltipData.author && (
+              <p className="text-base 2xl:text-lg font-sans font-medium mb-6">
+                Materialized by <span className="text-pink font-bold">{tooltipData.author}</span> on{' '}
+                {moment(tooltipData.publishedOn).format('dddd, MMMM Do YYYY')}.
+              </p>
+            )}
             {tooltipData.summary && (
               <p className="prose md:prose-lg 2xl:prose-2xl italic">{tooltipData.summary}</p>
             )}
