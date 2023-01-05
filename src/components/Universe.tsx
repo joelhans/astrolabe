@@ -1,19 +1,43 @@
-import { React, useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, FC } from 'react'
 import * as d3 from 'd3'
 import moment from 'moment'
 import { IoTelescopeOutline } from 'react-icons/io5'
 import Image from 'next/image'
 import StarscapeData from '@data/stars.json'
+import { Asterism, Post, StarLink } from '@/types/content'
 
-function drawScatter(scatterRef, tooltipRef, setTooltipState, setTooltipData, posts) {
+function drawScatter(
+  scatterRef: SVGSVGElement,
+  tooltipRef: HTMLDivElement,
+  setTooltipState: (b: boolean) => void,
+  setTooltipData: (d: Post) => void,
+  posts: Post[]
+) {
   // Set the `visitedStars` cookie to an empty array if there is no localStorage
   // already, then set it to be used here and on individual stars.
-  const visitedStars = JSON.parse(localStorage.getItem('visitedStars')) || new Array()
-  !visitedStars && localStorage.setItem('visitedStars', JSON.stringify(visitedStars))
+  const savedStars = JSON.parse(localStorage.getItem('visitedStars') ?? '')
+  let visitedStars: any[] = []
+  if (savedStars) {
+    visitedStars = savedStars
+  } else {
+    localStorage.setItem('visitedStars', JSON.stringify(visitedStars))
+  }
 
   // Find the last universe position, if it exists, which we use use to set the
   // x, y, and scale of the Universe itself.
-  const universePosition = JSON.parse(localStorage.getItem('universePosition'))
+  const savedPosition = JSON.parse(localStorage.getItem('universePosition') ?? '')
+  let universePosition = {
+    x: 0,
+    y: 0,
+    k: 0,
+  }
+  if (savedPosition) {
+    universePosition = {
+      x: savedPosition.x ?? 0,
+      y: savedPosition.y ?? 0,
+      k: savedPosition.k ?? 0,
+    }
+  }
 
   // Set a fixed width/height to prevent different screen sizes (or changing
   // screen sizes) from altering the shape of the asterisms.
@@ -23,18 +47,21 @@ function drawScatter(scatterRef, tooltipRef, setTooltipState, setTooltipData, po
     height = 4000
 
   let isMobile = winWidth < 768,
-    xx = universePosition ? universePosition.x : isMobile ? -250 : -300,
-    yy = universePosition ? universePosition.y : isMobile ? 200 : -75,
-    scale = universePosition ? universePosition.k : isMobile ? 0.2 : 0.3
+    xx = universePosition.x ?? isMobile ? -250 : -300,
+    yy = universePosition.y ?? isMobile ? 200 : -75,
+    scale = universePosition.k ?? isMobile ? 0.2 : 0.3
 
   // Create the SVG container, set its dimensions, and initiate zoom+pan.
   const svg = d3
-    .select(scatterRef.current)
+    .select(scatterRef)
     .attr('width', width)
     .attr('height', height)
-    .call(d3.zoom().transform, d3.zoomIdentity.translate(xx, yy).scale(scale))
     .call(
-      d3.zoom().on('zoom', () => {
+      d3.zoom<SVGSVGElement, unknown>().transform,
+      d3.zoomIdentity.translate(xx, yy).scale(scale)
+    )
+    .call(
+      d3.zoom<SVGSVGElement, unknown>().on('zoom', () => {
         svg.attr('transform', d3.event.transform)
       })
     )
@@ -58,71 +85,62 @@ function drawScatter(scatterRef, tooltipRef, setTooltipState, setTooltipData, po
   // })
   // console.log(JSON.stringify(particles))
   const colors = ['#F94144', '#4D908E', '#f59e0b', '#F9C74F', '#c026d3', '#059669', '#4D908E']
-  const Starscape = svg
+  const starscape = svg
     .selectAll('scapePoints')
     .data(StarscapeData)
     .enter()
     .append('circle')
-    .attr('cx', (d) => x(d[0]))
-    .attr('cy', (d) => y(d[1]))
+    .attr('cx', (d) => x(d[0]) ?? 0)
+    .attr('cy', (d) => y(d[1]) ?? 0)
     .attr('r', '2')
     .attr('fill', (d) => colors[Math.floor(Math.random() * colors.length)])
     .attr('fill-opacity', '50%')
 
   // Group our `posts` object by the asterisms we've already defined and remove
   // any that aren't part of an asterism (aka `key` = `null`).
-  const Asterisms = d3
+  const asterisms = d3
     .nest()
-    .key((d) => {
-      return d.asterism
-    })
+    .key((d: any) => d.asterism)
     .entries(posts)
     .filter((d) => d.key !== 'null')
 
   // Mutate the `posts` array to include a `visited` attribute for any star that
   // our user has already visited, which is stored in cookies.
   posts.forEach(function (e) {
-    if (visitedStars.some((f) => f.slug === e.slug)) {
+    if (visitedStars.some((f: any) => f.slug === e.slug)) {
       e.visited = true
     }
   })
 
   // Build a list of links using {source: x, target: y} syntax.
-  const Links = posts
-    .filter((post) => {
-      if (post.linkedTo[0]) {
-        return true
-      } else {
-        return false
-      }
-    })
-    .reduce((a, { asterism, id, declination, ascension, linkedTo }) => {
-      // Loop through all linkedTo targets to support multiple links.
-      linkedTo.map((link) => {
-        a.push({
+  const links = posts
+    .filter((post) => !!post.linkedTo)
+    .reduce((acc, { asterism, id, declination, ascension, linkedTo }) => {
+      // Loop through all linkedTo targets to support multiple
+      const links: StarLink[] =
+        linkedTo?.map((link) => ({
           asterism: asterism,
           source: id.split('/')[0],
-          sourceX: x(declination),
-          sourceY: y(ascension),
+          sourceX: x(declination ?? 0),
+          sourceY: y(ascension ?? 0),
           target: link,
-          targetX: x(posts.find((x) => x.id === link).declination),
-          targetY: y(posts.find((x) => x.id === link).ascension),
-        })
-      })
-      return a
-    }, [])
+          targetX: x(posts?.find((x) => x.id === link)?.declination ?? 0),
+          targetY: y(posts?.find((x) => x.id === link)?.ascension ?? 0),
+        })) ?? []
+      return [...acc, ...links]
+    }, [] as StarLink[])
 
   // Function to highlight a specific star or an asterism of stars. The function
   // automatically makes all stars smaller upon mouseover on any star. Then,
   // depending on whether or not it's part of an asterism, it either highlights
   // the asterism or just the single star.
-  const highlight = function (d) {
+  const highlight = function (d: Post) {
     // Highlight the star you're hovered over.
     d3.selectAll('.' + d.slug)
       .filter('.star')
       .transition()
       .duration(200)
-      .attr('fill', (d) => (d.gradient ? `url(#white)` : '#fff'))
+      .attr('fill', d.gradient ? `url(#white)` : '#fff')
 
     if (d.asterism) {
       // Highlight the lines between the stars of the chosen asterism.
@@ -170,8 +188,8 @@ function drawScatter(scatterRef, tooltipRef, setTooltipState, setTooltipData, po
       .filter('.star')
       .transition()
       .duration(200)
-      .attr('r', (d) => (d.size ? d.size : 20))
-      .attr('fill', (d) =>
+      .attr('r', (d: any) => (d.size ? d.size : 20))
+      .attr('fill', (d: any) =>
         d.visited ? '#666' : d.gradient ? `url(#${d.gradient})` : d.color ? d.color : '#69b3a2'
       )
     d3.selectAll('line').transition().duration(200).attr('stroke-opacity', '0%')
@@ -179,7 +197,7 @@ function drawScatter(scatterRef, tooltipRef, setTooltipState, setTooltipData, po
   }
 
   // Function to show the tooltip.
-  const tooltipShow = function (d) {
+  const tooltipShow = function (d: Post) {
     setTooltipState(true)
     setTooltipData(d)
   }
@@ -187,14 +205,14 @@ function drawScatter(scatterRef, tooltipRef, setTooltipState, setTooltipData, po
   // Draw lines between the stars of an asterism.
   const lines = svg
     .selectAll('line')
-    .data(Links)
+    .data(links)
     .enter()
     .append('line')
     .attr('class', (d) => 'line ' + d.asterism)
-    .attr('x1', (d) => d.sourceX)
-    .attr('y1', (d) => d.sourceY)
-    .attr('x2', (d) => d.targetX)
-    .attr('y2', (d) => d.targetY)
+    .attr('x1', (d) => d.sourceX ?? 0)
+    .attr('y1', (d) => d.sourceY ?? 0)
+    .attr('x2', (d) => d.targetX ?? 0)
+    .attr('y2', (d) => d.targetY ?? 0)
     .attr('stroke-width', 2)
     .attr('stroke', '#D3D3D3')
     .attr('stroke-opacity', '0%')
@@ -202,34 +220,32 @@ function drawScatter(scatterRef, tooltipRef, setTooltipState, setTooltipData, po
   // Create the asterism name.
   const names = svg
     .selectAll('asterismNames')
-    .data(Asterisms)
+    .data(asterisms)
     .enter()
     .append('text')
-    .attr('class', (d) => 'name ' + d.values[0].asterism + ' font-serif')
-    .text(function (d) {
-      return `${d.values[0].asterismFull}`
-    })
+    .attr('class', (d) => 'name ' + d.values[0].asterism)
+    .text((d) => d.values[0]?.asterismFull)
     .attr('x', function (d) {
       // Calculate the average X position of all the stars in this asterism.
       const width = this.getComputedTextLength()
-      const max = Math.max(...d.values.map((o) => o.declination)),
-        min = Math.min(...d.values.map((o) => o.declination)),
+      const max = Math.max(...d.values.map((o: any) => o.declination)),
+        min = Math.min(...d.values.map((o: any) => o.declination)),
         mid = (max + min) / 2
-      return x(mid) - width * 2
+      return (x(mid) ?? 0) - width * 2
     })
     .attr('y', function (d) {
       // Calculate the average Y position of all the stars in this asterism.
       const height = this.getBoundingClientRect().height
-      const max = Math.max(...d.values.map((o) => o.ascension)),
-        min = Math.min(...d.values.map((o) => o.ascension)),
+      const max = Math.max(...d.values.map((o: any) => o.ascension)),
+        min = Math.min(...d.values.map((o: any) => o.ascension)),
         mid = (max + min) / 2
-      return y(mid) + 40
+      return (y(mid) ?? 0) + 40
     })
     .attr('fill', '#fff')
     .attr('font-size', '7rem')
     .attr('font-style', 'italic')
     .attr('fill-opacity', '20%')
-    .on('mouseover', function (d) {
+    .on('mouseover', function (d: any) {
       highlight(d)
     })
     .on('mouseout', function () {
@@ -242,14 +258,12 @@ function drawScatter(scatterRef, tooltipRef, setTooltipState, setTooltipData, po
     .data(posts)
     .enter()
     .append('a')
-    .attr('href', function (d) {
-      return d.id
-    })
+    .attr('href', (d: Post) => d.id)
     .append('circle')
-    .attr('class', (d) => 'star ' + d.asterism + ' ' + d.slug)
-    .attr('cx', (d) => x(d['declination']))
-    .attr('cy', (d) => y(d['ascension']))
-    .attr('r', (d) => (d.size ? d.size : 20))
+    .attr('class', (d: Post) => 'star ' + d.asterism + ' ' + d.slug)
+    .attr('cx', (d: Post) => x(d.declination ?? 0) ?? 0)
+    .attr('cy', (d) => y(d['ascension'] ?? 0) ?? 0)
+    .attr('r', (d) => d.size ?? 20)
     .attr('fill', (d) =>
       d.visited ? '#666' : d.gradient ? `url(#${d.gradient})` : d.color ? d.color : '#69b3a2'
     )
@@ -277,21 +291,23 @@ function drawScatter(scatterRef, tooltipRef, setTooltipState, setTooltipData, po
     })
 }
 
-const Universe = ({ posts }) => {
-  const scatterRef = useRef(null)
-  const tooltipRef = useRef(null)
+const Universe: FC<{ posts: Post[] }> = ({ posts }) => {
+  const scatterRef = useRef<SVGSVGElement>(null)
+  const tooltipRef = useRef<HTMLDivElement>(null)
 
   const [tooltipState, setTooltipState] = useState(false)
-  const [tooltipData, setTooltipData] = useState({})
+  const [tooltipData, setTooltipData] = useState<any | null>(null)
 
   const closeTooltip = () => {
     setTooltipState(false)
   }
 
   useEffect(() => {
-    drawScatter(scatterRef, tooltipRef, setTooltipState, setTooltipData, posts)
+    if (scatterRef.current && tooltipRef.current) {
+      drawScatter(scatterRef.current, tooltipRef.current, setTooltipState, setTooltipData, posts)
+    }
     document.body.style.overflow = 'hidden'
-  }, [scatterRef, tooltipRef])
+  }, [posts, scatterRef, tooltipRef])
 
   return (
     <>
@@ -316,30 +332,28 @@ const Universe = ({ posts }) => {
           } block w-full md:h-screen md:w-4/12 lg:3/12 flex flex-col justify-center text-xl !text-gray-900 p-8 lg:p-12 bg-gray-100 rounded-sm transition-all ease-in-out`}
         >
           <div>
-            <p className="text-3xl lg:text-3xl 2xl:text-4xl font-serif font-bold mb-6">
-              {tooltipData.title}
-            </p>
-            {tooltipData.author && (
+            <p className="text-3xl lg:text-3xl 2xl:text-4xl font-bold mb-6">{tooltipData?.title}</p>
+            {tooltipData?.author && (
               <p className="text-base 2xl:text-lg font-sans font-medium mb-6">
-                Materialized by <span className="text-pink font-bold">{tooltipData.author}</span> on{' '}
-                {moment(tooltipData.publishedOn).format('dddd, MMMM Do YYYY')}.
+                Materialized by <span className="text-pink font-bold">{tooltipData?.author}</span>{' '}
+                on {moment(tooltipData?.publishedOn).format('dddd, MMMM Do YYYY')}.
               </p>
             )}
-            {tooltipData.summary && (
-              <p className="prose md:prose-lg 2xl:prose-2xl italic">{tooltipData.summary}</p>
+            {tooltipData?.summary && (
+              <p className="prose md:prose-lg 2xl:prose-2xl italic">{tooltipData?.summary}</p>
             )}
-            {tooltipData.artworkUrl && (
+            {tooltipData?.artworkUrl && (
               <div className="blur-sm block relative max-h-64 overflow-hidden mt-6">
-                <Image src={tooltipData.artworkUrl} width={400} height={200} />
+                <Image src={tooltipData?.artworkUrl} width={400} height={200} alt="TODO" />
               </div>
             )}
             <button className="font-sans text-base lg:text-lg font-medium text-white mt-6 bg-gradient-to-tr from-[#0d1c48] to-[#0f062d] rounded-sm transition-all ease-in-out hover:brightness-150">
-              <a href={tooltipData.slug} className="block px-4 py-3">
+              <a href={tooltipData?.slug} className="block px-4 py-3">
                 Take a look{` `}
                 <IoTelescopeOutline className="inline w-4 h-4 ml-1 text-gray-100" />
               </a>
             </button>
-            {tooltipData.visited && (
+            {tooltipData?.visited && (
               <p className="text-sm lg:text-base text-pink font-sans font-medium mt-8">
                 You've visited this star before.
               </p>
