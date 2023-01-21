@@ -1,9 +1,7 @@
 import moment from 'moment'
 
 const Submissions = ({ state, date }) => {
-  console.log(date)
   const close = Date.parse(date)
-  console.log(close)
 
   return (
     <div className="border px-12 -mx-12">

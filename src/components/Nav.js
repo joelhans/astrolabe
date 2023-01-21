@@ -92,11 +92,22 @@ const MobileNav = () => {
               Mastodon
             </Link>
             <Link
-              rel="me"
               className="block font-sans font-medium hover:text-pink transform ease-in-out duration-300 mt-2"
               href="https://duotrope.com/listing/35081/astrolabe"
             >
               Duotrope
+            </Link>
+            <Link
+              className="block font-sans font-medium hover:text-pink transform ease-in-out duration-300 mt-2"
+              href="https://www.chillsubs.com/magazine/astrolabe"
+            >
+              Chill Subs
+            </Link>
+            <Link
+              className="block font-sans font-medium hover:text-pink transform ease-in-out duration-300 mt-2"
+              href="https://thegrinder.diabolicalplots.com/Market/Index?id=15162"
+            >
+              The Submission Grinder
             </Link>
           </div>
         </nav>
