@@ -2,12 +2,12 @@ import { useRouter } from 'next/router'
 import Nav from '@components/Nav'
 import PageFooter from '@components/PageFooter'
 
-const LayoutWrapper = ({ children }) => {
+const LayoutWrapper = ({ className, children }) => {
   const router = useRouter()
 
   return (
     <>
-      <div className="flex flex-col h-screen">
+      <div className={`flex flex-col h-screen ${className}`}>
         <div className="flex-1 w-full mx-auto">
           <Nav />
           {router.asPath === '/' ? (
