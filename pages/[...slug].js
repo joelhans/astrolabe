@@ -132,9 +132,12 @@ export default function Article({ content, posts }) {
                       href={`/${slug}`}
                       className="group block bg-white hover:bg-gray-100 hover:bg-opacity-90 px-6 py-6 rounded duration-300"
                     >
-                      <h3 dangerouslySetInnerHTML={{ __html: title }} className="text-2xl mb-2" />
+                      <h3
+                        dangerouslySetInnerHTML={{ __html: title }}
+                        className="font-serif text-2xl mb-2"
+                      />
                       <p className="font-sans text-sm font-medium mb-2">{author}</p>
-                      {summary && <p className="italic">{summary}</p>}
+                      {summary && <p className="font-serif italic">{summary}</p>}
                       {artworkUrl && (
                         <div className="blur-sm block relative mt-4">
                           <Image src={artworkUrl} width={400} height={200} />
