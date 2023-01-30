@@ -63,9 +63,10 @@ const Guidelines = ({ paid }) => {
             We&rsquo;ll send a confirmation to let you know we received your submission and fee.
           </p>
           <p>
-            We&rsquo;ll get back to you within **one month**&mdash;if we take longer, feel free to{' '}
-            <a href="mailto:editors@astrolabe.ooo">editors@astrolabe.ooo</a>. We're strong believers
-            that Wednesday is the least painful day of the week to send (or receive) a rejection.
+            We&rsquo;ll get back to you within <strong>one month</strong>&mdash;if we take longer,
+            feel free to <a href="mailto:editors@astrolabe.ooo">editors@astrolabe.ooo</a>. We're
+            strong believers that Wednesday is the least painful day of the week to send (or
+            receive) a rejection.
           </p>
         </>
       ) : (
@@ -74,16 +75,18 @@ const Guidelines = ({ paid }) => {
             Send submissions to <a href="mailto:editors@astrolabe.ooo">editors@astrolabe.ooo</a>.
           </p>
           <p>
-            Please format the subject line like so: **Submission: Your Name, &ldquo;Title&rdquo;**
+            Please format the subject line like so:{' '}
+            <strong>Submission: Your Name, &ldquo;Title&rdquo;</strong>
           </p>
           <p>
             Include a short cover letter, bio, and your work as an attachment(s). No need to send us
             your physical address or phone number.
           </p>
           <p>
-            We&rsquo;ll get back to you within **one month**&mdash;if we take longer, feel free to{' '}
-            <a href="mailto:editors@astrolabe.ooo">editors@astrolabe.ooo</a>. We're strong believers
-            that Wednesday is the least painful day of the week to send (or receive) a rejection.
+            We&rsquo;ll get back to you within <strong>one month</strong>&mdash;if we take longer,
+            feel free to <a href="mailto:editors@astrolabe.ooo">editors@astrolabe.ooo</a>. We're
+            strong believers that Wednesday is the least painful day of the week to send (or
+            receive) a rejection.
           </p>
         </>
       )}
