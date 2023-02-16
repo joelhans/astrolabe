@@ -333,7 +333,7 @@ const Universe: FC<{ posts: Post[] }> = ({ posts }) => {
         >
           <div>
             <p className="text-3xl lg:text-3xl 2xl:text-4xl font-serif font-bold mb-6">
-              {tooltipData.title}
+              {tooltipData?.title}
             </p>
             {tooltipData?.author && (
               <p className="text-base 2xl:text-lg font-sans font-medium mb-6">

@@ -6,6 +6,7 @@ module.exports = {
     './content/**/*.mdx',
     './pages/**/*.js',
     './src/components/**/*.js',
+    './src/components/**/*.tsx',
     './layouts/**/*.js',
     './lib/**/*.js',
   ],
