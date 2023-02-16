@@ -15,7 +15,7 @@ function drawScatter(
 ) {
   // Set the `visitedStars` cookie to an empty array if there is no localStorage
   // already, then set it to be used here and on individual stars.
-  const savedStars = JSON.parse(localStorage.getItem('visitedStars') || '{}')
+  const savedStars = JSON.parse(localStorage.getItem('visitedStars')!)
   let visitedStars: any[] = []
   if (savedStars) {
     visitedStars = savedStars
@@ -25,7 +25,7 @@ function drawScatter(
 
   // Find the last universe position, if it exists, which we use use to set the
   // x, y, and scale of the Universe itself.
-  const savedPosition = JSON.parse(localStorage.getItem('universePosition') || '{}')
+  const savedPosition = JSON.parse(localStorage.getItem('universePosition')!)
   let universePosition = {
     x: 0,
     y: 0,
