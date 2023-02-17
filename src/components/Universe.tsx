@@ -13,43 +13,33 @@ function drawScatter(
   setTooltipData: (d: Post) => void,
   posts: Post[]
 ) {
-  // Set the `visitedStars` cookie to an empty array if there is no localStorage
-  // already, then set it to be used here and on individual stars.
-  const savedStars = JSON.parse(localStorage.getItem('visitedStars')!)
-  let visitedStars: any[] = []
-  if (savedStars) {
-    visitedStars = savedStars
-  } else {
-    localStorage.setItem('visitedStars', JSON.stringify(visitedStars))
-  }
-
-  // Find the last universe position, if it exists, which we use use to set the
-  // x, y, and scale of the Universe itself.
-  const savedPosition = JSON.parse(localStorage.getItem('universePosition')!)
-  let universePosition = {
-    x: 0,
-    y: 0,
-    k: 0,
-  }
-  if (savedPosition) {
-    universePosition = {
-      x: savedPosition.x ?? 0,
-      y: savedPosition.y ?? 0,
-      k: savedPosition.k ?? 0,
-    }
-  }
-
   // Set a fixed width/height to prevent different screen sizes (or changing
   // screen sizes) from altering the shape of the asterisms.
   const winWidth = window.innerWidth,
-    winHeight = window.innerHeight,
     width = 4000,
     height = 4000
 
-  let isMobile = winWidth < 768,
-    xx = universePosition.x ?? isMobile ? -250 : -300,
-    yy = universePosition.y ?? isMobile ? 200 : -75,
-    scale = universePosition.k ?? isMobile ? 0.2 : 0.3
+  let isMobile = winWidth < 768
+
+  // Set the `visitedStars` cookie to an empty array if there is no localStorage
+  // already, then set it to be used here and on individual stars.
+  const savedStars = localStorage.getItem('visitedStars')
+  const visitedStars = savedStars ? JSON.parse(savedStars) : new Array()
+
+  localStorage.setItem('visitedStars', JSON.stringify(visitedStars))
+
+  // Find the last universe position, if it exists, which we use use to set the
+  // x, y, and scale of the Universe itself.
+  const savedPosition = localStorage.getItem('universePosition')
+  const universePosition = savedPosition
+    ? JSON.parse(savedPosition)
+    : {
+        x: isMobile ? -250 : -300,
+        y: isMobile ? 200 : -75,
+        k: isMobile ? 0.2 : 0.3,
+      }
+
+  localStorage.setItem('universePosition', JSON.stringify(universePosition))
 
   // Create the SVG container, set its dimensions, and initiate zoom+pan.
   const svg = d3
@@ -58,7 +48,7 @@ function drawScatter(
     .attr('height', height)
     .call(
       d3.zoom<SVGSVGElement, unknown>().transform,
-      d3.zoomIdentity.translate(xx, yy).scale(scale)
+      d3.zoomIdentity.translate(universePosition.x, universePosition.y).scale(universePosition.k)
     )
     .call(
       d3.zoom<SVGSVGElement, unknown>().on('zoom', () => {
@@ -66,7 +56,10 @@ function drawScatter(
       })
     )
     .append('g')
-    .attr('transform', `translate(${xx}, ${yy}) scale(${scale})`)
+    .attr(
+      'transform',
+      `translate(${universePosition.x}, ${universePosition.y}) scale(${universePosition.k})`
+    )
 
   // On mobile, this allows you to click the background and un-highlight the current star.
   d3.select('#scatter svg').on('click', function () {
