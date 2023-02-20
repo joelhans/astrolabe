@@ -12,8 +12,8 @@ const width = 4000,
   height = 4000
 
 // Create our scatter plot axes.
-const xScale = d3.scaleLinear().domain([-10, 10]).range([0, width])
-const yScale = d3.scaleLinear().domain([-10, 10]).range([height, 0])
+export const xScale = d3.scaleLinear().domain([-10, 10]).range([0, width])
+export const yScale = d3.scaleLinear().domain([-10, 10]).range([height, 0])
 
 const colors = ['#F94144', '#4D908E', '#f59e0b', '#F9C74F', '#c026d3', '#059669', '#4D908E']
 
@@ -170,13 +170,16 @@ export const createStars = (svg: UniverseSVG, posts: Post[], setTooltipData: Dis
     .data(posts)
     .enter()
     .append('circle')
-    .attr('class', (d: Post) => 'star pointer' + d.asterism + ' ' + d.slug)
+    .attr('class', (d: Post) => 'star pointer ' + d.asterism + ' ' + d.slug)
     .attr('cx', (d: Post) => xScale(d.declination ?? 0) ?? 0)
     .attr('cy', (d) => yScale(d['ascension'] ?? 0) ?? 0)
     .attr('r', (d) => d.size ?? 20)
     .attr('fill', (d) =>
       d.visited ? '#666' : d.gradient ? `url(#${d.gradient})` : d.color ? d.color : '#69b3a2'
     )
+    .attr('role', 'button')
+    .attr('tabindex', '0')
+    .attr('aria-label', (d: Post) => d.title)
     .on('mouseover', function (d) {
       highlight(d)
     })
@@ -198,6 +201,16 @@ export const createStars = (svg: UniverseSVG, posts: Post[], setTooltipData: Dis
       highlight(d)
       setTooltipData(d)
       localStorage.setItem('universePosition', JSON.stringify(d3.zoomTransform(this)))
+    })
+    .on('keydown', function (d) {
+      if (d3.event.key == 'Enter' || d3.event.key == 'Space') {
+        resetHighlight()
+        d3.event.preventDefault()
+        d3.event.stopPropagation()
+        highlight(d)
+        setTooltipData(d)
+        localStorage.setItem('universePosition', JSON.stringify(d3.zoomTransform(this)))
+      }
     })
 
   return group

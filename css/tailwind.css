@@ -33,8 +33,14 @@ html {
 .asterisms > svg {
   cursor: grab;
 }
-.asterisms .star {
+.star {
   cursor: pointer;
+}
+.star:focus,
+.star:focus-visible {
+  outline: none;
+  stroke: white;
+  stroke-width: 0.25rem;
 }
 
 /* Prose */
