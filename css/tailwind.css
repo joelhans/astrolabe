@@ -26,13 +26,15 @@ html {
 }
 
 /* Universe */
-#scatter {
+.universe {
   background: linear-gradient(to left top, #0d1c48, #0f062d);
 }
 
-#scatter > svg {
+.asterisms > svg {
   cursor: grab;
-  position: relative;
+}
+.asterisms .star {
+  cursor: pointer;
 }
 
 /* Prose */
