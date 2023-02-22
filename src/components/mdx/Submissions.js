@@ -71,7 +71,6 @@ const Guidelines = ({ paid, dateFreeOpen, dateFreeClose }) => {
               </form>
             </li>
           </ol>
-
           <p>
             We&rsquo;ll send a confirmation to let you know we received your submission and fee.
           </p>
