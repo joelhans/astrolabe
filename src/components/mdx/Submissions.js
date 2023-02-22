@@ -29,7 +29,7 @@ const Guidelines = ({ paid, dateFreeOpen, dateFreeClose }) => {
         <>
           <p>
             We are currently open to <strong>paid</strong> submissions. If you&rsquo;d prefer to not
-            pay a fee, our next free submission window is open between{' '}
+            pay a fee, our next free submission period is open between{' '}
             {moment(dateFreeOpen).format('dddd, MMMM Do')} and{' '}
             {moment(dateFreeClose).format('dddd, MMMM Do, YYYY')}.
           </p>
