@@ -70,10 +70,10 @@ const Guidelines = ({ paid, dateFreeOpen, dateFreeClose }) => {
                 />
               </form>
             </li>
+            <li>
+              We&rsquo;ll send a confirmation to let you know we received your submission and fee.
+            </li>
           </ol>
-          <p>
-            We&rsquo;ll send a confirmation to let you know we received your submission and fee.
-          </p>
           <p>
             We&rsquo;ll get back to you within <strong>one month</strong>&mdash;if we take longer,
             feel free to <a href="mailto:editors@astrolabe.ooo">editors@astrolabe.ooo</a>.
