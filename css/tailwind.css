@@ -37,10 +37,14 @@ html {
 
 /* Prose */
 
-.star-content.prose > p:first-child:first-letter {
+.star-content.prose > p:not(.prose-no-dropcap):first-child:first-letter {
   float: left;
   @apply text-green text-8xl pt-2 pr-4;
   line-height: 1;
+}
+
+.prose-justify {
+  text-align-last: justify;
 }
 
 .prose a {
