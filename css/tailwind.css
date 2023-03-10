@@ -43,6 +43,10 @@ html {
   line-height: 1;
 }
 
+.prose-justify {
+  text-align-last: justify;
+}
+
 .prose a {
   @apply transform ease-in-out duration-300;
 }
