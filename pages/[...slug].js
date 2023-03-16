@@ -156,7 +156,6 @@ export default function Article({ content, posts }) {
                 .reverse()
                 .map((visit) => {
                   const { time } = visit
-                  console.log(frontMatter.publishedOn)
                   const hours = moment
                       .duration(moment(time).diff(frontMatter.publishedOn))
                       .asHours()

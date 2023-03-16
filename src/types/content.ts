@@ -41,8 +41,7 @@ export type Post = {
   summary?: string
   tags?: string[]
   title: string
-  // TODO: extract
-  visited: boolean
+  visited?: boolean
   key?: string
 }
 
