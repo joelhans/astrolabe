@@ -72,7 +72,7 @@ function drawScatter(
   // Generate the Starscape.
   // And the star "generator".
   // const particles = d3.range(1000).map(function(i) {
-  //   return [Math.random() * 20 * (Math.round(Math.random()) ? 1 : -1), Math.random() * 20 * (Math.round(Math.random()) ? 1 : -1)];
+  //   return [Math.random() * 40 * (Math.round(Math.random()) ? 1 : -1), Math.random() * 40 * (Math.round(Math.random()) ? 1 : -1)];
   // })
   // console.log(JSON.stringify(particles))
   const colors = ['#F94144', '#4D908E', '#f59e0b', '#F9C74F', '#c026d3', '#059669', '#4D908E']
