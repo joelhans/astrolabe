@@ -39,8 +39,6 @@ function drawScatter(
         k: isMobile ? 0.2 : 0.3,
       }
 
-  localStorage.setItem('universePosition', JSON.stringify(universePosition))
-
   // Create the SVG container, set its dimensions, and initiate zoom+pan.
   const svg = d3
     .select(scatterRef)
