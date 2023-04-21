@@ -77,9 +77,9 @@ const Guidelines = ({ paid, dateFreeOpen, dateFreeClose }) => {
           <p>
             We&rsquo;ll get back to you within <strong>one month</strong>&mdash;if we take longer,
             it typically means we&rsquo;re seriously considering your work, but you can always feel
-            free to <a href="mailto:editors@astrolabe.ooo">editors@astrolabe.ooo</a>. We&rsquo;re
-            strong believers that Wednesday is the least painful day of the week to send (or
-            receive) a rejection.
+            free to query us: <a href="mailto:editors@astrolabe.ooo">editors@astrolabe.ooo</a>.
+            We&rsquo;re strong believers that Wednesday is the least painful day of the week to send
+            (or receive) a rejection.
           </p>
         </>
       ) : (
@@ -109,9 +109,9 @@ const Guidelines = ({ paid, dateFreeOpen, dateFreeClose }) => {
           <p>
             We&rsquo;ll get back to you within <strong>one month</strong>&mdash;if we take longer,
             it typically means we&rsquo;re seriously considering your work, but you can always feel
-            free to <a href="mailto:editors@astrolabe.ooo">editors@astrolabe.ooo</a>. We&rsquo;re
-            strong believers that Wednesday is the least painful day of the week to send (or
-            receive) a rejection.
+            free to query us: <a href="mailto:editors@astrolabe.ooo">editors@astrolabe.ooo</a>.
+            We&rsquo;re strong believers that Wednesday is the least painful day of the week to send
+            (or receive) a rejection.
           </p>
         </>
       )}
