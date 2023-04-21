@@ -8,7 +8,7 @@ const FreePaid = ({ paid, date }) => {
       <p className="text-3xl font-bold">
         {paid ? (
           <>
-            <em>Astrolabe</em> is currently open to year-round submissions for a $5 fee. See below
+            <em>Astrolabe</em> is currently open to year-round submissions for a $3 fee. See below
             for details.
           </>
         ) : (
@@ -28,8 +28,8 @@ const Guidelines = ({ paid, dateFreeOpen, dateFreeClose }) => {
       {paid ? (
         <>
           <p>
-            We are currently open to <strong>paid</strong> submissions. If you&rsquo;d prefer to not
-            pay a fee, our next free submission period is open between{' '}
+            We are currently open to <strong>paid submissions with a $3 fee</strong>. If you&rsquo;d
+            prefer to not pay a fee, our next free submission period is open between{' '}
             {moment(dateFreeOpen).format('dddd, MMMM Do')} and{' '}
             {moment(dateFreeClose).format('dddd, MMMM Do, YYYY')}.
           </p>
@@ -55,7 +55,7 @@ const Guidelines = ({ paid, dateFreeOpen, dateFreeClose }) => {
             </li>
             <li>
               <span className="block mb-2">
-                Click the <strong>PayPal</strong> button below to pay the $5 fee.
+                Click the <strong>PayPal</strong> button below to pay the $3 fee.
               </span>
               <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
                 <input type="hidden" name="cmd" value="_s-xclick" />
@@ -76,9 +76,10 @@ const Guidelines = ({ paid, dateFreeOpen, dateFreeClose }) => {
           </ol>
           <p>
             We&rsquo;ll get back to you within <strong>one month</strong>&mdash;if we take longer,
-            feel free to <a href="mailto:editors@astrolabe.ooo">editors@astrolabe.ooo</a>.
-            We&rsquo;re strong believers that Wednesday is the least painful day of the week to send
-            (or receive) a rejection.
+            it typically means we&rsquo;re seriously considering your work, but you can always feel
+            free to <a href="mailto:editors@astrolabe.ooo">editors@astrolabe.ooo</a>. We&rsquo;re
+            strong believers that Wednesday is the least painful day of the week to send (or
+            receive) a rejection.
           </p>
         </>
       ) : (
@@ -107,9 +108,10 @@ const Guidelines = ({ paid, dateFreeOpen, dateFreeClose }) => {
           </ol>
           <p>
             We&rsquo;ll get back to you within <strong>one month</strong>&mdash;if we take longer,
-            feel free to <a href="mailto:editors@astrolabe.ooo">editors@astrolabe.ooo</a>.
-            We&rsquo;re strong believers that Wednesday is the least painful day of the week to send
-            (or receive) a rejection.
+            it typically means we&rsquo;re seriously considering your work, but you can always feel
+            free to <a href="mailto:editors@astrolabe.ooo">editors@astrolabe.ooo</a>. We&rsquo;re
+            strong believers that Wednesday is the least painful day of the week to send (or
+            receive) a rejection.
           </p>
         </>
       )}
