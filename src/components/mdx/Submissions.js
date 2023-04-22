@@ -59,7 +59,7 @@ const Guidelines = ({ paid, dateFreeOpen, dateFreeClose }) => {
               </span>
               <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
                 <input type="hidden" name="cmd" value="_s-xclick" />
-                <input type="hidden" name="hosted_button_id" value="7PZ9LDC4Q7FB4" />
+                <input type="hidden" name="hosted_button_id" value="QK55QUNYBVRJY" />
                 <input
                   className="px-4 py-3 border rounded hover:bg-gray-200 transition-all"
                   type="image"
