@@ -6,6 +6,7 @@ import Masthead from '@components/mdx/Masthead'
 import Break from '@components/mdx/Break'
 import Artwork from '@components/mdx/Artwork'
 import ContentWarning from '@components/mdx/ContentWarning'
+import Award from '@components/mdx/Award'
 import { FreePaid, Guidelines } from '@components/mdx/Submissions'
 
 export const MDXComponents = {
@@ -15,6 +16,7 @@ export const MDXComponents = {
   Break,
   Artwork,
   ContentWarning,
+  Award,
   FreePaid,
   Guidelines,
 }

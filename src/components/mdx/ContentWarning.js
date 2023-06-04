@@ -1,5 +1,3 @@
-import { IoTelescopeOutline } from 'react-icons/io5'
-
 const ContentWarning = ({ info }) => {
   return (
     <>
