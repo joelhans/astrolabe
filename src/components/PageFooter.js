@@ -21,7 +21,6 @@ const PageFooter = () => {
                 href="https://www.instagram.com/ooo_astrolabe/"
                 className="mr-2"
               />
-              <SocialIcon kind="mastodon" href="https://writing.exchange/@astrolabe" />
             </div>
           </div>
           <div>

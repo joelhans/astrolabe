@@ -87,9 +87,9 @@ const MobileNav = () => {
             <Link
               rel="me"
               className="block font-sans font-medium hover:text-pink transform ease-in-out duration-300 mt-2"
-              href="https://writing.exchange/@astrolabe"
+              href="https://bsky.app/profile/astrolabe.ooo"
             >
-              Mastodon
+              Bluesky
             </Link>
             <Link
               className="block font-sans font-medium hover:text-pink transform ease-in-out duration-300 mt-2"
