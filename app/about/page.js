@@ -8,7 +8,7 @@ export const metadata = {
   title: 'About',
 }
 
-export async function getAboutContent() {
+async function getAboutContent() {
   const content = await getSingleContent(BASE_CONTENT_PATH, 'about')
   return content
 }

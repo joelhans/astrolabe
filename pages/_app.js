@@ -3,7 +3,7 @@ import '@/css/tailwind.css'
 import { ThemeProvider } from 'next-themes'
 import Head from 'next/head'
 
-import { Ibarra_Real_Nova } from '@next/font/google'
+import { Ibarra_Real_Nova } from 'next/font/google'
 const ibarra = Ibarra_Real_Nova({
   // weight: ['400', '500', '700'],
   style: ['normal', 'italic'],
@@ -11,7 +11,7 @@ const ibarra = Ibarra_Real_Nova({
   variable: '--font-ibarra',
 })
 
-import { Raleway } from '@next/font/google'
+import { Raleway } from 'next/font/google'
 const raleway = Raleway({
   weight: ['400', '500', '700'],
   subsets: ['latin'],

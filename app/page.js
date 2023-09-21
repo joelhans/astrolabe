@@ -7,7 +7,7 @@ export const metadata = {
   title: siteMetadata.title,
 }
 
-export async function getStars() {
+async function getStars() {
   const posts = await getFrontMatter(BASE_CONTENT_PATH, true)
   return posts
 }
