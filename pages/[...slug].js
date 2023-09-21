@@ -114,7 +114,7 @@ export default function Article({ content, posts }) {
         {/* If there are other stars in this asterism... */}
         {frontMatter.asterism && (
           <div className="mt-24 p-8 bg-gradient-to-tr from-[#0d1c48] to-[#0f062d] rounded-sm">
-            <h2 className="font-sans text-gray-100 text-lg lg:text-xl font-medium mb-6">
+            <h2 className="font-sans text-gray-100 text-lg lg:text-2xl font-medium mb-6">
               Other stars in the{' '}
               <span className="font-bold italic">{frontMatter.asterismFull}</span> asterism:
             </h2>
@@ -132,9 +132,14 @@ export default function Article({ content, posts }) {
                       href={`/${slug}`}
                       className="group block bg-white hover:bg-gray-100 hover:bg-opacity-90 px-6 py-6 rounded duration-300"
                     >
-                      <h3 dangerouslySetInnerHTML={{ __html: title }} className="text-2xl mb-2" />
-                      <p className="font-sans text-sm font-medium mb-2">{author}</p>
-                      {summary && <p className="italic">{summary}</p>}
+                      <h3
+                        dangerouslySetInnerHTML={{ __html: title }}
+                        className="font-serif text-xl lg:text-3xl mb-4"
+                      />
+                      <p className="font-sans text-base font-medium mb-6">{author}</p>
+                      {summary && (
+                        <p className="font-serif text-base lg:text-lg italic">{summary}</p>
+                      )}
                       {artworkUrl && (
                         <div className="blur-sm block relative mt-4">
                           <Image src={artworkUrl} width={400} height={200} />

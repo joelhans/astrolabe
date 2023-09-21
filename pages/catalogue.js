@@ -46,7 +46,7 @@ export default function Catalogue({ posts }) {
       <PageHeader title="The Catalogue">
         <p className="font-serif text-lg md:text-xl mt-8">
           Discover the Universe by browsing our growing list of astrolabists and their
-          transmissions.
+          materializations.
         </p>
       </PageHeader>
       <div className="relative max-w-lg mt-8 lg:mt-16">
