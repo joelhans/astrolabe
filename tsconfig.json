@@ -10,7 +10,7 @@
     "resolveJsonModule": true,
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
-    "noEmit": true,
+    // "noEmit": true,
     "incremental": true,
     "moduleResolution": "node",
     "isolatedModules": true,
@@ -26,10 +26,16 @@
       "@lib/*": ["lib/*"],
       "@/css/*": ["css/*"],
       "@/types/*": ["src/types/*"]
-    }
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "noEmit": true
   },
   "$schema": "https://json.schemastore.org/tsconfig",
   "display": "Recommended",
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }

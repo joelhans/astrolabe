@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState, useRef, useEffect, FC } from 'react'
 import * as d3 from 'd3'
 import moment from 'moment'
@@ -297,7 +299,7 @@ const Universe: FC<{ posts: Post[] }> = ({ posts }) => {
     if (scatterRef.current && tooltipRef.current) {
       drawScatter(scatterRef.current, tooltipRef.current, setTooltipState, setTooltipData, posts)
     }
-    document.body.style.overflow = 'hidden'
+    // document.body.style.overflow = 'hidden'
   }, [posts, scatterRef, tooltipRef])
 
   return (
