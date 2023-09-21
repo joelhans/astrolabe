@@ -21,7 +21,11 @@ const raleway = Raleway({
 })
 
 export const metadata = {
-  title: siteMetadata.title,
+  title: {
+    template: '%s • Astrolabe',
+    default: siteMetadata.title,
+  },
+  description: siteMetadata.description,
 }
 
 export default function RootLayout({ children }) {

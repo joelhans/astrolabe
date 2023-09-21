@@ -1,18 +1,16 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import Nav from '@components/Nav'
 import PageFooter from '@components/PageFooter'
 
 const LayoutWrapper = ({ className, children }) => {
-  const router = useRouter()
-
   return (
     <>
       <div className={`flex flex-col h-screen ${className}`}>
         <div className="flex-1 w-full mx-auto">
           <Nav />
-          {router.asPath === '/' ? (
+          {usePathname() === '/' ? (
             <main>{children}</main>
           ) : (
             <>

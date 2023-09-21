@@ -4,13 +4,13 @@ import { MDXLayoutRenderer } from '@components/MDXComponents'
 import PageHeader from '@components/PageHeader'
 import PageBody from '@components/PageBody'
 
-async function getAboutContent() {
-  const content = await getSingleContent(BASE_CONTENT_PATH, 'about')
+async function getSubmissionContent() {
+  const content = await getSingleContent(BASE_CONTENT_PATH, 'submissions')
   return content
 }
 
 export async function generateMetadata() {
-  const { frontMatter } = await getAboutContent()
+  const { frontMatter } = await getSubmissionContent()
   return {
     title: frontMatter.title,
     description: frontMatter.summary,
@@ -18,7 +18,7 @@ export async function generateMetadata() {
 }
 
 export default async function About() {
-  const { mdxSource, frontMatter } = await getAboutContent()
+  const { mdxSource, frontMatter } = await getSubmissionContent()
 
   return (
     <>
