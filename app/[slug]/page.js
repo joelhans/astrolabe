@@ -2,12 +2,12 @@ import { STAR_CONTENT_PATH, CATACLYSM } from '@config/constants'
 import { getSingleContent, getFrontMatter } from '@lib/mdx'
 import StarLayout from '@/layouts/StarLayout'
 
-export async function getStar(slug) {
+async function getStar(slug) {
   const star = await getSingleContent(STAR_CONTENT_PATH, slug)
   return star
 }
 
-export async function gatherFrontMatter() {
+async function gatherFrontMatter() {
   const posts = await getFrontMatter(STAR_CONTENT_PATH, true)
   return posts
 }
