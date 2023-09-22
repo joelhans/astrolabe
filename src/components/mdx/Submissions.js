@@ -38,11 +38,12 @@ const Guidelines = ({ paid, dateFreeOpen, dateFreeClose }) => {
             <li>
               <span className="block mb-2">
                 Send your submission to{' '}
-                <a href="mailto:editors@astrolabe.ooo">editors@astrolabe.ooo</a> with the subject
-                line:
+                <a href="mailto:editors@astrolabe.ooo">editors@astrolabe.ooo</a> with the following
+                subject line, replacing the parts in green:
               </span>
               <strong className="block mb-2">
-                Paid submission: Your Name, &ldquo;Title&rdquo;
+                Paid submission: <span className="text-green">Your Name</span>, &ldquo;
+                <span className="text-green">Title</span>&rdquo;
               </strong>
               <span className="block mb-2">
                 Include a short cover letter, bio, and your work as an attachment(s).
@@ -75,11 +76,12 @@ const Guidelines = ({ paid, dateFreeOpen, dateFreeClose }) => {
             </li>
           </ol>
           <p>
-            We&rsquo;ll get back to you within <strong>one month</strong>&mdash;if we take longer,
-            it typically means we&rsquo;re seriously considering your work, but you can always feel
-            free to query us: <a href="mailto:editors@astrolabe.ooo">editors@astrolabe.ooo</a>.
-            We&rsquo;re strong believers that Wednesday is the least painful day of the week to send
-            (or receive) a rejection.
+            We&rsquo;ll get back to you within <strong>three months</strong>&mdash;if we take
+            longer, it typically means we&rsquo;re seriously considering your work, but you can
+            always feel free to query us:{' '}
+            <a href="mailto:editors@astrolabe.ooo">editors@astrolabe.ooo</a>. We&rsquo;re strong
+            believers that Wednesday is the least painful day of the week to send (or receive) a
+            rejection.
           </p>
         </>
       ) : (
@@ -92,10 +94,13 @@ const Guidelines = ({ paid, dateFreeOpen, dateFreeClose }) => {
             <li>
               <span className="block mb-2">
                 Send your submission to{' '}
-                <a href="mailto:editors@astrolabe.ooo">editors@astrolabe.ooo</a> with the subject
-                line:
+                <a href="mailto:editors@astrolabe.ooo">editors@astrolabe.ooo</a> with the following
+                subject line, replacing the parts in green:
               </span>
-              <strong className="block mb-2">Submission: Name, &ldquo;Title&rdquo;</strong>
+              <strong className="block mb-2">
+                Submission: <span className="text-green">Your Name</span>, &ldquo;
+                <span className="text-green">Title</span>&rdquo;
+              </strong>
               <span className="block mb-2">
                 Include a short cover letter, bio, and your work as an attachment(s).
               </span>
@@ -107,11 +112,12 @@ const Guidelines = ({ paid, dateFreeOpen, dateFreeClose }) => {
             </li>
           </ol>
           <p>
-            We&rsquo;ll get back to you within <strong>one month</strong>&mdash;if we take longer,
-            it typically means we&rsquo;re seriously considering your work, but you can always feel
-            free to query us: <a href="mailto:editors@astrolabe.ooo">editors@astrolabe.ooo</a>.
-            We&rsquo;re strong believers that Wednesday is the least painful day of the week to send
-            (or receive) a rejection.
+            We&rsquo;ll get back to you within <strong>three months</strong>&mdash;if we take
+            longer, it typically means we&rsquo;re seriously considering your work, but you can
+            always feel free to query us:{' '}
+            <a href="mailto:editors@astrolabe.ooo">editors@astrolabe.ooo</a>. We&rsquo;re strong
+            believers that Wednesday is the least painful day of the week to send (or receive) a
+            rejection.
           </p>
         </>
       )}
