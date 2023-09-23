@@ -8,7 +8,7 @@ async function getStar(slug) {
   return star
 }
 
-async function gatherFrontMatter() {
+async function getStars() {
   const posts = await getFrontMatter(STAR_CONTENT_PATH, true)
   return posts
 }
@@ -63,7 +63,7 @@ export async function generateMetadata({ params: { slug } }) {
 
 export default async function Star({ params: { slug } }) {
   const star = await getStar(slug)
-  const posts = await gatherFrontMatter()
+  const posts = await getStars()
 
   return (
     <>
