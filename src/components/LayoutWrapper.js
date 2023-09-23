@@ -8,10 +8,10 @@ const LayoutWrapper = ({ className, children }) => {
   return (
     <>
       <div className={`flex flex-col h-screen ${className}`}>
-        <div className="flex-1 w-full mx-auto">
+        <div className={`flex-1 w-full mx-auto ${usePathname() === '/' && 'overflow-hidden'}`}>
           <Nav />
           {usePathname() === '/' ? (
-            <main>{children}</main>
+            <main className="bg-gray-900">{children}</main>
           ) : (
             <>
               <main className="lg:ml-32">
