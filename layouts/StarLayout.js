@@ -111,7 +111,6 @@ export default function StarLayout({ star, posts }) {
                 .reverse()
                 .map((visit) => {
                   const { time } = visit
-                  console.log(frontMatter.publishedOn)
                   const hours = moment
                       .duration(moment(time).diff(frontMatter.publishedOn))
                       .asHours()

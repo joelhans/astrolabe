@@ -26,19 +26,41 @@ export const metadata = {
     default: siteMetadata.title,
   },
   description: siteMetadata.description,
+  metadataBase: new URL(siteMetadata.siteUrl),
+  icons: {
+    icon: '/static/favicons/favicon-32x32.png',
+    shortcut: '/static/favicons/favicon-512x512.png',
+    apple: '/static/favicons/apple-touch-icon.png',
+  },
+  openGraph: {
+    title: siteMetadata.title,
+    description: siteMetadata.description,
+    url: siteMetadata.siteUrl,
+    siteName: siteMetadata.title,
+    images: [
+      {
+        url: siteMetadata.socialBanner,
+        width: 1200,
+        height: 628,
+        alt: siteMetadata.description,
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteMetadata.title,
+    description: siteMetadata.description,
+    site: siteMetadata.siteUrl,
+    creator: '@astrolabe',
+    images: [siteMetadata.socialBanner],
+  },
 }
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${ibarra.variable} ${raleway.variable} scroll-smooth`}>
-      <link rel="apple-touch-icon" sizes="76x76" href="/static/favicons/apple-touch-icon.png" />
-      <link rel="icon" type="image/png" sizes="32x32" href="/static/favicons/favicon-32x32.png" />
-      <link rel="icon" type="image/png" sizes="16x16" href="/static/favicons/favicon-16x16.png" />
-      <link rel="manifest" href="/static/favicons/site.webmanifest" />
-      <meta name="msapplication-TileColor" content="#000000" />
-      <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
-      <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
-      <link rel="alternate" type="application/rss+xml" href="/index.xml" />
       <body className="antialiased font-serif font-normal bg-gray-50 text-gray-800">
         <LayoutWrapper>{children}</LayoutWrapper>
       </body>
