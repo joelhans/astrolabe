@@ -15,12 +15,7 @@ async function getStars() {
 }
 
 export async function generateMetadata({ params: { slug } }) {
-  const star = await getStar(slug)
-  const { frontMatter } = star
-
-  // Catch to see if mdx.js returned `false` because the file does not exist,
-  // which means we should throw a 404.
-  if (star === false) notFound()
+  const { frontMatter } = await getStar(slug)
 
   const cleanTitle = frontMatter.title.replace(/<[^>]+>/g, '')
   const publishedAt = new Date(frontMatter.publishedOn).toISOString()
