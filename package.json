@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "next-remote-watch ./content",
-    "dev": "NODE_OPTIONS='--inspect' next dev",
+    "dev": "cross-env ANALYZE=true next dev",
     "build": "next build",
     "serve": "next start",
     "analyze": "cross-env ANALYZE=true next build",
