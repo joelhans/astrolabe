@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation'
 import { STAR_CONTENT_PATH } from '@config/constants'
 import siteMetadata from '@data/siteMetadata'
 import { getSingleContent, getFrontMatter } from '@lib/mdx'
@@ -14,7 +15,12 @@ async function getStars() {
 }
 
 export async function generateMetadata({ params: { slug } }) {
-  const { frontMatter } = await getSingleContent(STAR_CONTENT_PATH, slug)
+  const star = await getStar(slug)
+  const { frontMatter } = star
+
+  // Catch to see if mdx.js returned `false` because the file does not exist,
+  // which means we should throw a 404.
+  if (star === false) notFound()
 
   const cleanTitle = frontMatter.title.replace(/<[^>]+>/g, '')
   const publishedAt = new Date(frontMatter.publishedOn).toISOString()
