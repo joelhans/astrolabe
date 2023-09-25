@@ -58,13 +58,13 @@ export default function StarLayout({ star, posts }) {
         </p>
       </PageHeader>
       <PageBody>
-        <PageProse>
+        <PageProse className="star-content">
           <MDXLayoutRenderer mdxSource={mdxSource} frontMatter={frontMatter} />
         </PageProse>
         <div className="w-full flex justify-center mt-16">
           <IoTelescopeOutline className="w-8 h-8 text-orange" />
         </div>
-        <div className="mt-16 meta-content max-w-full prose lg:prose-lg">
+        <div className="mt-16 max-w-full prose lg:prose-lg">
           <MDXLayoutRenderer mdxSource={frontMatter.authorBioMdx} />
         </div>
 

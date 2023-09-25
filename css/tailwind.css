@@ -48,5 +48,5 @@ html {
 }
 
 .prose a {
-  @apply transform ease-in-out duration-300;
+  @apply text-pink font-bold transform ease-in-out duration-300;
 }
