@@ -27,6 +27,9 @@ html {
 
 /* Universe */
 #scatter {
+  display: block;
+  width: 4000px;
+  height: 4000px;
   background: linear-gradient(to left top, #0d1c48, #0f062d);
 }
 
