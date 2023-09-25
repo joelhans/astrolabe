@@ -8,6 +8,7 @@ import Image from 'next/image'
 import { MDXLayoutRenderer } from '@components/MDXComponents'
 import PageHeader from '@components/PageHeader'
 import PageBody from '@components/PageBody'
+import PageProse from '@components/PageProse'
 
 export default function StarLayout({ star, posts }) {
   const { mdxSource, frontMatter } = star
@@ -57,18 +58,20 @@ export default function StarLayout({ star, posts }) {
         </p>
       </PageHeader>
       <PageBody>
-        <MDXLayoutRenderer mdxSource={mdxSource} frontMatter={frontMatter} />
-        <div className="flex justify-center mt-16">
+        <PageProse>
+          <MDXLayoutRenderer mdxSource={mdxSource} frontMatter={frontMatter} />
+        </PageProse>
+        <div className="w-full flex justify-center mt-16">
           <IoTelescopeOutline className="w-8 h-8 text-orange" />
         </div>
-        <div className="mt-16 meta-content max-w-full prose lg:prose-xl">
+        <div className="mt-16 meta-content max-w-full prose lg:prose-lg">
           <MDXLayoutRenderer mdxSource={frontMatter.authorBioMdx} />
         </div>
 
         {/* If there are other stars in this asterism... */}
         {frontMatter.asterism && (
           <div className="mt-24 p-8 bg-gradient-to-tr from-[#0d1c48] to-[#0f062d] rounded-sm">
-            <h2 className="font-sans text-gray-100 text-lg lg:text-xl font-medium mb-6">
+            <h2 className="font-sans text-gray-100 text-lg lg:text-xl font-medium !mt-0 mb-6">
               Other stars in the{' '}
               <span className="font-bold italic">{frontMatter.asterismFull}</span> asterism:
             </h2>
@@ -86,7 +89,10 @@ export default function StarLayout({ star, posts }) {
                       href={`/${slug}`}
                       className="group block bg-white hover:bg-gray-100 hover:bg-opacity-90 px-6 py-6 rounded duration-300"
                     >
-                      <h3 dangerouslySetInnerHTML={{ __html: title }} className="text-2xl mb-2" />
+                      <h3
+                        dangerouslySetInnerHTML={{ __html: title }}
+                        className="text-2xl !mt-0 mb-2"
+                      />
                       <p className="font-sans text-sm font-medium mb-2">{author}</p>
                       {summary && <p className="italic">{summary}</p>}
                       {artworkUrl && (
@@ -102,7 +108,7 @@ export default function StarLayout({ star, posts }) {
         )}
 
         {log.length > 0 && (
-          <div className="mt-24">
+          <div className="mt-24 w-full">
             <p className="font-serif text-3xl italic">You&rsquo;ve looked at this star before.</p>
             <div className="mt-4">
               {/* Loop through the visits to create the log. */}
