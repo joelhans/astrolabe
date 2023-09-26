@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from 'react'
 import Link from './Link'
 import headerNavLinks from '@data/headerNavLinks'
@@ -60,7 +62,7 @@ const MobileNav = () => {
         ></button>
         <nav className="relative z-50 w-full h-full pt-8 pl-8 lg:pl-16 pr-0 lg:pr-24">
           {headerNavLinks.map((link) => (
-            <div key={link.title} className="py-4">
+            <div key={link.title} className="py-2 lg:py-4">
               <Link
                 href={link.href}
                 className="font-serif text-3xl lg:text-4xl italic tracking-wide text-gray-900 hover:text-green transform ease-in-out duration-300"

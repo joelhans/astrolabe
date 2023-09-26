@@ -1,18 +1,11 @@
-import { useEffect, useState } from 'react'
+'use client'
+
+import { useState } from 'react'
 import _ from 'lodash'
 import Link from 'next/link'
-import { STAR_CONTENT_PATH } from '@config/constants'
-import siteMetadata from '@data/siteMetadata'
-import { getFrontMatter } from '@lib/mdx'
 import PageHeader from '@components/PageHeader'
-import { PageSEO } from '@components/SEO'
 
-export async function getStaticProps() {
-  const posts = await getFrontMatter(STAR_CONTENT_PATH, true)
-  return { props: { posts } }
-}
-
-export default function Catalogue({ posts }) {
+export default function StarLayout({ star, posts }) {
   const [searchValue, setSearchValue] = useState('')
 
   const filteredStars = _(posts)
@@ -35,18 +28,12 @@ export default function Catalogue({ posts }) {
       return aLastName.localeCompare(bLastName)
     })
 
-  // Force overflow so we can scroll on this page.
-  useEffect(() => {
-    document.body.style.overflow = 'auto'
-  })
-
   return (
     <>
-      <PageSEO title={`Catalogue • ${siteMetadata.title}`} description={siteMetadata.description} />
       <PageHeader title="The Catalogue">
         <p className="font-serif text-lg md:text-xl mt-8">
           Discover the Universe by browsing our growing list of astrolabists and their
-          materializations.
+          transmissions.
         </p>
       </PageHeader>
       <div className="relative max-w-lg mt-8 lg:mt-16">

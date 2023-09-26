@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "next-remote-watch ./content",
-    "dev": "next dev",
+    "dev": "cross-env ANALYZE=true next dev",
     "build": "next build",
     "serve": "next start",
     "analyze": "cross-env ANALYZE=true next build",
@@ -12,7 +12,6 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@next/font": "^13.0.6",
     "@paypal/react-paypal-js": "^7.8.2",
     "@tailwindcss/typography": "^0.5.2",
     "@types/d3": "^5.5.0",
@@ -27,12 +26,12 @@
     "lodash": "^4.17.21",
     "mdx-bundler": "^9.0.1",
     "moment": "^2.29.4",
-    "next": "^13.0.1",
+    "next": "^13.5.2",
     "next-themes": "^0.2.0",
     "postcss": "^8.3.5",
     "preact": "^10.6.2",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-icons": "^4.2.0",
     "rehype-slug": "^5.0.1",
     "tailwindcss": "^3.1.4",
@@ -45,7 +44,7 @@
     "@tsconfig/recommended": "^1.0.1",
     "cross-env": "^7.0.3",
     "eslint": "^7.29.0",
-    "eslint-config-next": "12.1.4",
+    "eslint-config-next": "^13.5.2",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.3.1",
     "file-loader": "^6.0.0",
@@ -53,7 +52,8 @@
     "husky": "^6.0.0",
     "lint-staged": "^11.2.0",
     "next-remote-watch": "^1.0.0",
-    "prettier": "2.2.1"
+    "prettier": "2.2.1",
+    "webpack": "^5.88.2"
   },
   "husky": {
     "hooks": {
