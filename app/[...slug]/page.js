@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 import { STAR_CONTENT_PATH } from '@config/constants'
+import { headers } from 'next/headers'
 import siteMetadata from '@data/siteMetadata'
 import { getSingleContent, getFrontMatter } from '@lib/mdx'
 import StarLayout from '@/layouts/StarLayout'
@@ -10,12 +11,15 @@ async function getStar(slug) {
 }
 
 async function getStars() {
-  const posts = await getFrontMatter(STAR_CONTENT_PATH, true)
+  const posts = await getFrontMatter(STAR_CONTENT_PATH)
   return posts
 }
 
 export async function generateMetadata({ params: { slug } }) {
-  const { frontMatter } = await getStar(slug)
+  const posts = await getStars()
+  const filePath = posts.filter((a) => a.slug == slug)[0].publishedOn + '/' + slug
+
+  const { frontMatter } = await getStar(filePath)
 
   const cleanTitle = frontMatter.title.replace(/<[^>]+>/g, '')
   const publishedAt = new Date(frontMatter.publishedOn).toISOString()
@@ -63,8 +67,9 @@ export async function generateMetadata({ params: { slug } }) {
 }
 
 export default async function Star({ params: { slug } }) {
-  const star = await getStar(slug)
   const posts = await getStars()
+  const filePath = posts.filter((a) => a.slug == slug)[0].publishedOn + '/' + slug
+  const star = await getStar(filePath)
 
   return (
     <>
