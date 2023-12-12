@@ -4,10 +4,9 @@
   "private": true,
   "scripts": {
     "start": "next-remote-watch ./content",
-    "dev": "cross-env ANALYZE=true next dev",
+    "dev": "next dev",
     "build": "next build",
     "serve": "next start",
-    "analyze": "cross-env ANALYZE=true next build",
     "lint": "next lint --fix --dir pages --dir src/components --dir lib --dir layouts --dir scripts",
     "prepare": "husky install"
   },
@@ -42,7 +41,6 @@
     "@next/bundle-analyzer": "12.1.4",
     "@svgr/webpack": "^6.1.2",
     "@tsconfig/recommended": "^1.0.1",
-    "cross-env": "^7.0.3",
     "eslint": "^7.29.0",
     "eslint-config-next": "^13.5.2",
     "eslint-config-prettier": "^8.3.0",
