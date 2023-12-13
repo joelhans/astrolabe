@@ -3,12 +3,12 @@ import { getFrontMatter, getSingleContent } from '@lib/mdx'
 import CatalogueLayout from '@/layouts/CatalogueLayout'
 
 async function getStars() {
-  const posts = await getFrontMatter(STAR_CONTENT_PATH, true)
+  const posts = await getFrontMatter(STAR_CONTENT_PATH)
   return posts
 }
 
 async function getCatalogueContent() {
-  const content = await getSingleContent(BASE_CONTENT_PATH, 'catalogue')
+  const content = await getSingleContent('catalogue')
   return content
 }
 

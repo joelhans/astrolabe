@@ -6,7 +6,7 @@ import PageBody from '@components/PageBody'
 import PageProse from '@components/PageProse'
 
 async function getSubmissionContent() {
-  const content = await getSingleContent(BASE_CONTENT_PATH, 'submissions')
+  const content = await getSingleContent('submissions')
   return content
 }
 

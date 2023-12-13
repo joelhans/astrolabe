@@ -1,10 +1,10 @@
-import { STAR_CONTENT_PATH } from '@config/constants'
+import { BASE_CONTENT_PATH, STAR_CONTENT_PATH } from '@config/constants'
 import siteMetadata from '@data/siteMetadata'
 import { getSingleContent, getFrontMatter } from '@lib/mdx'
 import StarLayout from '@/layouts/StarLayout'
 
 async function getStar(slug) {
-  const star = await getSingleContent(STAR_CONTENT_PATH, slug)
+  const star = await getSingleContent(slug)
   return star
 }
 

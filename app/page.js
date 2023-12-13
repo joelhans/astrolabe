@@ -1,5 +1,5 @@
 import siteMetadata from '@data/siteMetadata'
-import { BASE_CONTENT_PATH } from '@config/constants'
+import { BASE_CONTENT_PATH, STAR_CONTENT_PATH } from '@config/constants'
 import { getFrontMatter } from '@lib/mdx'
 import Universe from '@components/Universe'
 
@@ -8,7 +8,7 @@ export const metadata = {
 }
 
 async function getStars() {
-  const posts = await getFrontMatter(BASE_CONTENT_PATH, true)
+  const posts = await getFrontMatter(BASE_CONTENT_PATH, STAR_CONTENT_PATH)
   return posts
 }
 
