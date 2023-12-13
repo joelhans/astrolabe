@@ -1,16 +1,15 @@
-import { notFound } from 'next/navigation'
-import { STAR_CONTENT_PATH } from '@config/constants'
+import { BASE_CONTENT_PATH, STAR_CONTENT_PATH } from '@config/constants'
 import siteMetadata from '@data/siteMetadata'
 import { getSingleContent, getFrontMatter } from '@lib/mdx'
 import StarLayout from '@/layouts/StarLayout'
 
 async function getStar(slug) {
-  const star = await getSingleContent(STAR_CONTENT_PATH, slug)
+  const star = await getSingleContent(slug)
   return star
 }
 
 async function getStars() {
-  const posts = await getFrontMatter(STAR_CONTENT_PATH, true)
+  const posts = await getFrontMatter(STAR_CONTENT_PATH)
   return posts
 }
 
@@ -63,8 +62,8 @@ export async function generateMetadata({ params: { slug } }) {
 }
 
 export default async function Star({ params: { slug } }) {
-  const star = await getStar(slug)
   const posts = await getStars()
+  const star = await getStar(slug)
 
   return (
     <>

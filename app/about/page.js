@@ -6,7 +6,7 @@ import PageBody from '@components/PageBody'
 import PageProse from '@components/PageProse'
 
 async function getAboutContent() {
-  const content = await getSingleContent(BASE_CONTENT_PATH, 'about')
+  const content = await getSingleContent('about')
   return content
 }
 
