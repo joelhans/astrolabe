@@ -13,6 +13,11 @@ async function getStars() {
   return posts
 }
 
+export async function generateStaticParams() {
+  const posts = await getFrontMatter(STAR_CONTENT_PATH)
+  return posts
+}
+
 export async function generateMetadata({ params: { slug } }) {
   const { frontMatter } = await getStar(slug)
 
@@ -62,7 +67,7 @@ export async function generateMetadata({ params: { slug } }) {
 }
 
 export default async function Star({ params: { slug } }) {
-  const posts = await getStars()
+  const posts = await generateStaticParams()
   const star = await getStar(slug)
 
   return (
