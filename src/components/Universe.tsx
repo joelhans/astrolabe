@@ -325,9 +325,10 @@ const Universe: FC<{ posts: Post[] }> = ({ posts }) => {
           } block w-full md:h-screen md:w-4/12 lg:3/12 flex flex-col justify-center text-xl !text-gray-900 p-8 lg:p-12 bg-gray-100 rounded-sm transition-all ease-in-out`}
         >
           <div>
-            <p className="text-3xl lg:text-3xl 2xl:text-4xl font-serif font-bold mb-6">
-              {tooltipData?.title}
-            </p>
+            <p
+              className="text-3xl lg:text-3xl 2xl:text-4xl font-serif font-bold mb-6"
+              dangerouslySetInnerHTML={{ __html: tooltipData?.title }}
+            />
             {tooltipData?.author && (
               <p className="text-base 2xl:text-lg font-sans font-medium mb-6">
                 Materialized by <span className="text-pink font-bold">{tooltipData?.author}</span>{' '}
