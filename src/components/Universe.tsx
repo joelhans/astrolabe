@@ -151,13 +151,6 @@ function drawScatter(
         .attr('fill', '#059669')
         .attr('fill-opacity', '100%')
     } else if (d.key) {
-      // Highlight stars of the asterism when you hover over an asterism.
-      d3.selectAll('.' + d.key)
-        .filter('.star')
-        .transition()
-        .duration(200)
-        .attr('fill', '#fff')
-
       // Highlight the lines between the stars of the chosen asterism.
       d3.selectAll('.' + d.key)
         .filter('.line')
