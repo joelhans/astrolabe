@@ -1,4 +1,4 @@
-import CustomLink from '@components/Link'
+import Link from 'next/link'
 
 const Masthead = () => {
   return (
@@ -11,9 +11,7 @@ const Masthead = () => {
             <em>Puerto del Sol</em>, <em>Booth: A Journal</em>, and more. He has an MFA from the
             University of Arizona, where he also served as the managing editor of{' '}
             <em>Fairy Tale Review</em>. He still lives in Tucson, Arizona with his family. Find him
-            on <CustomLink href="https://twitter.com/joelhans">Twitter</CustomLink>,{' '}
-            <CustomLink href="https://mastodon.social/@joelhans">Mastodon</CustomLink>, or at{' '}
-            <CustomLink href="https://joelhans.com">joelhans.com</CustomLink>.
+            at <Link href="https://joelhans.com">joelhans.com</Link>.
           </p>
         </div>
         <div className="prose lg:prose-xl">
@@ -22,8 +20,8 @@ const Masthead = () => {
             published in <em>Carve</em>, <em>Passages North</em>, <em>Mississippi Review</em>,{' '}
             <em>The Normal School</em>, <em>New England Review</em>, and elsewhere. They have an MFA
             from the University of Arizona. They are the founding editor of{' '}
-            <CustomLink href="https://manzanitapapers.com/">Manzanita Papers</CustomLink>. Find them{' '}
-            <CustomLink href="https://instagram.com/jaetowlevieira">@jaetowlevieira</CustomLink>.
+            <Link href="https://manzanitapapers.com/">Manzanita Papers</Link>. Find them{' '}
+            <Link href="https://instagram.com/jaetowlevieira">@jaetowlevieira</Link>.
           </p>
         </div>
       </div>

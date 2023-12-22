@@ -97,7 +97,12 @@ export default function StarLayout({ star, posts }) {
                       {summary && <p className="italic">{summary}</p>}
                       {artworkUrl && (
                         <div className="blur-sm block relative mt-4">
-                          <Image src={artworkUrl} width={400} height={200} />
+                          <Image
+                            src={artworkUrl}
+                            alt={`${title}, artwork by ${author}`}
+                            width={400}
+                            height={200}
+                          />
                         </div>
                       )}
                     </Link>
