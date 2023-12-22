@@ -22,10 +22,17 @@ const FreePaid = ({ paid, date }) => {
   )
 }
 
-const Guidelines = ({ paid, dateFreeOpen, dateFreeClose }) => {
+const Guidelines = ({ paid, closed, dateFreeOpen, dateFreeClose }) => {
   return (
     <>
-      {paid ? (
+      {closed && 
+        <>
+          <p>We are temorarily <strong>closed</strong> to submissions. Our next free submission period is open between{' '}
+            {moment(dateFreeOpen).format('dddd, MMMM Do')} and{' '}
+            {moment(dateFreeClose).format('dddd, MMMM Do, YYYY')}.</p>
+        </>
+      }
+      {paid & !!closed ? (
         <>
           <p>
             We are currently open to <strong>paid submissions with a $3 fee</strong>. If you&rsquo;d
@@ -84,7 +91,8 @@ const Guidelines = ({ paid, dateFreeOpen, dateFreeClose }) => {
             rejection.
           </p>
         </>
-      ) : (
+      ) : ( null )}
+      {!!paid && !!closed ? (
         <>
           <p>
             We are currently <strong>open</strong> for free submissions until{' '}
@@ -120,7 +128,7 @@ const Guidelines = ({ paid, dateFreeOpen, dateFreeClose }) => {
             rejection.
           </p>
         </>
-      )}
+      ) : ( null )}
     </>
   )
 }
