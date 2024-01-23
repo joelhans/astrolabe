@@ -27,7 +27,7 @@ const Guidelines = ({ paid, closed, dateFreeOpen, dateFreeClose }) => {
     <>
       {closed && 
         <>
-          <p>We are temorarily <strong>closed</strong> to submissions. Our next free submission period is open between{' '}
+          <p>We are temporarily <strong>closed</strong> to submissions. Our next free submission period is open between{' '}
             {moment(dateFreeOpen).format('dddd, MMMM Do')} and{' '}
             {moment(dateFreeClose).format('dddd, MMMM Do, YYYY')}.</p>
         </>
