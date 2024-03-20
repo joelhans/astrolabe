@@ -92,7 +92,7 @@ const Guidelines = ({ paid, closed, dateFreeOpen, dateFreeClose }) => {
           </p>
         </>
       ) : ( null )}
-      {!!paid && !!closed ? (
+      {!paid && !closed ? (
         <>
           <p>
             We are currently <strong>open</strong> for free submissions until{' '}
