@@ -1,5 +1,11 @@
 import moment from 'moment'
 
+const Submissions = ({open, dateOpen, dateClosed}) => {
+  return (
+    <p>hi!</p>
+  )
+}
+
 const FreePaid = ({ paid, date }) => {
   const closeDate = Date.parse(date)
 
