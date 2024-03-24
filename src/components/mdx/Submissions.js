@@ -1,8 +1,23 @@
 import moment from 'moment'
+import Break from '@components/mdx/Break'
 
-const Submissions = ({open, dateOpen, dateClosed}) => {
+const Submissions = ({open, dateClosed}) => {
+
   return (
-    <p>hi!</p>
+    <>
+      {open ? (
+        <>
+          <p className="text-3xl font-bold"><em>Astrolabe</em> submissions are <span className="text-green">open</span> until {moment(dateClosed).utcOffset(420).format('dddd, MMMM Do')}!</p>
+          <p>Please read below for guidelines and details about honorariums and rights.</p>
+        </>
+      ) : (
+        <>
+          <p><strong><em>Astrolabe</em> submissions are closed.</strong></p>
+          <p>Please read below for details about our next submission window, guidelines, honorariums, and rights.</p>
+        </>
+      )}
+      <Break />
+    </>
   )
 }
 
@@ -20,7 +35,7 @@ const FreePaid = ({ paid, date }) => {
         ) : (
           <>
             <em>Astrolabe</em> is currently open to free submissions until{' '}
-            {moment(closeDate).format('dddd, MMMM Do YYYY,')} at 9am Pacific time.
+            {moment(closeDate).utcOffset(420).format('dddd, MMMM Do YYYY,')} at 9am Pacific time.
           </>
         )}
       </p>
@@ -28,23 +43,23 @@ const FreePaid = ({ paid, date }) => {
   )
 }
 
-const Guidelines = ({ paid, closed, dateFreeOpen, dateFreeClose }) => {
+const Guidelines = ({ open, paid, dateOpen, dateClosed }) => {
   return (
     <>
-      {closed && 
+      {!open && 
         <>
           <p>We are temporarily <strong>closed</strong> to submissions. Our next free submission period is open between{' '}
-            {moment(dateFreeOpen).format('dddd, MMMM Do')} and{' '}
-            {moment(dateFreeClose).format('dddd, MMMM Do, YYYY')}.</p>
+            {moment(dateOpen).utcOffset(420).format('dddd, MMMM Do')} and{' '}
+            {moment(dateClosed).utcOffset(420).format('dddd, MMMM Do, YYYY')}.</p>
         </>
       }
-      {paid & !!closed ? (
+      {open & paid ? (
         <>
           <p>
             We are currently open to <strong>paid submissions with a $3 fee</strong>. If you&rsquo;d
             prefer to not pay a fee, our next free submission period is open between{' '}
-            {moment(dateFreeOpen).format('dddd, MMMM Do')} and{' '}
-            {moment(dateFreeClose).format('dddd, MMMM Do, YYYY')}.
+            {moment(dateOpen).utcOffset(420).format('dddd, MMMM Do')} and{' '}
+            {moment(dateClosed).utcOffset(420).format('dddd, MMMM Do, YYYY')}.
           </p>
           <p>To send a paid submission:</p>
           <ol>
@@ -98,11 +113,11 @@ const Guidelines = ({ paid, closed, dateFreeOpen, dateFreeClose }) => {
           </p>
         </>
       ) : ( null )}
-      {!paid && !closed ? (
+      {open && !paid ? (
         <>
           <p>
             We are currently <strong>open</strong> for free submissions until{' '}
-            {moment(dateFreeClose).format('dddd, MMMM Do, YYYY')}!
+            {moment(dateClosed).utcOffset(420).format('dddd, MMMM Do, YYYY')}!
           </p>
           <ol>
             <li>
@@ -139,4 +154,4 @@ const Guidelines = ({ paid, closed, dateFreeOpen, dateFreeClose }) => {
   )
 }
 
-export { FreePaid, Guidelines }
+export { Submissions, FreePaid, Guidelines }
