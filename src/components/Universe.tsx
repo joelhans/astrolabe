@@ -107,19 +107,19 @@ function drawScatter(
 
   // Build a list of links using {source: x, target: y} syntax.
   const links = posts
-    .filter((post) => !!post.linkedTo)
     .reduce((acc, { asterism, id, declination, ascension, linkedTo }) => {
       // Loop through all linkedTo targets to support multiple
       const links: StarLink[] =
-        linkedTo?.map((link) => ({
-          asterism: asterism,
-          source: id.split('/')[0],
-          sourceX: x(declination ?? 0),
-          sourceY: y(ascension ?? 0),
-          target: link,
-          targetX: x(posts?.find((x) => x.id === link)?.declination ?? 0),
-          targetY: y(posts?.find((x) => x.id === link)?.ascension ?? 0),
-        })) ?? []
+        linkedTo?.filter((link) => !!link)
+          .map((link) => ({
+            asterism: asterism,
+            source: id.split('/')[0],
+            sourceX: x(declination ?? 0),
+            sourceY: y(ascension ?? 0),
+            target: link,
+            targetX: x(posts?.find((x) => x.id === link)?.declination ?? 0),
+            targetY: y(posts?.find((x) => x.id === link)?.ascension ?? 0),
+          })) ?? []
       return [...acc, ...links]
     }, [] as StarLink[])
 
@@ -129,11 +129,11 @@ function drawScatter(
   // the asterism or just the single star.
   const highlight = function (d: Post) {
     // Highlight the star you're hovered over.
-    d3.selectAll('.' + d.slug)
-      .filter('.star')
-      .transition()
-      .duration(200)
-      .attr('fill', d.gradient ? `url(#white)` : '#fff')
+    // d3.selectAll('.' + d.slug)
+    //   .filter('.star')
+    //   .transition()
+    //   .duration(200)
+    //   .attr('fill', d.gradient ? `url(#white)` : '#fff')
 
     if (d.asterism) {
       // Highlight the lines between the stars of the chosen asterism.
@@ -199,7 +199,12 @@ function drawScatter(
     .attr('y1', (d) => d.sourceY ?? 0)
     .attr('x2', (d) => d.targetX ?? 0)
     .attr('y2', (d) => d.targetY ?? 0)
-    .attr('stroke-width', 2)
+    // .attr('stroke-width', 2)
+    .attr('stroke-width', function (d) {
+      console.log(links)
+      const width = 2
+      return width
+    })
     .attr('stroke', '#D3D3D3')
     .attr('stroke-opacity', '0%')
 
@@ -209,7 +214,7 @@ function drawScatter(
     .data(asterisms)
     .enter()
     .append('text')
-    .attr('class', (d) => 'name ' + d.values[0].asterism + ' font-serif')
+    .attr('class', (d) => 'name ' + d.values[0].asterism + ' font-serif font-bold')
     .text((d) => d.values[0]?.asterismFull)
     .attr('x', function (d) {
       // Calculate the average X position of all the stars in this asterism.
