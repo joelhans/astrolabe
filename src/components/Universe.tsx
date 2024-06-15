@@ -92,10 +92,9 @@ function drawScatter(
   // Group our `posts` object by the asterisms we've already defined and remove
   // any that aren't part of an asterism (aka `key` = `null`).
   const asterisms = d3
-    .nest()
-    .key((d: any) => d.asterism)
-    .entries(posts)
-    .filter((d) => d.key !== 'null')
+    .group(posts, (d: any) => d.asterism)
+    // .entries(posts)
+    // .filter((d) => d.key !== 'null')
 
   // Mutate the `posts` array to include a `visited` attribute for any star that
   // our user has already visited, which is stored in cookies.
