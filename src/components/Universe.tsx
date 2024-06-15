@@ -87,7 +87,7 @@ function drawScatter(
     .attr('cy', (d) => y(d[1]) ?? 0)
     .attr('r', '5')
     .attr('fill', (d) => colors[Math.floor(Math.random() * colors.length)])
-    .attr('fill-opacity', '40%')
+    .attr('fill-opacity', '30%')
 
   // Group our `posts` object by the asterisms we've already defined and remove
   // any that aren't part of an asterism (aka `key` = `null`).
@@ -131,39 +131,39 @@ function drawScatter(
     // Highlight the star you're hovered over.
     d3.selectAll('.' + d.slug + '-boundary')
       .transition()
-      .duration(200)
-      .attr('stroke-opacity', '50%')
+      .duration(400)
+      .attr('stroke-opacity', '20%')
 
     if (d.asterism) {
       // Highlight the lines between the stars of the chosen asterism.
       d3.selectAll(d.asterism && '.' + d.asterism)
         .filter('.line')
         .transition()
-        .duration(200)
-        .attr('stroke-opacity', '100%')
+        .duration(400)
+        .attr('stroke-opacity', '50%')
 
       // Highlight the name of the chosen asterism.
       d3.selectAll(d.asterism && '.' + d.asterism)
         .filter('.name')
         .transition()
-        .duration(200)
+        .duration(400)
         .attr('fill', '#059669')
-        .attr('fill-opacity', '100%')
+        .attr('fill-opacity', '80%')
     } else if (d.key) {
       // Highlight the lines between the stars of the chosen asterism.
       d3.selectAll('.' + d.key)
         .filter('.line')
         .transition()
-        .duration(200)
-        .attr('stroke-opacity', '100%')
+        .duration(400)
+        .attr('stroke-opacity', '50%')
 
       // Highlight the name of the chosen asterism.
       d3.selectAll('.' + d.key)
         .filter('.name')
         .transition()
-        .duration(200)
+        .duration(400)
         .attr('fill', '#059669')
-        .attr('fill-opacity', '100%')
+        .attr('fill-opacity', '80%')
     }
   }
 
@@ -172,14 +172,14 @@ function drawScatter(
     d3.selectAll('circle')
       .filter('.star')
       .transition()
-      .duration(200)
+      .duration(400)
       .attr('r', (d: any) => (d.size ? d.size : 20))
       .attr('fill', (d: any) =>
         d.visited ? '#666' : d.gradient ? `url(#${d.gradient})` : d.color ? d.color : '#69b3a2'
       )
-    d3.selectAll('circle').filter('.star-boundary').transition().duration(200).attr('stroke-opacity', '0%')
-    d3.selectAll('line').transition().duration(200).attr('stroke-opacity', '0%')
-    d3.selectAll('text').transition().duration(200).attr('fill', '#fff').attr('fill-opacity', '20%')
+    d3.selectAll('circle').filter('.star-boundary').transition().duration(400).attr('stroke-opacity', '0%')
+    d3.selectAll('line').transition().duration(400).attr('stroke-opacity', '0%')
+    d3.selectAll('text').transition().duration(400).attr('fill', '#fff').attr('fill-opacity', '20%')
   }
 
   // Function to show the tooltip.
@@ -199,8 +199,8 @@ function drawScatter(
     .attr('y1', (d) => d.sourceY ?? 0)
     .attr('x2', (d) => d.targetX ?? 0)
     .attr('y2', (d) => d.targetY ?? 0)
-    .attr('stroke-width', 5)
-    .attr('stroke', '#D3D3D3')
+    .attr('stroke-width', 10)
+    .attr('stroke', 'rgb(252, 247, 255)')
     .attr('stroke-opacity', '0%')
 
   // Create the asterism name.
@@ -238,6 +238,7 @@ function drawScatter(
       doNotHighlight()
     })
 
+  // Create the star boundaries.
   const starBoundary = svg
     .selectAll('scatterPoints')
     .data(posts)
@@ -248,7 +249,7 @@ function drawScatter(
     .attr('class', (d: Post) => 'star-boundary ' + d.asterism + ' ' + d.slug + '-boundary')
     .attr('cx', (d: Post) => x(d.declination ?? 0) ?? 0)
     .attr('cy', (d) => y(d['ascension'] ?? 0) ?? 0)
-    .attr('r', 80)
+    .attr('r', (d) => d.size + 50)
     .attr('fill', 'rgba(0,0,0,0)')
     .attr('stroke-width', 10)
     .attr('stroke', 'rgb(252, 247, 255)')
@@ -330,7 +331,6 @@ const Universe: FC<{ posts: Post[] }> = ({ posts }) => {
     if (scatterRef.current && tooltipRef.current) {
       drawScatter(scatterRef.current, tooltipRef.current, setTooltipState, setTooltipData, posts)
     }
-    // document.body.style.overflow = 'hidden'
   }, [posts, scatterRef, tooltipRef])
 
   return (
@@ -347,18 +347,6 @@ const Universe: FC<{ posts: Post[] }> = ({ posts }) => {
               <stop offset="0%" stopColor="rgba(255,255,255,1)" />
               <stop offset="100%" stopColor="rgba(255,255,255,1)" />
             </radialGradient>
-            {/* <radialGradient id="boundary">
-              <stop offset="0%" stopColor="rgba(255,255,255,0)" />
-              <stop offset="85%" stopColor="rgba(255,255,255,0)" />
-              <stop offset="90%" stopColor="rgba(255,255,255,1)" />
-              <stop offset="100%" stopColor="rgba(255,255,255,1)" />
-            </radialGradient>
-            <radialGradient id="boundaryHidden">
-              <stop offset="0%" stopColor="rgba(255,255,255,0)" />
-              <stop offset="85%" stopColor="rgba(255,255,255,0)" />
-              <stop offset="90%" stopColor="rgba(255,255,255,0)" />
-              <stop offset="100%" stopColor="rgba(255,255,255,0)" />
-            </radialGradient> */}
           </defs>
         </svg>
         <div
