@@ -249,7 +249,7 @@ function drawScatter(
     .attr('class', (d: Post) => 'star-boundary ' + d.asterism + ' ' + d.slug + '-boundary')
     .attr('cx', (d: Post) => x(d.declination ?? 0) ?? 0)
     .attr('cy', (d) => y(d['ascension'] ?? 0) ?? 0)
-    .attr('r', (d) => d.size + 50)
+    .attr('r', (d: any) => d.size + 50 ?? 80)
     .attr('fill', 'rgba(0,0,0,0)')
     .attr('stroke-width', 10)
     .attr('stroke', 'rgb(252, 247, 255)')
