@@ -129,11 +129,11 @@ function drawScatter(
   // the asterism or just the single star.
   const highlight = function (d: Post) {
     // Highlight the star you're hovered over.
-    // d3.selectAll('.' + d.slug)
-    //   .filter('.star')
-    //   .transition()
-    //   .duration(200)
-    //   .attr('fill', d.gradient ? `url(#white)` : '#fff')
+    d3.selectAll('.' + d.slug)
+      .filter('.star')
+      .transition()
+      .duration(200)
+      .attr('fill', d.gradient ? `url(#white)` : '#fff')
 
     if (d.asterism) {
       // Highlight the lines between the stars of the chosen asterism.
@@ -199,12 +199,7 @@ function drawScatter(
     .attr('y1', (d) => d.sourceY ?? 0)
     .attr('x2', (d) => d.targetX ?? 0)
     .attr('y2', (d) => d.targetY ?? 0)
-    // .attr('stroke-width', 2)
-    .attr('stroke-width', function (d) {
-      console.log(links)
-      const width = 2
-      return width
-    })
+    .attr('stroke-width', 2)
     .attr('stroke', '#D3D3D3')
     .attr('stroke-opacity', '0%')
 
