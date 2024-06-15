@@ -60,6 +60,9 @@ function drawScatter(
       'transform',
       `translate(${universePosition.x}, ${universePosition.y}) scale(${universePosition.k})`
     )
+  
+  // Define the SVG definitions.
+  const defs = svg.append('defs')
 
   // On mobile, this allows you to click the background and un-highlight the current star.
   d3.select('#scatter svg').on('click', function () {
@@ -175,7 +178,7 @@ function drawScatter(
       .duration(400)
       .attr('r', (d: any) => (d.size ? d.size : 20))
       .attr('fill', (d: any) =>
-        d.visited ? '#666' : d.gradient ? `url(#${d.gradient})` : d.color ? d.color : '#69b3a2'
+        d.gradient ? `url(#grad-${d.slug})` : d.color ? d.color : '#69b3a2'
       )
     d3.selectAll('circle').filter('.star-boundary').transition().duration(400).attr('stroke-opacity', '0%')
     d3.selectAll('line').transition().duration(400).attr('stroke-opacity', '0%')
@@ -289,9 +292,20 @@ function drawScatter(
     .attr('cx', (d: Post) => x(d.declination ?? 0) ?? 0)
     .attr('cy', (d) => y(d['ascension'] ?? 0) ?? 0)
     .attr('r', (d) => d.size ?? 20)
-    .attr('fill', (d) =>
-      d.visited ? '#666' : d.gradient ? `url(#${d.gradient})` : d.color ? d.color : '#69b3a2'
-    )
+    .attr('fill', function (d) {
+      // If the star has a gradient, it needs to be 
+      if (d.gradient) {
+        defs.append("radialGradient")
+          .attr("id", 'grad-' + d.slug)
+          .selectAll('stop')
+          .data(d.gradient)
+          .enter().append('stop')
+          .attr('offset', function(d) { return d.offset })
+          .attr('stop-color', function(d) { return d.color })
+      }
+
+      return d.gradient ? `url(#grad-${d.slug})` : d.color ? d.color : '#69b3a2'
+    })
     .on('mouseover', function (d) {
       highlight(d)
     })
@@ -336,19 +350,7 @@ const Universe: FC<{ posts: Post[] }> = ({ posts }) => {
   return (
     <>
       <div id="scatter" className="bg-gray-900">
-        <svg ref={scatterRef}>
-          <defs>
-            <radialGradient id="black-hole">
-              <stop offset="85%" stopColor="rgba(0,0,0,1)" />
-              <stop offset="92%" stopColor="rgba(255,255,255,1)" />
-              <stop offset="100%" stopColor="rgba(255,255,255,0)" />
-            </radialGradient>
-            <radialGradient id="white">
-              <stop offset="0%" stopColor="rgba(255,255,255,1)" />
-              <stop offset="100%" stopColor="rgba(255,255,255,1)" />
-            </radialGradient>
-          </defs>
-        </svg>
+        <svg ref={scatterRef} />
         <div
           ref={tooltipRef}
           className={`tooltipScatter absolute bottom-0 md:top-0 ${
