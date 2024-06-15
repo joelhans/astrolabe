@@ -199,7 +199,7 @@ function drawScatter(
     .attr('y1', (d) => d.sourceY ?? 0)
     .attr('x2', (d) => d.targetX ?? 0)
     .attr('y2', (d) => d.targetY ?? 0)
-    .attr('stroke-width', 2)
+    .attr('stroke-width', 5)
     .attr('stroke', '#D3D3D3')
     .attr('stroke-opacity', '0%')
 
