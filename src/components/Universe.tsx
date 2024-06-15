@@ -85,9 +85,9 @@ function drawScatter(
     .append('circle')
     .attr('cx', (d) => x(d[0]) ?? 0)
     .attr('cy', (d) => y(d[1]) ?? 0)
-    .attr('r', '2')
+    .attr('r', '5')
     .attr('fill', (d) => colors[Math.floor(Math.random() * colors.length)])
-    .attr('fill-opacity', '50%')
+    .attr('fill-opacity', '40%')
 
   // Group our `posts` object by the asterisms we've already defined and remove
   // any that aren't part of an asterism (aka `key` = `null`).
@@ -129,11 +129,10 @@ function drawScatter(
   // the asterism or just the single star.
   const highlight = function (d: Post) {
     // Highlight the star you're hovered over.
-    d3.selectAll('.' + d.slug)
-      .filter('.star')
+    d3.selectAll('.' + d.slug + '-boundary')
       .transition()
       .duration(200)
-      .attr('fill', d.gradient ? `url(#white)` : '#fff')
+      .attr('stroke-opacity', '50%')
 
     if (d.asterism) {
       // Highlight the lines between the stars of the chosen asterism.
@@ -178,6 +177,7 @@ function drawScatter(
       .attr('fill', (d: any) =>
         d.visited ? '#666' : d.gradient ? `url(#${d.gradient})` : d.color ? d.color : '#69b3a2'
       )
+    d3.selectAll('circle').filter('.star-boundary').transition().duration(200).attr('stroke-opacity', '0%')
     d3.selectAll('line').transition().duration(200).attr('stroke-opacity', '0%')
     d3.selectAll('text').transition().duration(200).attr('fill', '#fff').attr('fill-opacity', '20%')
   }
@@ -236,6 +236,44 @@ function drawScatter(
     })
     .on('mouseout', function () {
       doNotHighlight()
+    })
+
+  const starBoundary = svg
+    .selectAll('scatterPoints')
+    .data(posts)
+    .enter()
+    .append('a')
+    .attr('href', (d: Post) => d.id)
+    .append('circle')
+    .attr('class', (d: Post) => 'star-boundary ' + d.asterism + ' ' + d.slug + '-boundary')
+    .attr('cx', (d: Post) => x(d.declination ?? 0) ?? 0)
+    .attr('cy', (d) => y(d['ascension'] ?? 0) ?? 0)
+    .attr('r', 80)
+    .attr('fill', 'rgba(0,0,0,0)')
+    .attr('stroke-width', 10)
+    .attr('stroke', 'rgb(252, 247, 255)')
+    .attr('stroke-opacity', '0%')
+    .on('mouseover', function (d) {
+      highlight(d)
+    })
+    .on('mouseout', function () {
+      doNotHighlight()
+    })
+    .on('click', function (d) {
+      doNotHighlight()
+      d3.event.preventDefault()
+      d3.event.stopPropagation()
+      highlight(d)
+      tooltipShow(d)
+      localStorage.setItem('universePosition', JSON.stringify(d3.zoomTransform(this)))
+    })
+    .on('touchstart', function (d) {
+      doNotHighlight()
+      d3.event.preventDefault()
+      d3.event.stopPropagation()
+      highlight(d)
+      tooltipShow(d)
+      localStorage.setItem('universePosition', JSON.stringify(d3.zoomTransform(this)))
     })
 
   // Create the stars.
@@ -309,6 +347,18 @@ const Universe: FC<{ posts: Post[] }> = ({ posts }) => {
               <stop offset="0%" stopColor="rgba(255,255,255,1)" />
               <stop offset="100%" stopColor="rgba(255,255,255,1)" />
             </radialGradient>
+            {/* <radialGradient id="boundary">
+              <stop offset="0%" stopColor="rgba(255,255,255,0)" />
+              <stop offset="85%" stopColor="rgba(255,255,255,0)" />
+              <stop offset="90%" stopColor="rgba(255,255,255,1)" />
+              <stop offset="100%" stopColor="rgba(255,255,255,1)" />
+            </radialGradient>
+            <radialGradient id="boundaryHidden">
+              <stop offset="0%" stopColor="rgba(255,255,255,0)" />
+              <stop offset="85%" stopColor="rgba(255,255,255,0)" />
+              <stop offset="90%" stopColor="rgba(255,255,255,0)" />
+              <stop offset="100%" stopColor="rgba(255,255,255,0)" />
+            </radialGradient> */}
           </defs>
         </svg>
         <div
