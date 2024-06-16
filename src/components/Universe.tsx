@@ -300,8 +300,8 @@ function drawScatter(
           .selectAll('stop')
           .data(d.gradient)
           .enter().append('stop')
-          .attr('offset', function(d) { return d.offset })
-          .attr('stop-color', function(d) { return d.color })
+          .attr('offset', function(d: any) { return d.offset })
+          .attr('stop-color', function(d: any) { return d.color })
       }
 
       return d.gradient ? `url(#grad-${d.slug})` : d.color ? d.color : '#69b3a2'
