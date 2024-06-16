@@ -10,7 +10,8 @@ import { Asterism, Post, StarLink } from '@/types/content'
 
 function drawScatter(
   scatterRef: SVGSVGElement,
-  tooltipRef: HTMLDivElement,
+  tooltipState: boolean,
+  tooltipData: string[],
   setTooltipState: (b: boolean) => void,
   setTooltipData: (d: Post) => void,
   posts: Post[]
@@ -60,6 +61,8 @@ function drawScatter(
       'transform',
       `translate(${universePosition.x}, ${universePosition.y}) scale(${universePosition.k})`
     )
+
+  svg.selectAll("*").remove()
   
   // Define the SVG definitions.
   const defs = svg.append('defs')
@@ -149,16 +152,16 @@ function drawScatter(
         .duration(400)
         .attr('fill', '#059669')
         .attr('fill-opacity', '80%')
-    } else if (d.key) {
+    } else if (d.id) {
       // Highlight the lines between the stars of the chosen asterism.
-      d3.selectAll('.' + d.key)
+      d3.selectAll('.' + d.asterism)
         .filter('.line')
         .transition()
         .duration(400)
         .attr('stroke-opacity', '50%')
 
       // Highlight the name of the chosen asterism.
-      d3.selectAll('.' + d.key)
+      d3.selectAll('.' + d.asterism)
         .filter('.name')
         .transition()
         .duration(400)
@@ -169,15 +172,16 @@ function drawScatter(
 
   // Function to reset highlighting.
   const doNotHighlight = function () {
-    d3.selectAll('circle')
-      .filter('.star')
+    console.log(tooltipData)
+    if (tooltipState == false) {
+      d3.selectAll('.star')
       .transition()
       .duration(400)
-      .attr('r', (d: any) => (d.size ? d.size : 20))
       .attr('fill', (d: any) =>
         d.gradient ? `url(#grad-${d.slug})` : d.color ? d.color : '#69b3a2'
       )
-    d3.selectAll('circle').filter('.star-boundary').transition().duration(400).attr('stroke-opacity', '0%')
+      d3.selectAll('circle').filter('.star-boundary').transition().duration(400).attr('stroke-opacity', '0%')
+    }
     d3.selectAll('line').transition().duration(400).attr('stroke-opacity', '0%')
     d3.selectAll('text').transition().duration(400).attr('fill', '#fff').attr('fill-opacity', '20%')
   }
@@ -290,7 +294,7 @@ function drawScatter(
     .attr('cy', (d) => y(d['ascension'] ?? 0) ?? 0)
     .attr('r', (d) => d.size ?? 20)
     .attr('fill', function (d) {
-      // If the star has a gradient, it needs to be 
+      // If the star has a gradient, it needs to be appended to the SVG's defs.
       if (d.gradient) {
         defs.append("radialGradient")
           .attr("id", 'grad-' + d.slug)
@@ -329,7 +333,6 @@ function drawScatter(
 
 const Universe: FC<{ posts: Post[] }> = ({ posts }) => {
   const scatterRef = useRef<SVGSVGElement>(null)
-  const tooltipRef = useRef<HTMLDivElement>(null)
 
   const [tooltipState, setTooltipState] = useState(false)
   const [tooltipData, setTooltipData] = useState<any | null>(null)
@@ -339,17 +342,16 @@ const Universe: FC<{ posts: Post[] }> = ({ posts }) => {
   }
 
   useEffect(() => {
-    if (scatterRef.current && tooltipRef.current) {
-      drawScatter(scatterRef.current, tooltipRef.current, setTooltipState, setTooltipData, posts)
+    if (scatterRef.current) {
+      drawScatter(scatterRef.current, tooltipState, tooltipData, setTooltipState, setTooltipData, posts)
     }
-  }, [posts, scatterRef, tooltipRef])
+  }, [posts, scatterRef, tooltipState, tooltipData])
 
   return (
     <>
       <div id="scatter" className="bg-gray-900">
         <svg ref={scatterRef} />
         <div
-          ref={tooltipRef}
           className={`tooltipScatter absolute bottom-0 md:top-0 ${
             tooltipState ? `right-0` : `-right-full`
           } block w-full md:h-screen md:w-4/12 lg:3/12 flex flex-col justify-center text-xl !text-gray-900 p-8 lg:p-12 bg-gray-100 rounded-sm transition-all ease-in-out`}
