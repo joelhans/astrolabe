@@ -33,7 +33,7 @@ export type Post = {
   authorBio?: string
   color?: string
   declination?: number
-  gradient?: string
+  gradient?: any
   id: string
   linkedTo?: string[]
   publishedOn?: string
