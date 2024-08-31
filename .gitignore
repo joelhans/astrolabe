@@ -39,3 +39,12 @@ yarn-error.log*
 .env.test.local
 .env.production.local.gitsigners
 .gitsigners
+# Devenv
+.devenv*
+devenv.local.nix
+
+# direnv
+.direnv
+
+# pre-commit
+.pre-commit-config.yaml
