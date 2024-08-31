@@ -7,8 +7,6 @@
     enable = true;
     corepack = {
       enable = true;
-      # package = pkgs.yarn.override { nodejs = package; };
-      # package = package.pkgs.yarn;
     };
   };
 
