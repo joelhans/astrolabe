@@ -24,6 +24,7 @@ export type StarLink = {
 }
 
 export type Post = {
+  [x: string]: any
   artworkUrl?: string
   ascension?: number
   asterism?: string

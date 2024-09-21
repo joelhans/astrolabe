@@ -51,8 +51,8 @@ function drawScatter(
       d3.zoomIdentity.translate(universePosition.x, universePosition.y).scale(universePosition.k)
     )
     .call(
-      d3.zoom<SVGSVGElement, unknown>().on('zoom', () => {
-        svg.attr('transform', d3.event.transform)
+      d3.zoom<SVGSVGElement, unknown>().on('zoom', (event: any, d) => {
+        svg.attr('transform', event.transform)
       })
     )
     .append('g')
@@ -95,10 +95,7 @@ function drawScatter(
   // Group our `posts` object by the asterisms we've already defined and remove
   // any that aren't part of an asterism (aka `key` = `null`).
   const asterisms = d3
-    .nest()
-    .key((d: any) => d.asterism)
-    .entries(posts)
-    .filter((d) => d.key !== 'null')
+    .group(posts, (d: any) => d.asterism)
 
   // Mutate the `posts` array to include a `visited` attribute for any star that
   // our user has already visited, which is stored in cookies.
@@ -137,16 +134,16 @@ function drawScatter(
       .duration(400)
       .attr('stroke-opacity', '20%')
 
-    if (d.asterism) {
+    if (Array.isArray(d)) {
       // Highlight the lines between the stars of the chosen asterism.
-      d3.selectAll(d.asterism && '.' + d.asterism)
+      d3.selectAll(d[0] && '.' + d[0])
         .filter('.line')
         .transition()
         .duration(400)
         .attr('stroke-opacity', '50%')
 
       // Highlight the name of the chosen asterism.
-      d3.selectAll(d.asterism && '.' + d.asterism)
+      d3.selectAll(d[0] && '.' + d[0])
         .filter('.name')
         .transition()
         .duration(400)
@@ -209,32 +206,32 @@ function drawScatter(
   // Create the asterism name.
   const names = svg
     .selectAll('asterismNames')
-    .data(asterisms)
+    .data(asterisms as unknown as string[])
     .enter()
     .append('text')
-    .attr('class', (d) => 'name ' + d.values[0].asterism + ' font-serif font-bold')
-    .text((d) => d.values[0]?.asterismFull)
-    .attr('x', function (d) {
+    .attr('class', (d: any) => 'name ' + d[0] + ' font-serif font-bold')
+    .text((d: any) => d[1][0].asterismFull)
+    .attr('x', function (d: any) {
       // Calculate the average X position of all the stars in this asterism.
       const width = this.getComputedTextLength()
-      const max = Math.max(...d.values.map((o: any) => o.declination)),
-        min = Math.min(...d.values.map((o: any) => o.declination)),
+      const max = Math.max(...d[1].map((o: any) => o.declination)),
+        min = Math.min(...d[1].map((o: any) => o.declination)),
         mid = (max + min) / 2
-      return (x(mid) ?? 0) - width * 2
+      return (x(mid) ?? 0) - width * 3
     })
-    .attr('y', function (d) {
+    .attr('y', function (d: any) {
       // Calculate the average Y position of all the stars in this asterism.
       const height = this.getBoundingClientRect().height
-      const max = Math.max(...d.values.map((o: any) => o.ascension)),
-        min = Math.min(...d.values.map((o: any) => o.ascension)),
+      const max = Math.max(...d[1].map((o: any) => o.ascension)),
+        min = Math.min(...d[1].map((o: any) => o.ascension)),
         mid = (max + min) / 2
-      return (y(mid) ?? 0) + 40
+      return (y(mid) ?? 0) - height + 60
     })
     .attr('fill', '#fff')
     .attr('font-size', '7rem')
     .attr('font-style', 'italic')
     .attr('fill-opacity', '20%')
-    .on('mouseover', function (d: any) {
+    .on('mouseover', function (event, d:any) {
       highlight(d)
     })
     .on('mouseout', function () {
@@ -257,24 +254,24 @@ function drawScatter(
     .attr('stroke-width', 10)
     .attr('stroke', 'rgb(252, 247, 255)')
     .attr('stroke-opacity', '0%')
-    .on('mouseover', function (d) {
+    .on('mouseover', function (event, d:any) {
       highlight(d)
     })
     .on('mouseout', function () {
       doNotHighlight()
     })
-    .on('click', function (d) {
+    .on('click', function (event, d:any) {
       doNotHighlight()
-      d3.event.preventDefault()
-      d3.event.stopPropagation()
+      event.preventDefault()
+      event.stopPropagation()
       highlight(d)
       tooltipShow(d)
       localStorage.setItem('universePosition', JSON.stringify(d3.zoomTransform(this)))
     })
-    .on('touchstart', function (d) {
+    .on('touchstart', function (event, d:any) {
       doNotHighlight()
-      d3.event.preventDefault()
-      d3.event.stopPropagation()
+      event.preventDefault()
+      event.stopPropagation()
       highlight(d)
       tooltipShow(d)
       localStorage.setItem('universePosition', JSON.stringify(d3.zoomTransform(this)))
@@ -306,24 +303,24 @@ function drawScatter(
 
       return d.gradient ? `url(#grad-${d.slug})` : d.color ? d.color : '#69b3a2'
     })
-    .on('mouseover', function (d) {
+    .on('mouseover', function (event, d:any) {
       highlight(d)
     })
     .on('mouseout', function () {
       doNotHighlight()
     })
-    .on('click', function (d) {
+    .on('click', function (event, d:any) {
       doNotHighlight()
-      d3.event.preventDefault()
-      d3.event.stopPropagation()
+      event.preventDefault()
+      event.stopPropagation()
       highlight(d)
       tooltipShow(d)
       localStorage.setItem('universePosition', JSON.stringify(d3.zoomTransform(this)))
     })
-    .on('touchstart', function (d) {
+    .on('touchstart', function (event, d:any) {
       doNotHighlight()
-      d3.event.preventDefault()
-      d3.event.stopPropagation()
+      event.preventDefault()
+      event.stopPropagation()
       highlight(d)
       tooltipShow(d)
       localStorage.setItem('universePosition', JSON.stringify(d3.zoomTransform(this)))
