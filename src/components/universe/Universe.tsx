@@ -6,8 +6,8 @@ import moment from 'moment'
 import { IoTelescopeOutline } from 'react-icons/io5'
 import Image from 'next/image'
 import { Asterism, Post, StarLink } from '@/types/content'
-import initStarscape from './initStarscape.tsx'
-import {removeHighlight, addHighlight} from './highlight.tsx'
+import initStarscape from './initStarscape'
+import {removeHighlight, addHighlight} from './highlight'
 
 function drawScatter(
   scatterRef: SVGSVGElement,
