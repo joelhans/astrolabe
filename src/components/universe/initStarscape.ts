@@ -8,17 +8,17 @@
 import * as d3 from 'd3'
 import StarscapeData from '@data/stars.json'
 
-const initStarscape = (svg, x, y) => {
+const initStarscape = (svg: any, x: any, y: any) => {
   const colors = ['#F94144', '#4D908E', '#f59e0b', '#F9C74F', '#c026d3', '#059669', '#4D908E']
   const starscape = svg
     .selectAll('scapePoints')
     .data(StarscapeData)
     .enter()
     .append('circle')
-    .attr('cx', (d) => x(d[0]) ?? 0)
-    .attr('cy', (d) => y(d[1]) ?? 0)
+    .attr('cx', (d: any) => x(d[0]) ?? 0)
+    .attr('cy', (d: any) => y(d[1]) ?? 0)
     .attr('r', '5')
-    .attr('fill', (d) => colors[Math.floor(Math.random() * colors.length)])
+    .attr('fill', (d: any) => colors[Math.floor(Math.random() * colors.length)])
     .attr('fill-opacity', '30%')
 }
 
