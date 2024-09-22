@@ -3,7 +3,7 @@ import * as d3 from 'd3'
 
 const removeHighlight = (d) => {
   console.log(d)
-  d3.selectAll(`circle.star-boundary:not(.${d.slug}-boundary):not(.active)`)
+  d3.selectAll(`circle.star-boundary`)
     .transition()
     .duration(400)
     .attr('stroke-opacity', '0%')
