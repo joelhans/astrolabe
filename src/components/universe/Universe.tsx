@@ -7,8 +7,7 @@ import { IoTelescopeOutline } from 'react-icons/io5'
 import Image from 'next/image'
 import { Asterism, Post, StarLink } from '@/types/content'
 import initStarscape from './initStarscape.tsx'
-import removeHighlight from './removeHighlight.tsx'
-import highlightAdd from './highlightAdd.tsx'
+import {removeHighlight, addHighlight} from './highlight.tsx'
 
 function drawScatter(
   scatterRef: SVGSVGElement,
@@ -185,7 +184,7 @@ function drawScatter(
     .attr('font-style', 'italic')
     .attr('fill-opacity', '20%')
     .on('mouseover', function (event, d:any) {
-      highlightAdd(d)
+      addHighlight(d)
     })
     .on('mouseout', function (event, d:any) {
       removeHighlight(d)
@@ -208,7 +207,7 @@ function drawScatter(
     .attr('stroke', 'rgb(252, 247, 255)')
     .attr('stroke-opacity', '0%')
     .on('mouseover', function (event, d:any) {
-      highlightAdd(d)
+      addHighlight(d)
     })
     .on('mouseout', function (event, d:any) {
       removeHighlight(d)
@@ -217,7 +216,7 @@ function drawScatter(
       removeHighlight(d)
       event.preventDefault()
       event.stopPropagation()
-      highlightAdd(d)
+      addHighlight(d)
       tooltipShow(d)
       localStorage.setItem('universePosition', JSON.stringify(d3.zoomTransform(this)))
     })
@@ -225,7 +224,7 @@ function drawScatter(
       removeHighlight(d)
       event.preventDefault()
       event.stopPropagation()
-      highlightAdd(d)
+      addHighlight(d)
       tooltipShow(d)
       localStorage.setItem('universePosition', JSON.stringify(d3.zoomTransform(this)))
     })
@@ -256,7 +255,7 @@ function drawScatter(
       return d.gradient ? `url(#grad-${d.slug})` : d.color ? d.color : '#69b3a2'
     })
     .on('mouseover', function (event, d:any) {
-      highlightAdd(d)
+      addHighlight(d)
     })
     .on('mouseout', function (event, d:any) {
       removeHighlight(d)
@@ -265,7 +264,7 @@ function drawScatter(
       removeHighlight(d)
       event.preventDefault()
       event.stopPropagation()
-      highlightAdd(d)
+      addHighlight(d)
       tooltipShow(d)
       localStorage.setItem('universePosition', JSON.stringify(d3.zoomTransform(this)))
     })
@@ -273,7 +272,7 @@ function drawScatter(
       removeHighlight(d)
       event.preventDefault()
       event.stopPropagation()
-      highlightAdd(d)
+      addHighlight(d)
       tooltipShow(d)
       localStorage.setItem('universePosition', JSON.stringify(d3.zoomTransform(this)))
     })

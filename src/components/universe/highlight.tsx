@@ -1,18 +1,21 @@
-// Function to highlight a specific star or an asterism of stars. The function
-// automatically makes all stars smaller upon mouseover on any star. Then,
-// depending on whether or not it's part of an asterism, it either highlights
-// the asterism or just the single star.
-
+// Function to reset highlighting.
 import * as d3 from 'd3'
 
-const highlight = function (d) {
+export const removeHighlight = (d) => {
+  d3.selectAll(`circle.star-boundary:not(.${d.slug}-boundary`)
+    .transition()
+    .duration(400)
+    .attr('stroke-opacity', '0%')
+  d3.selectAll('line').transition().duration(400).attr('stroke-opacity', '0%')
+  d3.selectAll('text').transition().duration(400).attr('fill', '#fff').attr('fill-opacity', '20%')
+}
+
+export const addHighlight = function (d) {
   // Highlight the star you're hovered over.
   d3.selectAll(`.${d.slug}-boundary`)
     .transition()
     .duration(400)
     .attr('stroke-opacity', '20%')
-
-  console.log(d.asterism)
 
   // Highlight the lines between the stars of the chosen asterism.
   d3.selectAll(`.line.${d.asterism}`)
@@ -28,4 +31,3 @@ const highlight = function (d) {
     .attr('fill-opacity', '80%')
 }
 
-export default highlight
