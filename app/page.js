@@ -1,7 +1,7 @@
 import siteMetadata from '@data/siteMetadata'
 import { BASE_CONTENT_PATH, STAR_CONTENT_PATH } from '@config/constants'
 import { getFrontMatter } from '@lib/mdx'
-import Universe from '@components/Universe'
+import Universe from '@components/universe/Universe'
 
 export const metadata = {
   title: siteMetadata.title,

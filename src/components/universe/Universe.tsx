@@ -5,8 +5,10 @@ import * as d3 from 'd3'
 import moment from 'moment'
 import { IoTelescopeOutline } from 'react-icons/io5'
 import Image from 'next/image'
-import StarscapeData from '@data/stars.json'
 import { Asterism, Post, StarLink } from '@/types/content'
+import initStarscape from './initStarscape.tsx'
+import removeHighlight from './removeHighlight.tsx'
+import highlightAdd from './highlightAdd.tsx'
 
 function drawScatter(
   scatterRef: SVGSVGElement,
@@ -20,14 +22,12 @@ function drawScatter(
   const winWidth = window.innerWidth,
     width = 4000,
     height = 4000
-
   let isMobile = winWidth < 768
 
   // Set the `visitedStars` cookie to an empty array if there is no localStorage
   // already, then set it to be used here and on individual stars.
   const savedStars = localStorage.getItem('visitedStars')
   const visitedStars = savedStars ? JSON.parse(savedStars) : new Array()
-
   localStorage.setItem('visitedStars', JSON.stringify(visitedStars))
 
   // Find the last universe position, if it exists, which we use use to set the
@@ -65,8 +65,8 @@ function drawScatter(
   const defs = svg.append('defs')
 
   // On mobile, this allows you to click the background and un-highlight the current star.
-  d3.select('#scatter svg').on('click', function () {
-    doNotHighlight()
+  d3.select('#scatter svg').on('click', function (d) {
+    removeHighlight(d)
     setTooltipState(false)
   })
 
@@ -75,22 +75,7 @@ function drawScatter(
   const y = d3.scaleLinear().domain([-10, 10]).range([height, 0])
 
   // Generate the Starscape.
-  // And the star "generator".
-  // const particles = d3.range(1000).map(function(i) {
-  //   return [Math.random() * 40 * (Math.round(Math.random()) ? 1 : -1), Math.random() * 40 * (Math.round(Math.random()) ? 1 : -1)];
-  // })
-  // console.log(JSON.stringify(particles))
-  const colors = ['#F94144', '#4D908E', '#f59e0b', '#F9C74F', '#c026d3', '#059669', '#4D908E']
-  const starscape = svg
-    .selectAll('scapePoints')
-    .data(StarscapeData)
-    .enter()
-    .append('circle')
-    .attr('cx', (d) => x(d[0]) ?? 0)
-    .attr('cy', (d) => y(d[1]) ?? 0)
-    .attr('r', '5')
-    .attr('fill', (d) => colors[Math.floor(Math.random() * colors.length)])
-    .attr('fill-opacity', '30%')
+  initStarscape(svg, x, y)
 
   // Group our `posts` object by the asterisms we've already defined and remove
   // any that aren't part of an asterism (aka `key` = `null`).
@@ -129,57 +114,25 @@ function drawScatter(
   // the asterism or just the single star.
   const highlight = function (d: Post) {
     // Highlight the star you're hovered over.
-    d3.selectAll('.' + d.slug + '-boundary')
+    d3.selectAll(`.${d.slug}-boundary`)
       .transition()
       .duration(400)
       .attr('stroke-opacity', '20%')
 
-    if (Array.isArray(d)) {
-      // Highlight the lines between the stars of the chosen asterism.
-      d3.selectAll(d[0] && '.' + d[0])
-        .filter('.line')
-        .transition()
-        .duration(400)
-        .attr('stroke-opacity', '50%')
+    console.log(d.asterism)
 
-      // Highlight the name of the chosen asterism.
-      d3.selectAll(d[0] && '.' + d[0])
-        .filter('.name')
-        .transition()
-        .duration(400)
-        .attr('fill', '#059669')
-        .attr('fill-opacity', '80%')
-    } else if (d.key) {
-      // Highlight the lines between the stars of the chosen asterism.
-      d3.selectAll('.' + d.key)
-        .filter('.line')
-        .transition()
-        .duration(400)
-        .attr('stroke-opacity', '50%')
-
-      // Highlight the name of the chosen asterism.
-      d3.selectAll('.' + d.key)
-        .filter('.name')
-        .transition()
-        .duration(400)
-        .attr('fill', '#059669')
-        .attr('fill-opacity', '80%')
-    }
-  }
-
-  // Function to reset highlighting.
-  const doNotHighlight = function () {
-    d3.selectAll('circle')
-      .filter('.star')
+    // Highlight the lines between the stars of the chosen asterism.
+    d3.selectAll(`.line.${d.asterism}`)
       .transition()
       .duration(400)
-      .attr('r', (d: any) => (d.size ? d.size : 20))
-      .attr('fill', (d: any) =>
-        d.gradient ? `url(#grad-${d.slug})` : d.color ? d.color : '#69b3a2'
-      )
-    d3.selectAll('circle').filter('.star-boundary').transition().duration(400).attr('stroke-opacity', '0%')
-    d3.selectAll('line').transition().duration(400).attr('stroke-opacity', '0%')
-    d3.selectAll('text').transition().duration(400).attr('fill', '#fff').attr('fill-opacity', '20%')
+      .attr('stroke-opacity', '50%')
+
+    // Highlight the name of the chosen asterism.
+    d3.selectAll(`.name.${d.asterism}`)
+      .transition()
+      .duration(400)
+      .attr('fill', '#059669')
+      .attr('fill-opacity', '80%')
   }
 
   // Function to show the tooltip.
@@ -232,10 +185,10 @@ function drawScatter(
     .attr('font-style', 'italic')
     .attr('fill-opacity', '20%')
     .on('mouseover', function (event, d:any) {
-      highlight(d)
+      highlightAdd(d)
     })
-    .on('mouseout', function () {
-      doNotHighlight()
+    .on('mouseout', function (event, d:any) {
+      removeHighlight(d)
     })
 
   // Create the star boundaries.
@@ -255,28 +208,28 @@ function drawScatter(
     .attr('stroke', 'rgb(252, 247, 255)')
     .attr('stroke-opacity', '0%')
     .on('mouseover', function (event, d:any) {
-      highlight(d)
+      highlightAdd(d)
     })
-    .on('mouseout', function () {
-      doNotHighlight()
+    .on('mouseout', function (event, d:any) {
+      removeHighlight(d)
     })
     .on('click', function (event, d:any) {
-      doNotHighlight()
+      removeHighlight(d)
       event.preventDefault()
       event.stopPropagation()
-      highlight(d)
+      highlightAdd(d)
       tooltipShow(d)
       localStorage.setItem('universePosition', JSON.stringify(d3.zoomTransform(this)))
     })
     .on('touchstart', function (event, d:any) {
-      doNotHighlight()
+      removeHighlight(d)
       event.preventDefault()
       event.stopPropagation()
-      highlight(d)
+      highlightAdd(d)
       tooltipShow(d)
       localStorage.setItem('universePosition', JSON.stringify(d3.zoomTransform(this)))
     })
-
+  
   // Create the stars.
   const stars = svg
     .selectAll('scatterPoints')
@@ -300,28 +253,27 @@ function drawScatter(
           .attr('offset', function(d: any) { return d.offset })
           .attr('stop-color', function(d: any) { return d.color })
       }
-
       return d.gradient ? `url(#grad-${d.slug})` : d.color ? d.color : '#69b3a2'
     })
     .on('mouseover', function (event, d:any) {
-      highlight(d)
+      highlightAdd(d)
     })
-    .on('mouseout', function () {
-      doNotHighlight()
+    .on('mouseout', function (event, d:any) {
+      removeHighlight(d)
     })
     .on('click', function (event, d:any) {
-      doNotHighlight()
+      removeHighlight(d)
       event.preventDefault()
       event.stopPropagation()
-      highlight(d)
+      highlightAdd(d)
       tooltipShow(d)
       localStorage.setItem('universePosition', JSON.stringify(d3.zoomTransform(this)))
     })
     .on('touchstart', function (event, d:any) {
-      doNotHighlight()
+      removeHighlight(d)
       event.preventDefault()
       event.stopPropagation()
-      highlight(d)
+      highlightAdd(d)
       tooltipShow(d)
       localStorage.setItem('universePosition', JSON.stringify(d3.zoomTransform(this)))
     })
