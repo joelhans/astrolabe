@@ -38,6 +38,10 @@ html {
   position: relative;
 }
 
+text.name {
+  cursor: pointer;
+}
+
 /* Prose */
 
 .star-content.prose > p:not(.prose-no-dropcap):first-of-type:first-letter {
