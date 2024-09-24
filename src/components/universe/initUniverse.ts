@@ -92,8 +92,8 @@ export const createStars = (svg: UniverseSVG, posts: Post[], setTooltipData: Dis
     .selectAll('stars')
     .data(posts)
     .enter()
-    .append('a')
-    .attr('href', (d: Post) => d.id)
+    .append('g')
+    .attr('class', (d) => d.asterism)
     .append('circle')
     .attr('class', (d: Post) => 'star ' + d.asterism + ' ' + d.slug)
     .attr('cx', (d: Post) => xScale(d.declination ?? 0) ?? 0)
@@ -110,9 +110,6 @@ export const createStars = (svg: UniverseSVG, posts: Post[], setTooltipData: Dis
           .attr('stop-color', function(d: any) { return d.color })
       }      return d.gradient ? `url(#grad-${d.slug})` : d.color ? d.color : '#69b3a2'
     })
-    .attr('role', 'button')
-    .attr('tabindex', '0')
-    .attr('aria-label', (d: Post) => d.title)
     .select(function() { return this.parentElement })
     .append('circle')
     .attr('class', (d: Post) => `star-boundary ${d.slug}`)
@@ -124,6 +121,9 @@ export const createStars = (svg: UniverseSVG, posts: Post[], setTooltipData: Dis
     .attr('stroke-width', 10)
     .attr('stroke', 'rgb(252, 247, 255)')
     .attr('stroke-opacity', '0%')
+    .attr('role', 'button')
+    .attr('tabindex', '0')
+    .attr('aria-label', (d: Post) => d.title)
     .on('mouseover', function (currentEvent, d:any) {
       addHighlight(d)
     })
@@ -146,6 +146,16 @@ export const createStars = (svg: UniverseSVG, posts: Post[], setTooltipData: Dis
       tooltipShow(d)
       setTooltipData(d)
       localStorage.setItem('universePosition', JSON.stringify(d3.zoomTransform(this)))
+    })
+    .on('keydown', function (currentEvent, d:any) {
+      if (event.key == 'Enter' || event.key == 'Space') {
+        resetAllHighlight()
+        event.preventDefault()
+        event.stopPropagation()
+        addHighlight(d)
+        setTooltipData(d)
+        localStorage.setItem('universePosition', JSON.stringify(d3.zoomTransform(this)))
+      }
     })
 }
 

@@ -26,20 +26,28 @@ html {
 }
 
 /* Universe */
-#scatter {
-  display: block;
-  width: 4000px;
-  height: 4000px;
+.asterisms {
   background: linear-gradient(to left top, #0d1c48, #0f062d);
 }
 
-#scatter > svg {
+.asterisms > svg {
   cursor: grab;
   position: relative;
 }
 
 text.name {
   cursor: pointer;
+}
+
+.star {
+  cursor: pointer;
+}
+.star-boundary:focus,
+.star-boundary:focus-visible {
+  outline: none;
+  stroke: white;
+  stroke-width: 10px;
+  stroke-opacity: 100%;
 }
 
 /* Prose */

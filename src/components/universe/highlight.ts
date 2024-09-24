@@ -20,9 +20,6 @@ export const removeHighlight = (d: any) => {
 }
 
 export const addHighlight = function (d: any) {
-
-  console.log(d[0])
-
   // Highlight the star you're hovered over.
   d3.selectAll(`.star-boundary.${d.slug}`)
     .transition()
@@ -30,13 +27,13 @@ export const addHighlight = function (d: any) {
     .attr('stroke-opacity', '20%')
 
   // Highlight the lines between the stars of the chosen asterism.
-  d3.selectAll(`.line.${d[0]}`)
+  d3.selectAll(`.line.${d[0] ?? d.asterism}`)
     .transition()
     .duration(400)
     .attr('stroke-opacity', '50%')
 
   // Highlight the name of the chosen asterism.
-  d3.selectAll(`.name.${d[0]}`)
+  d3.selectAll(`.name.${d[0] ?? d.asterism}`)
     .transition()
     .duration(400)
     .attr('fill', '#059669')
