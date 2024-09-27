@@ -21,8 +21,22 @@ export const yScale = d3.scaleLinear().domain([-10, 10]).range([height, 0])
 // Define default colors to use in the Starscape.
 const colors = ['#F94144', '#4D908E', '#f59e0b', '#F9C74F', '#c026d3', '#059669', '#4D908E']
 
+// Define a shared zoom-and-pan call that both SVGs (`asterismRef` &&
+// `scatterRef`) can share. It's not perfect, but it creates a kind of parallax
+// effect when panning around.
+const zoom = d3.zoom().on("zoom", function (event: any) {
+  d3
+    .selectAll('.asterisms')
+    .select('g')
+    .attr('transform', event.transform)
+  d3
+    .selectAll('.starscape')
+    .select('g')
+    .attr('transform', `translate(${event.transform.x / 10}, ${event.transform.y / 8}) scale(${event.transform.k * 3.3})`)
+})
+
 // Create the universe itself.
-export const createUniverse = (asterismRef: SVGSVGElement) => {
+export const createUniverse = (asterismRef: SVGSVGElement, starscapeRef: SVGSVGElement) => {
   let isMobile = window.innerWidth < 768
 
   // Find the last universe position, if it exists, which we use use to set the
@@ -41,14 +55,13 @@ export const createUniverse = (asterismRef: SVGSVGElement) => {
     .select(asterismRef)
     .attr('width', width)
     .attr('height', height)
+    .call(zoom)
+    // This call and `attr` establish the position of the universe based on
+    // either the defaults listed just above or the last known position from the
+    // user's localstorage.
     .call(
       d3.zoom<SVGSVGElement, unknown>().transform,
       d3.zoomIdentity.translate(universePosition.x, universePosition.y).scale(universePosition.k)
-    )
-    .call(
-      d3.zoom<SVGSVGElement, unknown>().on('zoom', (event: any, d) => {
-        svg.attr('transform', event.transform)
-      })
     )
     .append('g')
     .attr(
@@ -226,6 +239,7 @@ export const createStarscape = (starscapeRef: SVGSVGElement) =>
     .append('g')
     .attr('class', 'starscape')
     .selectAll('starscape')
+    .call(zoom)
     .data(StarscapeData)
     .enter()
     .append('circle')

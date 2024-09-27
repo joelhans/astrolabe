@@ -52,7 +52,7 @@ const Universe: FC<{ posts: Post[] }> = ({ posts: incomingPosts }) => {
   // Establish the tooltip's state and style. The data itself comes from the
   // `createStars` function in `initUniverse.tsx`.
   const [tooltipData, setTooltipData] = useState<Post | null>(null)
-  const [tooltipStyle, setTooltipStyle] = useState('-right-full')
+  const [tooltipStyle, setToltipStyle] = useState('-right-full')
   const closeTooltip = () => {
     setTooltipStyle('-right-full')
     setTimeout(() => {
@@ -72,6 +72,9 @@ const Universe: FC<{ posts: Post[] }> = ({ posts: incomingPosts }) => {
   const starscapeRef = useRef<SVGSVGElement>(null)
   useEffect(() => {
     if (starscapeRef.current) {
+      // Similar to below, but for this SVG.
+      d3.selectAll('div.starscape svg g').remove()
+
       createStarscape(starscapeRef.current)
     }
   }, [starscapeRef])
@@ -89,7 +92,7 @@ const Universe: FC<{ posts: Post[] }> = ({ posts: incomingPosts }) => {
 
       // Create the universe via `initUniverse.ts`.
       const posts = getVisitedPosts(incomingPosts)
-      const universe = createUniverse(asterismRef.current)
+      const universe = createUniverse(asterismRef.current, starscapeRef.current)
       const asterisms = createAsterisms(posts)
       const links = createLinks(posts)
       const stars = createStars(universe, posts, setTooltipData)
