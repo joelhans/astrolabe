@@ -2,6 +2,7 @@
 
 import * as d3 from 'd3'
 import { event as currentEvent } from 'd3'
+import { Dispatch } from 'react'
 import { Asterism, Post, StarLink } from '@/types/content'
 import { addHighlight, removeHighlight, removeAllHighlight } from './highlight'
 import StarscapeData from '@data/stars.json'
@@ -17,8 +18,10 @@ const width = 4000,
 export const xScale = d3.scaleLinear().domain([-10, 10]).range([0, width])
 export const yScale = d3.scaleLinear().domain([-10, 10]).range([height, 0])
 
+// Define default colors to use in the Starscape.
 const colors = ['#F94144', '#4D908E', '#f59e0b', '#F9C74F', '#c026d3', '#059669', '#4D908E']
 
+// Create the universe itself.
 export const createUniverse = (asterismRef: SVGSVGElement) => {
   let isMobile = window.innerWidth < 768
 
@@ -32,7 +35,7 @@ export const createUniverse = (asterismRef: SVGSVGElement) => {
         y: isMobile ? 200 : -75,
         k: isMobile ? 0.2 : 0.3,
       }
-  
+
   // Create the SVG container, set its dimensions, and initiate zoom+pan.
   const svg = d3
     .select(asterismRef)
@@ -52,9 +55,6 @@ export const createUniverse = (asterismRef: SVGSVGElement) => {
       'transform',
       `translate(${universePosition.x}, ${universePosition.y}) scale(${universePosition.k})`
     )
-  
-  // Define the SVG definitions.
-  const defs = svg.append('defs')
 
   return svg
 }
@@ -64,11 +64,14 @@ export const createUniverse = (asterismRef: SVGSVGElement) => {
 export const createAsterisms = (posts: Post[]) =>
   d3.group(posts, (d: any) => d.asterism)
 
+// Create a new object for each connection between two stars, including the
+// slugs for each and the source/target coordinates, in the `xScale`/`yScale`,
+// so that they can be drawn at the same position of the stars themselves.
 export const createLinks = (posts: Post[]) =>
   posts
     .filter((post) => !!post.linkedTo)
     .reduce((acc, { asterism, id, declination, ascension, linkedTo }) => {
-      // Loop through all linkedTo targets to support multiple
+      // Loop through all linkedTo targets to support multiple.
       const links: StarLink[] =
         linkedTo?.map((link) => ({
           asterism: asterism,
@@ -82,8 +85,9 @@ export const createLinks = (posts: Post[]) =>
       return [...acc, ...links]
     }, [] as StarLink[])
 
+// Create the stars based on the contents of the `/content` folder.
 export const createStars = (svg: UniverseSVG, posts: Post[], setTooltipData: Dispatch<Post>) => {
-  const group = svg.append('g').attr('class', 'asterisms')
+  const group = svg.append('g')
   const defs = svg.append('defs')
 
   group
@@ -110,6 +114,10 @@ export const createStars = (svg: UniverseSVG, posts: Post[], setTooltipData: Dis
           .attr('stop-color', function(d: any) { return d.color })
       }      return d.gradient ? `url(#grad-${d.slug})` : d.color ? d.color : '#69b3a2'
     })
+
+    // Traverse back to the parent (`g`) of the current element (`circle`). This
+    // way, we can append the second `star-boundary` element as a sibling, not a
+    // child.
     .select(function() { return this.parentElement })
     .append('circle')
     .attr('class', (d: Post) => `star-boundary ${d.slug}`)
@@ -130,28 +138,18 @@ export const createStars = (svg: UniverseSVG, posts: Post[], setTooltipData: Dis
     .on('mouseout', function (currentEvent, d:any) {
       removeHighlight(d)
     })
-    .on('click', function (currentEvent, d:any) {
+    // Handle both focus-grabbing pointer events to set up highlighting and
+    // display the tooltip.
+    .on('click touchstart', function (currentEvent, d:any) {
       removeHighlight(d)
-      event.preventDefault()
-      event.stopPropagation()
       addHighlight(d)
       setTooltipData(d)
       localStorage.setItem('universePosition', JSON.stringify(d3.zoomTransform(this)))
     })
-    .on('touchstart', function (currentEvent, d:any) {
-      removeHighlight(d)
-      event.preventDefault()
-      event.stopPropagation()
-      addHighlight(d)
-      tooltipShow(d)
-      setTooltipData(d)
-      localStorage.setItem('universePosition', JSON.stringify(d3.zoomTransform(this)))
-    })
+    // Allow keyboard users to focus on stars, which then displays the tooltip.
     .on('keydown', function (currentEvent, d:any) {
       if (event.key == 'Enter' || event.key == 'Space') {
-        resetAllHighlight()
-        event.preventDefault()
-        event.stopPropagation()
+        removeAllHighlight()
         addHighlight(d)
         setTooltipData(d)
         localStorage.setItem('universePosition', JSON.stringify(d3.zoomTransform(this)))
@@ -159,9 +157,11 @@ export const createStars = (svg: UniverseSVG, posts: Post[], setTooltipData: Dis
     })
 }
 
+// Create the lines that appear between inidivual stars in a given asterism.
 export const createLines = (svg: UniverseSVG, links: StarLink[]) =>
   svg
-    .append('g')
+    .insert('g')
+    .lower()
     .attr('class', 'lines')
     .selectAll('line')
     .data(links)
@@ -176,7 +176,8 @@ export const createLines = (svg: UniverseSVG, links: StarLink[]) =>
     .attr('stroke', 'rgb(252, 247, 255)')
     .attr('stroke-opacity', '0%')
 
-export const createNames = (svg: UniverseSVG, posts: Post[], asterisms: Asterism[]) =>
+// Create names for each asterism.
+export const createNames = (svg: UniverseSVG, stars, asterisms) =>
   svg
     .append('g')
     .attr('class', 'names')
@@ -187,7 +188,8 @@ export const createNames = (svg: UniverseSVG, posts: Post[], asterisms: Asterism
     .attr('class', (d: any) => 'name ' + d[0] + ' font-serif font-bold')
     .text((d: any) => d[1][0].asterismFull)
     .attr('x', function (d: any) {
-      // Calculate the average X position of all the stars in this asterism.
+      // Calculate the average X position of all the stars in this asterism,
+      // which is then used to position the `name` text element.
       const width = this.getComputedTextLength()
       const max = Math.max(...d[1].map((o: any) => o.declination)),
         min = Math.min(...d[1].map((o: any) => o.declination)),
@@ -195,7 +197,8 @@ export const createNames = (svg: UniverseSVG, posts: Post[], asterisms: Asterism
       return (xScale(mid) ?? 0) - width * 3
     })
     .attr('y', function (d: any) {
-      // Calculate the average Y position of all the stars in this asterism.
+      // Calculate the average Y position of all the stars in this asterism,
+      // which is then used to position the `name` text element.
       const height = this.getBoundingClientRect().height
       const max = Math.max(...d[1].map((o: any) => o.ascension)),
         min = Math.min(...d[1].map((o: any) => o.ascension)),
@@ -213,10 +216,11 @@ export const createNames = (svg: UniverseSVG, posts: Post[], asterisms: Asterism
       removeHighlight(d)
     })
 
-// Generate the background "Starscape."
-export const createStarscape = (scatterRef: SVGSVGElement) =>
+// Generate the background "Starscape." This uses a default JSON document of
+// randomly-generated data that can be recreated if needed.
+export const createStarscape = (starscapeRef: SVGSVGElement) =>
   d3
-    .select(scatterRef)
+    .select(starscapeRef)
     .attr('width', '100vw')
     .attr('height', '100vh')
     .append('g')
