@@ -81,6 +81,71 @@ export const createUniverse = (asterismRef: SVGSVGElement, setTooltipData: Dispa
   return svg
 }
 
+export const createGrid = (svg: UniverseSVG) => {
+  const gridGroup = svg.append('g').attr('class', 'grid')
+
+  // Add X grid lines
+  gridGroup
+    .append('g')
+    .attr('class', 'grid-lines x-grid')
+    .selectAll('line')
+    .data(d3.range(-10, 11))
+    .enter()
+    .append('line')
+    .attr('x1', d => xScale(d) ?? 0)
+    .attr('y1', 0)
+    .attr('x2', d => xScale(d) ?? 0)
+    .attr('y2', height)
+    .attr('stroke', '#ccc')
+    .attr('stroke-width', 0.5);
+
+  // Add Y grid lines
+  gridGroup
+    .append('g')
+    .attr('class', 'grid-lines y-grid')
+    .selectAll('line')
+    .data(d3.range(-10, 11))
+    .enter()
+    .append('line')
+    .attr('x1', 0)
+    .attr('y1', d => yScale(d) ?? height)
+    .attr('x2', width)
+    .attr('y2', d => yScale(d) ?? height)
+    .attr('stroke', '#ccc')
+    .attr('stroke-width', 0.5);    
+
+  // Add X axis labels
+  gridGroup
+    .append('g')
+    .attr('class', 'grid-labels x-labels')
+    .selectAll<SVGTextElement, number>('text')
+    .data(d3.range(-10, 11, 1))
+    .enter()
+    .append('text')
+    .attr('x', d => xScale(d) ?? 0)
+    .attr('y', height + 50)
+    .attr('text-anchor', 'middle')
+    .attr('fill', '#fff')
+    .attr('font-size', '50px')
+    .text(d => d.toString())
+
+  // Add Y axis labels
+  gridGroup
+    .append('g')
+    .attr('class', 'grid-labels y-labels')
+    .selectAll<SVGTextElement, number>('text')
+    .data(d3.range(-10, 11, 1))
+    .enter()
+    .append('text')
+    .attr('x', -50)
+    .attr('y', d => yScale(d) ?? height)
+    .attr('dy', '0.32em')
+    .attr('text-anchor', 'start')
+    .attr('fill', '#fff')
+    .attr('font-size', '50px')
+    .text(d => d.toString())
+}
+
 // Group our `posts` object by the asterisms we've already defined and remove
 // any that aren't part of an asterism (aka `key` = `null`).
 export const createAsterisms = (posts: Post[]) =>
@@ -143,7 +208,7 @@ export const createStars = (svg: UniverseSVG, posts: Post[], setTooltipData: Dis
     .select(function() { return this.parentElement })
     .append('circle')
     .attr('class', (d: Post) => `star-boundary ${d.slug}`)
-    .attr('r', (d) => d.size =! null ? d.size + 50 : 70)
+    .attr('r', (d) => d.size != null ? d.size + 50 : 70)
     .attr('fill', '#faa')
     .attr('cx', (d: Post) => xScale(d.declination ?? 0) ?? 0)
     .attr('cy', (d) => yScale(d['ascension'] ?? 0) ?? 0)

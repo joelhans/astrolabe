@@ -12,9 +12,9 @@ export const removeHighlight = (d: any) => {
     .duration(400)
     .attr('stroke-opacity', '0%')
 
-  d3.selectAll('line').transition().duration(400).attr('stroke-opacity', '0%')
+  d3.selectAll('.line').transition().duration(400).attr('stroke-opacity', '0%')
   
-  d3.selectAll('text').transition().duration(400).attr('fill', '#fff').attr('fill-opacity', '20%')
+  d3.selectAll('.name').transition().duration(400).attr('fill', '#fff').attr('fill-opacity', '20%')
 }
 
 // Add highlights to the `.star-boundary`, `.line`, and `.name` associated with

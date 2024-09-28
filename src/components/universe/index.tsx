@@ -19,7 +19,8 @@ import {
   createStars,
   createNames, 
   createLines, 
-  createStarscape
+  createStarscape,
+  createGrid
 } from './initUniverse'
 import { 
   removeHighlight, 
@@ -87,6 +88,9 @@ const Universe: FC<{ posts: Post[] }> = ({ posts: incomingPosts }) => {
       createNames(universe, stars, asterisms)
       createLines(universe, links)
       createStarscape(universe)
+
+      // If we're on a development server, let's draw our friendly grid.
+      process.env.NEXT_PUBLIC_SHOW_GRID && createGrid(universe)
     }
   }, [asterismRef, incomingPosts])
 
