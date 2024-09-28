@@ -4,7 +4,7 @@ import * as d3 from 'd3'
 import { event as currentEvent } from 'd3'
 import { Dispatch } from 'react'
 import { Asterism, Post, StarLink } from '@/types/content'
-import { addHighlight, removeHighlight, removeAllHighlight } from './highlight'
+import { addHighlight, removeHighlight } from './highlight'
 import StarscapeData from '@data/stars.json'
 
 type UniverseSVG = d3.Selection<SVGGElement, unknown, null, undefined>
@@ -24,19 +24,18 @@ const colors = ['#F94144', '#4D908E', '#f59e0b', '#F9C74F', '#c026d3', '#059669'
 // Define a shared zoom-and-pan call that both SVGs (`asterismRef` &&
 // `scatterRef`) can share. It's not perfect, but it creates a kind of parallax
 // effect when panning around.
-const zoom = d3.zoom().on("zoom", function (event: any) {
-  d3
-    .selectAll('.asterisms')
-    .select('g')
-    .attr('transform', event.transform)
-  d3
-    .selectAll('.starscape')
-    .select('g')
-    .attr('transform', `translate(${event.transform.x / 10}, ${event.transform.y / 8}) scale(${event.transform.k * 3.3})`)
+const zoom = d3.zoom()
+  // Restrict how far to scale.
+  .scaleExtent([0.1,3])
+  //.translateExtent([[0,0],[4000,4000]])
+  .on("zoom", function (event: any) {
+    d3
+      .selectAll('.universe')
+      .attr('transform', event.transform)
 })
 
 // Create the universe itself.
-export const createUniverse = (asterismRef: SVGSVGElement, starscapeRef: SVGSVGElement) => {
+export const createUniverse = (asterismRef: SVGSVGElement, setTooltipData: Dispatch<Post>) => {
   let isMobile = window.innerWidth < 768
 
   // Find the last universe position, if it exists, which we use use to set the
@@ -63,7 +62,17 @@ export const createUniverse = (asterismRef: SVGSVGElement, starscapeRef: SVGSVGE
       d3.zoom<SVGSVGElement, unknown>().transform,
       d3.zoomIdentity.translate(universePosition.x, universePosition.y).scale(universePosition.k)
     )
+    // This allows you to click on the "background" of the universe to deselect
+    // any stars and hide the tooltip, but still allow you to pan and zoom
+    // without deselecting.
+    .on('click', (d) => {
+      if (d.target.nodeName === 'svg') {
+        setTooltipData(false)
+        removeHighlight()
+      }
+    })
     .append('g')
+    .attr('class', 'universe')
     .attr(
       'transform',
       `translate(${universePosition.x}, ${universePosition.y}) scale(${universePosition.k})`
@@ -100,10 +109,9 @@ export const createLinks = (posts: Post[]) =>
 
 // Create the stars based on the contents of the `/content` folder.
 export const createStars = (svg: UniverseSVG, posts: Post[], setTooltipData: Dispatch<Post>) => {
-  const group = svg.append('g')
   const defs = svg.append('defs')
 
-  group
+  svg
     .append('g')
     .attr('class','stars')
     .selectAll('stars')
@@ -156,13 +164,14 @@ export const createStars = (svg: UniverseSVG, posts: Post[], setTooltipData: Dis
     .on('click touchstart', function (currentEvent, d:any) {
       removeHighlight(d)
       addHighlight(d)
+      d3.selectAll(`.star-boundary.${d.slug}`).classed('selected', true)
       setTooltipData(d)
       localStorage.setItem('universePosition', JSON.stringify(d3.zoomTransform(this)))
     })
     // Allow keyboard users to focus on stars, which then displays the tooltip.
     .on('keydown', function (currentEvent, d:any) {
       if (event.key == 'Enter' || event.key == 'Space') {
-        removeAllHighlight()
+        removeHighlight()
         addHighlight(d)
         setTooltipData(d)
         localStorage.setItem('universePosition', JSON.stringify(d3.zoomTransform(this)))
@@ -231,20 +240,17 @@ export const createNames = (svg: UniverseSVG, stars, asterisms) =>
 
 // Generate the background "Starscape." This uses a default JSON document of
 // randomly-generated data that can be recreated if needed.
-export const createStarscape = (starscapeRef: SVGSVGElement) =>
-  d3
-    .select(starscapeRef)
-    .attr('width', '100vw')
-    .attr('height', '100vh')
+export const createStarscape = (svg: UniverseSVG) =>
+  svg
     .append('g')
     .attr('class', 'starscape')
-    .selectAll('starscape')
     .call(zoom)
+    .selectAll('starscape')
     .data(StarscapeData)
     .enter()
     .append('circle')
     .attr('cx', (d) => (xScale(d[0]) ?? 0) / 2)
     .attr('cy', (d) => (yScale(d[1]) ?? 0) / 2)
-    .attr('r', '1')
+    .attr('r', '2')
     .attr('fill', (d) => colors[Math.floor(Math.random() * colors.length)])
     .attr('fill-opacity', '50%')

@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect, FC } from 'react'
 import * as d3 from 'd3'
 import moment from 'moment'
-import { IoTelescopeOutline } from 'react-icons/io5'
+import { IoClose, IoTelescopeOutline } from 'react-icons/io5'
 import Image from 'next/image'
 import { 
   Asterism,
@@ -22,7 +22,6 @@ import {
   createStarscape
 } from './initUniverse'
 import { 
-  removeAllHighlight, 
   removeHighlight, 
   addHighlight 
 } from './highlight'
@@ -52,11 +51,11 @@ const Universe: FC<{ posts: Post[] }> = ({ posts: incomingPosts }) => {
   // Establish the tooltip's state and style. The data itself comes from the
   // `createStars` function in `initUniverse.tsx`.
   const [tooltipData, setTooltipData] = useState<Post | null>(null)
-  const [tooltipStyle, setToltipStyle] = useState('-right-full')
+  const [tooltipStyle, setTooltipStyle] = useState('-right-full')
   const closeTooltip = () => {
     setTooltipStyle('-right-full')
     setTimeout(() => {
-      removeAllHighlight()
+      removeHighlight()
       setTooltipData(null)
     }, 150)
   }
@@ -68,17 +67,6 @@ const Universe: FC<{ posts: Post[] }> = ({ posts: incomingPosts }) => {
     }
   }, [tooltipData])
 
-  // Initialize the Starscape.
-  const starscapeRef = useRef<SVGSVGElement>(null)
-  useEffect(() => {
-    if (starscapeRef.current) {
-      // Similar to below, but for this SVG.
-      d3.selectAll('div.starscape svg g').remove()
-
-      createStarscape(starscapeRef.current)
-    }
-  }, [starscapeRef])
-
   const asterismRef = useRef<SVGSVGElement>(null)
   const tooltipRef = useRef<HTMLDivElement>(null)
   const tooltipLinkRef = useRef<HTMLAnchorElement>(null)  
@@ -89,26 +77,24 @@ const Universe: FC<{ posts: Post[] }> = ({ posts: incomingPosts }) => {
       // SVGs so that you don't get annoying duplicates that require a hard
       // refresh to clean up, which is amazing.
       d3.selectAll('div.asterisms svg g').remove()
-
+      
       // Create the universe via `initUniverse.ts`.
       const posts = getVisitedPosts(incomingPosts)
-      const universe = createUniverse(asterismRef.current, starscapeRef.current)
+      const universe = createUniverse(asterismRef.current, setTooltipData)
       const asterisms = createAsterisms(posts)
       const links = createLinks(posts)
       const stars = createStars(universe, posts, setTooltipData)
       createNames(universe, stars, asterisms)
       createLines(universe, links)
+      createStarscape(universe)
     }
   }, [asterismRef, incomingPosts])
 
   return (
     <>
       <div className="bg-gray-900">
-        <div className="relative starscape">
-          <svg className="absolute" ref={starscapeRef} />
-        </div>
         <div className="asterisms relative z-20">
-          <svg ref={asterismRef} />
+          <svg ref={asterismRef} tabIndex="-1" />
         </div>
         {tooltipData && (
         <div
@@ -149,10 +135,10 @@ const Universe: FC<{ posts: Post[] }> = ({ posts: incomingPosts }) => {
             )}
           </div>
           <button
-            className="absolute top-6 right-6 font-sans font-medium text-3xl"
+            className="absolute top-6 right-6 font-sans font-medium text-3xl hover:fill-pink"
             onClick={closeTooltip}
           >
-            x
+            <IoClose />
           </button>
         </div>
         )}

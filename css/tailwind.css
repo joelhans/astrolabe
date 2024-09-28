@@ -42,6 +42,8 @@ text.name {
 .star {
   cursor: pointer;
 }
+
+.star-boundary.selected,
 .star-boundary:focus,
 .star-boundary:focus-visible {
   outline: none;
