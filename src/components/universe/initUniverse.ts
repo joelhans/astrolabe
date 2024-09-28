@@ -123,7 +123,7 @@ export const createStars = (svg: UniverseSVG, posts: Post[], setTooltipData: Dis
     .attr('class', (d: Post) => 'star ' + d.asterism + ' ' + d.slug)
     .attr('cx', (d: Post) => xScale(d.declination ?? 0) ?? 0)
     .attr('cy', (d) => yScale(d['ascension'] ?? 0) ?? 0)
-    .attr('r', (d) => d.size != null ? 0 : 20)
+    .attr('r', (d) => d.size ?? 20)
     .attr('fill', function (d) {
       if (d.gradient) {
         defs.append("radialGradient")
@@ -133,7 +133,8 @@ export const createStars = (svg: UniverseSVG, posts: Post[], setTooltipData: Dis
           .enter().append('stop')
           .attr('offset', function(d: any) { return d.offset })
           .attr('stop-color', function(d: any) { return d.color })
-      }      return d.gradient ? `url(#grad-${d.slug})` : d.color ? d.color : '#69b3a2'
+      }
+      return d.gradient ? `url(#grad-${d.slug})` : d.color ? d.color : '#69b3a2'
     })
 
     // Traverse back to the parent (`g`) of the current element (`circle`). This
@@ -142,7 +143,7 @@ export const createStars = (svg: UniverseSVG, posts: Post[], setTooltipData: Dis
     .select(function() { return this.parentElement })
     .append('circle')
     .attr('class', (d: Post) => `star-boundary ${d.slug}`)
-    .attr('r', (d) => d.size ?? 70)
+    .attr('r', (d) => d.size =! null ? d.size + 50 : 70)
     .attr('fill', '#faa')
     .attr('cx', (d: Post) => xScale(d.declination ?? 0) ?? 0)
     .attr('cy', (d) => yScale(d['ascension'] ?? 0) ?? 0)
