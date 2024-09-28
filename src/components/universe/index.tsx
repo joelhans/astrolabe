@@ -55,7 +55,7 @@ const Universe: FC<{ posts: Post[] }> = ({ posts: incomingPosts }) => {
   const closeTooltip = () => {
     setTooltipStyle('-right-full')
     setTimeout(() => {
-      removeHighlight()
+      removeHighlight(null)
       setTooltipData(null)
     }, 150)
   }
@@ -94,7 +94,7 @@ const Universe: FC<{ posts: Post[] }> = ({ posts: incomingPosts }) => {
     <>
       <div className="bg-gray-900">
         <div className="asterisms relative z-20">
-          <svg ref={asterismRef} tabIndex="-1" />
+          <svg ref={asterismRef} />
         </div>
         {tooltipData && (
         <div
