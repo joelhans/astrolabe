@@ -19,7 +19,16 @@ export const xScale = d3.scaleLinear().domain([-10, 10]).range([0, width])
 export const yScale = d3.scaleLinear().domain([-10, 10]).range([height, 0])
 
 // Define default colors to use in the Starscape.
-const colors = ['#F94144', '#4D908E', '#f59e0b', '#F9C74F', '#c026d3', '#059669', '#4D908E']
+const colors = ['#F94144', '#4D908E', '#f59e0b', '#c026d3', '#059669']
+
+const starColors = {
+  red: '#F94144',
+  aqua: '#4D908E',
+  green: '#059669',
+  pink: '#c026d3',
+  yellow: '#f59e0b',
+}
+
 
 // Define a shared zoom-and-pan call that both SVGs (`asterismRef` &&
 // `scatterRef`) can share. It's not perfect, but it creates a kind of parallax
@@ -59,7 +68,7 @@ export const createUniverse = (asterismRef: SVGSVGElement, setTooltipData: Dispa
     // either the defaults listed just above or the last known position from the
     // user's localstorage.
     .call(
-      d3.zoom<SVGSVGElement, unknown>().transform,
+      d3.zoom<SVGSstVGElement, unknown>().transform,
       d3.zoomIdentity.translate(universePosition.x, universePosition.y).scale(universePosition.k)
     )
     // This allows you to click on the "background" of the universe to deselect
@@ -173,7 +182,7 @@ export const createLinks = (posts: Post[]) =>
     }, [] as StarLink[])
 
 // Create the stars based on the contents of the `/content` folder.
-export const createStars = (svg: UniverseSVG, posts: Post[], setTooltipData: Dispatch<Post | null>) => {
+export const createStars = (svg: UniverseSVG, posts: Post[], setTooltipData: Dispatch<Post | null>, tooltipLinkRef: React.RefObject<HTMLDivElement>) => {
   const defs = svg.append('defs')
 
   svg
@@ -198,8 +207,16 @@ export const createStars = (svg: UniverseSVG, posts: Post[], setTooltipData: Dis
           .enter().append('stop')
           .attr('offset', function(d: any) { return d.offset })
           .attr('stop-color', function(d: any) { return d.color })
+        return `url(#grad-${d.slug})`
+      } else if (d.color && d.color.includes('#')) {
+        return d.color 
+      } else if (d.color && !d.color.includes('#')) {
+        return starColors[d.color]
+      } else {
+        return starColors.green
       }
-      return d.gradient ? `url(#grad-${d.slug})` : d.color ? d.color : '#69b3a2'
+
+      //return d.gradient ? `url(#grad-${d.slug})` : d.color ? d.color : '#69b3a2'
     })
 
     // Traverse back to the parent (`g`) of the current element (`circle`). This
@@ -241,6 +258,12 @@ export const createStars = (svg: UniverseSVG, posts: Post[], setTooltipData: Dis
         addHighlight(d)
         setTooltipData(d)
         localStorage.setItem('universePosition', JSON.stringify(d3.zoomTransform(this)))
+        setTimeout(() => {
+          if (tooltipLinkRef.current) {
+            tooltipLinkRef.current.tabIndex = -1;
+            tooltipLinkRef.current.focus();
+          }
+        }, 0);
       }
     })
 }

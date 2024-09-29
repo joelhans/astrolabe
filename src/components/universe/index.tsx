@@ -48,7 +48,6 @@ const getVisitedPosts = (posts: Post[]): Post[] => {
 }
 
 const Universe: FC<{ posts: Post[] }> = ({ posts: incomingPosts }) => {
-
   // Establish the tooltip's state and style. The data itself comes from the
   // `createStars` function in `initUniverse.tsx`.
   const [tooltipData, setTooltipData] = useState<Post | null>(null)
@@ -70,7 +69,7 @@ const Universe: FC<{ posts: Post[] }> = ({ posts: incomingPosts }) => {
 
   const asterismRef = useRef<SVGSVGElement>(null)
   const tooltipRef = useRef<HTMLDivElement>(null)
-  const tooltipLinkRef = useRef<HTMLAnchorElement>(null)  
+  const tooltipLinkRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (asterismRef.current) {
@@ -84,7 +83,7 @@ const Universe: FC<{ posts: Post[] }> = ({ posts: incomingPosts }) => {
       const universe = createUniverse(asterismRef.current, setTooltipData)
       const asterisms = createAsterisms(posts)
       const links = createLinks(posts)
-      const stars = createStars(universe, posts, setTooltipData)
+      const stars = createStars(universe, posts, setTooltipData, tooltipLinkRef)
       createNames(universe, stars, asterisms)
       createLines(universe, links)
       createStarscape(universe)
@@ -126,12 +125,15 @@ const Universe: FC<{ posts: Post[] }> = ({ posts: incomingPosts }) => {
                 <Image src={tooltipData?.artworkUrl} width={400} height={200} alt="TODO" />
               </div>
             )}
-            <button className="font-sans text-base lg:text-lg font-medium text-white mt-6 bg-gradient-to-tr from-[#0d1c48] to-[#0f062d] rounded-sm transition-all ease-in-out hover:brightness-150">
-              <a href={tooltipData?.slug} className="block px-4 py-3">
+            <a
+              ref={tooltipLinkRef}
+              href={tooltipData?.slug}
+              aria-label={tooltipData?.title}
+              className="inline-block w-auto font-sans text-base lg:text-lg font-medium text-white px-4 py-3 mt-6 bg-gradient-to-tr from-[#0d1c48] to-[#0f062d] rounded-sm transition-all ease-in-out hover:brightness-150"
+            >
                 Take a look{` `}
                 <IoTelescopeOutline className="inline w-4 h-4 ml-1 text-gray-100" />
-              </a>
-            </button>
+            </a>
             {tooltipData?.visited && (
               <p className="text-sm lg:text-base text-pink font-sans font-medium mt-8">
                 You've visited this star before.
