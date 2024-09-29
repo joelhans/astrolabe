@@ -69,7 +69,7 @@ const Universe: FC<{ posts: Post[] }> = ({ posts: incomingPosts }) => {
 
   const asterismRef = useRef<SVGSVGElement>(null)
   const tooltipRef = useRef<HTMLDivElement>(null)
-  const tooltipLinkRef = useRef<HTMLDivElement>(null)
+  const tooltipLinkRef = useRef<HTMLAnchorElement>(null)
 
   useEffect(() => {
     if (asterismRef.current) {
@@ -126,13 +126,13 @@ const Universe: FC<{ posts: Post[] }> = ({ posts: incomingPosts }) => {
               </div>
             )}
             <a
-              ref={tooltipLinkRef}
+              ref={tooltipLinkRef as React.RefObject<HTMLAnchorElement>}
               href={tooltipData?.slug}
               aria-label={tooltipData?.title}
               className="inline-block w-auto font-sans text-base lg:text-lg font-medium text-white px-4 py-3 mt-6 bg-gradient-to-tr from-[#0d1c48] to-[#0f062d] rounded-sm transition-all ease-in-out hover:brightness-150"
             >
-                Take a look{` `}
-                <IoTelescopeOutline className="inline w-4 h-4 ml-1 text-gray-100" />
+              Take a look{` `}
+              <IoTelescopeOutline className="inline w-4 h-4 ml-1 text-gray-100" />
             </a>
             {tooltipData?.visited && (
               <p className="text-sm lg:text-base text-pink font-sans font-medium mt-8">

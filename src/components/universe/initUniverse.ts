@@ -20,15 +20,19 @@ export const yScale = d3.scaleLinear().domain([-10, 10]).range([height, 0])
 
 // Define default colors to use in the Starscape.
 const colors = ['#F94144', '#4D908E', '#f59e0b', '#c026d3', '#059669']
-
 const starColors = {
   red: '#F94144',
   aqua: '#4D908E',
   green: '#059669',
   pink: '#c026d3',
   yellow: '#f59e0b',
-}
+} as const
 
+// Type guard to check if a string is a key of starColors
+type StarColorKey = keyof typeof starColors;
+function isStarColor(color: string): color is keyof typeof starColors {
+  return color in starColors;
+}
 
 // Define a shared zoom-and-pan call that both SVGs (`asterismRef` &&
 // `scatterRef`) can share. It's not perfect, but it creates a kind of parallax
@@ -68,7 +72,7 @@ export const createUniverse = (asterismRef: SVGSVGElement, setTooltipData: Dispa
     // either the defaults listed just above or the last known position from the
     // user's localstorage.
     .call(
-      d3.zoom<SVGSstVGElement, unknown>().transform,
+      d3.zoom<SVGSVGElement, unknown>().transform,
       d3.zoomIdentity.translate(universePosition.x, universePosition.y).scale(universePosition.k)
     )
     // This allows you to click on the "background" of the universe to deselect
@@ -182,7 +186,7 @@ export const createLinks = (posts: Post[]) =>
     }, [] as StarLink[])
 
 // Create the stars based on the contents of the `/content` folder.
-export const createStars = (svg: UniverseSVG, posts: Post[], setTooltipData: Dispatch<Post | null>, tooltipLinkRef: React.RefObject<HTMLDivElement>) => {
+export const createStars = (svg: UniverseSVG, posts: Post[], setTooltipData: Dispatch<Post | null>, tooltipLinkRef: React.RefObject<HTMLAnchorElement>) => {
   const defs = svg.append('defs')
 
   svg
@@ -198,7 +202,7 @@ export const createStars = (svg: UniverseSVG, posts: Post[], setTooltipData: Dis
     .attr('cx', (d: Post) => xScale(d.declination ?? 0) ?? 0)
     .attr('cy', (d) => yScale(d['ascension'] ?? 0) ?? 0)
     .attr('r', (d) => d.size ?? 20)
-    .attr('fill', function (d) {
+    .attr('fill', function (d: any) {
       if (d.gradient) {
         defs.append("radialGradient")
           .attr("id", 'grad-' + d.slug)
@@ -210,13 +214,11 @@ export const createStars = (svg: UniverseSVG, posts: Post[], setTooltipData: Dis
         return `url(#grad-${d.slug})`
       } else if (d.color && d.color.includes('#')) {
         return d.color 
-      } else if (d.color && !d.color.includes('#')) {
-        return starColors[d.color]
+      } else if (isStarColor(d.color)) {
+        return starColors[d.color as StarColorKey]
       } else {
         return starColors.green
       }
-
-      //return d.gradient ? `url(#grad-${d.slug})` : d.color ? d.color : '#69b3a2'
     })
 
     // Traverse back to the parent (`g`) of the current element (`circle`). This
