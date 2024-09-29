@@ -40,10 +40,8 @@ function isStarColor(color: string): color is keyof typeof starColors {
 const zoom = d3.zoom<SVGSVGElement, unknown>()
   // Restrict how far to scale.
   .scaleExtent([0.1,3])
-  //.translateExtent([[0,0],[4000,4000]])
-  .on("zoom", function (event: any) {
-    d3
-      .selectAll('.universe')
+  .on("zoom", function (event: d3.D3ZoomEvent<SVGSVGElement, unknown>) {
+    d3.selectAll('.universe')
       .attr('transform', event.transform)
 })
 
