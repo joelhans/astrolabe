@@ -26,13 +26,10 @@ html {
 }
 
 /* Universe */
-.starscape {
-  background: linear-gradient(to left top, #0d1c48, #0f062d);
-}
-
 .asterisms > svg {
   cursor: grab;
   position: relative;
+  background: linear-gradient(to left top, #0d1c48, #0f062d);
 }
 
 text.name {

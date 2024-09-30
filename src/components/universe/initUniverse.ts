@@ -40,9 +40,9 @@ function isStarColor(color: string): color is keyof typeof starColors {
 const zoom = d3.zoom<SVGSVGElement, unknown>()
   // Restrict how far to scale.
   .scaleExtent([0.1,3])
-  .on("zoom", function (event: d3.D3ZoomEvent<SVGSVGElement, unknown>) {
+  .on("zoom", function (currentEvent: any) {
     d3.selectAll('.universe')
-      .attr('transform', event.transform)
+      .attr('transform', currentEvent.transform)
 })
 
 // Create the universe itself.
@@ -339,6 +339,6 @@ export const createStarscape = (svg: UniverseSVG) =>
     .append('circle')
     .attr('cx', (d) => (xScale(d[0]) ?? 0) / 2)
     .attr('cy', (d) => (yScale(d[1]) ?? 0) / 2)
-    .attr('r', '2')
+    .attr('r', '3')
     .attr('fill', (d) => colors[Math.floor(Math.random() * colors.length)])
     .attr('fill-opacity', '50%')
