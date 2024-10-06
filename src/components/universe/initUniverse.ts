@@ -315,9 +315,6 @@ export const createNames = (svg: UniverseSVG, stars:any, asterisms:any) =>
       const max = Math.max(...d[1].map((o: any) => o.declination)),
         min = Math.min(...d[1].map((o: any) => o.declination)),
         mid = (max + min) / 2
-        console.log(d3.select('.universe').node().transform.baseVal.consolidate().matrix.d)
-        console.log(width);
-
       return (xScale(mid) ?? 0)
     })
     .attr('y', function (d: any) {
