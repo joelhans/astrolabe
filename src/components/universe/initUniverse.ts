@@ -310,12 +310,17 @@ export const createNames = (svg: UniverseSVG, stars:any, asterisms:any) =>
     .attr('font-style', 'italic')
     .attr('x', function (d: any) {
       // Calculate the average X position of all the stars in this asterism,
-      // which is then used to position the `name` text element.
+      // which is then used to position the `name` text element. As with the Y
+      // position, I'm not sure why these seem to require magic numbers to be
+      // positioned correctly as opposed to using something reliable, like half
+      // of its current width. I believe it has something to do with the scale
+      // of the visualization, but I haven't cracked it yet.
+      // TODO: Fix this!
       const width = this.getBoundingClientRect().width
       const max = Math.max(...d[1].map((o: any) => o.declination)),
         min = Math.min(...d[1].map((o: any) => o.declination)),
         mid = (max + min) / 2
-      return (xScale(mid) ?? 0)
+      return (xScale(mid) ?? 0) - 15
     })
     .attr('y', function (d: any) {
       // Calculate the average Y position of all the stars in this asterism,
@@ -324,7 +329,7 @@ export const createNames = (svg: UniverseSVG, stars:any, asterisms:any) =>
       const max = Math.max(...d[1].map((o: any) => o.ascension)),
         min = Math.min(...d[1].map((o: any) => o.ascension)),
         mid = (max + min) / 2
-      return (yScale(mid) ?? 0) + height / 2
+      return (yScale(mid) ?? 0) + 5
     })
     .attr('fill', '#fff')
     .attr('fill-opacity', '20%')
