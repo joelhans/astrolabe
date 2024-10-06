@@ -15,8 +15,8 @@ const width = 4000,
   height = 4000
 
 // Create our scatter plot axes.
-export const xScale = d3.scaleLinear().domain([-10, 10]).range([0, width])
-export const yScale = d3.scaleLinear().domain([-10, 10]).range([height, 0])
+export const xScale = d3.scaleLinear().domain([-100, 100]).range([0, width])
+export const yScale = d3.scaleLinear().domain([-100, 100]).range([height, 0])
 
 // Define default colors to use in the Starscape.
 const colors = ['#F94144', '#4D908E', '#f59e0b', '#c026d3', '#059669']
@@ -34,16 +34,22 @@ function isStarColor(color: string): color is keyof typeof starColors {
   return color in starColors;
 }
 
-// Define a shared zoom-and-pan call that both SVGs (`asterismRef` &&
-// `scatterRef`) can share. It's not perfect, but it creates a kind of parallax
-// effect when panning around.
+// Define a shared zoom-and-pan call.
 const zoom = d3.zoom<SVGSVGElement, unknown>()
   // Restrict how far to scale.
-  .scaleExtent([0.1,3])
+  .scaleExtent([0.5,5])
   .on("zoom", function (currentEvent: any) {
+    const transform = currentEvent.transform
+    
+    const maxX = width * currentEvent.transform.k - window.innerWidth + 30
+    const maxY = height * currentEvent.transform.k - window.innerHeight + 30
+    
+    transform.x = Math.max(-maxX, Math.min(0, transform.x))
+    transform.y = Math.max(-maxY, Math.min(0, transform.y))
+
     d3.selectAll('.universe')
-      .attr('transform', currentEvent.transform)
-})
+      .attr('transform', transform)
+  })
 
 // Create the universe itself.
 export const createUniverse = (asterismRef: SVGSVGElement, setTooltipData: Dispatch<Post | null>) => {
@@ -55,10 +61,10 @@ export const createUniverse = (asterismRef: SVGSVGElement, setTooltipData: Dispa
   const universePosition = savedPosition
     ? JSON.parse(savedPosition)
     : {
-        x: isMobile ? -250 : -300,
-        y: isMobile ? 200 : -75,
-        k: isMobile ? 0.2 : 0.3,
-      }
+        x: -((width - window.innerWidth) / 2),
+        y: -((height - window.innerHeight) / 2),
+        k: isMobile ? 0.5 : 1,
+    }
 
   // Create the SVG container, set its dimensions, and initiate zoom+pan.
   const svg = d3
@@ -100,7 +106,7 @@ export const createGrid = (svg: UniverseSVG) => {
     .append('g')
     .attr('class', 'grid-lines x-grid')
     .selectAll('line')
-    .data(d3.range(-10, 11))
+    .data(d3.range(-100, 101))
     .enter()
     .append('line')
     .attr('x1', d => xScale(d) ?? 0)
@@ -108,14 +114,15 @@ export const createGrid = (svg: UniverseSVG) => {
     .attr('x2', d => xScale(d) ?? 0)
     .attr('y2', height)
     .attr('stroke', '#ccc')
-    .attr('stroke-width', 0.5);
+    .attr('stroke-width', 0.5)
+    .attr('stroke-opacity', '20%')
 
   // Add Y grid lines
   gridGroup
     .append('g')
     .attr('class', 'grid-lines y-grid')
     .selectAll('line')
-    .data(d3.range(-10, 11))
+    .data(d3.range(-100, 101))
     .enter()
     .append('line')
     .attr('x1', 0)
@@ -123,21 +130,22 @@ export const createGrid = (svg: UniverseSVG) => {
     .attr('x2', width)
     .attr('y2', d => yScale(d) ?? height)
     .attr('stroke', '#ccc')
-    .attr('stroke-width', 0.5);    
+    .attr('stroke-width', 0.5)
+    .attr('stroke-opacity', '20%')
 
   // Add X axis labels
   gridGroup
     .append('g')
     .attr('class', 'grid-labels x-labels')
     .selectAll<SVGTextElement, number>('text')
-    .data(d3.range(-10, 11, 1))
+    .data(d3.range(-100, 101, 5))
     .enter()
     .append('text')
     .attr('x', d => xScale(d) ?? 0)
     .attr('y', height + 50)
     .attr('text-anchor', 'middle')
     .attr('fill', '#fff')
-    .attr('font-size', '50px')
+    .attr('font-size', '40px')
     .text(d => d.toString())
 
   // Add Y axis labels
@@ -145,15 +153,15 @@ export const createGrid = (svg: UniverseSVG) => {
     .append('g')
     .attr('class', 'grid-labels y-labels')
     .selectAll<SVGTextElement, number>('text')
-    .data(d3.range(-10, 11, 1))
+    .data(d3.range(-100, 101, 5))
     .enter()
     .append('text')
-    .attr('x', -50)
+    .attr('x', width)
     .attr('y', d => yScale(d) ?? height)
     .attr('dy', '0.32em')
     .attr('text-anchor', 'start')
     .attr('fill', '#fff')
-    .attr('font-size', '50px')
+    .attr('font-size', '40px')
     .text(d => d.toString())
 }
 
@@ -225,12 +233,12 @@ export const createStars = (svg: UniverseSVG, posts: Post[], setTooltipData: Dis
     .select(function() { return this.parentElement })
     .append('circle')
     .attr('class', (d: Post) => `star-boundary ${d.slug}`)
-    .attr('r', (d) => d.size != null ? d.size + 50 : 70)
+    .attr('r', (d) => d.size != null ? d.size + 5 : 10)
     .attr('fill', '#faa')
     .attr('cx', (d: Post) => xScale(d.declination ?? 0) ?? 0)
     .attr('cy', (d) => yScale(d['ascension'] ?? 0) ?? 0)
     .attr('fill', 'rgba(0,0,0,0)')
-    .attr('stroke-width', 10)
+    .attr('stroke-width', 1)
     .attr('stroke', 'rgb(252, 247, 255)')
     .attr('stroke-opacity', '0%')
     .attr('role', 'button')
@@ -283,7 +291,7 @@ export const createLines = (svg: UniverseSVG, links: StarLink[]) =>
     .attr('y1', (d) => d.sourceY ?? 0)
     .attr('x2', (d) => d.targetX ?? 0)
     .attr('y2', (d) => d.targetY ?? 0)
-    .attr('stroke-width', 10)
+    .attr('stroke-width', 1)
     .attr('stroke', 'rgb(252, 247, 255)')
     .attr('stroke-opacity', '0%')
 
@@ -298,14 +306,19 @@ export const createNames = (svg: UniverseSVG, stars:any, asterisms:any) =>
     .append('text')
     .attr('class', (d: any) => 'name ' + d[0] + ' font-serif font-bold')
     .text((d: any) => d[1][0].asterismFull)
+    .attr('font-size', '0.6rem')
+    .attr('font-style', 'italic')
     .attr('x', function (d: any) {
       // Calculate the average X position of all the stars in this asterism,
       // which is then used to position the `name` text element.
-      const width = this.getComputedTextLength()
+      const width = this.getBoundingClientRect().width
       const max = Math.max(...d[1].map((o: any) => o.declination)),
         min = Math.min(...d[1].map((o: any) => o.declination)),
         mid = (max + min) / 2
-      return (xScale(mid) ?? 0) - width * 3
+        console.log(d3.select('.universe').node().transform.baseVal.consolidate().matrix.d)
+        console.log(width);
+
+      return (xScale(mid) ?? 0)
     })
     .attr('y', function (d: any) {
       // Calculate the average Y position of all the stars in this asterism,
@@ -314,11 +327,9 @@ export const createNames = (svg: UniverseSVG, stars:any, asterisms:any) =>
       const max = Math.max(...d[1].map((o: any) => o.ascension)),
         min = Math.min(...d[1].map((o: any) => o.ascension)),
         mid = (max + min) / 2
-      return (yScale(mid) ?? 0) - height + 60
+      return (yScale(mid) ?? 0) + height / 2
     })
     .attr('fill', '#fff')
-    .attr('font-size', '7rem')
-    .attr('font-style', 'italic')
     .attr('fill-opacity', '20%')
     .on('mouseover', function (event, d:any) {
       addHighlight(d)
@@ -337,8 +348,8 @@ export const createStarscape = (svg: UniverseSVG) =>
     .data(StarscapeData)
     .enter()
     .append('circle')
-    .attr('cx', (d) => (xScale(d[0]) ?? 0) / 2)
-    .attr('cy', (d) => (yScale(d[1]) ?? 0) / 2)
-    .attr('r', '3')
+    .attr('cx', (d) => (xScale(d[0]) ?? 0))
+    .attr('cy', (d) => (yScale(d[1]) ?? 0))
+    .attr('r', '0.5')
     .attr('fill', (d) => colors[Math.floor(Math.random() * colors.length)])
     .attr('fill-opacity', '50%')

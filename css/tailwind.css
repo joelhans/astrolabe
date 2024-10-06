@@ -45,7 +45,6 @@ text.name {
 .star-boundary:focus-visible {
   outline: none;
   stroke: white;
-  stroke-width: 10px;
   stroke-opacity: 50%;
 }
 

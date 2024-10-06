@@ -90,6 +90,12 @@ const Universe: FC<{ posts: Post[] }> = ({ posts: incomingPosts }) => {
 
       // If we're on a development server, let's draw our friendly grid.
       process.env.NEXT_PUBLIC_SHOW_GRID && createGrid(universe)
+
+      // A function to generate new Starscape data.
+      // const particles = d3.range(3000).map(function(i) {
+      //   return [Math.random() * 100 * (Math.round(Math.random()) ? 1 : -1), Math.random() * 100 * (Math.round(Math.random()) ? 1 : -1)];
+      // })
+      // console.log(JSON.stringify(particles))
     }
   }, [asterismRef, incomingPosts])
 
