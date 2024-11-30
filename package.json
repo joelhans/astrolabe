@@ -20,7 +20,7 @@
     "esbuild": "^0.15.16",
     "fast-glob": "^3.3.2",
     "lodash": "^4.17.21",
-    "mdx-bundler": "^9.0.1",
+    "mdx-bundler": "^10.0.3",
     "moment": "^2.29.4",
     "next": "^15.0.3",
     "postcss": "^8.3.5",

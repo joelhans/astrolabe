@@ -18,7 +18,13 @@ export async function generateStaticParams() {
   return posts
 }
 
-export async function generateMetadata({ params: { slug } }) {
+export async function generateMetadata(props) {
+  const params = await props.params;
+
+  const {
+    slug
+  } = params;
+
   const { frontMatter } = await getStar(slug)
 
   const cleanTitle = frontMatter.title.replace(/<[^>]+>/g, '')
@@ -66,7 +72,13 @@ export async function generateMetadata({ params: { slug } }) {
   }
 }
 
-export default async function Star({ params: { slug } }) {
+export default async function Star(props) {
+  const params = await props.params;
+
+  const {
+    slug
+  } = params;
+
   const posts = await generateStaticParams()
   const star = await getStar(slug)
 
