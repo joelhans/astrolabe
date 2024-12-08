@@ -44,6 +44,7 @@ export type Post = {
   title: string
   visited?: boolean
   key?: string
+  orbit?: any
 }
 
 export type Asterism = { key: string; values: any; value: undefined }

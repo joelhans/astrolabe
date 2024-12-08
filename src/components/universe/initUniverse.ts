@@ -195,7 +195,7 @@ export const createLinks = (posts: Post[]) =>
 export const createStars = (svg: UniverseSVG, posts: Post[], setTooltipData: Dispatch<Post | null>, tooltipLinkRef: React.RefObject<HTMLAnchorElement>) => {
   const defs = svg.append('defs')
 
-  svg
+  const stars = svg
     .append('g')
     .attr('class','stars')
     .selectAll('.stars')
@@ -205,8 +205,18 @@ export const createStars = (svg: UniverseSVG, posts: Post[], setTooltipData: Dis
     .attr('class', (d: Post) => d.asterism || '')
     .append('circle')
     .attr('class', (d: Post) => 'star ' + d.asterism + ' ' + d.slug)
-    .attr('cx', (d: Post) => xScale(d.declination ?? 0) ?? 0)
-    .attr('cy', (d) => yScale(d['ascension'] ?? 0) ?? 0)
+    .attr('cx', function(d: Post) {
+      if (d.orbit) {
+        return xScale(d.orbit.orbitX ?? 0) ?? 0
+      }
+      return xScale(d.declination ?? 0) ?? 0
+    })
+    .attr('cy', function(d: Post) {
+      if (d.orbit) {
+        return yScale(d.orbit.orbitY ?? 0) ?? 0
+      }
+      return yScale(d['ascension'] ?? 0) ?? 0
+    })
     .attr('r', (d) => d.size ?? 20)
     .attr('fill', function (d: any) {
       if (d.gradient) {
@@ -244,10 +254,34 @@ export const createStars = (svg: UniverseSVG, posts: Post[], setTooltipData: Dis
     .attr('role', 'button')
     .attr('tabindex', '0')
     .attr('aria-label', (d: Post) => d.title)
-    .on('mouseover', function (currentEvent, d:any) {
-      addHighlight(d)
+    .on('mouseover', function(currentEvent, d:any) {
+      if (d.slug && d.orbit) {
+        const state = starStates.get(d.slug);
+        if (state) {
+          // Calculate and store the current angle when pausing
+          const elapsed = (Date.now() - globalStartTime) + state.timeOffset;
+          state.pausedAngle = state.startAngle + (elapsed * d.orbit.speed / 1000) % (2 * Math.PI);
+          state.pausedAt = Date.now();
+        }
+      }
+      addHighlight(d);
     })
-    .on('mouseout', function (currentEvent, d:any) {
+    .on('mouseout', function(currentEvent, d:any) {
+      if (d.slug && d.orbit) {
+        const state = starStates.get(d.slug);
+        if (state && state.pausedAt !== null && state.pausedAngle !== null) {
+          // Calculate what angle we would be at if we hadn't paused
+          const elapsed = (Date.now() - globalStartTime);
+          const expectedAngle = state.startAngle + (elapsed * d.orbit.speed / 1000) % (2 * Math.PI);
+          
+          // Calculate new starting angle that will put us at the paused position
+          state.startAngle = state.pausedAngle - (elapsed * d.orbit.speed / 1000) % (2 * Math.PI);
+          
+          // Reset pause state
+          state.pausedAngle = null;
+          state.pausedAt = null;
+        }
+      }
       removeHighlight(d)
     })
     // Handle both focus-grabbing pointer events to set up highlighting and
@@ -274,6 +308,74 @@ export const createStars = (svg: UniverseSVG, posts: Post[], setTooltipData: Dis
         }, 0);
       }
     })
+
+  // Animation setup
+  interface StarTiming {
+    startAngle: number;
+    pausedAngle: number | null;
+    pausedAt: number | null;
+    timeOffset: number; // Add this to track individual timing offsets
+  }
+  
+  const starStates = new Map<string, StarTiming>();
+  const globalStartTime = Date.now();
+
+  // Initialize random starting angles and states for each star
+  svg.selectAll<SVGGElement, Post>('.stars > g').each(function(d: Post) {
+    if (d.orbit && d.slug) {
+      starStates.set(d.slug, {
+        startAngle: Math.random() * 2 * Math.PI,
+        pausedAngle: null,
+        pausedAt: null,
+        timeOffset: 0
+      });
+    }
+  });
+
+  const animate = () => {
+    const currentTime = Date.now();
+
+    svg.selectAll<SVGGElement, Post>('.stars > g').each(function(d: Post) {
+      if (d.orbit && d.slug) {
+        const state = starStates.get(d.slug);
+        if (!state) return;
+
+        const group = d3.select(this);
+        const centerX = xScale(d.orbit.orbitX) ?? 0;
+        const centerY = yScale(d.orbit.orbitY) ?? 0;
+
+        // Calculate the current angle
+        let currentAngle: number;
+        if (state.pausedAngle !== null) {
+          // Use the paused angle if star is paused
+          currentAngle = state.pausedAngle;
+        } else {
+          // Calculate new angle based on elapsed time, including the star's individual offset
+          const elapsed = (currentTime - globalStartTime) + state.timeOffset;
+          currentAngle = state.startAngle + (elapsed * d.orbit.speed / 1000) % (2 * Math.PI);
+        }
+
+        // Calculate the orbital position
+        const x = centerX + (d.orbit.distance * Math.cos(currentAngle));
+        const y = centerY + (d.orbit.distance * Math.sin(currentAngle));
+
+        // Update both circles in the group
+        group.select('.star')
+          .attr('cx', x)
+          .attr('cy', y);
+
+        group.select('.star-boundary')
+          .attr('cx', x)
+          .attr('cy', y);
+      }
+    });
+
+    requestAnimationFrame(animate);
+  };
+
+  animate();
+
+  return stars;
 }
 
 // Create the lines that appear between inidivual stars in a given asterism.
