@@ -207,13 +207,13 @@ export const createStars = (svg: UniverseSVG, posts: Post[], setTooltipData: Dis
     .attr('class', (d: Post) => 'star ' + d.asterism + ' ' + d.slug)
     .attr('cx', function(d: Post) {
       if (d.orbit) {
-        return xScale(d.orbit.orbitX ?? 0)
+        return xScale(d.orbit.orbitX ?? 0) ?? 0
       }
       return xScale(d.declination ?? 0) ?? 0
     })
     .attr('cy', function(d: Post) {
       if (d.orbit) {
-        return yScale(d.orbit.orbitY ?? 0)
+        return yScale(d.orbit.orbitY ?? 0) ?? 0
       }
       return yScale(d['ascension'] ?? 0) ?? 0
     })
@@ -254,7 +254,7 @@ export const createStars = (svg: UniverseSVG, posts: Post[], setTooltipData: Dis
     .attr('role', 'button')
     .attr('tabindex', '0')
     .attr('aria-label', (d: Post) => d.title)
-    .on('mouseover', function(event, d: Post) {
+    .on('mouseover', function(d: Post) {
       if (d.slug && d.orbit) {
         const state = starStates.get(d.slug);
         if (state) {
@@ -266,7 +266,7 @@ export const createStars = (svg: UniverseSVG, posts: Post[], setTooltipData: Dis
       }
       addHighlight(d);
     })
-    .on('mouseout', function(event, d: Post) {
+    .on('mouseout', function(d: Post) {
       if (d.slug && d.orbit) {
         const state = starStates.get(d.slug);
         if (state && state.pausedAt !== null && state.pausedAngle !== null) {
@@ -321,7 +321,7 @@ export const createStars = (svg: UniverseSVG, posts: Post[], setTooltipData: Dis
   const globalStartTime = Date.now();
 
   // Initialize random starting angles and states for each star
-  svg.selectAll('.stars > g').each(function(d: Post) {
+  svg.selectAll<SVGGElement, Post>('.stars > g').each(function(d: Post) {
     if (d.orbit && d.slug) {
       starStates.set(d.slug, {
         startAngle: Math.random() * 2 * Math.PI,
@@ -335,7 +335,7 @@ export const createStars = (svg: UniverseSVG, posts: Post[], setTooltipData: Dis
   const animate = () => {
     const currentTime = Date.now();
 
-    svg.selectAll('.stars > g').each(function(d: Post) {
+    svg.selectAll<SVGGElement, Post>('.stars > g').each(function(d: Post) {
       if (d.orbit && d.slug) {
         const state = starStates.get(d.slug);
         if (!state) return;
