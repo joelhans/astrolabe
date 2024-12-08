@@ -254,7 +254,7 @@ export const createStars = (svg: UniverseSVG, posts: Post[], setTooltipData: Dis
     .attr('role', 'button')
     .attr('tabindex', '0')
     .attr('aria-label', (d: Post) => d.title)
-    .on('mouseover', function(d: Post) {
+    .on('mouseover', function(currentEvent, d:any) {
       if (d.slug && d.orbit) {
         const state = starStates.get(d.slug);
         if (state) {
@@ -266,7 +266,7 @@ export const createStars = (svg: UniverseSVG, posts: Post[], setTooltipData: Dis
       }
       addHighlight(d);
     })
-    .on('mouseout', function(d: Post) {
+    .on('mouseout', function(currentEvent, d:any) {
       if (d.slug && d.orbit) {
         const state = starStates.get(d.slug);
         if (state && state.pausedAt !== null && state.pausedAngle !== null) {
